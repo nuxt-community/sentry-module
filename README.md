@@ -8,11 +8,9 @@
 
 > Sentry module for Nuxt.js
 
-[📖 **Release Notes**](./CHANGELOG.md)
-
 ## Features
 
-The module features
+The module enables error logging through [Sentry](http://sentry.io).
 
 ## Setup
 - Add `@nuxtjs/sentry` dependency using yarn or npm to your project
@@ -21,18 +19,22 @@ The module features
 ```js
 {
   modules: [
-    // Simple usage
-    '@nuxtjs/sentry',
-
-    // With options
-    ['@nuxtjs/sentry', { /* module options */ }],
+    ['@nuxtjs/sentry', {
+      public_key: '',
+      private_key: '',
+      project_id: '',
+      config: {
+        environment: process.env.NODE_ENV !== 'production' ? 'development' : 'production',
+        // Additional config
+      },
+    }],
  ]
 }
 ```
 
 ## Usage
 
-Module Description
+Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
 
 ## License
 
