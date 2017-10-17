@@ -19,22 +19,72 @@ The module enables error logging through [Sentry](http://sentry.io).
 ```js
 {
   modules: [
-    ['@nuxtjs/sentry', {
+    '@nuxtjs/sentry',
+  ],
+
+  sentry: {
       public_key: '',
       private_key: '',
       project_id: '',
       config: {
-        environment: process.env.NODE_ENV !== 'production' ? 'development' : 'production',
         // Additional config
       },
-    }],
- ]
+    }
 }
 ```
 
 ## Usage
 
 Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
+
+## Options
+
+Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`. 
+Normally setting required DSN information would be enough.
+
+### dsn
+- Type: `String`
+  - Default: `process.env.SENTRY_DSN`
+
+### public_dsn
+- Type: `String`
+  - Default: `process.env.SENTRY_PUBLIC_DSN`
+
+If value omitted it will be generated using `dsn` value, by removing private key part.
+
+### public_key
+- Type: `String`
+  - Default: `process.env.SENTRY_PUBLIC_KEY`
+
+Will be ignored if `dsn` provided.
+
+### private_key
+- Type: `String`
+  - Default: `process.env.SENTRY_PRIVATE_KEY`
+
+Will be ignored if `dsn` provided.
+
+### host
+- Type: `String`
+  - Default: `process.env.SENTRY_HOST || 'sentry.io'`
+
+Will be ignored if `dsn` provided.
+### protocol
+- Type: `String`
+  - Default: `process.env.SENTRY_PROTOCOL || 'https'`
+
+Will be ignored if `dsn` provided.
+
+### project_Id
+- Type: `String`
+  - Default: `process.env.SENTRY_PROJECT_ID || ''`
+
+Will be ignored if `dsn` provided.
+### path
+- Type: `String`
+  - Default: `process.env.SENTRY_PATH || '/'`
+
+Will be ignored if `dsn` provided.
 
 ## License
 
