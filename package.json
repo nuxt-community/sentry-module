@@ -1,0 +1,43 @@
+{
+  "name": "@nuxtjs/sentry",
+  "version": "0.0.0",
+  "description": "Sentry module for Nuxt.js",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Diederik van den Burger <diederik@webrelated.nl>"
+    }
+  ],
+  "main": "lib/sentry.js",
+  "repository": "https://github.com/nuxt-community/sentry-module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint lib test",
+    "test": "npm run lint && jest",
+    "release": "standard-version && git push --follow-tags && npm publish"
+  },
+  "eslintIgnore": [
+    "lib/templates/*.*"
+  ],
+  "files": [
+    "lib"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "lib",
+      "test"
+    ]
+  },
+  "dependencies": {
+    "raven": "^2.2.1",
+    "raven-js": "^3.18.1"
+  },
+  "devDependencies": {
+    "nuxt-module-builder": "latest"
+  }
+}
