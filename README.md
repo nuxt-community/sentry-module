@@ -86,6 +86,10 @@ Will be ignored if `dsn` provided.
 
 Will be ignored if `dsn` provided.
 
+### disableClientSide
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
+
 ## License
 
 [MIT License](./LICENSE)
