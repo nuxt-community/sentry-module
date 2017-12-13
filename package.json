@@ -34,8 +34,8 @@
     ]
   },
   "dependencies": {
-    "raven": "^2.2.1",
-    "raven-js": "^3.18.1"
+    "raven": "^2.3.0",
+    "raven-js": "^3.21.0"
   },
   "devDependencies": {
     "nuxt-module-builder": "latest"
