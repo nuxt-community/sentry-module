@@ -39,5 +39,8 @@
   },
   "devDependencies": {
     "nuxt-module-builder": "latest"
+  },
+  "peerDependencies": {
+    "nuxt": "<1.0.0 || >1.2.1"
   }
 }

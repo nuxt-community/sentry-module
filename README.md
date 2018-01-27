@@ -33,6 +33,9 @@ The module enables error logging through [Sentry](http://sentry.io).
 }
 ```
 
+### Nuxt compatibility
+Make sure you use a version of Nuxt either *prior* to v1.0.0 or *after* v1.2.1.
+
 ## Usage
 
 Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
@@ -95,3 +98,4 @@ Will be ignored if `dsn` provided.
 [MIT License](./LICENSE)
 
 Copyright (c) Diederik van den Burger <diederik@webrelated.nl>
+
