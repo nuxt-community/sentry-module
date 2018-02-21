@@ -33,12 +33,50 @@ The module enables error logging through [Sentry](http://sentry.io).
 }
 ```
 
+- Optionally, have Raven report unhandled promise rejection
+
+Add `{ src: '~/plugins/raven.js' }` to `modules` section of `nuxt.config.js`
+```js
+    plugins: [
+        { src: '~/plugins/raven.js' },
+        // { src: '~/plugins/raven.js', ssr: false, }
+   ],
+```
+And include a `plugins/raven.js` file:
+```js
+import Raven from 'raven-js'
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('unhandledrejection', event  => {
+    Raven.captureException(event.reason);
+  });
+} else {
+  process.on('unhandledRejection', err => {
+    Raven.captureException(err);
+  });
+}
+```
+
 ### Nuxt compatibility
 Make sure you use a version of Nuxt either *prior* to v1.0.0 or *after* v1.2.1.
 
 ## Usage
 
 Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
+
+Each component will have `$raven` injected, for example `any-component.vue`:
+```
+<script>
+export default {
+  name: 'any-component';
+  mounted() {
+    // send message to sentry
+    this.$raven.captureException(new Error('mounted!'));
+    this.$raven.captureMessage('mounted!');
+  },
+}
+</script>
+```
 
 ## Options
 
