@@ -40,6 +40,16 @@ Make sure you use a version of Nuxt either *prior* to v1.0.0 or *after* v1.2.1.
 
 Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
 
+### Usage in Vue component
+
+In a Vue component, `Raven` is available as `this.$raven`, so we can call functions like
+
+```
+this.$raven.setUserContext({user})
+```
+
+where this is a Vue instance.
+
 ## Options
 
 Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`. 
