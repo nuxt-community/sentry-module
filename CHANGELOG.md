@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/nuxt-community/sentry-module/compare/v1.1.0...v1.1.1) (2018-07-12)
+
+
+### Features
+
+* add fallback for deprecated dns ([#24](https://github.com/nuxt-community/sentry-module/issues/24)) ([9f47f6a](https://github.com/nuxt-community/sentry-module/commit/9f47f6a))
+* updated logging to use consola ([#25](https://github.com/nuxt-community/sentry-module/issues/25)) ([f6abcc8](https://github.com/nuxt-community/sentry-module/commit/f6abcc8))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/nuxt-community/sentry-module/compare/v1.0.3...v1.1.0) (2018-06-26)
 
