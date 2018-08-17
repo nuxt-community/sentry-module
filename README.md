@@ -99,6 +99,10 @@ Will be ignored if `dsn` provided.
 
 Will be ignored if `dsn` provided.
 
+### disabled
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_DISABLED || false`
+
 ### disableClientSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
