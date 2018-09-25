@@ -24,7 +24,6 @@ The module enables error logging through [Sentry](http://sentry.io).
 
   sentry: {
       public_key: '',
-      private_key: '',
       project_id: '',
       config: {
         // Additional config
@@ -42,7 +41,7 @@ Enter your DSN in the NuxtJS config file. Additional config settings can be foun
 
 ### Usage in Vue component
 
-In a Vue component, `Raven` is available as `this.$raven`, so we can call functions like
+In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
 
 ```
 this.$raven.setUserContext({user})
@@ -59,11 +58,6 @@ Normally setting required DSN information would be enough.
 - Type: `String`
   - Default: `process.env.SENTRY_DSN`
 
-### public_dsn
-- Type: `String`
-  - Default: `process.env.SENTRY_PUBLIC_DSN`
-
-If value omitted it will be generated using `dsn` value, by removing private key part.
 
 ### public_key
 - Type: `String`
@@ -71,11 +65,6 @@ If value omitted it will be generated using `dsn` value, by removing private key
 
 Will be ignored if `dsn` provided.
 
-### private_key
-- Type: `String`
-  - Default: `process.env.SENTRY_PRIVATE_KEY`
-
-Will be ignored if `dsn` provided.
 
 ### host
 - Type: `String`
