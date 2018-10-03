@@ -7,7 +7,6 @@ module.exports = {
   modules: [
     ['@@', {
       public_key: 'public_key',
-      private_key: 'private_key',
       project_id: 'project_id',
       config: {}
     }]
