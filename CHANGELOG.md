@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/nuxt-community/sentry-module/compare/v1.1.3...v2.0.0) (2018-10-19)
+
+
+### Features
+
+* use new sentry sdk, close [#20](https://github.com/nuxt-community/sentry-module/issues/20), [#30](https://github.com/nuxt-community/sentry-module/issues/30) ([da63340](https://github.com/nuxt-community/sentry-module/commit/da63340))
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/nuxt-community/sentry-module/compare/v1.1.2...v1.1.3) (2018-09-10)
 
