@@ -34,9 +34,9 @@
     ]
   },
   "dependencies": {
-    "consola": "^1.4.1",
-    "raven": "^2.3.0",
-    "raven-js": "^3.21.0"
+    "consola": "^1.4.3",
+    "@sentry/node": "^4.0.6",
+    "@sentry/browser": "^4.0.6"
   },
   "devDependencies": {
     "nuxt-module-builder": "latest"
