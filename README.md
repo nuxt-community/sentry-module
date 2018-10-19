@@ -12,6 +12,8 @@
 
 The module enables error logging through [Sentry](http://sentry.io).
 
+**Please note** that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
+
 ## Setup
 - Add `@nuxtjs/sentry` dependency using yarn or npm to your project
 - Add `@nuxtjs/sentry` to `modules` section of `nuxt.config.js`
@@ -33,7 +35,7 @@ The module enables error logging through [Sentry](http://sentry.io).
 ```
 
 ### Nuxt compatibility
-Make sure you use a version of Nuxt either *prior* to v1.0.0 or *after* v1.2.1.
+Versions of NuxtJS between v1.0.0 and v1.2.1 are **not** supported by this package.
 
 ## Usage
 
