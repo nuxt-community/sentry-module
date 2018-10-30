@@ -46,7 +46,7 @@ Enter your DSN in the NuxtJS config file. Additional config settings can be foun
 In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
 
 ```
-this.$raven.setUserContext({user})
+this.$sentry.setUserContext({user})
 ```
 
 where this is a Vue instance.
