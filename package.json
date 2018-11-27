@@ -34,9 +34,9 @@
     ]
   },
   "dependencies": {
-    "consola": "^1.4.3",
-    "@sentry/node": "^4.0.6",
-    "@sentry/browser": "^4.0.6"
+    "@sentry/browser": "^4.3.4",
+    "@sentry/node": "^4.3.4",
+    "consola": "^1.4.3"
   },
   "devDependencies": {
     "nuxt-module-builder": "latest"
