@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/nuxt-community/sentry-module/compare/v2.0.0...v2.1.0) (2018-11-27)
+
+
+### Bug Fixes
+
+* change example of sentry command to valid ([6c9e862](https://github.com/nuxt-community/sentry-module/commit/6c9e862))
+
+
+### Features
+
+* add browser integrations ([8f11ea7](https://github.com/nuxt-community/sentry-module/commit/8f11ea7))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/nuxt-community/sentry-module/compare/v1.1.3...v2.0.0) (2018-10-19)
 
