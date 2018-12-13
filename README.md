@@ -92,7 +92,7 @@ Will be ignored if `dsn` provided.
 
 ### disabled
 - Type: `Boolean`
-  - Default: `process.env.SENTRY_DISABLED || false`
+  - Default: `process.env.SENTRY_DISABLED || process.env.NODE_ENV !== 'production'`
 
 ### disableClientSide
 - Type: `Boolean`
