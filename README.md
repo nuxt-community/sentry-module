@@ -102,5 +102,5 @@ Will be ignored if `dsn` provided.
 
 [MIT License](./LICENSE)
 
-Copyright (c) Diederik van den Burger <diederik@webrelated.nl>
+Copyright (c) Diederik van den Burger <diederik@glue.group>
 
