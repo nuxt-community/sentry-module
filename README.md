@@ -60,6 +60,7 @@ Normally setting required DSN information would be enough.
 - Type: `String`
   - Default: `process.env.SENTRY_DSN`
 
+If no `dsn` is provided, sentry will not be initialised (same effect as disabling this module)
 
 ### public_key
 - Type: `String`
@@ -93,6 +94,8 @@ Will be ignored if `dsn` provided.
 ### disabled
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLED || false`
+
+Sentry will not be initialised if set to `true`
 
 ### disableClientSide
 - Type: `Boolean`
