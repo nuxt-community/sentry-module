@@ -6,13 +6,9 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    jest: true
   },
   extends: 'standard',
-  plugins: [
-    'jest',
-    'vue'
-  ],
+  plugins: ['vue'],
   rules: {
     // Allow paren-less arrow functions
     'arrow-parens': 0,

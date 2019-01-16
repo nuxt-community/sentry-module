@@ -12,7 +12,8 @@
 
 The module enables error logging through [Sentry](http://sentry.io).
 
-**Please note** that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
+- **Please note** that version 2.2.0 of this package removed the older `public_key` and `private_key` options, since the updated Sentry packages don't support these anymore. 
+- **Please note** that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
 
 ## Setup
 - Add `@nuxtjs/sentry` dependency using yarn or npm to your project
@@ -25,11 +26,8 @@ The module enables error logging through [Sentry](http://sentry.io).
   ],
 
   sentry: {
-      public_key: '',
-      project_id: '',
-      config: {
-        // Additional config
-      },
+      dsn: '', // Enter your project's DSN here
+      config: {}, // Additional config
     }
 }
 ```
@@ -49,7 +47,7 @@ In a Vue component, `Sentry` is available as `this.$sentry`, so we can call func
 this.$sentry.captureException(new Error('example'))
 ```
 
-where this is a Vue instance.
+where `this` is a Vue instance.
 
 ## Options
 
@@ -59,44 +57,20 @@ Normally setting required DSN information would be enough.
 ### dsn
 - Type: `String`
   - Default: `process.env.SENTRY_DSN`
-
-
-### public_key
-- Type: `String`
-  - Default: `process.env.SENTRY_PUBLIC_KEY`
-
-Will be ignored if `dsn` provided.
-
-
-### host
-- Type: `String`
-  - Default: `process.env.SENTRY_HOST || 'sentry.io'`
-
-Will be ignored if `dsn` provided.
-### protocol
-- Type: `String`
-  - Default: `process.env.SENTRY_PROTOCOL || 'https'`
-
-Will be ignored if `dsn` provided.
-
-### project_Id
-- Type: `String`
-  - Default: `process.env.SENTRY_PROJECT_ID || ''`
-
-Will be ignored if `dsn` provided.
-### path
-- Type: `String`
-  - Default: `process.env.SENTRY_PATH || '/'`
-
-Will be ignored if `dsn` provided.
+  - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this. 
 
 ### disabled
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLED || false`
+  - Sentry will not be initialised if set to `true`.
 
 ### disableClientSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
+  
+### options
+- Type: `Object`
+  - Default: `{}`
 
 ## License
 
