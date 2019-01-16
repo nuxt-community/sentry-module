@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [2.2.0](https://github.com/nuxt-community/sentry-module/compare/v2.1.0...v2.2.0) (2019-01-16)
+
+
+### Bug Fixes
+
+* resolved [#47](https://github.com/nuxt-community/sentry-module/issues/47) by merging in [#48](https://github.com/nuxt-community/sentry-module/issues/48), updated packages and removed outdated config settings ([31d3db9](https://github.com/nuxt-community/sentry-module/commit/31d3db9))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/nuxt-community/sentry-module/compare/v2.0.0...v2.1.0) (2018-11-27)
 
