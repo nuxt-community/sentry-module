@@ -56,7 +56,7 @@ Normally setting required DSN information would be enough.
 
 ### dsn
 - Type: `String`
-  - Default: `process.env.SENTRY_DSN`
+  - Default: `process.env.SENTRY_DSN || false`
   - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this. 
 
 ### disabled
@@ -67,6 +67,11 @@ Normally setting required DSN information would be enough.
 ### disableClientSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
+  
+### publishRelease
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
+  - See https://docs.sentry.io/workflow/releases for more information
   
 ### options
 - Type: `Object`
