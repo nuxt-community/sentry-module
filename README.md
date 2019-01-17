@@ -72,6 +72,9 @@ Normally setting required DSN information would be enough.
 - Type: `Object`
   - Default: `{}`
 
+## Submitting releases to Sentry
+Recently, support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced. This can be used to send releases to Sentry. Check out the [feature/sourcemaps](https://github.com/nuxt-community/sentry-module/tree/feature/sourcemaps) branch. After some more testing, this feature will be merged in to the master branch.
+
 ## License
 
 [MIT License](./LICENSE)
