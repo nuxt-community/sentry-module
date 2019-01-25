@@ -26,9 +26,9 @@ The module enables error logging through [Sentry](http://sentry.io).
   ],
 
   sentry: {
-      dsn: '', // Enter your project's DSN here
-      config: {}, // Additional config
-    }
+    dsn: '', // Enter your project's DSN here
+    config: {}, // Additional config
+  }
 }
 ```
 
