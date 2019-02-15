@@ -68,7 +68,7 @@ Normally setting required DSN information would be enough.
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
   
-### options
+### config
 - Type: `Object`
   - Default: `{}`
 
