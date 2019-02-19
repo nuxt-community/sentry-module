@@ -56,7 +56,7 @@ Normally setting required DSN information would be enough.
 
 ### dsn
 - Type: `String`
-  - Default: `process.env.SENTRY_DSN`
+  - Default: `process.env.SENTRY_DSN || false`
   - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this. 
 
 ### disabled
@@ -68,15 +68,21 @@ Normally setting required DSN information would be enough.
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
   
-### config
+### publishRelease
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
+  - See https://docs.sentry.io/workflow/releases for more information
+  
+### options
 - Type: `Object`
   - Default: `{}`
 
 ## Submitting releases to Sentry
-Recently, support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced. This can be used to send releases to Sentry. Check out the [feature/sourcemaps](https://github.com/nuxt-community/sentry-module/tree/feature/sourcemaps) branch. After some more testing, this feature will be merged in to the master branch.
+Support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced [#a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3b983b4c6659e985736b19dc771fe7c9ea). This can be used to send releases to Sentry. Use the publishRelease  option to enable this feature.
+
+Note that releases are only submitted to Sentry when `(options.publishRelease && !isDev)` is true.
 
 ## License
-
 [MIT License](./LICENSE)
 
 Copyright (c) Diederik van den Burger <diederik@glue.group>
