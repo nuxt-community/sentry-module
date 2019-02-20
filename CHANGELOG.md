@@ -2,17 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [2.3.0](https://github.com/nuxt-community/sentry-module/compare/v2.2.2...v2.3.0) (2019-02-19)
-
-
-### Bug Fixes
-
-* added url prefix to sourcemap files ([b735622](https://github.com/nuxt-community/sentry-module/commit/b735622))
-
-
-### Features
-
-* allowing for uploading of sourcemaps to Sentry, see [#31](https://github.com/nuxt-community/sentry-module/issues/31) ([a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3))
+## [2.3.1](https://github.com/nuxt-community/sentry-module/compare/v2.3.0...v2.3.1) (2019-02-20)
 
 
 
