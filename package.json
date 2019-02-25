@@ -37,7 +37,8 @@
     "@sentry/browser": "^4.5.1",
     "@sentry/node": "^4.5.1",
     "@sentry/webpack-plugin": "^1.6.2",
-    "consola": "^2.3.2"
+    "consola": "^2.3.2",
+    "deepmerge": "^3.2.0"
   },
   "peerDependencies": {
     "nuxt": "<1.0.0 || >1.2.1"
