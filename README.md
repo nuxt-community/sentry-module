@@ -71,7 +71,7 @@ Normally setting required DSN information would be enough.
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
   - See https://docs.sentry.io/workflow/releases for more information
   
-### options
+### config
 - Type: `Object`
   - Default: `{}`
 
