@@ -30,7 +30,7 @@ describe('Module', () => {
   })
 
   test('render', async () => {
-    let html = await get('/')
+    const html = await get('/')
     expect(html).toContain('Works!')
   })
 })
