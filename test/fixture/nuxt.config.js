@@ -1,14 +1,14 @@
-module.exports = {
+export default {
   srcDir: __dirname,
   dev: false,
   render: {
     resourceHints: false
   },
   modules: [
-    ['@@', {
-      public_key: 'public_key',
-      project_id: 'project_id',
-      config: {}
-    }]
-  ]
+    require('../..')
+  ],
+  sentry: {
+    dsn: 'https://fe8b7df6ea7042f69d7a97c66c2934f7@sentry.io/1429779',
+    config: {}
+  }
 }

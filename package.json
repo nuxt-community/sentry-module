@@ -2,46 +2,28 @@
   "name": "@nuxtjs/sentry",
   "version": "2.3.1",
   "description": "Sentry module for Nuxt.js",
+  "repository": "nuxt-community/sentry-module",
   "license": "MIT",
   "contributors": [
     {
       "name": "Diederik van den Burger <diederik@webrelated.nl>"
     }
   ],
-  "main": "lib/sentry.js",
-  "repository": "https://github.com/nuxt-community/sentry-module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "lint": "eslint lib test",
-    "test": "npm run lint && jest",
-    "release": "standard-version && git push --follow-tags && npm publish"
-  },
-  "eslintIgnore": [
-    "lib/templates/*.*"
-  ],
   "files": [
     "lib"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "lib",
-      "test"
-    ]
+  "main": "lib/module.js",
+  "scripts": {
+    "lint": "eslint --ext .vue,.js lib test",
+    "release": "standard-version && git push --follow-tags && npm publish",
+    "test": "npm run lint && jest"
   },
   "dependencies": {
     "@sentry/browser": "^4.6.6",
     "@sentry/node": "^4.6.6",
     "@sentry/webpack-plugin": "^1.6.2",
-    "consola": "^2.3.2",
+    "consola": "^2.5.8",
     "deepmerge": "^3.2.0"
-  },
-  "peerDependencies": {
-    "nuxt": "<1.0.0 || >1.2.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
@@ -52,6 +34,13 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.2.2"
+    "eslint-plugin-vue": "^5.2.2",
+    "nuxt-edge": "^2.6.0-25903509.e155ea43"
+  },
+  "peerDependencies": {
+    "nuxt": "<1.0.0 || >1.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
