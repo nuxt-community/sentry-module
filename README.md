@@ -10,7 +10,7 @@
 
 The module enables error logging through [Sentry](http://sentry.io).
 
-- **Please note** that version 2.2.0 of this package removed the older `public_key` and `private_key` options, since the updated Sentry packages don't support these anymore. 
+- **Please note** that version 2.2.0 of this package removed the older `public_key` and `private_key` options, since the updated Sentry packages don't support these anymore.
 - **Please note** that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
 
 ## Setup
@@ -49,13 +49,13 @@ where `this` is a Vue instance.
 
 ## Options
 
-Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`. 
+Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`.
 Normally setting required DSN information would be enough.
 
 ### dsn
 - Type: `String`
   - Default: `process.env.SENTRY_DSN || false`
-  - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this. 
+  - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this.
 
 ### disabled
 - Type: `Boolean`
@@ -65,13 +65,13 @@ Normally setting required DSN information would be enough.
 ### disableClientSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
-  
+
 ### publishRelease
 - Type: `Boolean`
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
   - See https://docs.sentry.io/workflow/releases for more information
-  
-### options
+
+### config
 - Type: `Object`
   - Default: `{}`
 
