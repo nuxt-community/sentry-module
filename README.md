@@ -31,7 +31,7 @@ The module enables error logging through [Sentry](http://sentry.io).
 ```
 
 ### Nuxt compatibility
-Versions of NuxtJS between v1.0.0 and v1.2.1 are **not** supported by this package.
+Versions of NuxtJS before v2.0.0 are **not** supported by this package.
 
 ## Usage
 
@@ -65,6 +65,10 @@ Normally setting required DSN information would be enough.
 ### disableClientSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
+  
+### disableServerSide
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_DISABLE_SERVER_SIDE || false`
 
 ### publishRelease
 - Type: `Boolean`
@@ -73,7 +77,9 @@ Normally setting required DSN information would be enough.
 
 ### config
 - Type: `Object`
-  - Default: `{}`
+  - Default: `{
+    environment: this.options.dev ? 'development' : 'production'
+  }`
 
 ## Submitting releases to Sentry
 Support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced [#a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3b983b4c6659e985736b19dc771fe7c9ea). This can be used to send releases to Sentry. Use the publishRelease  option to enable this feature.
