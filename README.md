@@ -31,7 +31,7 @@ The module enables error logging through [Sentry](http://sentry.io).
 ```
 
 ### Nuxt compatibility
-Versions of NuxtJS before v2.0.0 are **not** supported by this package.
+Versions of NuxtJS before v2.4.0 are **not** supported by this package.
 
 ## Usage
 
