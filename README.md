@@ -122,6 +122,18 @@ Normally setting required DSN information would be enough.
     environment: this.options.dev ? 'development' : 'production'
   }`
 
+### serverConfig
+- Type: `Object`
+  - Default: `{
+  }`
+  - If specified, values will override config values for server sentry plugin
+
+### clientConfig
+- Type: `Object`
+  - Default: `{
+  }`
+  - If specified, values will override config values for client sentry plugin
+
 ## Submitting releases to Sentry
 Support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced [#a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3b983b4c6659e985736b19dc771fe7c9ea). This can be used to send releases to Sentry. Use the publishRelease  option to enable this feature.
 
