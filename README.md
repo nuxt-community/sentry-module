@@ -69,11 +69,52 @@ Normally setting required DSN information would be enough.
 ### disableServerSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_SERVER_SIDE || false`
+  
+### initialize
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_INITIALIZE || true`
 
 ### publishRelease
 - Type: `Boolean`
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
   - See https://docs.sentry.io/workflow/releases for more information
+
+### disableServerRelease
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
+  - See https://docs.sentry.io/workflow/releases for more information
+
+### disableClientRelease
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_DISABLE_CLIENT_RELEASE || false`
+  - See https://docs.sentry.io/workflow/releases for more information
+
+### clientIntegrations
+- Type: `Dictionary`
+  - Default: 
+  ```
+   {
+      Dedupe: {},
+      ExtraErrorData: {},
+      ReportingObserver: {},
+      RewriteFrames: {},
+      Vue: {attachProps: true}
+   }
+  ```
+  - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
+
+### serverIntegrations
+- Type: `Dictionary`
+  - Default: 
+  ```
+    {
+      Dedupe: {},
+      ExtraErrorData: {},
+      RewriteFrames: {},
+      Transaction: {}
+    }
+  ```
+  - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
 
 ### config
 - Type: `Object`
