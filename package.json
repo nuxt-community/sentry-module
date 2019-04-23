@@ -19,8 +19,8 @@
     "test": "npm run lint && jest"
   },
   "dependencies": {
-    "@sentry/browser": "^4.6.6",
-    "@sentry/node": "^4.6.6",
+    "@sentry/browser": "^5.1.1",
+    "@sentry/node": "^5.1.0",
     "@sentry/webpack-plugin": "^1.6.2",
     "consola": "^2.5.8",
     "deepmerge": "^3.2.0"
