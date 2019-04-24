@@ -19,10 +19,11 @@
     "test": "npm run lint && jest"
   },
   "dependencies": {
-    "@sentry/browser": "^4.6.6",
-    "@sentry/node": "^4.6.6",
+    "@sentry/integrations": "^5.0.8",
+    "@sentry/browser": "^5.0.8",
+    "@sentry/node": "^5.0.8",
     "@sentry/webpack-plugin": "^1.6.2",
-    "consola": "^2.5.8",
+    "consola": "^2.6.0",
     "deepmerge": "^3.2.0"
   },
   "devDependencies": {
@@ -37,9 +38,6 @@
     "eslint-plugin-vue": "^5.2.2",
     "nuxt-edge": "^2.6.0-25903509.e155ea43",
     "standard-version": "^5.0.2"
-  },
-  "peerDependencies": {
-    "nuxt": "<1.0.0 || >1.2.1"
   },
   "publishConfig": {
     "access": "public"
