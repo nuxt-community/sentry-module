@@ -37,7 +37,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.2",
     "nuxt-edge": "^2.6.0-25905610.75e8a893",
-    "standard-version": "^5.0.2"
+    "standard-version": "^6.0.1"
   },
   "publishConfig": {
     "access": "public"
