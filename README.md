@@ -1,8 +1,11 @@
 # @nuxtjs/sentry
-[![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/sentry/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/sentry)
-[![npm](https://img.shields.io/npm/dt/@nuxtjs/sentry.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/sentry)
-[![Dependencies](https://david-dm.org/nuxt-community/sentry-module/status.svg?style=flat-square)](https://david-dm.org/nuxt-community/sentry-module)
-[![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
+
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![Circle CI][circle-ci-src]][circle-ci-href]
+[![Codecov][codecov-src]][codecov-href]
+[![Dependencies][david-dm-src]][david-dm-href]
+[![Standard JS][standard-js-src]][standard-js-href]
 
 > Sentry module for Nuxt.js
 
@@ -65,11 +68,11 @@ Normally setting required DSN information would be enough.
 ### disableClientSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_CLIENT_SIDE || false`
-  
+
 ### disableServerSide
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_SERVER_SIDE || false`
-  
+
 ### initialize
 - Type: `Boolean`
   - Default: `process.env.SENTRY_INITIALIZE || true`
@@ -91,7 +94,7 @@ Normally setting required DSN information would be enough.
 
 ### clientIntegrations
 - Type: `Dictionary`
-  - Default: 
+  - Default:
   ```
    {
       Dedupe: {},
@@ -105,7 +108,7 @@ Normally setting required DSN information would be enough.
 
 ### serverIntegrations
 - Type: `Dictionary`
-  - Default: 
+  - Default:
   ```
     {
       Dedupe: {},
@@ -144,3 +147,16 @@ Note that releases are only submitted to Sentry when `(options.publishRelease &&
 
 Copyright (c) Diederik van den Burger <diederik@glue.group>
 
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/dt/@nuxtjs/sentry.svg?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@nuxtjs/sentry
+[npm-downloads-src]: https://img.shields.io/npm/v/@nuxtjs/sentry/latest.svg?style=flat-square
+[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/sentry
+[circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/sentry-module.svg?style=flat-square
+[circle-ci-href]: https://circleci.com/gh/nuxt-community/sentry-module
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/sentry-module.svg?style=flat-square
+[codecov-href]: https://codecov.io/gh/nuxt-community/sentry-module
+[david-dm-src]: https://david-dm.org/nuxt-community/sentry-module/status.svg?style=flat-square
+[david-dm-href]: https://david-dm.org/nuxt-community/sentry-module
+[standard-js-src]: https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square
+[standard-js-href]: https://standardjs.com
