@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   srcDir: __dirname,
   dev: false,
   render: {
