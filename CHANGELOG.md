@@ -1,6 +1,16 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [3.0.0](https://github.com/nuxt-community/sentry-module/compare/v2.3.2...v3.0.0) (2019-05-12)
+
+### Features
+* sentry 5 update, plugin for server side, ([#72](https://github.com/nuxt-community/sentry-module/issues/72)) ([17322f9](https://github.com/nuxt-community/sentry-module/commit/17322f9))
+
+### Bug Fixes
+
+* fix typo in sentry.client ([#81](https://github.com/nuxt-community/sentry-module/issues/81)) ([77a8f23](https://github.com/nuxt-community/sentry-module/commit/77a8f23))
+* **client:** client not being initialized ([#78](https://github.com/nuxt-community/sentry-module/issues/78)) ([a68f34b](https://github.com/nuxt-community/sentry-module/commit/a68f34b))
 
 ## [2.3.2](https://github.com/nuxt-community/sentry-module/compare/v2.3.1...v2.3.2) (2019-04-02)
 
