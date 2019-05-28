@@ -44,11 +44,26 @@ Enter your DSN in the NuxtJS config file. Additional config settings can be foun
 
 In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
 
-```
+``` js
 this.$sentry.captureException(new Error('example'))
 ```
 
 where `this` is a Vue instance.
+
+### Usage Server-Side
+
+While server-side, `Sentry` is available as `ctx.app.$sentry` where `ctx` is the app context. If you wanted to use it in the `asyncData` method you could do it this way: 
+
+``` js
+async asyncData (ctx) {
+  try {
+    let { data } = await axios.get(`https://my-api/posts/${ctx.params.id}`)
+    return { title: data.title }
+  } catch (error) {
+    ctx.app.$sentry.captureException(new Error('example'))
+  }
+}
+```
 
 ## Options
 
@@ -95,7 +110,7 @@ Normally setting required DSN information would be enough.
 ### clientIntegrations
 - Type: `Dictionary`
   - Default:
-  ```
+  ``` js
    {
       Dedupe: {},
       ExtraErrorData: {},
@@ -109,7 +124,7 @@ Normally setting required DSN information would be enough.
 ### serverIntegrations
 - Type: `Dictionary`
   - Default:
-  ```
+  ``` js
     {
       Dedupe: {},
       ExtraErrorData: {},
