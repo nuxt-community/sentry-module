@@ -50,17 +50,41 @@ this.$sentry.captureException(new Error('example'))
 
 where `this` is a Vue instance.
 
-### Usage Server-Side
+### Usage in the `fetch` and `asyncData` methods
 
-While server-side, `Sentry` is available as `ctx.app.$sentry` where `ctx` is the app context. If you wanted to use it in the `asyncData` method you could do it this way: 
+While using nuxt's `fetch` and `asyncData` methods, the `$sentry` object is available in the root Vue object `app` like other nuxt plugins:
 
 ``` js
-async asyncData (ctx) {
+async fetch ({ app, params, store }) {
   try {
-    let { data } = await axios.get(`https://my-api/posts/${ctx.params.id}`)
+    let { data } = await axios.get(`https://my-api/posts/meta/${params.id}`)
+    store.commit('setMeta', data)
+  } catch (error) {
+    app.$sentry.captureException(new Error(error))
+  }
+}
+
+async asyncData ({ app, params }) {
+  try {
+    let { data } = await axios.get(`https://my-api/posts/${params.id}`)
     return { title: data.title }
   } catch (error) {
-    ctx.app.$sentry.captureException(new Error('example'))
+    app.$sentry.captureException(new Error(error))
+  }
+}
+```
+
+### Usage in other lifecycle areas
+
+For the other special nuxt lifecycle areas like `plugins`, `middleware`, `modules`, and `nuxtServerInit`, the `$sentry` object is accessible through the root Vue object `app` contained in the `context` object like so:
+
+```js
+async nuxtServerInit({ commit }, ctx) {
+  try {
+    let { data } = await axios.get(`https://my-api/timestamp`)
+    commit('setTimeStamp', data)
+  } catch (error) {
+    ctx.app.$sentry.captureException(new Error(error))
   }
 }
 ```
