@@ -52,7 +52,7 @@ where `this` is a Vue instance.
 
 ### Usage in the `fetch` and `asyncData` methods
 
-While using nuxt's `fetch` and `asyncData` methods, the `$sentry` object is available in the root Vue object `app` like other nuxt plugins:
+While using nuxt's `fetch` and `asyncData` methods, the `$sentry` object is available in `app` like other nuxt plugins:
 
 ``` js
 async fetch ({ app, params, store }) {
@@ -60,7 +60,7 @@ async fetch ({ app, params, store }) {
     let { data } = await axios.get(`https://my-api/posts/meta/${params.id}`)
     store.commit('setMeta', data)
   } catch (error) {
-    app.$sentry.captureException(new Error(error))
+    app.$sentry.captureException(error)
   }
 }
 
@@ -69,14 +69,14 @@ async asyncData ({ app, params }) {
     let { data } = await axios.get(`https://my-api/posts/${params.id}`)
     return { title: data.title }
   } catch (error) {
-    app.$sentry.captureException(new Error(error))
+    app.$sentry.captureException(error)
   }
 }
 ```
 
 ### Usage in other lifecycle areas
 
-For the other special nuxt lifecycle areas like `plugins`, `middleware`, `modules`, and `nuxtServerInit`, the `$sentry` object is accessible through the root Vue object `app` contained in the `context` object like so:
+For the other special nuxt lifecycle areas like `plugins`, `middleware`, `modules`, and `nuxtServerInit`, the `$sentry` object is also accessible through the `app` object contained in the `context` object like so:
 
 ```js
 async nuxtServerInit({ commit }, ctx) {
@@ -84,7 +84,7 @@ async nuxtServerInit({ commit }, ctx) {
     let { data } = await axios.get(`https://my-api/timestamp`)
     commit('setTimeStamp', data)
   } catch (error) {
-    ctx.app.$sentry.captureException(new Error(error))
+    ctx.app.$sentry.captureException(error)
   }
 }
 ```
