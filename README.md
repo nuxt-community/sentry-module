@@ -40,15 +40,23 @@ Versions of NuxtJS before v2.4.0 are **not** supported by this package.
 
 Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
 
-### Usage in Vue component
+### Accessing Sentry
 
-In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
+`Sentry` is available from `context` as `context.app.$sentry` and via `this` in Vue instances and store actions/mutations as `this.$sentry`.
+
+Vue instance and store example:
 
 ```
 this.$sentry.captureException(new Error('example'))
 ```
 
-where `this` is a Vue instance.
+`asyncData` example:
+
+```
+asyncData({ app }) {
+  app.$sentry.captureException(new Error('example'))
+}
+```
 
 ## Options
 
