@@ -39,7 +39,7 @@
     "eslint-plugin-vue": "^5.2.2",
     "jest": "^24.8.0",
     "nuxt-edge": "^2.7.0-25956010.2f5646ba",
-    "standard-version": "^6.0.1"
+    "standard-version": "^7.0.0"
   },
   "publishConfig": {
     "access": "public"
