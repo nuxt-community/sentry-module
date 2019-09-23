@@ -27,7 +27,7 @@
     "deepmerge": "^4.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^0.0.1",
+    "@nuxtjs/eslint-config": "^1.1.2",
     "codecov": "^3.6.1",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
