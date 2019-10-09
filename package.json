@@ -31,7 +31,7 @@
     "codecov": "^3.6.1",
     "eslint": "^5.16.0",
     "jest": "^24.9.0",
-    "nuxt-edge": "^2.10.0-26175435.15fa12fc",
+    "nuxt-edge": "^2.10.0-26176333.e9c4bcfe",
     "standard-version": "^7.0.0"
   },
   "publishConfig": {
