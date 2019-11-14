@@ -84,7 +84,7 @@ Normally setting required DSN information would be enough.
 
 ### attachCommits
 - Type: `Boolean`
-  - Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS === 'true' || true`
+  - Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS !== '0'`
   - Only has effect when `publishRelease = true`
 
 ### repo
