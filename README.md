@@ -82,6 +82,16 @@ Normally setting required DSN information would be enough.
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
   - See https://docs.sentry.io/workflow/releases for more information
 
+### attachCommits
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS || false`
+  - Only has effect when `publishRelease = true`
+
+### repo
+- Type: `String`
+  - Default: `process.env.SENTRY_RELEASE_REPO || false`
+  - Only has effect when `publishRelease = true && attachCommits = true`
+
 ### disableServerRelease
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
