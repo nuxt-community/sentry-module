@@ -30,7 +30,7 @@
     "@nuxtjs/eslint-config": "^1.1.2",
     "codecov": "^3.6.1",
     "eslint": "^5.16.0",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "nuxt-edge": "^2.10.0-26245456.e9c4bcfe",
     "standard-version": "^7.0.1"
   },
