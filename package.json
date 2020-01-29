@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/sentry",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Sentry module for Nuxt.js",
   "repository": "nuxt-community/sentry-module",
   "license": "MIT",
@@ -19,28 +19,21 @@
     "test": "npm run lint && jest"
   },
   "dependencies": {
-    "@sentry/browser": "^5.2.0",
-    "@sentry/integrations": "^5.2.0",
-    "@sentry/node": "^5.2.0",
-    "@sentry/webpack-plugin": "^1.6.2",
+    "@sentry/browser": "^5.11.2",
+    "@sentry/integrations": "^5.11.1",
+    "@sentry/node": "^5.11.2",
+    "@sentry/webpack-plugin": "^1.9.3",
     "@sentry/types": "^5.11.0",
-    "consola": "^2.6.1",
-    "deepmerge": "^3.2.0"
+    "consola": "^2.11.3",
+    "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^0.0.1",
-    "codecov": "^3.4.0",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-jest": "^22.5.1",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "jest": "^24.8.0",
-    "nuxt-edge": "^2.7.0-25956010.2f5646ba",
-    "standard-version": "^6.0.1"
+    "@nuxtjs/eslint-config": "^2.0.0",
+    "codecov": "^3.6.2",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "nuxt-edge": "^2.11.1-26337612.502ab54",
+    "standard-version": "^7.1.0"
   },
   "publishConfig": {
     "access": "public"

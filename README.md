@@ -44,11 +44,41 @@ Enter your DSN in the NuxtJS config file. Additional config settings can be foun
 
 In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
 
-```
+``` js
 this.$sentry.captureException(new Error('example'))
 ```
 
 where `this` is a Vue instance.
+
+### Usage in `asyncData`
+
+While using nuxt's `asyncData` method, `$sentry` object in the `context` like other nuxt modules:
+
+``` js
+async asyncData ({ params, $sentry }) {
+  try {
+    let { data } = await axios.get(`https://my-api/posts/${params.id}`)
+    return { title: data.title }
+  } catch (error) {
+    $sentry.captureException(error)
+  }
+}
+```
+
+### Usage in other lifecycle areas
+
+For the other special nuxt lifecycle areas like `plugins`, `middleware`, `modules`, and `nuxtServerInit`, the `$sentry` object is also accessible through the `context` object like so:
+
+```js
+async nuxtServerInit({ commit }, { $sentry }) {
+  try {
+    let { data } = await axios.get(`https://my-api/timestamp`)
+    commit('setTimeStamp', data)
+  } catch (error) {
+    $sentry.captureException(error)
+  }
+}
+```
 
 ## Options
 
@@ -82,6 +112,16 @@ Normally setting required DSN information would be enough.
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
   - See https://docs.sentry.io/workflow/releases for more information
 
+### attachCommits
+- Type: `Boolean`
+  - Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS !== '0'`
+  - Only has effect when `publishRelease = true`
+
+### repo
+- Type: `String`
+  - Default: `process.env.SENTRY_RELEASE_REPO || false`
+  - Only has effect when `publishRelease = true && attachCommits = true`
+
 ### disableServerRelease
 - Type: `Boolean`
   - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
@@ -95,7 +135,7 @@ Normally setting required DSN information would be enough.
 ### clientIntegrations
 - Type: `Dictionary`
   - Default:
-  ```
+  ``` js
    {
       Dedupe: {},
       ExtraErrorData: {},
@@ -109,7 +149,7 @@ Normally setting required DSN information would be enough.
 ### serverIntegrations
 - Type: `Dictionary`
   - Default:
-  ```
+  ``` js
     {
       Dedupe: {},
       ExtraErrorData: {},
