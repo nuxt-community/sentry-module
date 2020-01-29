@@ -44,11 +44,50 @@ Enter your DSN in the NuxtJS config file. Additional config settings can be foun
 
 In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
 
-```
+``` js
 this.$sentry.captureException(new Error('example'))
 ```
 
 where `this` is a Vue instance.
+
+### Usage in the `fetch` and `asyncData` methods
+
+While using nuxt's `fetch` and `asyncData` methods, the `$sentry` object is available in `app` like other nuxt plugins:
+
+``` js
+async fetch ({ app, params, store }) {
+  try {
+    let { data } = await axios.get(`https://my-api/posts/meta/${params.id}`)
+    store.commit('setMeta', data)
+  } catch (error) {
+    app.$sentry.captureException(error)
+  }
+}
+
+async asyncData ({ app, params }) {
+  try {
+    let { data } = await axios.get(`https://my-api/posts/${params.id}`)
+    return { title: data.title }
+  } catch (error) {
+    app.$sentry.captureException(error)
+  }
+}
+```
+
+### Usage in other lifecycle areas
+
+For the other special nuxt lifecycle areas like `plugins`, `middleware`, `modules`, and `nuxtServerInit`, the `$sentry` object is also accessible through the `app` object contained in the `context` object like so:
+
+```js
+async nuxtServerInit({ commit }, ctx) {
+  try {
+    let { data } = await axios.get(`https://my-api/timestamp`)
+    commit('setTimeStamp', data)
+  } catch (error) {
+    ctx.app.$sentry.captureException(error)
+  }
+}
+```
 
 ## Options
 
@@ -105,7 +144,7 @@ Normally setting required DSN information would be enough.
 ### clientIntegrations
 - Type: `Dictionary`
   - Default:
-  ```
+  ``` js
    {
       Dedupe: {},
       ExtraErrorData: {},
@@ -119,7 +158,7 @@ Normally setting required DSN information would be enough.
 ### serverIntegrations
 - Type: `Dictionary`
   - Default:
-  ```
+  ``` js
     {
       Dedupe: {},
       ExtraErrorData: {},
