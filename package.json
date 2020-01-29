@@ -19,20 +19,20 @@
     "test": "npm run lint && jest"
   },
   "dependencies": {
-    "@sentry/browser": "^5.9.1",
-    "@sentry/integrations": "^5.8.0",
-    "@sentry/node": "^5.9.0",
+    "@sentry/browser": "^5.11.2",
+    "@sentry/integrations": "^5.11.1",
+    "@sentry/node": "^5.11.2",
     "@sentry/webpack-plugin": "^1.9.3",
-    "consola": "^2.11.0",
+    "consola": "^2.11.3",
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.1.2",
-    "codecov": "^3.6.1",
-    "eslint": "^5.16.0",
+    "@nuxtjs/eslint-config": "^2.0.0",
+    "codecov": "^3.6.2",
+    "eslint": "^6.8.0",
     "jest": "^25.1.0",
-    "nuxt-edge": "^2.10.0-26245456.e9c4bcfe",
-    "standard-version": "^7.0.1"
+    "nuxt-edge": "^2.11.1-26337612.502ab54",
+    "standard-version": "^7.1.0"
   },
   "publishConfig": {
     "access": "public"
