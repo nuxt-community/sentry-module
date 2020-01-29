@@ -10,7 +10,8 @@
     }
   ],
   "files": [
-    "lib"
+    "lib",
+    "types"
   ],
   "main": "lib/module.js",
   "scripts": {
@@ -23,6 +24,7 @@
     "@sentry/integrations": "^5.11.1",
     "@sentry/node": "^5.11.2",
     "@sentry/webpack-plugin": "^1.9.3",
+    "@sentry/types": "^5.11.0",
     "consola": "^2.11.3",
     "deepmerge": "^4.2.2"
   },
@@ -36,5 +38,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "types": "types/index.d.ts"
 }
