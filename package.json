@@ -23,6 +23,7 @@
     "@sentry/integrations": "^5.2.0",
     "@sentry/node": "^5.2.0",
     "@sentry/webpack-plugin": "^1.6.2",
+    "@sentry/types": "^5.11.0",
     "consola": "^2.6.1",
     "deepmerge": "^3.2.0"
   },

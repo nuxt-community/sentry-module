@@ -1,4 +1,4 @@
-import { Client } from '@sentry/types/dist/client';
+import { Client } from '@sentry/types';
 
 // add type to Vue context
 declare module 'vue/types/vue' {
