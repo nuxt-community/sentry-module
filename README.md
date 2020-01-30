@@ -177,6 +177,11 @@ Normally setting required DSN information would be enough.
   }`
   - If specified, values will override config values for client sentry plugin
 
+### webpackConfig
+- Type: `Object`
+  - Default: Refer to `module.js` since defaults include various options that also change dynamically based on other options.
+  - Options passed to `@sentry/webpack-plugin`. See documentation at https://github.com/getsentry/sentry-webpack-plugin/blob/master/README.md
+
 ## Submitting releases to Sentry
 Support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced [#a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3b983b4c6659e985736b19dc771fe7c9ea). This can be used to send releases to Sentry. Use the publishRelease  option to enable this feature.
 
