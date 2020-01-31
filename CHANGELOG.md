@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/nuxt-community/sentry-module/compare/v3.1.1...v3.2.0) (2020-01-31)
+
+
+### Features
+
+* mock sentry in case it is disabled ([da106ab](https://github.com/nuxt-community/sentry-module/commit/da106ab9c40a37173e0f0b43ab3899c545ef225d))
+
 ### [3.0.1](https://github.com/nuxt-community/sentry-module/compare/v3.0.0...v3.0.1) (2019-10-14)
 
 ## [3.0.0](https://github.com/nuxt-community/sentry-module/compare/v2.3.2...v3.0.0) (2019-05-12)
