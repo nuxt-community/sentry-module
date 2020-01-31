@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.1](https://github.com/nuxt-community/sentry-module/compare/v3.2.0...v3.2.1) (2020-01-31)
+
+
+### Bug Fixes
+
+* **types:** Make $sentry non-optional since the Proxy is now used when disabled ([238a68d](https://github.com/nuxt-community/sentry-module/commit/238a68d8a540f5410dbb4ffb604d036cef0b8bed))
+
 ## [3.2.0](https://github.com/nuxt-community/sentry-module/compare/v3.1.1...v3.2.0) (2020-01-31)
 
 
