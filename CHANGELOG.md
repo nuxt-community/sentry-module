@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.2](https://github.com/nuxt-community/sentry-module/compare/v3.2.1...v3.2.2) (2020-02-03)
+
+
+### Bug Fixes
+
+* **types:** use @sentry/minimal instead of @sentry/types ([#142](https://github.com/nuxt-community/sentry-module/issues/142)) ([de1874c](https://github.com/nuxt-community/sentry-module/commit/de1874cc3744052bef702f7c33f484c84b409119))
+
 ### [3.2.1](https://github.com/nuxt-community/sentry-module/compare/v3.2.0...v3.2.1) (2020-01-31)
 
 
