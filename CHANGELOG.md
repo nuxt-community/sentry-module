@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.3](https://github.com/nuxt-community/sentry-module/compare/v3.2.2...v3.2.3) (2020-02-13)
+
+
+### Bug Fixes
+
+* allow string to webpackConfig.include ([#149](https://github.com/nuxt-community/sentry-module/issues/149)) ([146ff20](https://github.com/nuxt-community/sentry-module/commit/146ff206153792d80c9e460d75b60e99d80d581d))
+* don't set urlPrefix for release on server ([#150](https://github.com/nuxt-community/sentry-module/issues/150)) ([8e3e4d1](https://github.com/nuxt-community/sentry-module/commit/8e3e4d1c8289a8abae7337bbca8362da6fc5c1b9))
+* don't use Proxy to avoid problems with IE11 compatibility ([f78d7b6](https://github.com/nuxt-community/sentry-module/commit/f78d7b6a4838b45f4fe5b73ee0a1b0f548018824)), closes [#144](https://github.com/nuxt-community/sentry-module/issues/144)
+* enable source maps on server also ([c71d848](https://github.com/nuxt-community/sentry-module/commit/c71d8488c2b017dcdc2ecdb560b53fe5f4f671f4))
+* release failure with non-standard directory structure ([215c308](https://github.com/nuxt-community/sentry-module/commit/215c30842bcedef18c1d8485f20cdf0293701897)), closes [#132](https://github.com/nuxt-community/sentry-module/issues/132)
+* router.base not taken into account when releasing source maps ([#152](https://github.com/nuxt-community/sentry-module/issues/152)) ([8ffce3a](https://github.com/nuxt-community/sentry-module/commit/8ffce3acc00a0314bed0b168d05ae33597515306)), closes [#105](https://github.com/nuxt-community/sentry-module/issues/105)
+* **types:** add types for process.sentry ([#153](https://github.com/nuxt-community/sentry-module/issues/153)) ([0ff5969](https://github.com/nuxt-community/sentry-module/commit/0ff59695103c613d21956add54c15b12144de526))
+
 ### [3.2.2](https://github.com/nuxt-community/sentry-module/compare/v3.2.1...v3.2.2) (2020-02-03)
 
 
