@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.4](https://github.com/nuxt-community/sentry-module/compare/v3.2.3...v3.2.4) (2020-02-14)
+
+
+### Bug Fixes
+
+* released client sourcemaps don't have correct prefix (no /_nuxt/) ([#155](https://github.com/nuxt-community/sentry-module/issues/155)) ([2c8bc83](https://github.com/nuxt-community/sentry-module/commit/2c8bc833d531ca843b4c9bc878ade5b1a49891db))
+
 ### [3.2.3](https://github.com/nuxt-community/sentry-module/compare/v3.2.2...v3.2.3) (2020-02-13)
 
 
