@@ -113,7 +113,7 @@ Normally, setting required DSN information would be enough.
   - See https://docs.sentry.io/workflow/releases for more information
 
 ### sourceMapStyle
-- Type: `Boolean`
+- Type: `String`
   - Default: `source-map`
   - Only has effect when `publishRelease = true`
   - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
