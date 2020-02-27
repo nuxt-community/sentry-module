@@ -38,7 +38,7 @@ Versions of NuxtJS before v2.4.0 are **not** supported by this package.
 
 ## Usage
 
-Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/clients/javascript/config/).
+Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/error-reporting/configuration/?platform=browser).
 
 ### Usage in Vue component
 
@@ -52,7 +52,7 @@ where `this` is a Vue instance.
 
 ### Usage in `asyncData`
 
-While using nuxt's `asyncData` method, `$sentry` object in the `context` like other nuxt modules:
+While using Nuxt's `asyncData` method, there's `$sentry` object in the `context`:
 
 ``` js
 async asyncData ({ params, $sentry }) {
@@ -67,7 +67,7 @@ async asyncData ({ params, $sentry }) {
 
 ### Usage in other lifecycle areas
 
-For the other special nuxt lifecycle areas like `plugins`, `middleware`, `modules`, and `nuxtServerInit`, the `$sentry` object is also accessible through the `context` object like so:
+For the other special Nuxt lifecycle areas like `plugins`, `middleware`, and `nuxtServerInit`, the `$sentry` object is also accessible through the `context` object like so:
 
 ```js
 async nuxtServerInit({ commit }, { $sentry }) {
@@ -83,7 +83,7 @@ async nuxtServerInit({ commit }, { $sentry }) {
 ## Options
 
 Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`.
-Normally setting required DSN information would be enough.
+Normally, setting required DSN information would be enough.
 
 ### dsn
 - Type: `String`
@@ -111,6 +111,13 @@ Normally setting required DSN information would be enough.
 - Type: `Boolean`
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
   - See https://docs.sentry.io/workflow/releases for more information
+
+### sourceMapStyle
+- Type: `Boolean`
+  - Default: `source-map`
+  - Only has effect when `publishRelease = true`
+  - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
+  - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a braking change, it won't be set as the default until next major release
 
 ### attachCommits
 - Type: `Boolean`
