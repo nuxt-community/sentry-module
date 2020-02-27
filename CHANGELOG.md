@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/nuxt-community/sentry-module/compare/v3.2.4...v3.3.0) (2020-02-27)
+
+
+### Features
+
+* add sourceMapStyle option ([#158](https://github.com/nuxt-community/sentry-module/issues/158)) ([450bf75](https://github.com/nuxt-community/sentry-module/commit/450bf75f6586877f618bc7ad2a0e560e3d3fc861)), closes [#157](https://github.com/nuxt-community/sentry-module/issues/157)
+
+
+### Bug Fixes
+
+* **deps:** update Sentry dependencies to v5.12.5  ([#154](https://github.com/nuxt-community/sentry-module/issues/154)) ([34203a6](https://github.com/nuxt-community/sentry-module/commit/34203a6cf981e8e6b2daaeea4b0acd3957df15f5))
+
 ### [3.2.4](https://github.com/nuxt-community/sentry-module/compare/v3.2.3...v3.2.4) (2020-02-14)
 
 
