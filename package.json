@@ -36,9 +36,9 @@
     }
   },
   "dependencies": {
-    "@sentry/browser": "^5.12.1",
-    "@sentry/integrations": "^5.12.0",
-    "@sentry/node": "^5.12.3",
+    "@sentry/browser": "^5.12.5",
+    "@sentry/integrations": "^5.12.5",
+    "@sentry/node": "^5.12.5",
     "@sentry/webpack-plugin": "^1.10.0",
     "consola": "^2.11.3",
     "deepmerge": "^4.2.2"
@@ -53,7 +53,7 @@
     "codecov": "^3.6.5",
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
-    "nuxt-edge": "^2.11.1-26357776.539c865",
+    "nuxt-edge": "^2.11.1-26378723.c5d0067",
     "standard-version": "^7.1.0"
   },
   "publishConfig": {
