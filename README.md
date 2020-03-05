@@ -117,7 +117,7 @@ Normally, setting required DSN information would be enough.
   - Default: `source-map`
   - Only has effect when `publishRelease = true`
   - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
-  - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a braking change, it won't be set as the default until next major release
+  - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a breaking change, it won't be set as the default until next major release
 
 ### attachCommits
 - Type: `Boolean`
