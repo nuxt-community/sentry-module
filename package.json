@@ -36,16 +36,16 @@
     }
   },
   "dependencies": {
-    "@sentry/browser": "^5.12.5",
-    "@sentry/integrations": "^5.12.5",
-    "@sentry/node": "^5.12.5",
+    "@sentry/browser": "^5.13.2",
+    "@sentry/integrations": "^5.13.2",
+    "@sentry/node": "^5.13.2",
     "@sentry/webpack-plugin": "^1.10.0",
     "consola": "^2.11.3",
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@nuxtjs/eslint-config": "^2.0.2",
     "@nuxtjs/module-test-utils": "^1.5.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -55,7 +55,7 @@
     "jest": "^25.1.0",
     "nuxt-edge": "^2.11.1-26378723.c5d0067",
     "standard-version": "^7.1.0",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.3"
   },
   "publishConfig": {
     "access": "public"
