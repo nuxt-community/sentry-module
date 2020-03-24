@@ -1,3 +1,15 @@
+## [4.0.0](https://github.com/nuxt-community/sentry-module/compare/v3.3.1...v4.0.0) (2020-03-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* Requires at least Nuxt v2.10.0
+
+### Bug Fixes
+
+* **deps:** update Sentry dependencies to v5.15.0 ([#166](https://github.com/nuxt-community/sentry-module/issues/166)) ([ebea3ca](https://github.com/nuxt-community/sentry-module/commit/ebea3ca5364f5b1499a9f88e4f6873243e514ed0))
+* properly handle publishing when custom webpack config is added ([#167](https://github.com/nuxt-community/sentry-module/issues/167)) ([ca2f680](https://github.com/nuxt-community/sentry-module/commit/ca2f680635996d3cc08ff1783e7cb59af28a91b4))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
