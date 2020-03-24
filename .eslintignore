@@ -1,2 +1,3 @@
+!.release-it.js
 lib/sentry.client.js
 lib/sentry.server.js

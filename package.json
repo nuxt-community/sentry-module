@@ -16,7 +16,7 @@
   "main": "lib/module.js",
   "scripts": {
     "lint": "eslint --ext .vue,.js lib test",
-    "release": "standard-version && git push --follow-tags && npm publish",
+    "release": "release-it",
     "test": "npm run lint && jest"
   },
   "babel": {
@@ -48,13 +48,14 @@
     "@babel/preset-env": "^7.8.7",
     "@nuxtjs/eslint-config": "^2.0.2",
     "@nuxtjs/module-test-utils": "^1.5.0",
+    "@release-it/conventional-changelog": "^1.1.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^25.1.0",
     "codecov": "^3.6.5",
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "nuxt-edge": "^2.11.1-26378723.c5d0067",
-    "standard-version": "^7.1.0",
+    "release-it": "^13.3.0",
     "typescript": "^3.8.3"
   },
   "publishConfig": {
