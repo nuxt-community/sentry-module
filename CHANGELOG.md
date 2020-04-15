@@ -1,3 +1,5 @@
+### [4.0.1](https://github.com/nuxt-community/sentry-module/compare/v4.0.0...v4.0.1) (2020-04-15)
+
 ## [4.0.0](https://github.com/nuxt-community/sentry-module/compare/v3.3.1...v4.0.0) (2020-03-24)
 
 
