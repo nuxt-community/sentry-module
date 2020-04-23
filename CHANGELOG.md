@@ -1,3 +1,10 @@
+### [4.0.2](https://github.com/nuxt-community/sentry-module/compare/v4.0.1...v4.0.2) (2020-04-23)
+
+
+### Bug Fixes
+
+* set public path correctly when building on Windows ([#174](https://github.com/nuxt-community/sentry-module/issues/174)) ([b8b811a](https://github.com/nuxt-community/sentry-module/commit/b8b811a6ce3f3603bcb8d49ec737a6700b4a2f07))
+
 ### [4.0.1](https://github.com/nuxt-community/sentry-module/compare/v4.0.0...v4.0.1) (2020-04-15)
 
 ## [4.0.0](https://github.com/nuxt-community/sentry-module/compare/v3.3.1...v4.0.0) (2020-03-24)
