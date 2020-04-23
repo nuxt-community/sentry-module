@@ -5,7 +5,7 @@ module.exports = {
     tagName: 'v${version}'
   },
   npm: {
-    publish: true
+    publish: false
   },
   github: {
     release: true,
