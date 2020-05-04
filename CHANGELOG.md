@@ -1,3 +1,10 @@
+### [4.0.3](https://github.com/nuxt-community/sentry-module/compare/v4.0.2...v4.0.3) (2020-05-04)
+
+
+### Bug Fixes
+
+* allow overriding webpackConfig urlPrefix ([#178](https://github.com/nuxt-community/sentry-module/issues/178)) ([c52694e](https://github.com/nuxt-community/sentry-module/commit/c52694ee35c54d6d027f4855815aa5870ba5899e))
+
 ### [4.0.2](https://github.com/nuxt-community/sentry-module/compare/v4.0.1...v4.0.2) (2020-04-23)
 
 
