@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "eslint --ext .vue,.js lib test",
     "release": "release-it",
-    "test": "npm run lint && jest"
+    "test": "yarn lint && jest"
   },
   "babel": {
     "env": {
