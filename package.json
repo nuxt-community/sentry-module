@@ -50,10 +50,10 @@
     "@nuxtjs/module-test-utils": "^1.6.1",
     "@release-it/conventional-changelog": "^1.1.4",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^25.5.1",
+    "babel-jest": "^26.0.1",
     "codecov": "^3.6.5",
     "eslint": "^7.1.0",
-    "jest": "^25.5.4",
+    "jest": "^26.0.1",
     "nuxt-edge": "^2.11.1-26378723.c5d0067",
     "release-it": "^13.5.8",
     "typescript": "^3.8.3"
