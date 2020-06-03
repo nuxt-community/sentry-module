@@ -106,6 +106,7 @@ Normally, setting required DSN information would be enough.
 ### initialize
 - Type: `Boolean`
   - Default: `process.env.SENTRY_INITIALIZE || true`
+  - Can be used to add the `$sentry` object without initializing it, which will result in not reporting errors to Sentry when they happen but not crashing on calling the Sentry APIs.
 
 ### publishRelease
 - Type: `Boolean`
