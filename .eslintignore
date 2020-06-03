@@ -1,4 +1,5 @@
 !.eslintrc.js
 !.release-it.js
 lib/sentry.client.js
+lib/sentry.mocked.js
 lib/sentry.server.js

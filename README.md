@@ -108,6 +108,12 @@ Normally, setting required DSN information would be enough.
   - Default: `process.env.SENTRY_INITIALIZE || true`
   - Can be used to add the `$sentry` object without initializing it, which will result in not reporting errors to Sentry when they happen but not crashing on calling the Sentry APIs.
 
+### logMockCalls
+- Type: `Boolean`
+  - Default: `true`
+  - Whether to log calls to the mocked `$sentry` client-side object in the console
+  - Only applies when mocked instance is used (when `disabled = true` or `disableClientSide = true`)
+
 ### publishRelease
 - Type: `Boolean`
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
