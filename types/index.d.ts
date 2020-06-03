@@ -1,2 +1,2 @@
-import './extend';
-import './node';
+import './extend'
+import './node'

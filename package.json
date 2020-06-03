@@ -15,7 +15,7 @@
   ],
   "main": "lib/module.js",
   "scripts": {
-    "lint": "eslint --ext .vue,.js lib test",
+    "lint": "eslint --ext .vue,.js lib test types/**/*.ts",
     "release": "release-it",
     "test": "yarn lint && jest"
   },
@@ -36,6 +36,7 @@
     }
   },
   "dependencies": {
+    "@nuxtjs/eslint-config-typescript": "^2.0.0",
     "@sentry/browser": "^5.16.1",
     "@sentry/integrations": "^5.16.1",
     "@sentry/node": "^5.16.1",
@@ -46,7 +47,6 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
-    "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/module-test-utils": "^1.6.1",
     "@release-it/conventional-changelog": "^1.1.4",
     "babel-core": "^7.0.0-bridge.0",

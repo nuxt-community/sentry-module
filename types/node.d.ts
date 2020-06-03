@@ -1,5 +1,5 @@
 declare namespace NodeJS {
     interface Process {
-        sentry: typeof import('@sentry/node');
+        sentry: typeof import('@sentry/node')
     }
 }
