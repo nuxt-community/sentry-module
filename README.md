@@ -107,6 +107,12 @@ Normally, setting required DSN information would be enough.
 - Type: `Boolean`
   - Default: `process.env.SENTRY_INITIALIZE || true`
 
+### logMockCalls
+- Type: `Boolean`
+  - Default: `true`
+  - Whether to log calls to the mocked `$sentry` client-side object in the console
+  - Only applies when mocked instance is used (when `disabled = true` or `disableClientSide = true`)
+
 ### publishRelease
 - Type: `Boolean`
   - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
