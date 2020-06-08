@@ -1,3 +1,10 @@
+### [4.1.1](https://github.com/nuxt-community/sentry-module/compare/v4.1.0...v4.1.1) (2020-06-08)
+
+
+### Bug Fixes
+
+* **deps:** move @nuxtjs/eslint-config-typescript to devDependencies ([98bab95](https://github.com/nuxt-community/sentry-module/commit/98bab95b507e587e7cd390326c454b252edfb85f))
+
 ## [4.1.0](https://github.com/nuxt-community/sentry-module/compare/v4.0.3...v4.1.0) (2020-06-08)
 
 
