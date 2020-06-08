@@ -1935,26 +1935,26 @@
     "@types/webpack-dev-middleware" "^3.7.0"
     "@types/webpack-hot-middleware" "^2.25.0"
 
-"@nuxt/types@^0.7.7":
-  version "0.7.7"
-  resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-0.7.7.tgz#819bfbb08a27af2eca9c66fefdf87e6ec5c9548b"
-  integrity sha512-cfMV7CZJpy0ePOUiqXvMPoxclluWxmY4BEIvrt4f4QaK4uklQRDbfHhYRiuFNFOli+0znEDTSLCK6OHQnOfZ/g==
+"@nuxt/types@^0.7.8":
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-0.7.8.tgz#0d5ae4b6b12c7764c98588a66a603698f1ad9114"
+  integrity sha512-6N7CnrZS71nmrGO7MFTIJz+wMpTy7k5Vopm1ha4eJRmr2pdTUjUxTfaYLgAZDRBlpJ9+qIhjhJPILJEv1qGIOQ==
   dependencies:
     "@types/autoprefixer" "^9.7.2"
-    "@types/babel__core" "^7.1.7"
+    "@types/babel__core" "^7.1.8"
     "@types/compression" "^1.7.0"
     "@types/connect" "^3.4.33"
     "@types/etag" "^1.8.0"
     "@types/file-loader" "^4.2.0"
     "@types/html-minifier" "^3.5.3"
     "@types/less" "^3.0.1"
-    "@types/node" "^12.12.42"
+    "@types/node" "^12.12.44"
     "@types/node-sass" "^4.11.1"
     "@types/optimize-css-assets-webpack-plugin" "^5.0.1"
     "@types/pug" "^2.0.4"
     "@types/serve-static" "^1.13.4"
-    "@types/terser-webpack-plugin" "^2.2.0"
-    "@types/webpack" "^4.41.13"
+    "@types/terser-webpack-plugin" "^2.2.1"
+    "@types/webpack" "^4.41.17"
     "@types/webpack-bundle-analyzer" "^3.8.0"
     "@types/webpack-dev-middleware" "^3.7.1"
     "@types/webpack-hot-middleware" "^2.25.3"
@@ -2399,6 +2399,17 @@
     "@types/babel__template" "*"
     "@types/babel__traverse" "*"
 
+"@types/babel__core@^7.1.8":
+  version "7.1.8"
+  resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.8.tgz#057f725aca3641f49fc11c7a87a9de5ec588a5d7"
+  integrity sha512-KXBiQG2OXvaPWFPDS1rD8yV9vO0OuWIqAEqLsbfX0oU2REN5KuoMnZ1gClWcBhO5I3n6oTVAmrMufOvRqdmFTQ==
+  dependencies:
+    "@babel/parser" "^7.1.0"
+    "@babel/types" "^7.0.0"
+    "@types/babel__generator" "*"
+    "@types/babel__template" "*"
+    "@types/babel__traverse" "*"
+
 "@types/babel__generator@*":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@types/babel__generator/-/babel__generator-7.6.1.tgz#4901767b397e8711aeb99df8d396d7ba7b7f0e04"
@@ -2601,10 +2612,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.37.tgz#cb4782d847f801fa58316da5b4801ca3a59ae790"
   integrity sha512-4mXKoDptrXAwZErQHrLzpe0FN/0Wmf5JRniSVIdwUrtDf9wnmEV1teCNLBo/TwuXhkK/bVegoEn/wmb+x0AuPg==
 
-"@types/node@^12.12.42":
-  version "12.12.43"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.43.tgz#b60ce047822e526e7a9252e50844eee79d5386ff"
-  integrity sha512-KUyZdkGCnVPuXfsKmDUu2XLui65LZIJ2s0M57noy5e+ixUT2oK33ep7zlvgzI8LElcWqbf8AR+o/3GqAPac2zA==
+"@types/node@^12.12.44":
+  version "12.12.44"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.44.tgz#0d400a1453adcb359b133acceae4dd8bb0e0a159"
+  integrity sha512-jM6QVv0Sm5d3nW+nUD5jSzPcO6oPqboitSNcwgBay9hifVq/Rauq1PYnROnsmuw45JMBiTnsPAno0bKu2e2xrg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -2699,6 +2710,14 @@
     "@types/webpack" "*"
     terser "^4.3.9"
 
+"@types/terser-webpack-plugin@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/terser-webpack-plugin/-/terser-webpack-plugin-2.2.1.tgz#d6687ed29026532764b031209a5d6dc6d44b33f2"
+  integrity sha512-Z/6t/7qz4LeO64owJ9x7JQ6X791qfLxp1M1eCp6hFQlj7xuB5+Ol7DpEn5kWClTARZ7GlPLRsEWzFzQjZShF6w==
+  dependencies:
+    "@types/webpack" "*"
+    terser "^4.3.9"
+
 "@types/uglify-js@*":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.9.0.tgz#4490a140ca82aa855ad68093829e7fd6ae94ea87"
@@ -2777,7 +2796,7 @@
     "@types/webpack-sources" "*"
     source-map "^0.6.0"
 
-"@types/webpack@^4.41.13":
+"@types/webpack@^4.41.17":
   version "4.41.17"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.17.tgz#0a69005e644d657c85b7d6ec1c826a71bebd1c93"
   integrity sha512-6FfeCidTSHozwKI67gIVQQ5Mp0g4X96c2IXxX75hYEQJwST/i6NyZexP//zzMOBb+wG9jJ7oO8fk9yObP2HWAw==
@@ -3127,6 +3146,11 @@ acorn@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
   integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
+
+acorn@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.2.0.tgz#17ea7e40d7c8640ff54a694c889c26f31704effe"
+  integrity sha512-apwXVmYVpQ34m/i71vrApRrRKCWQnZZF1+npOD0WV5xZFfwWOmKGQ2RWlfdy9vWITsenisM8M0Qeq8agcFHNiQ==
 
 add-stream@^1.0.0:
   version "1.0.0"
@@ -5633,6 +5657,14 @@ eslint-scope@^5.0.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+eslint-scope@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.1.0.tgz#d0f971dfe59c69e0cada684b23d49dbf82600ce5"
+  integrity sha512-iiGRvtxWqgtx5m8EyQUJihBloE4EnYeGE/bz1wSPwJE6tZuJUtHlhqDM4Xj2ukE8Dyy1+HCZ4hE0fzIVMzb58w==
+  dependencies:
+    esrecurse "^4.1.0"
+    estraverse "^4.1.1"
+
 eslint-template-visitor@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/eslint-template-visitor/-/eslint-template-visitor-1.1.0.tgz#f090d124d1a52e05552149fc50468ed59608b166"
@@ -5654,10 +5686,15 @@ eslint-visitor-keys@^1.1.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
   integrity sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
 
-eslint@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.1.0.tgz#d9a1df25e5b7859b0a3d86bb05f0940ab676a851"
-  integrity sha512-DfS3b8iHMK5z/YLSme8K5cge168I8j8o1uiVmFCgnnjxZQbCGyraF8bMl7Ju4yfBmCuxD7shOF7eqGkcuIHfsA==
+eslint-visitor-keys@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.2.0.tgz#74415ac884874495f78ec2a97349525344c981fa"
+  integrity sha512-WFb4ihckKil6hu3Dp798xdzSfddwKKU3+nGniKF6HfeW6OLd2OUDEPP7TcHtB5+QXOKg2s6B2DaMPE1Nn/kxKQ==
+
+eslint@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.2.0.tgz#d41b2e47804b30dbabb093a967fb283d560082e6"
+  integrity sha512-B3BtEyaDKC5MlfDa2Ha8/D6DsS4fju95zs0hjS3HdGazw+LNayai38A25qMppK37wWGWNYSPOR6oYzlz5MHsRQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.10.0"
@@ -5665,10 +5702,10 @@ eslint@^7.1.0:
     cross-spawn "^7.0.2"
     debug "^4.0.1"
     doctrine "^3.0.0"
-    eslint-scope "^5.0.0"
+    eslint-scope "^5.1.0"
     eslint-utils "^2.0.0"
-    eslint-visitor-keys "^1.1.0"
-    espree "^7.0.0"
+    eslint-visitor-keys "^1.2.0"
+    espree "^7.1.0"
     esquery "^1.2.0"
     esutils "^2.0.2"
     file-entry-cache "^5.0.1"
@@ -5710,14 +5747,14 @@ espree@^6.1.1, espree@^6.2.1:
     acorn-jsx "^5.2.0"
     eslint-visitor-keys "^1.1.0"
 
-espree@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/espree/-/espree-7.0.0.tgz#8a7a60f218e69f120a842dc24c5a88aa7748a74e"
-  integrity sha512-/r2XEx5Mw4pgKdyb7GNLQNsu++asx/dltf/CI8RFi9oGHxmQFgvLbc5Op4U6i8Oaj+kdslhJtVlEZeAqH5qOTw==
+espree@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/espree/-/espree-7.1.0.tgz#a9c7f18a752056735bf1ba14cb1b70adc3a5ce1c"
+  integrity sha512-dcorZSyfmm4WTuTnE5Y7MEN1DyoPYy1ZR783QW1FJoenn7RailyWFsq/UL6ZAAA7uXurN9FIpYyUs3OfiIW+Qw==
   dependencies:
-    acorn "^7.1.1"
+    acorn "^7.2.0"
     acorn-jsx "^5.2.0"
-    eslint-visitor-keys "^1.1.0"
+    eslint-visitor-keys "^1.2.0"
 
 esprima@^4.0.0, esprima@^4.0.1:
   version "4.0.1"
@@ -12057,10 +12094,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.9.3:
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
-  integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
+typescript@^3.9.5:
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
+  integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
 
 ua-parser-js@^0.7.21:
   version "0.7.21"
