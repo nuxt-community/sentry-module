@@ -1,3 +1,16 @@
+## [4.1.0](https://github.com/nuxt-community/sentry-module/compare/v4.0.3...v4.1.0) (2020-06-08)
+
+
+### Features
+
+* add an option to toggle logging of calls on mocked instance ([#187](https://github.com/nuxt-community/sentry-module/issues/187)) ([6a1692e](https://github.com/nuxt-community/sentry-module/commit/6a1692e2332da31ac7becafa34eca76678df11da)), closes [#176](https://github.com/nuxt-community/sentry-module/issues/176)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to v5.16.1 ([#180](https://github.com/nuxt-community/sentry-module/issues/180)) ([a42035f](https://github.com/nuxt-community/sentry-module/commit/a42035fd149586be293416b2aecac78e9ca49c8a))
+* properly log state of the Sentry reporting ([#186](https://github.com/nuxt-community/sentry-module/issues/186)) ([36fde1a](https://github.com/nuxt-community/sentry-module/commit/36fde1ad3c4259c916bf21e1af05d417846a1958))
+
 ### [4.0.3](https://github.com/nuxt-community/sentry-module/compare/v4.0.2...v4.0.3) (2020-05-04)
 
 
