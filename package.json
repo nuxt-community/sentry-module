@@ -7,6 +7,9 @@
   "contributors": [
     {
       "name": "Diederik van den Burger <diederik@webrelated.nl>"
+    },
+    {
+      "name": "Rafal Chlodnicki (@rchl)"
     }
   ],
   "files": [
@@ -17,7 +20,7 @@
   "scripts": {
     "lint": "eslint --ext .vue,.js lib test types/**/*.ts",
     "release": "release-it",
-    "test": "yarn lint && jest"
+    "test": "yarn lint --fix && jest --runInBand"
   },
   "babel": {
     "env": {
@@ -51,6 +54,7 @@
     "@nuxtjs/module-test-utils": "^1.6.2",
     "@release-it/conventional-changelog": "^1.1.4",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
     "codecov": "^3.7.0",
     "eslint": "^7.3.1",
