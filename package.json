@@ -20,7 +20,8 @@
   "scripts": {
     "lint": "eslint --ext .vue,.js lib test types/**/*.ts",
     "release": "release-it",
-    "test": "yarn lint --fix && jest --runInBand"
+    "test:fixture": "jest --runInBand",
+    "test": "yarn lint --fix && yarn test:fixture"
   },
   "babel": {
     "env": {
