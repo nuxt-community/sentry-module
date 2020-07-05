@@ -80,6 +80,136 @@ async nuxtServerInit({ commit }, { $sentry }) {
 }
 ```
 
+## Lazy Loading (on the client)
+
+> :warning: Please be aware that lazy loading could prevent some errors from being reported
+
+If you set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle **but** could result in some errors **not** being reported.
+
+You can also pass a lazy config object in your module options. The following options are supported:
+
+### Injected properties
+
+#### `$sentry` (mocked)
+- Type: `Object`
+
+Normally `$sentry` would always refer to the `@sentry/browser` api. But if we lazy load Sentry this api wont be available yet until its lazily loaded. If you don't want to worry about whether Sentry is loaded or not, a mocked Sentry api is injected into the Nuxt.js context that will execute all Sentry api calls once Sentry is loaded
+
+See: `injectMock` and `mockApiMethods` options below
+
+#### `$sentryReady`
+- Type `Function`
+
+This method returns a Promise which will be resolved once Sentry has been loaded. You can use this instead of mocking `$sentry`.
+
+Example usage:
+```js
+this.$sentryReady().then((sentry) => sentry.captureMessage('Erreur!'))
+// or
+(await this.$sentryReady()).captureMessage('Erreur!')
+```
+
+#### `$sentryLoad`
+- Type: `Function`
+
+> Only injected when `injectLoadHook: true`.
+
+The callback you need to call to indicate that you are ready to load Sentry.
+
+Example usage:
+```js
+  // layouts/default.vue
+  ...
+  mounted() {
+    // This will only load sentry once an error was thrown
+    window.addEventListener('error', this.$sentryLoad)
+  },
+  destroyed() {
+    window.removeEventListener('error', this.$sentryLoad)
+  }
+```
+
+### Lazy Options
+#### injectLoadHook
+- Type: `Boolean`
+  - Default: `false`
+  - By default Sentry will be lazy loaded once `window.onNuxtReady` is called. If you want to explicitly control when Sentry will be loaded you can set `injectLoadHook: true`. The module will inject a `$sentryLoad` method into the Nuxt.js context which you need to call once you are ready to load Sentry
+  ```js
+  // layouts/default.vue
+  ...
+  mounted() {
+    // Only load Sentry after initial page has fully loaded
+    this.$nextTick(() => this.$sentryLoad())
+  }
+  ```
+
+#### injectMock
+- Type: `Boolean`
+  - Default: `true`
+  - Whether a Sentry mock needs to be injected that captures any calls to `$sentry` api methods while Sentry has not yet loaded. Captured api method calls are executed once Sentry is loaded
+> When `injectMock: true` this module will also add a window.onerror listener. If errors are captured before Sentry has loaded then these will be reported once Sentry has loaded using sentry.captureException
+  ```js
+  // pages/index.vue
+  beforeMount() {
+    // onNuxtReady is called _after_ the Nuxt.js app is fully mounted,
+    // so Sentry is not yet loaded when beforeMount is called
+    // But when you set injectMock: true this call will be captured
+    // and executed after Sentry has loaded
+    this.$sentry.captureMessage('Hello!')
+  },
+  ```
+
+#### mockApiMethods
+- Type: `Boolean` or `Array`
+  - Default `true`
+  - Which api methods from `@sentry/browser` should be mocked. You can use this to only mock methods you really use.
+  - This option is ignored when `injectMock: false`
+  - If `mockApiMethods: true` then all available api methods will be mocked
+
+> _captureException_ will always be mocked for use with the window.onerror listener
+
+  ```js
+  // nuxt.config.js
+  sentry: {
+    mockApiMethods: ['captureMessage']
+  }
+  
+  // pages/index.vue
+  mounted() {
+    this.$sentry.captureMessage('This works!')
+
+    this.$sentry.captureEvent({
+      message: `
+        This will throw an error because
+        captureEvent doesnt exists on the mock
+      `
+    })
+
+    // To circumvent this problem you could use $sentryReady
+    (await this.$sentryReady()).captureEvent({
+      message: `
+        This will not throw an error because
+        captureEvent is only executed after
+        Sentry has been loaded
+      `
+    })
+  }
+
+#### chunkName
+  - Type: `String`
+    - Default: 'sentry'
+    - The _webpackChunkName_  to use, see [Webpack Magic Comments](https://webpack.js.org/api/module-methods/#magic-comments)
+
+#### webpackPrefetch
+  - Type: `Boolean`
+    - Default: `false`
+    - Whether the Sentry chunk should be prefetched
+
+#### webpackPreload
+  - Type: `Boolean`
+    - Default: `false`
+    - Whether the Sentry chunk should be preloaded
+
 ## Options
 
 Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`.
@@ -89,6 +219,23 @@ Normally, setting required DSN information would be enough.
 - Type: `String`
   - Default: `process.env.SENTRY_DSN || false`
   - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this.
+
+### lazy
+- Type: `Boolean` or `Object`
+  - Default:
+  ```js
+    {
+      injectMock: true,
+      injectLoadHook: false,
+      mockApiMethods: true,
+      chunkName: 'sentry',
+      webpackPrefetch: false,
+      webpackPreload: false
+    }
+  ```
+  - Load Sentry lazily so it's not included in your main bundle
+  - If `true` then the default options will be used
+  - See [Lazy Loading](#lazy-loading) for more information
 
 ### disabled
 - Type: `Boolean`
