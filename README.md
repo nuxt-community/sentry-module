@@ -125,10 +125,14 @@ Example usage:
     // To prevent a chicken & egg issue, make sure to also
     // set injectMock: true if you use this so the error
     // that triggered the load will also be captured
-    window.addEventListener('error', this.$sentryLoad)
+    this.errorListener = () => {
+      this.$sentryLoad()
+      window.removeEventListener('error', errorListener)
+    }
+    window.addEventListener('error', errorListener)
   },
   destroyed() {
-    window.removeEventListener('error', this.$sentryLoad)
+    window.removeEventListener('error', this.errorListener)
   }
 ```
 
@@ -142,7 +146,7 @@ Example usage:
   ...
   mounted() {
     // Only load Sentry after initial page has fully loaded
-    // (this should behave similar to window.onNuxtReady though)
+    // (this example should behave similar to using window.onNuxtReady though)
     this.$nextTick(() => this.$sentryLoad())
   }
   ```
@@ -170,8 +174,7 @@ Example usage:
   - This option is ignored when `injectMock: false`
   - If `mockApiMethods: true` then all available api methods will be mocked
 
-> If `injectMock: true` then _captureException_ wi
-      captureEvent doesnt exists on the mockll always be mocked for use with the window.onerror listener
+> If `injectMock: true` then _captureException_ will always be mocked for use with the window.onerror listener
 
   ```js
   // nuxt.config.js
