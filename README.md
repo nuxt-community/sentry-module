@@ -17,6 +17,9 @@ The module enables error logging through [Sentry](http://sentry.io).
 - **Please note** that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
 
 ## Setup
+
+> Nuxt.js v2.4.0+ is required, earlier versions are not supported
+
 - Add `@nuxtjs/sentry` dependency using yarn or npm to your project
 - Add `@nuxtjs/sentry` to `modules` section of `nuxt.config.js`
 
@@ -32,15 +35,15 @@ The module enables error logging through [Sentry](http://sentry.io).
   }
 }
 ```
+## Configure
 
-### Nuxt compatibility
-Versions of NuxtJS before v2.4.0 are **not** supported by this package.
+See [Options](#options) for a list of available options
 
 ## Usage
 
-Enter your DSN in the NuxtJS config file. Additional config settings can be found [here](https://docs.sentry.io/error-reporting/configuration/?platform=browser).
+Enter your DSN in the Nuxt.js config file. Additional config settings can be found [here](https://docs.sentry.io/error-reporting/configuration/?platform=browser).
 
-### Usage in Vue component
+### Usage in Vue components
 
 In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
 
@@ -361,8 +364,6 @@ Note that releases are only submitted to Sentry when `(options.publishRelease &&
 
 ## License
 [MIT License](./LICENSE)
-
-Copyright (c) Diederik van den Burger <diederik@glue.group>
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/dt/@nuxtjs/sentry.svg?style=flat-square
