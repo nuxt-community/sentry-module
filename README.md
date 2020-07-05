@@ -84,23 +84,23 @@ async nuxtServerInit({ commit }, { $sentry }) {
 
 > :warning: Please be aware that lazy loading could prevent some errors from being reported
 
-If you set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle **but** could result in some errors **not** being reported.
+Set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle **but could result in some errors not being reported**.
 
-You can also pass a lazy config object in your module options. The following options are supported:
+You can also pass a lazy config object in your module options, see below.
 
 ### Injected properties
 
 #### `$sentry` (mocked)
 - Type: `Object`
 
-Normally `$sentry` would always refer to the `@sentry/browser` api. But if we lazy load Sentry this api wont be available yet until its lazily loaded. If you don't want to worry about whether Sentry is loaded or not, a mocked Sentry api is injected into the Nuxt.js context that will execute all Sentry api calls once Sentry is loaded
+Normally `$sentry` would always refer to the `@sentry/browser` api. But if we lazy load Sentry this api wont be available until Sentry has loaded. If you don't want to worry about whether Sentry is loaded or not, a mocked Sentry api is injected into the Nuxt.js context that will execute all Sentry api calls once Sentry is loaded
 
 See: `injectMock` and `mockApiMethods` options below
 
 #### `$sentryReady`
 - Type `Function`
 
-This method returns a Promise which will be resolved once Sentry has been loaded. You can use this instead of mocking `$sentry`.
+This method returns a Promise which will be resolved once Sentry has been loaded. You could use this instead of mocking `$sentry`.
 
 Example usage:
 ```js
@@ -122,6 +122,9 @@ Example usage:
   ...
   mounted() {
     // This will only load sentry once an error was thrown
+    // To prevent a chicken & egg issue, make sure to also
+    // set injectMock: true if you use this so the error
+    // that triggered the load will also be captured
     window.addEventListener('error', this.$sentryLoad)
   },
   destroyed() {
@@ -139,6 +142,7 @@ Example usage:
   ...
   mounted() {
     // Only load Sentry after initial page has fully loaded
+    // (this should behave similar to window.onNuxtReady though)
     this.$nextTick(() => this.$sentryLoad())
   }
   ```
@@ -166,12 +170,14 @@ Example usage:
   - This option is ignored when `injectMock: false`
   - If `mockApiMethods: true` then all available api methods will be mocked
 
-> _captureException_ will always be mocked for use with the window.onerror listener
+> If `injectMock: true` then _captureException_ will always be mocked for use with the window.onerror listener
 
   ```js
   // nuxt.config.js
   sentry: {
-    mockApiMethods: ['captureMessage']
+    lazy: {
+      mockApiMethods: ['captureMessage']
+    }
   }
   
   // pages/index.vue
@@ -194,6 +200,7 @@ Example usage:
       `
     })
   }
+  ```
 
 #### chunkName
   - Type: `String`
