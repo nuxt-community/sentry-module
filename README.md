@@ -170,7 +170,8 @@ Example usage:
   - This option is ignored when `injectMock: false`
   - If `mockApiMethods: true` then all available api methods will be mocked
 
-> If `injectMock: true` then _captureException_ will always be mocked for use with the window.onerror listener
+> If `injectMock: true` then _captureException_ wi
+      captureEvent doesnt exists on the mockll always be mocked for use with the window.onerror listener
 
   ```js
   // nuxt.config.js
@@ -242,7 +243,7 @@ Normally, setting required DSN information would be enough.
   ```
   - Load Sentry lazily so it's not included in your main bundle
   - If `true` then the default options will be used
-  - See [Lazy Loading](#lazy-loading) for more information
+  - See [Lazy Loading](#lazy-loading-on-the-client) for more information
 
 ### disabled
 - Type: `Boolean`
