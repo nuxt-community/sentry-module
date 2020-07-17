@@ -151,7 +151,9 @@ Normally, setting required DSN information would be enough.
 
 ### lazy
 - Type: `Boolean` or `Object`
-  - Default:
+  - Default: `false`
+  - Load Sentry lazily so it's not included in your main bundle
+  - If `true` then the default options will be used:
   ```js
     {
       injectMock: true,
@@ -162,9 +164,6 @@ Normally, setting required DSN information would be enough.
       webpackPreload: false
     }
   ```
-  - Load Sentry lazily so it's not included in your main bundle
-  - If `true` then the default options will be used
-  - Lazy options:
     - **injectMock**
       - Type: `Boolean`
         - Default: `true`
