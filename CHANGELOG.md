@@ -1,3 +1,5 @@
+### [4.1.4](https://github.com/gedhean/sentry-module/compare/v4.1.3...v4.1.4) (2020-07-23)
+
 ### [4.1.3](https://github.com/nuxt-community/sentry-module/compare/v4.1.2...v4.1.3) (2020-07-01)
 
 
