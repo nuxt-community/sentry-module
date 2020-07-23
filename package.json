@@ -19,9 +19,10 @@
   "main": "lib/module.js",
   "scripts": {
     "lint": "eslint --ext .vue,.js lib test types/**/*.ts",
+    "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
     "test:fixture": "jest --runInBand",
-    "test": "yarn lint --fix && yarn test:fixture"
+    "test": "yarn lint --fix && yarn test:fixture && yarn lint:fixture"
   },
   "babel": {
     "env": {

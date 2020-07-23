@@ -1,7 +1,7 @@
 import SentryModule from '../../..'
 
 module.exports = {
-  srcDir: __dirname,
+  rootDir: __dirname,
   dev: false,
   render: {
     resourceHints: false

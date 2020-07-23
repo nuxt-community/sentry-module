@@ -1,3 +1,4 @@
 !.eslintrc.js
 !.release-it.js
 lib/plugin.*
+test/fixture/*/app
