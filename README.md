@@ -334,18 +334,21 @@ Normally, setting required DSN information would be enough.
   - Default: `{
     environment: this.options.dev ? 'development' : 'production'
   }`
+  - Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/error-reporting/configuration/?platform=browsernpm
+  - Note that `config.dsn` is automatically set based on the root `dsn` option
+  - The value for `config.release` is automatically inferred from the local repo unless specified manually
 
 ### serverConfig
 - Type: `Object`
   - Default: `{
   }`
-  - If specified, values will override config values for server sentry plugin
+  - Specified key will override common Sentry options for server sentry plugin
 
 ### clientConfig
 - Type: `Object`
   - Default: `{
   }`
-  - If specified, values will override config values for client sentry plugin
+  - Specified keys will override common Sentry options for client sentry plugin
 
 ### webpackConfig
 - Type: `Object`
