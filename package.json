@@ -62,7 +62,7 @@
     "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "nuxt-edge": "^2.11.1-26378723.c5d0067",
-    "release-it": "^13.6.5",
+    "release-it": "^13.6.6",
     "typescript": "^3.9.7"
   },
   "publishConfig": {
