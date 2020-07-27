@@ -1,3 +1,10 @@
+### [4.2.1](https://github.com/nuxt-community/sentry-module/compare/v4.2.0...v4.2.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* user's integrations options not respected on the client ([#208](https://github.com/nuxt-community/sentry-module/issues/208)) ([b81c7d3](https://github.com/nuxt-community/sentry-module/commit/b81c7d3ec2809e62dbf9d1d04053671dd8e21701)), closes [#207](https://github.com/nuxt-community/sentry-module/issues/207)
+
 ## [4.2.0](https://github.com/nuxt-community/sentry-module/compare/v4.1.3...v4.2.0) (2020-07-27)
 
 
