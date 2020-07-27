@@ -1,3 +1,10 @@
+## [4.2.0](https://github.com/nuxt-community/sentry-module/compare/v4.1.3...v4.2.0) (2020-07-27)
+
+
+### Features
+
+* support lazy loading of Sentry on the client ([#198](https://github.com/nuxt-community/sentry-module/issues/198)) ([963fead](https://github.com/nuxt-community/sentry-module/commit/963fead523d94661dfc4c597866db66408b7a667)), closes [#127](https://github.com/nuxt-community/sentry-module/issues/127)
+
 ### [4.1.3](https://github.com/nuxt-community/sentry-module/compare/v4.1.2...v4.1.3) (2020-07-01)
 
 
