@@ -51,7 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "@nuxt/types": "^2.13.3",
+    "@nuxt/types": "^2.14.0",
     "@nuxtjs/eslint-config-typescript": "^2.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^1.1.4",
