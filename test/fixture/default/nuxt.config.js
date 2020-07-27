@@ -1,12 +1,14 @@
 import SentryModule from '../../..'
 
-module.exports = {
+/** @type {import('@nuxt/types').NuxtOptions} */
+const config = {
   rootDir: __dirname,
   dev: false,
   render: {
     resourceHints: false
   },
   modules: [
+    // @ts-ignore
     SentryModule
   ],
   sentry: {
@@ -14,3 +16,5 @@ module.exports = {
     config: {}
   }
 }
+
+module.exports = config

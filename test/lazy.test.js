@@ -1,6 +1,7 @@
 import { setup, loadConfig, get } from '@nuxtjs/module-test-utils'
 
 describe('Smoke test (lazy)', () => {
+  /** @type {any} */
   let nuxt
 
   beforeAll(async () => {
