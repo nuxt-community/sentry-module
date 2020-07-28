@@ -311,10 +311,10 @@ Normally, setting required DSN information would be enough.
       ExtraErrorData: {},
       ReportingObserver: {},
       RewriteFrames: {},
-      Vue: {attachProps: true}
+      Vue: {attachProps: true, logErrors: this.options.dev}
    }
   ```
-  - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
+  - See https://docs.sentry.io/platforms/javascript/vue/ and  https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information on configuring integrations
 
 ### serverIntegrations
 - Type: `Dictionary`
