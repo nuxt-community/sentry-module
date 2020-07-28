@@ -34,6 +34,3 @@ export interface ModuleConfiguration {
     sourceMapStyle?: WebpackOptions.Devtool
     webpackConfig?: SentryCliPluginOptions
 }
-
-type LazyConfigurationResolved = Required<LazyConfiguration>
-type ModuleConfigurationResolved = Required<ModuleConfiguration>
