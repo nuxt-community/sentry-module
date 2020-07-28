@@ -1,3 +1,16 @@
+## [4.3.0](https://github.com/nuxt-community/sentry-module/compare/v4.2.1...v4.3.0) (2020-07-28)
+
+
+### Features
+
+* add types for module configuration ([#213](https://github.com/nuxt-community/sentry-module/issues/213)) ([8236472](https://github.com/nuxt-community/sentry-module/commit/8236472545007c5968a88a6123f1b133c826e87a))
+
+
+### Bug Fixes
+
+* enable console logging of Vue errors in development ([#214](https://github.com/nuxt-community/sentry-module/issues/214)) ([55b7efe](https://github.com/nuxt-community/sentry-module/commit/55b7efedf149627b2ef4252cd83cd8f48da36e45))
+* infer "config.release" automatically if not provided ([#205](https://github.com/nuxt-community/sentry-module/issues/205)) ([059f4e9](https://github.com/nuxt-community/sentry-module/commit/059f4e958c3035bd41db875bc282e41660394468))
+
 ### [4.2.1](https://github.com/nuxt-community/sentry-module/compare/v4.2.0...v4.2.1) (2020-07-27)
 
 
