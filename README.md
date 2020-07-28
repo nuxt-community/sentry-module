@@ -146,7 +146,7 @@ Normally, setting required DSN information would be enough.
 
 ### dsn
 - Type: `String`
-  - Default: `process.env.SENTRY_DSN || false`
+  - Default: `process.env.SENTRY_DSN || ''`
   - If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this.
 
 ### lazy
@@ -289,7 +289,7 @@ Normally, setting required DSN information would be enough.
 
 ### repo
 - Type: `String`
-  - Default: `process.env.SENTRY_RELEASE_REPO || false`
+  - Default: `process.env.SENTRY_RELEASE_REPO || ''`
   - Only has effect when `publishRelease = true && attachCommits = true`
 
 ### disableServerRelease

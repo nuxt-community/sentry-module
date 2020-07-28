@@ -1,4 +1,5 @@
 import * as SentryTypes from '@sentry/minimal'
+import { ModuleConfiguration } from './sentry'
 
 // add type to Vue context
 declare module 'vue/types/vue' {
@@ -15,6 +16,10 @@ declare module '@nuxt/types' {
 
   interface NuxtAppOptions {
     readonly $sentry: typeof SentryTypes
+  }
+
+  interface NuxtOptions {
+    sentry?: ModuleConfiguration
   }
 }
 
