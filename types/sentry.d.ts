@@ -23,12 +23,12 @@ export interface ModuleConfiguration {
     disabled?: boolean
     disableServerRelease?: boolean
     disableServerSide?: boolean
-    dsn?: string | ''
+    dsn?: string
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
     publishRelease?: boolean
-    repo?: string | ''
+    repo?: string
     serverConfig?: SentryOptions
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
