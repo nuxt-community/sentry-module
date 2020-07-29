@@ -1,3 +1,10 @@
+### [4.3.2](https://github.com/nuxt-community/sentry-module/compare/v4.3.1...v4.3.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* crash on enabling publishRelease with no "release" ([#217](https://github.com/nuxt-community/sentry-module/issues/217)) ([92e7680](https://github.com/nuxt-community/sentry-module/commit/92e7680b533f14459741c238845a80c213f032fb)), closes [#200](https://github.com/nuxt-community/sentry-module/issues/200)
+
 ### [4.3.1](https://github.com/nuxt-community/sentry-module/compare/v4.3.0...v4.3.1) (2020-07-29)
 
 
