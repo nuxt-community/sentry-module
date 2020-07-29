@@ -1,3 +1,10 @@
+### [4.3.1](https://github.com/nuxt-community/sentry-module/compare/v4.3.0...v4.3.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* crash on running module outside of git repo when release not set ([#216](https://github.com/nuxt-community/sentry-module/issues/216)) ([8b00082](https://github.com/nuxt-community/sentry-module/commit/8b00082d6e209615971b89ec26835409cc975819)), closes [#200](https://github.com/nuxt-community/sentry-module/issues/200)
+
 ## [4.3.0](https://github.com/nuxt-community/sentry-module/compare/v4.2.1...v4.3.0) (2020-07-28)
 
 
