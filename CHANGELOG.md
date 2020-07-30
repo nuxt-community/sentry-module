@@ -1,3 +1,10 @@
+### [4.3.3](https://github.com/nuxt-community/sentry-module/compare/v4.3.2...v4.3.3) (2020-07-30)
+
+
+### Bug Fixes
+
+* **lazy:** crash on iterating "delayedCalls" ([#219](https://github.com/nuxt-community/sentry-module/issues/219)) ([a3de1cf](https://github.com/nuxt-community/sentry-module/commit/a3de1cfc6d108487d616ebff203805e74bc59301))
+
 ### [4.3.2](https://github.com/nuxt-community/sentry-module/compare/v4.3.1...v4.3.2) (2020-07-29)
 
 
