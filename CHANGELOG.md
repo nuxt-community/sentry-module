@@ -1,3 +1,10 @@
+### [4.3.4](https://github.com/nuxt-community/sentry-module/compare/v4.3.3...v4.3.4) (2020-08-01)
+
+
+### Bug Fixes
+
+* **lazy:** improve error reporting for postponed global errors ([#220](https://github.com/nuxt-community/sentry-module/issues/220)) ([ecf5d00](https://github.com/nuxt-community/sentry-module/commit/ecf5d006e194cba218bec00f980b651b9c964ded)), closes [/github.com/getsentry/sentry-javascript/blob/9428c9a171a0c6ddcf24935fd03d6492feea0343/packages/browser/src/loader.js#L135-L147](https://github.com/nuxt-community//github.com/getsentry/sentry-javascript/blob/9428c9a171a0c6ddcf24935fd03d6492feea0343/packages/browser/src/loader.js/issues/L135-L147)
+
 ### [4.3.3](https://github.com/nuxt-community/sentry-module/compare/v4.3.2...v4.3.3) (2020-07-30)
 
 
