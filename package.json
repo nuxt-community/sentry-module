@@ -1,12 +1,15 @@
 {
   "name": "@gedhean/nuxt-sentry",
-  "version": "4.2.0",
+  "version": "4.4.0",
   "description": "Sentry module for Nuxt.js",
   "repository": "gedhean/sentry-module",
   "license": "MIT",
   "contributors": [
     {
       "name": "Diederik van den Burger <diederik@webrelated.nl>"
+    },
+    {
+      "name": "Rafal Chlodnicki (@rchl)"
     }
   ],
   "files": [
@@ -15,9 +18,11 @@
   ],
   "main": "lib/module.js",
   "scripts": {
-    "lint": "eslint --ext .vue,.js lib test types/**/*.ts",
+    "lint": "eslint --ext .vue,.js,.ts lib test types",
+    "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
-    "test": "yarn lint && jest"
+    "test:fixture": "jest --runInBand",
+    "test": "yarn lint --fix && yarn test:fixture && yarn lint:fixture"
   },
   "babel": {
     "env": {
@@ -36,29 +41,35 @@
     }
   },
   "dependencies": {
-    "@sentry/apm": "^5.20.0",
-    "@sentry/browser": "^5.18.1",
-    "@sentry/integrations": "^5.18.1",
-    "@sentry/node": "^5.20.0",
-    "@sentry/webpack-plugin": "^1.11.1",
+    "@sentry/apm": "^5.20.1",
+    "@sentry/browser": "^5.20.1",
+    "@sentry/integrations": "^5.20.1",
+    "@sentry/node": "^5.20.1",
+    "@sentry/webpack-plugin": "^1.12.0",
     "consola": "^2.14.0",
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "@nuxt/types": "^2.13.2",
-    "@nuxtjs/eslint-config-typescript": "^2.0.0",
-    "@nuxtjs/module-test-utils": "^1.6.2",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@nuxt/types": "^2.14.0",
+    "@nuxtjs/eslint-config-typescript": "^3.0.0",
+    "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^1.1.4",
+    "@types/consola": "^2.2.5",
+    "@types/deepmerge": "^2.2.0",
+    "@types/jest": "^26.0.8",
+    "@types/node": "^14.0.27",
+    "@types/request-promise-native": "^1.0.17",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^26.1.0",
-    "codecov": "^3.7.0",
-    "eslint": "^7.3.1",
-    "jest": "^26.1.0",
-    "nuxt-edge": "^2.11.1-26378723.c5d0067",
-    "release-it": "^13.6.4",
-    "typescript": "^3.9.5"
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.2.2",
+    "codecov": "^3.7.2",
+    "eslint": "^7.6.0",
+    "jest": "^26.2.2",
+    "nuxt": "^2.14.0",
+    "release-it": "^13.6.6",
+    "typescript": "^3.9.7"
   },
   "publishConfig": {
     "access": "public"

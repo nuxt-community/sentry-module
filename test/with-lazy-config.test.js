@@ -1,10 +1,11 @@
 import { setup, loadConfig, get } from '@nuxtjs/module-test-utils'
 
-describe('Smoke test', () => {
+describe('Smoke test (lazy)', () => {
+  /** @type {any} */
   let nuxt
 
   beforeAll(async () => {
-    ({ nuxt } = await setup(loadConfig(__dirname)))
+    ({ nuxt } = await setup(loadConfig(__dirname, 'with-lazy-config')))
   }, 60000)
 
   afterAll(async () => {
@@ -14,6 +15,6 @@ describe('Smoke test', () => {
 
   test('builds and runs', async () => {
     const html = await get('/')
-    expect(html).toContain('Works!')
+    expect(html).toContain('Works but is not ready!')
   })
 })
