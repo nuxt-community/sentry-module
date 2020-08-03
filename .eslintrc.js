@@ -1,4 +1,7 @@
 module.exports = {
+  parserOptions: {
+    parser: 'babel-eslint'
+  },
   extends: [
     '@nuxtjs/eslint-config'
   ],

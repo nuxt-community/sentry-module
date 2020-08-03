@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "allowJs": true,
+    "baseUrl": ".",
+    "checkJs": true,
+    "esModuleInterop": true,
     "lib": [
       "esnext",
       "esnext.asynciterable",
       "dom",
     ],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "noEmit": true,
-    "baseUrl": ".",
+    "strict": true,
+    "target": "esnext",
     "types": [
+      "./types",
       "@nuxt/types",
+      "@types/jest",
     ],
   },
 }

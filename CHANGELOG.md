@@ -1,4 +1,57 @@
-### [4.1.4](https://github.com/gedhean/sentry-module/compare/v4.1.3...v4.1.4) (2020-07-23)
+### [4.3.4](https://github.com/nuxt-community/sentry-module/compare/v4.3.3...v4.3.4) (2020-08-01)
+
+
+### Bug Fixes
+
+* **lazy:** improve error reporting for postponed global errors ([#220](https://github.com/nuxt-community/sentry-module/issues/220)) ([ecf5d00](https://github.com/nuxt-community/sentry-module/commit/ecf5d006e194cba218bec00f980b651b9c964ded)), closes [/github.com/getsentry/sentry-javascript/blob/9428c9a171a0c6ddcf24935fd03d6492feea0343/packages/browser/src/loader.js#L135-L147](https://github.com/nuxt-community//github.com/getsentry/sentry-javascript/blob/9428c9a171a0c6ddcf24935fd03d6492feea0343/packages/browser/src/loader.js/issues/L135-L147)
+
+### [4.3.3](https://github.com/nuxt-community/sentry-module/compare/v4.3.2...v4.3.3) (2020-07-30)
+
+
+### Bug Fixes
+
+* **lazy:** crash on iterating "delayedCalls" ([#219](https://github.com/nuxt-community/sentry-module/issues/219)) ([a3de1cf](https://github.com/nuxt-community/sentry-module/commit/a3de1cfc6d108487d616ebff203805e74bc59301))
+
+### [4.3.2](https://github.com/nuxt-community/sentry-module/compare/v4.3.1...v4.3.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* crash on enabling publishRelease with no "release" ([#217](https://github.com/nuxt-community/sentry-module/issues/217)) ([92e7680](https://github.com/nuxt-community/sentry-module/commit/92e7680b533f14459741c238845a80c213f032fb)), closes [#200](https://github.com/nuxt-community/sentry-module/issues/200)
+
+### [4.3.1](https://github.com/nuxt-community/sentry-module/compare/v4.3.0...v4.3.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* crash on running module outside of git repo when release not set ([#216](https://github.com/nuxt-community/sentry-module/issues/216)) ([8b00082](https://github.com/nuxt-community/sentry-module/commit/8b00082d6e209615971b89ec26835409cc975819)), closes [#200](https://github.com/nuxt-community/sentry-module/issues/200)
+
+## [4.3.0](https://github.com/nuxt-community/sentry-module/compare/v4.2.1...v4.3.0) (2020-07-28)
+
+
+### Features
+
+* add types for module configuration ([#213](https://github.com/nuxt-community/sentry-module/issues/213)) ([8236472](https://github.com/nuxt-community/sentry-module/commit/8236472545007c5968a88a6123f1b133c826e87a))
+
+
+### Bug Fixes
+
+* enable console logging of Vue errors in development ([#214](https://github.com/nuxt-community/sentry-module/issues/214)) ([55b7efe](https://github.com/nuxt-community/sentry-module/commit/55b7efedf149627b2ef4252cd83cd8f48da36e45))
+* infer "config.release" automatically if not provided ([#205](https://github.com/nuxt-community/sentry-module/issues/205)) ([059f4e9](https://github.com/nuxt-community/sentry-module/commit/059f4e958c3035bd41db875bc282e41660394468))
+
+### [4.2.1](https://github.com/nuxt-community/sentry-module/compare/v4.2.0...v4.2.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* user's integrations options not respected on the client ([#208](https://github.com/nuxt-community/sentry-module/issues/208)) ([b81c7d3](https://github.com/nuxt-community/sentry-module/commit/b81c7d3ec2809e62dbf9d1d04053671dd8e21701)), closes [#207](https://github.com/nuxt-community/sentry-module/issues/207)
+
+## [4.2.0](https://github.com/nuxt-community/sentry-module/compare/v4.1.3...v4.2.0) (2020-07-27)
+
+
+### Features
+
+* support lazy loading of Sentry on the client ([#198](https://github.com/nuxt-community/sentry-module/issues/198)) ([963fead](https://github.com/nuxt-community/sentry-module/commit/963fead523d94661dfc4c597866db66408b7a667)), closes [#127](https://github.com/nuxt-community/sentry-module/issues/127)
 
 ### [4.1.3](https://github.com/nuxt-community/sentry-module/compare/v4.1.2...v4.1.3) (2020-07-01)
 
