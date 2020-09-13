@@ -33,4 +33,5 @@ export interface ModuleConfiguration {
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     webpackConfig?: SentryCliPluginOptions
+    isNodeServer?:boolean
 }
