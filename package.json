@@ -58,7 +58,7 @@
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/consola": "^2.2.5",
     "@types/deepmerge": "^2.2.0",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@types/node": "^14.10.2",
     "@types/request-promise-native": "^1.0.17",
     "babel-core": "^7.0.0-bridge.0",
