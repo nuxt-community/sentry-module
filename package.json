@@ -22,7 +22,8 @@
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
     "test:fixture": "jest --runInBand",
-    "test": "yarn lint --fix && yarn test:fixture && yarn lint:fixture"
+    "test": "yarn lint --fix && yarn test:fixture && yarn lint:fixture",
+    "coverage": "codecov"
   },
   "babel": {
     "env": {
