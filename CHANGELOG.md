@@ -1,3 +1,11 @@
+### [4.3.5](https://github.com/nuxt-community/sentry-module/compare/v4.3.4...v4.3.5) (2020-09-16)
+
+
+### Bug Fixes
+
+* initialize server-side Sentry when using Nuxt programmatically ([#235](https://github.com/nuxt-community/sentry-module/issues/235)) ([575e4db](https://github.com/nuxt-community/sentry-module/commit/575e4db0b29438494be4f27cb0d710046622e73f)), closes [#230](https://github.com/nuxt-community/sentry-module/issues/230)
+* **deps:** update Sentry dependency from 5.20.1 to 5.23.0 ([#223](https://github.com/nuxt-community/sentry-module/issues/223)) ([9894b02](https://github.com/nuxt-community/sentry-module/commit/9894b02fbe0c8f115b07cd4b8e70992d48e0825e))
+
 ### [4.3.4](https://github.com/nuxt-community/sentry-module/compare/v4.3.3...v4.3.4) (2020-08-01)
 
 
