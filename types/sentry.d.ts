@@ -1,7 +1,6 @@
 import { Options as WebpackOptions } from 'webpack'
 import { Options as SentryOptions } from '@sentry/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
-import { ParseRequestOptions } from '@sentry/
 
 export type IntegrationsConfiguration = Record<string, unknown>
 
