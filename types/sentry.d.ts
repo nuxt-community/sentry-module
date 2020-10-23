@@ -1,6 +1,7 @@
 import { Options as WebpackOptions } from 'webpack'
 import { Options as SentryOptions } from '@sentry/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
+import { ParseRequestOptions } from '@sentry/
 
 export type IntegrationsConfiguration = Record<string, unknown>
 
@@ -11,6 +12,17 @@ export interface LazyConfiguration {
     mockApiMethods?: boolean | string[]
     webpackPrefetch?: boolean
     webpackPreload?: boolean
+}
+
+type TransactionTypes = 'path' | 'methodPath' | 'handler'
+export interface RequestHandlerConfiguration {
+    flushTimeout?: number
+    ip?: boolean
+    request?: boolean | string[]
+    serverName?: boolean
+    transaction?: boolean | TransactionTypes
+    user?: boolean | string[]
+    version?: boolean
 }
 
 export interface ModuleConfiguration {
@@ -33,4 +45,5 @@ export interface ModuleConfiguration {
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     webpackConfig?: SentryCliPluginOptions
+    requestHandlerConfig?: RequestHandlerConfiguration
 }
