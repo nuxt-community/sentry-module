@@ -41,7 +41,7 @@ See [Options](#options) for a list of available options
 
 ## Usage
 
-Enter your DSN in the Nuxt.js config file. Additional config settings can be found [here](https://docs.sentry.io/error-reporting/configuration/?platform=browser).
+Enter your DSN in the Nuxt.js config file. Additional config options can be found [here](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/).
 
 ### Usage in Vue components
 
@@ -334,7 +334,7 @@ Normally, setting required DSN information would be enough.
   - Default: `{
     environment: this.options.dev ? 'development' : 'production'
   }`
-  - Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/error-reporting/configuration/?platform=browsernpm
+  - Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
   - Note that `config.dsn` is automatically set based on the root `dsn` option
   - The value for `config.release` is automatically inferred from the local repo unless specified manually
 
