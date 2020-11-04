@@ -359,7 +359,7 @@ Normally, setting required DSN information would be enough.
 - Type: `Object`
   - Default: `{
   }`
-  - Options passed to `requestHandler` in `@sentry/node`. See: https://github.com/getsentry/sentry-javascript/blob/master/packages/node/src/handlers.ts
+  - Options passed to `requestHandler` in `@sentry/node`. See: https://docs.sentry.io/platforms/node/guides/express/
   
 ## Submitting releases to Sentry
 Support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced [#a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3b983b4c6659e985736b19dc771fe7c9ea). This can be used to send releases to Sentry. Use the publishRelease  option to enable this feature.
