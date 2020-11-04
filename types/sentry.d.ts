@@ -1,7 +1,7 @@
 import { Options as WebpackOptions } from 'webpack'
 import { Options as SentryOptions } from '@sentry/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
-import { ParseRequestOptions } from '@sentry/node/dist/handlers'
+import { RequestHandlerOptions } from '@sentry/node/dist/handlers'
 
 export type IntegrationsConfiguration = Record<string, unknown>
 
@@ -34,7 +34,5 @@ export interface ModuleConfiguration {
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     webpackConfig?: SentryCliPluginOptions
-    requestHandlerConfig?: ParseRequestOptions & {
-        flushTimeout?: number
-    }
+    requestHandlerConfig?: RequestHandlerOptions
 }
