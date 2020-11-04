@@ -1,3 +1,10 @@
+## [4.4.0](https://github.com/nuxt-community/sentry-module/compare/v4.3.5...v4.4.0) (2020-11-04)
+
+
+### Features
+
+* allow config to be passed to requestHandler ([#243](https://github.com/nuxt-community/sentry-module/issues/243)) ([9daaf4b](https://github.com/nuxt-community/sentry-module/commit/9daaf4b9d0852f9da7cef5f98b3a362fca21a80c))
+
 ### [4.3.5](https://github.com/nuxt-community/sentry-module/compare/v4.3.4...v4.3.5) (2020-09-16)
 
 
