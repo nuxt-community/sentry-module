@@ -1,6 +1,7 @@
 import { Options as WebpackOptions } from 'webpack'
 import { Options as SentryOptions } from '@sentry/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
+import { Handlers } from '@sentry/node'
 
 export type IntegrationsConfiguration = Record<string, unknown>
 
@@ -33,4 +34,5 @@ export interface ModuleConfiguration {
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     webpackConfig?: SentryCliPluginOptions
+    requestHandlerConfig?: Handlers.RequestHandlerOptions
 }
