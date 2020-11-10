@@ -15,7 +15,7 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
-declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update';
+declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update'
 /**
  * Vue specific configuration for Tracing Integration
  * Not exported, so have to reproduce here
@@ -27,15 +27,15 @@ interface TracingOptions {
      * Can be either set to `boolean` to enable/disable tracking for all of them.
      * Or to an array of specific component names (case-sensitive).
      */
-    trackComponents: boolean | string[];
+    trackComponents: boolean | string[]
     /** How long to wait until the tracked root activity is marked as finished and sent of to Sentry */
-    timeout: number;
+    timeout: number
     /**
      * List of hooks to keep track of during component lifecycle.
      * Available hooks: 'activate' | 'create' | 'destroy' | 'mount' | 'update'
      * Based on https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
      */
-    hooks: Operation[];
+    hooks: Operation[]
 }
 
 export interface TracingConfiguration {
