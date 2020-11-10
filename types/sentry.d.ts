@@ -14,6 +14,10 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
+export interface TracingConfiguration {
+  tracesSampleRate: number
+}
+
 export interface ModuleConfiguration {
     attachCommits?: boolean
     clientConfig?: SentryOptions
@@ -25,6 +29,7 @@ export interface ModuleConfiguration {
     disableServerRelease?: boolean
     disableServerSide?: boolean
     dsn?: string
+    enableTracing?: boolean | TracingConfiguration
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
