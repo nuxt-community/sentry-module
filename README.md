@@ -340,6 +340,8 @@ Normally, setting required DSN information would be enough.
       vueOptions: {
         tracing: true,
         tracingOptions: {
+          hooks: [ 'mount', 'update' ],
+          timeout: 2000,
           trackComponents: true
         }
       },
