@@ -329,7 +329,7 @@ Normally, setting required DSN information would be enough.
   ```
   - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
 
-### enableTracing
+### tracing
 - Type: `Boolean` or `Object`
   - Default: `false`
   - Enables the BrowserTracing integration for client performance monitoring

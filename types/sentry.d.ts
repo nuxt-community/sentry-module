@@ -36,7 +36,7 @@ export interface ModuleConfiguration {
     disableServerRelease?: boolean
     disableServerSide?: boolean
     dsn?: string
-    enableTracing?: boolean | TracingConfiguration
+    tracing?: boolean | TracingConfiguration
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
