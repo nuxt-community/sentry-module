@@ -332,23 +332,24 @@ Normally, setting required DSN information would be enough.
 ### enableTracing
 - Type: `Boolean` or `Object`
   - Default: `false`
-  - Enables the BrowserTracing integration
-  - A sampling rate can be provided if passing an object (if not provided, the default rate is 1.0):
+  - Enables the BrowserTracing integration for client performance monitoring
+  - Takes the following object configuration format (default values shown):
   ```js
     {
-      tracesSampleRate: 0.4
+      tracesSampleRate: 1.0,
+      vueOptions: {
+        tracing: true,
+        tracingOptions: {
+          trackComponents: true
+        }
+      },
+      browserOptions: {}
     }
   ```
-  - Note that when enabled, the following is added to the `Vue` integration configuration:
-  ```js
-    {
-      tracing: true,
-      tracingOptions: {
-        trackComponents: true
-      }
-    }
-  ```
-  - See https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
+  - Sentry docs strongly recommend reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
+  - The `vueOptions` are passed to the `Vue` integration, see https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
+  - `browserOptions` are passed to the `BrowserTracing` integration, see https://github.com/getsentry/sentry-javascript/tree/master/packages/tracing for more information
+  - `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
 
 ### config
 - Type: `Object`

@@ -15,7 +15,14 @@ export interface LazyConfiguration {
 }
 
 export interface TracingConfiguration {
-  tracesSampleRate: number
+    tracesSampleRate?: number
+    vueOptions?: {
+        tracing?: boolean
+        tracingOptions?: {
+            trackComponents?: boolean
+        }
+    },
+    browserOptions?: unknown
 }
 
 export interface ModuleConfiguration {
