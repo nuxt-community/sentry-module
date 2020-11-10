@@ -15,6 +15,7 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
+declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update';
 /**
  * Vue specific configuration for Tracing Integration
  * Not exported, so have to reproduce here
@@ -36,7 +37,6 @@ interface TracingOptions {
      */
     hooks: Operation[];
 }
-declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update';
 
 export interface TracingConfiguration {
     tracesSampleRate?: number
