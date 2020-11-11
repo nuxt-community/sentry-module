@@ -1,4 +1,5 @@
 import { Options as WebpackOptions } from 'webpack'
+import { BrowserTracingOptions } from '@sentry/tracing/dist/browser/browsertracing'
 import { Options as SentryOptions } from '@sentry/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Handlers } from '@sentry/node'
@@ -14,6 +15,38 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
+declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update'
+/**
+ * Vue specific configuration for Tracing Integration
+ * Not exported, so have to reproduce here
+ * @see https://github.com/getsentry/sentry-javascript/blob/master/packages/integrations/src/vue.ts
+ **/
+interface TracingOptions {
+    /**
+     * Decides whether to track components by hooking into its lifecycle methods.
+     * Can be either set to `boolean` to enable/disable tracking for all of them.
+     * Or to an array of specific component names (case-sensitive).
+     */
+    trackComponents: boolean | string[]
+    /** How long to wait until the tracked root activity is marked as finished and sent of to Sentry */
+    timeout: number
+    /**
+     * List of hooks to keep track of during component lifecycle.
+     * Available hooks: 'activate' | 'create' | 'destroy' | 'mount' | 'update'
+     * Based on https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
+     */
+    hooks: Operation[]
+}
+
+export interface TracingConfiguration {
+    tracesSampleRate?: number
+    vueOptions?: {
+        tracing?: boolean
+        tracingOptions?: TracingOptions
+    }
+    browserOptions?: BrowserTracingOptions
+}
+
 export interface ModuleConfiguration {
     attachCommits?: boolean
     clientConfig?: SentryOptions
@@ -25,6 +58,7 @@ export interface ModuleConfiguration {
     disableServerRelease?: boolean
     disableServerSide?: boolean
     dsn?: string
+    tracing?: boolean | TracingConfiguration
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean

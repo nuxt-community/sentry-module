@@ -329,6 +329,30 @@ Normally, setting required DSN information would be enough.
   ```
   - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
 
+### tracing
+- Type: `Boolean` or `Object`
+  - Default: `false`
+  - Enables the BrowserTracing integration for client performance monitoring
+  - Takes the following object configuration format (default values shown):
+  ```js
+    {
+      tracesSampleRate: 1.0,
+      vueOptions: {
+        tracing: true,
+        tracingOptions: {
+          hooks: [ 'mount', 'update' ],
+          timeout: 2000,
+          trackComponents: true
+        }
+      },
+      browserOptions: {}
+    }
+  ```
+  - Sentry docs strongly recommend reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
+  - The `vueOptions` are passed to the `Vue` integration, see https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
+  - `browserOptions` are passed to the `BrowserTracing` integration, see https://github.com/getsentry/sentry-javascript/tree/master/packages/tracing for more information
+  - `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
+
 ### config
 - Type: `Object`
   - Default: `{
@@ -354,13 +378,13 @@ Normally, setting required DSN information would be enough.
 - Type: `Object`
   - Default: Refer to `module.js` since defaults include various options that also change dynamically based on other options.
   - Options passed to `@sentry/webpack-plugin`. See documentation at https://github.com/getsentry/sentry-webpack-plugin/blob/master/README.md
-  
+
 ### requestHandlerConfig
 - Type: `Object`
   - Default: `{
   }`
   - Options passed to `requestHandler` in `@sentry/node`. See: https://docs.sentry.io/platforms/node/guides/express/
-  
+
 ## Submitting releases to Sentry
 Support for the [sentry-webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) was introduced [#a6cd8d3](https://github.com/nuxt-community/sentry-module/commit/a6cd8d3b983b4c6659e985736b19dc771fe7c9ea). This can be used to send releases to Sentry. Use the publishRelease  option to enable this feature.
 
