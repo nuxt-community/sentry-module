@@ -1,3 +1,15 @@
+## [4.5.0](https://github.com/nuxt-community/sentry-module/compare/v4.4.0...v4.5.0) (2020-11-11)
+
+
+### Features
+
+* add support for performance monitoring/tracing ([#250](https://github.com/nuxt-community/sentry-module/issues/250)) ([6a6a3be](https://github.com/nuxt-community/sentry-module/commit/6a6a3be408fbf559ecdcda9db659fcae3c9fdce9)), closes [#224](https://github.com/nuxt-community/sentry-module/issues/224)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ^5.27.2 -> ^5.27.3 ([#249](https://github.com/nuxt-community/sentry-module/issues/249)) ([c9c4dde](https://github.com/nuxt-community/sentry-module/commit/c9c4dde53342646fbe5e90daeed9900ff8b97246))
+
 ## [4.4.0](https://github.com/nuxt-community/sentry-module/compare/v4.3.5...v4.4.0) (2020-11-04)
 
 
