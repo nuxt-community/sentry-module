@@ -62,6 +62,7 @@ export interface ModuleConfiguration {
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
+    publicRuntimeConfigKey?: string
     publishRelease?: boolean
     repo?: string
     serverConfig?: SentryOptions
