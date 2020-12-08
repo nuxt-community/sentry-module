@@ -42,34 +42,34 @@
     }
   },
   "dependencies": {
-    "@sentry/browser": "^5.27.3",
-    "@sentry/integrations": "^5.27.3",
-    "@sentry/node": "^5.27.3",
-    "@sentry/webpack-plugin": "^1.13.0",
+    "@sentry/browser": "^5.29.0",
+    "@sentry/integrations": "^5.29.0",
+    "@sentry/node": "^5.29.0",
+    "@sentry/webpack-plugin": "^1.14.0",
     "consola": "^2.15.0",
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "@nuxt/types": "^2.14.7",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@nuxt/types": "^2.14.10",
     "@nuxtjs/eslint-config-typescript": "^4.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/consola": "^2.2.5",
     "@types/deepmerge": "^2.2.0",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.7",
+    "@types/jest": "^26.0.18",
+    "@types/node": "^14.14.11",
     "@types/request-promise-native": "^1.0.17",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "codecov": "^3.8.1",
-    "eslint": "^7.13.0",
+    "eslint": "^7.15.0",
     "jest": "^26.6.3",
-    "nuxt": "^2.14.7",
-    "release-it": "^14.2.1",
-    "typescript": "^4.0.5"
+    "nuxt": "^2.14.10",
+    "release-it": "^14.2.2",
+    "typescript": "^4.1.2"
   },
   "publishConfig": {
     "access": "public"
