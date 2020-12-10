@@ -10,6 +10,9 @@ module.exports = {
     '^@@$': '<rootDir>',
     '^@/(.*)$': '<rootDir>/lib/$1'
   },
+  setupFilesAfterEnv: [
+    './test/setup'
+  ],
   transform: {
     '^.+\\.js$': 'babel-jest'
   }

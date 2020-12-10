@@ -18,6 +18,7 @@
   ],
   "main": "lib/module.js",
   "scripts": {
+    "dev:fixture": "nuxt -c ./test/fixture/default/nuxt.config.js",
     "lint": "eslint --ext .vue,.js,.ts lib test types",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
@@ -68,6 +69,7 @@
     "eslint": "^7.15.0",
     "jest": "^26.6.3",
     "nuxt": "^2.14.10",
+    "playwright-chromium": "^1.6.2",
     "release-it": "^14.2.2",
     "typescript": "^4.1.2"
   },
