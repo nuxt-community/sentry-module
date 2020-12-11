@@ -1,20 +1,28 @@
-import { setup, loadConfig, get } from '@nuxtjs/module-test-utils'
+import { setup, loadConfig, url } from '@nuxtjs/module-test-utils'
+import { $$, createBrowser } from './utils'
 
 describe('Smoke test (lazy)', () => {
   /** @type {any} */
   let nuxt
+  /** @type {import('playwright-chromium').Browser} */
+  let browser
 
   beforeAll(async () => {
     ({ nuxt } = await setup(loadConfig(__dirname, 'lazy')))
-  }, 60000)
+    browser = await createBrowser()
+  })
 
   afterAll(async () => {
-    // Close all opened resources
+    if (browser) {
+      await browser.close()
+    }
     await nuxt.close()
   })
 
   test('builds and runs', async () => {
-    const html = await get('/')
-    expect(html).toContain('Works but is not ready!')
+    const page = await browser.newPage()
+    await page.goto(url('/'))
+    expect(await $$('#server-side', page)).toBe('Works!')
+    expect(await $$('#client-side', page)).toBe('Works and is ready!')
   })
 })

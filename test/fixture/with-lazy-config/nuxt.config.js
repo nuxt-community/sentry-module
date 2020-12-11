@@ -3,6 +3,7 @@ import SentryModule from '../../..'
 /** @type {import('@nuxt/types').NuxtConfig} */
 const config = {
   rootDir: __dirname,
+  telemetry: false,
   dev: false,
   render: {
     resourceHints: false

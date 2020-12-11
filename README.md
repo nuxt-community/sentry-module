@@ -314,7 +314,8 @@ Normally, setting required DSN information would be enough.
       Vue: {attachProps: true, logErrors: this.options.dev}
    }
   ```
-  - See https://docs.sentry.io/platforms/javascript/vue/ and  https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information on configuring integrations
+  - Sentry by default also enables these browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `UserAgent`. Their options can be overridden by specifying them manually in the object.
+  - See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on configuring integrations
 
 ### serverIntegrations
 - Type: `Dictionary`
