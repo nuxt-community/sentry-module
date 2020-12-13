@@ -1,0 +1,10 @@
+{
+  "title": "Sentry module",
+  "url": "https://sentry.nuxtjs.org",
+  "logo": {
+    "light": "/logo-light.svg",
+    "dark": "/logo-dark.svg"
+  },
+  "github": "nuxt-community/sentry-module",
+  "twitter": "@nuxt_js"
+}
