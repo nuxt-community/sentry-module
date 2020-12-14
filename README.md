@@ -9,18 +9,12 @@
 [![Dependencies][david-dm-src]][david-dm-href]
 [![Standard JS][standard-js-src]][standard-js-href]
 
-> Sentry module for Nuxt.js
+> [Sentry](http://sentry.io) module for Nuxt.js
 
 <p align="center">
   <a href="https://sentry.nuxtjs.org">Read Documentation</a>
 </p>
 
-## Features
-
-The module enables error logging through [Sentry](http://sentry.io).
-
-- **Please note** that version 2.2.0 of this package removed the older `public_key` and `private_key` options, since the updated Sentry packages don't support these anymore.
-- **Please note** that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
 
 ## License
 [MIT License](./LICENSE)

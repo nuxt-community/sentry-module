@@ -22,7 +22,7 @@ You can also pass a lazy config object in your module options (see [options](/se
 
 Normally `$sentry` would always refer to the `@sentry/browser` API. But if we lazy load Sentry this API wont be available until Sentry has loaded. If you don't want to worry about whether Sentry is loaded or not, a mocked Sentry API is injected into the Nuxt.js context that will execute all Sentry API calls once Sentry is loaded
 
-See: [`injectMock`](/sentry/options#lazy) and [`mockApiMethods`](/sentry/options#lazy) options below
+See: [`injectMock`](/sentry/options#lazy) and [`mockApiMethods`](/sentry/options#lazy) options.
 
 #### `$sentryReady`
 - Type `Function`

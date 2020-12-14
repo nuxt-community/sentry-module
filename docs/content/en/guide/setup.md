@@ -32,7 +32,7 @@ Add `@nuxtjs/sentry` dependency to your project:
 
 Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
 
-```js[nuxt.config.js]
+```js [nuxt.config.js]
 {
   modules: [
     '@nuxtjs/sentry'

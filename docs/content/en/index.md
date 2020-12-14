@@ -14,20 +14,8 @@ category: ''
 
 The module enables error logging through [Sentry](https://sentry.io/).
 
-<alert type="info">
-
-  Please note that version 2.2.0 of this package removed the older `public_key` and `private_key` options, since the updated Sentry packages don't support these anymore.
-
-</alert>
-
-<alert type="warning">
-
-  Please note that version 2.0.0 of this package introduces a breaking change. See [#30](https://github.com/nuxt-community/sentry-module/pull/30) for more information.
-
-</alert>
-
 ## More Resources
 
 * [GitHub](https://github.com/nuxt-community/sentry-module)
 * [Releases](https://github.com/nuxt-community/sentry-module/releases)
-* [MIT Licence](./LICENSE)
+* [MIT Licence](https://github.com/nuxt-community/sentry-module/blob/master/LICENSE)

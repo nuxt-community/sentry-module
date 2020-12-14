@@ -33,8 +33,7 @@ Normally, setting required DSN information would be enough.
         - Default: `true`
         - Whether a Sentry mock needs to be injected that captures any calls to `$sentry` API methods while Sentry has not yet loaded. Captured API method calls are executed once Sentry is loaded
       > When `injectMock: true` this module will also add a window.onerror listener. If errors are captured before Sentry has loaded then these will be reported once Sentry has loaded using sentry.captureException
-        ```js
-        // pages/index.vue
+        ```js [pages/index.vue]
         beforeMount() {
           // onNuxtReady is called _after_ the Nuxt.js app is fully mounted,
           // so Sentry is not yet loaded when beforeMount is called
@@ -48,8 +47,7 @@ Normally, setting required DSN information would be enough.
       - Type: `Boolean`
         - Default: `false`
         - By default Sentry will be lazy loaded once `window.onNuxtReady` is called. If you want to explicitly control when Sentry will be loaded you can set `injectLoadHook: true`. The module will inject a `$sentryLoad` method into the Nuxt.js context which you need to call once you are ready to load Sentry
-        ```js
-        // layouts/default.vue
+        ```js [layouts/default.vue]
         ...
         mounted() {
           // Only load Sentry after initial page has fully loaded
@@ -65,15 +63,15 @@ Normally, setting required DSN information would be enough.
         - This option is ignored when `injectMock: false`
         - If `mockApiMethods: true` then all available API methods will be mocked
         > If `injectMock: true` then _captureException_ will always be mocked for use with the window.onerror listener
-        ```js
-        // nuxt.config.js
+        ```js [nuxt.config.js]
         sentry: {
           lazy: {
             mockApiMethods: ['captureMessage']
           }
         }
+        ```
 
-        // pages/index.vue
+        ```js [pages/index.vue]
         mounted() {
           this.$sentry.captureMessage('This works!')
 
@@ -196,6 +194,13 @@ Normally, setting required DSN information would be enough.
 
 ### tracing
 - Type: `Boolean` or `Object`
+  
+<alert type="info">
+
+  `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
+
+</alert>
+
   - Default: `false`
   - Enables the BrowserTracing integration for client performance monitoring
   - Takes the following object configuration format (default values shown):
@@ -216,7 +221,6 @@ Normally, setting required DSN information would be enough.
   - Sentry docs strongly recommend reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
   - The `vueOptions` are passed to the `Vue` integration, see https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
   - `browserOptions` are passed to the `BrowserTracing` integration, see https://github.com/getsentry/sentry-javascript/tree/master/packages/tracing for more information
-  - `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
 
 ### config
 - Type: `Object`
