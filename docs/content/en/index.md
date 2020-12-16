@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: 'Sentry Module for NuxtJs'
+description: 'Sentry Module for Nuxt'
 position: 1
 category: ''
 ---

@@ -1,6 +1,6 @@
 ---
 title: Usage
-description: 'Usage of Sentry into NuxtJs'
+description: 'Usage of Sentry into Nuxt'
 position: 3
 category: Guide
 ---
