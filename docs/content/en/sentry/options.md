@@ -1,6 +1,6 @@
 ---
 title: Options
-description: ''
+description: 'Options can be passed to Sentry using either environment variables'
 position: 5
 category: Sentry
 ---

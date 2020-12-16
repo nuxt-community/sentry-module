@@ -1,6 +1,6 @@
 ---
 title: Setup
-description: ''
+description: 'Setup the sentry module into NuxtJs'
 position: 2
 category: Guide
 ---
