@@ -1,5 +1,4 @@
 [![@nuxtjs/sentry](docs/static/preview.png)](https://sentry.nuxtjs.org)
-
 # @nuxtjs/sentry
 
 [![npm version][npm-version-src]][npm-version-href]
@@ -9,14 +8,12 @@
 [![Dependencies][david-dm-src]][david-dm-href]
 [![Standard JS][standard-js-src]][standard-js-href]
 
-> [Sentry](http://sentry.io) module for Nuxt.js
+> [Sentry](http://sentry.io) module for [Nuxt](https://nuxtjs.org)
 
-<p align="center">
-  <a href="https://sentry.nuxtjs.org">Read Documentation</a>
-</p>
-
-
+- [✨ &nbsp;Release Notes](https://sentry.nuxtjs.org/releases)
+- [📖 &nbsp;Documentation](https://sentry.nuxtjs.org)
 ## License
+
 [MIT License](./LICENSE)
 
 <!-- Badges -->
