@@ -5,6 +5,8 @@ import { ModuleConfiguration } from './sentry'
 declare module 'vue/types/vue' {
   interface Vue {
     readonly $sentry: typeof SentryTypes
+    $sentryLoad(): Promise<void>
+    $sentryReady(): Promise<typeof SentryTypes>
   }
 }
 
@@ -12,10 +14,14 @@ declare module 'vue/types/vue' {
 declare module '@nuxt/types' {
   interface Context {
     readonly $sentry: typeof SentryTypes
+    $sentryLoad(): Promise<void>
+    $sentryReady(): Promise<typeof SentryTypes>
   }
 
   interface NuxtAppOptions {
     readonly $sentry: typeof SentryTypes
+    $sentryLoad(): Promise<void>
+    $sentryReady(): Promise<typeof SentryTypes>
   }
 
   interface NuxtOptions {
@@ -27,5 +33,7 @@ declare module '@nuxt/types' {
 declare module 'vuex/types' {
   interface Store<S> {
     readonly $sentry: typeof SentryTypes
+    $sentryLoad(): Promise<void>
+    $sentryReady(): Promise<typeof SentryTypes>
   }
 }
