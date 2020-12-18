@@ -32,6 +32,10 @@ async asyncData ({ params, $sentry }) {
 }
 ```
 
+### Usage in server middleware
+
+Sentry instance is accessible through the `process.sentry`.
+
 ### Usage in other lifecycle areas
 
 For the other special Nuxt lifecycle areas like `plugins`, `middleware`, and `nuxtServerInit`, the `$sentry` object is also accessible through the `context` object like so:
