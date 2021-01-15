@@ -10,7 +10,15 @@ Define a configuration object at runtime in Nuxt config `publicRuntimeConfig[]` 
 ```js
 publicRuntimeConfig: {
   sentry: {
-    environment: process.env.SENTRY_ENVIRONMENT
+    config: {
+      environment: process.env.SENTRY_ENVIRONMENT
+    },
+    serverConfig: {
+      // Any server specific config
+    },
+    clientConfig: {
+      // Any client specific config
+    }
   }
 }
 ```
