@@ -114,10 +114,10 @@ Normally, just setting DSN would be enough.
         - Default: `false`
         - Whether the Sentry chunk should be preloaded
 
-### publicRuntimeConfigKey
+### runtimeConfigKey
 - Type: `String`
   - Default: `sentry`
-  - Specified object in Nuxt config in `publicRuntimeConfig[publicRuntimeConfigKey]` will override some options at runtime. See documentation at https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
+  - Specified object in Nuxt config in `publicRuntimeConfig[runtimeConfigKey]` will override some options at runtime. See documentation at https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
   - Used to define the environment at runtime for example
 
 ### disabled

@@ -27,4 +27,4 @@ publicRuntimeConfig: {
 }
 ```
 
-You can customize the key that is used to access settings from `publicRuntimeConfig` by setting [`publicRuntimeConfigKey`](/sentry/options#publicruntimeconfigkey) in the non-runtime options.
+You can customize the key that is used to access settings from `publicRuntimeConfig` by setting [`runtimeConfigKey`](/sentry/options#publicruntimeconfigkey) in the non-runtime options.

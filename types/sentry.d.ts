@@ -62,9 +62,9 @@ export interface ModuleConfiguration {
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
-    publicRuntimeConfigKey?: string
     publishRelease?: boolean
     repo?: string
+    runtimeConfigKey?: string
     serverConfig?: SentryOptions
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
