@@ -5,8 +5,14 @@ position: 4
 category: Sentry
 ---
 
-Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`.
-Normally, setting required DSN information would be enough.
+Options can be passed using either:
+ - environment variables
+ - `sentry` object in `nuxt.config.js`
+ - when registering the module: `modules: [['@nuxtjs/sentry', {/*options*/}]]`
+
+The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/sentry/runtime-config).
+
+Normally, just setting DSN would be enough.
 
 ### dsn
 - Type: `String`
