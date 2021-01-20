@@ -59,6 +59,7 @@
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/consola": "^2.2.5",
     "@types/jest": "^26.0.19",
+    "@types/lodash.merge": "^4.6.6",
     "@types/node": "^14.14.14",
     "@types/request-promise-native": "^1.0.17",
     "babel-core": "^7.0.0-bridge.0",
