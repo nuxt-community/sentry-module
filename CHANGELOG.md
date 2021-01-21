@@ -1,3 +1,31 @@
+## [5.0.0](https://github.com/nuxt-community/sentry-module/compare/v4.5.0...v5.0.0) (2021-01-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** This major version release doesn't contain any breaking API/code changes.
+Starting with this version sessions data will be sent by default. See [Release Health](https://docs.sentry.io/product/releases/health/) docs to learn more.
+You can opt-out of this behavior by setting `autoSessionTracking` option to `false`, for example:
+
+```js
+sentry: {
+  config: {
+    autoSessionTracking: false
+  }
+}
+```
+
+### Features
+
+* Add runtime config support ([#254](https://github.com/nuxt-community/sentry-module/issues/254)) ([7f8b373](https://github.com/nuxt-community/sentry-module/commit/7f8b373a0ec5024fcd2c4ec40b5e01eae8281005))
+
+
+### Bug Fixes
+
+* **deps:** update sentry deps to v6 (major) ([#265](https://github.com/nuxt-community/sentry-module/issues/265)) ([7316f05](https://github.com/nuxt-community/sentry-module/commit/7316f052b7b05cf71826135230085bb4b33c3a5f))
+* **types:** add missing TS types for lazy-loading feature ([#262](https://github.com/nuxt-community/sentry-module/issues/262)) ([4a57102](https://github.com/nuxt-community/sentry-module/commit/4a571023c9779e289d14ae37377321a4cd589fec)), closes [#261](https://github.com/nuxt-community/sentry-module/issues/261)
+* support overriding integrations from @sentry/browser ([#257](https://github.com/nuxt-community/sentry-module/issues/257)) ([ae75bee](https://github.com/nuxt-community/sentry-module/commit/ae75beedccd12e144df8af5f695fda45caa83ff9)), closes [#251](https://github.com/nuxt-community/sentry-module/issues/251)
+
 ## [4.5.0](https://github.com/nuxt-community/sentry-module/compare/v4.4.0...v4.5.0) (2020-11-11)
 
 
