@@ -48,7 +48,7 @@
     "@sentry/node": "^5.29.2",
     "@sentry/webpack-plugin": "^1.14.0",
     "consola": "^2.15.0",
-    "deepmerge": "^4.2.2"
+    "lodash.merge": "^4.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -58,8 +58,8 @@
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/consola": "^2.2.5",
-    "@types/deepmerge": "^2.2.0",
     "@types/jest": "^26.0.19",
+    "@types/lodash.merge": "^4.6.6",
     "@types/node": "^14.14.14",
     "@types/request-promise-native": "^1.0.17",
     "babel-core": "^7.0.0-bridge.0",

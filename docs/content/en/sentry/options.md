@@ -1,12 +1,18 @@
 ---
 title: Options
 description: 'Options can be passed to Sentry using either environment variables'
-position: 5
+position: 4
 category: Sentry
 ---
 
-Options can be passed using either environment variables or `sentry` section in `nuxt.config.js`.
-Normally, setting required DSN information would be enough.
+Options can be passed using either:
+ - environment variables
+ - `sentry` object in `nuxt.config.js`
+ - when registering the module: `modules: [['@nuxtjs/sentry', {/*options*/}]]`
+
+The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/sentry/runtime-config).
+
+Normally, just setting DSN would be enough.
 
 ### dsn
 - Type: `String`
@@ -107,6 +113,12 @@ Normally, setting required DSN information would be enough.
       - Type: `Boolean`
         - Default: `false`
         - Whether the Sentry chunk should be preloaded
+
+### runtimeConfigKey
+- Type: `String`
+  - Default: `sentry`
+  - Specified object in Nuxt config in `publicRuntimeConfig[runtimeConfigKey]` will override some options at runtime. See documentation at https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
+  - Used to define the environment at runtime for example
 
 ### disabled
 - Type: `Boolean`

@@ -2,7 +2,7 @@
 title: Submitting releases to Sentry
 menuTitle: Submitting releases
 description: 'Submitting releases to Sentry'
-position: 6
+position: 7
 category: Sentry
 ---
 
