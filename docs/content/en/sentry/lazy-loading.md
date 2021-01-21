@@ -1,7 +1,7 @@
 ---
 title: Lazy-Loading (client-side)
 description: 'Load Sentry module lazily on the client'
-position: 4
+position: 6
 category: Sentry
 ---
 

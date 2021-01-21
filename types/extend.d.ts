@@ -29,6 +29,12 @@ declare module '@nuxt/types' {
   }
 }
 
+declare module '@nuxt/types/config/runtime' {
+  interface NuxtRuntimeConfig {
+    sentry?: ModuleConfiguration
+  }
+}
+
 // add types for Vuex Store
 declare module 'vuex/types' {
   interface Store<S> {
