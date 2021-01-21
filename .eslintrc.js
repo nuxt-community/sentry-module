@@ -56,7 +56,6 @@ module.exports = {
         '@typescript-eslint/no-non-null-assertion': 'warn',
         '@typescript-eslint/no-this-alias': 'error',
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'warn',
         '@typescript-eslint/no-var-requires': 'error',
         '@typescript-eslint/prefer-as-const': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
