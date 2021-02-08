@@ -47,7 +47,7 @@
     "@sentry/integrations": "^6.1.0",
     "@sentry/node": "^6.1.0",
     "@sentry/webpack-plugin": "^1.14.0",
-    "consola": "^2.15.2",
+    "consola": "^2.15.3",
     "lodash.merge": "^4.6.2"
   },
   "devDependencies": {
