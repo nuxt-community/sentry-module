@@ -1,3 +1,10 @@
+### [5.0.1](https://github.com/nuxt-community/sentry-module/compare/v5.0.0...v5.0.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* better handling of functions options in config ([#267](https://github.com/nuxt-community/sentry-module/issues/267)) ([341bed5](https://github.com/nuxt-community/sentry-module/commit/341bed57a2abd79b69d0c6474afaaa77b363674f))
+
 ## [5.0.0](https://github.com/nuxt-community/sentry-module/compare/v4.5.0...v5.0.0) (2021-01-21)
 
 

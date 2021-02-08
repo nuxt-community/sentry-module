@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/sentry",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Sentry module for Nuxt.js",
   "repository": "nuxt-community/sentry-module",
   "license": "MIT",
