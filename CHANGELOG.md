@@ -1,3 +1,10 @@
+### [5.0.2](https://github.com/nuxt-community/sentry-module/compare/v5.0.1...v5.0.2) (2021-02-17)
+
+
+### Bug Fixes
+
+* support configuring "CaptureConsole" and "Debug" integrations ([#275](https://github.com/nuxt-community/sentry-module/issues/275)) ([73c5b12](https://github.com/nuxt-community/sentry-module/commit/73c5b12fcf8e8bd169eaf1fd559808553c2a9f39)), closes [#274](https://github.com/nuxt-community/sentry-module/issues/274)
+
 ### [5.0.1](https://github.com/nuxt-community/sentry-module/compare/v5.0.0...v5.0.1) (2021-02-08)
 
 
