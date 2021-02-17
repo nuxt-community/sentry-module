@@ -223,6 +223,31 @@ Normally, just setting DSN would be enough.
 - Here is a list of server integrations that are supported: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Modules`, `Transaction`.
 - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
 
+### customIntegrationsPlugin
+
+- Type: `String`
+- Default: `null`
+- This option gives the flexibility to register any custom integration that is not handled internally by the `clientIntegrations` or the `serverIntegrations` option.
+- The value needs to be a file path (can include [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file that exports a function returning an array of initialized integrations. For example:
+```js
+import SentryRRWeb from '@sentry/rrweb'
+
+export default function (context) {
+  return [new SentryRRWeb()]
+}
+```
+- If you want to register an integration only on the server or the client side, condition the returned value on `process.client` or `process.server`, for example:
+```js
+export default async function (context) {
+  if (process.client) {
+    const SentryRRWeb = await import('@sentry/rrweb')
+    return [new SentryRRWeb()]
+  }
+  return []
+}
+```
+> Note that we are also importing the integration dynamically here to avoid including it in the server bundle.
+
 ### tracing
 
 - Type: `Boolean` or `Object`
