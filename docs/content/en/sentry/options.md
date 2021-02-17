@@ -189,7 +189,9 @@ Normally, just setting DSN would be enough.
    }
   ```
   - Sentry by default also enables these browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `UserAgent`. Their options can be overridden by specifying them manually in the object.
+  - Here is the list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`, `UserAgent`, `Vue`.
   - See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on configuring integrations
+
 
 ### serverIntegrations
 - Type: `Dictionary`
@@ -202,6 +204,7 @@ Normally, just setting DSN would be enough.
       Transaction: {}
     }
   ```
+  - Here is a list of server integrations that are supported: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Modules`, `Transaction`.
   - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
 
 ### tracing
