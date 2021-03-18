@@ -20,6 +20,13 @@ const config = {
       // Integration from @Sentry/browser package.
       TryCatch: { eventTarget: false }
     }
+  },
+  publicRuntimeConfig: {
+    sentry: {
+      config: {
+        environment: 'production'
+      }
+    }
   }
 }
 
