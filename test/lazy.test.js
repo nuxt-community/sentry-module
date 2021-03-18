@@ -19,10 +19,18 @@ describe('Smoke test (lazy)', () => {
     await nuxt.close()
   })
 
-  test('builds and runs', async () => {
+  test('builds, runs and there are no errors', async () => {
     const page = await browser.newPage()
+
+    /** @type {string[]} */
+    const errors = []
+    page.on('pageerror', (error) => {
+      errors.push(error.message)
+    })
     await page.goto(url('/'))
+
     expect(await $$('#server-side', page)).toBe('Works!')
     expect(await $$('#client-side', page)).toBe('Works and is ready!')
+    expect(errors).toEqual([])
   })
 })

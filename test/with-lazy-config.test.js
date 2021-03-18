@@ -26,6 +26,11 @@ describe('Smoke test (lazy config)', () => {
     page.on('console', (msg) => {
       messages.push(msg.text())
     })
+    /** @type {string[]} */
+    const errors = []
+    page.on('pageerror', (error) => {
+      errors.push(error.message)
+    })
     await page.goto(url('/'))
 
     expect(messages).toEqual(expect.arrayContaining(['Caught expected error on $sentry.captureEvent']))
@@ -35,5 +40,6 @@ describe('Smoke test (lazy config)', () => {
     await page.waitForTimeout(1100)
     expect(await $$('#client-side', page)).toBe('Works and is ready!')
     expect(messages).toEqual(expect.arrayContaining(['Sentry is ready']))
+    expect(errors).toEqual([])
   })
 })
