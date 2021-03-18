@@ -1,3 +1,10 @@
+### [5.0.3](https://github.com/nuxt-community/sentry-module/compare/v5.0.2...v5.0.3) (2021-03-18)
+
+
+### Bug Fixes
+
+* crash on lazy loading when using Runtime Config ([#286](https://github.com/nuxt-community/sentry-module/issues/286)) ([074bf77](https://github.com/nuxt-community/sentry-module/commit/074bf77fa5f3a9afdb8c7a198c0a74dd6db416b9))
+
 ### [5.0.2](https://github.com/nuxt-community/sentry-module/compare/v5.0.1...v5.0.2) (2021-02-17)
 
 
