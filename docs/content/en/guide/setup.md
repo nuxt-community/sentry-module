@@ -44,6 +44,20 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
 }
 ```
 
+## Types
+
+For typescript projects, add `@nuxtjs/sentry` to tsconfig types array
+
+```json [tsconfig.json]
+{
+  "compilerOptions": {
+    "types": [
+      "@nuxtjs/sentry"
+    ]
+  }
+}
+```
+
 ## Configuration
 
 See [Options](/sentry/options) for a list of available options
