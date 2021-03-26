@@ -52,7 +52,8 @@ export interface ModuleConfiguration {
     clientConfig?: SentryOptions
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
-    customIntegrationsPlugin?: string | null
+    customClientIntegrationsPlugin?: string | null
+    customServerIntegrationsPlugin?: string | null
     disableClientRelease?: boolean
     disableClientSide?: boolean
     disabled?: boolean
