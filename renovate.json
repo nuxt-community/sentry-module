@@ -1,5 +1,21 @@
 {
   "extends": [
     "@nuxtjs"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@sentry"],
+      "matchFiles": ["package.json"],
+      "groupName": "Sentry Dependencies",
+      "semanticCommitType": "fix",
+      "commitMessageTopic": "Sentry dependencies"
+    },
+    {
+      "excludePackagePatterns": ["^@sentry"],
+      "matchFiles": ["package.json"]
+    },
+    {
+      "matchFiles": ["docs/package.json"]
+    }
   ]
 }
