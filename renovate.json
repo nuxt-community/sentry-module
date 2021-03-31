@@ -1,6 +1,7 @@
 {
   "extends": [
     "config:base",
+    ":prHourlyLimit4",
     ":semanticCommitTypeAll(chore)"
   ],
   "meteor": {
