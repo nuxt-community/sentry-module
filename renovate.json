@@ -1,7 +1,6 @@
 {
   "extends": [
     "config:base",
-    ":maintainLockFilesWeekly",
     ":prHourlyLimit4",
     ":semanticCommitTypeAll(chore)"
   ],
