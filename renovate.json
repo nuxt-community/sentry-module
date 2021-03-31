@@ -1,21 +1,43 @@
 {
   "extends": [
-    "@nuxtjs"
+    "config:base",
+    ":semanticCommitTypeAll(chore)"
   ],
+  "meteor": {
+    "enabled": false
+  },
+  "rangeStrategy": "bump",
+  "npm": {
+    "commitMessageTopic": "{{prettyDepType}} {{depName}}"
+  },
   "packageRules": [
     {
+      "groupName": "Sentry Dependencies",
       "matchPackagePatterns": ["^@sentry"],
       "matchFiles": ["package.json"],
-      "groupName": "Sentry Dependencies",
-      "semanticCommitType": "fix",
-      "commitMessageTopic": "Sentry dependencies"
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "semanticCommitType": "fix"
     },
     {
       "excludePackagePatterns": ["^@sentry"],
-      "matchFiles": ["package.json"]
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchFiles": ["package.json"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
     },
     {
-      "matchFiles": ["docs/package.json"]
+      "groupName": "Docs dependencies",
+      "matchFiles": ["docs/package.json"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
     }
   ]
 }
