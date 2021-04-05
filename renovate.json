@@ -1,7 +1,6 @@
 {
   "extends": [
     "config:base",
-    ":maintainLockFilesWeekly",
     ":prHourlyLimit4",
     ":semanticCommitTypeAll(chore)"
   ],
@@ -31,7 +30,13 @@
       "matchUpdateTypes": [
         "minor",
         "patch"
-      ]
+      ],
+      "lockFileMaintenance": {
+        "enabled": true,
+        "extends": [
+          "schedule:weekly"
+        ]
+      }
     },
     {
       "groupName": "Docs dependencies",
