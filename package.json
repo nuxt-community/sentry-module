@@ -51,8 +51,8 @@
     "lodash.merge": "^4.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.14",
-    "@babel/preset-env": "^7.13.12",
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
     "@nuxt/types": "^2.15.4",
     "@nuxtjs/eslint-config-typescript": "^6.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
@@ -60,18 +60,18 @@
     "@types/consola": "^2.2.5",
     "@types/jest": "^26.0.22",
     "@types/lodash.merge": "^4.6.6",
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "@types/request-promise-native": "^1.0.17",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "codecov": "^3.8.1",
-    "eslint": "^7.23.0",
+    "eslint": "^7.24.0",
     "jest": "^26.6.3",
     "nuxt": "^2.15.4",
     "playwright-chromium": "^1.10.0",
-    "release-it": "^14.5.1",
-    "typescript": "^4.2.3"
+    "release-it": "^14.6.1",
+    "typescript": "^4.2.4"
   },
   "publishConfig": {
     "access": "public"
