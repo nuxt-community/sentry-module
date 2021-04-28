@@ -183,12 +183,14 @@ Normally, just setting DSN would be enough.
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
+- Only has effect when `publishRelease = true`
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### disableClientRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_CLIENT_RELEASE || false`
+- Only has effect when `publishRelease = true`
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### clientIntegrations
@@ -283,6 +285,7 @@ Normally, just setting DSN would be enough.
 
 - Type: `Object`
 - Default: Refer to `module.js` since defaults include various options that also change dynamically based on other options.
+- Only has effect when `publishRelease = true`
 - Options passed to `@sentry/webpack-plugin`. See documentation at https://github.com/getsentry/sentry-webpack-plugin/blob/master/README.md
 
 ### requestHandlerConfig
