@@ -39,7 +39,12 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
   ],
   sentry: {
     dsn: '', // Enter your project's DSN here
-    config: {}, // Additional config
+    // Additional Module Options go here
+    // https://sentry.nuxtjs.org/sentry/options
+    config: {
+      // Add native Sentry config here
+      // https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
+    },
   }
 }
 ```
