@@ -7,6 +7,9 @@ category: Guide
 
 Enter your DSN in the Nuxt.js config file. Additional config options can be found [here](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/).
 
+### Automatic Capturing
+Once installed, Sentry automatically reports errors, uncaught exceptions, and unhandled rejections. No need for further steps, unless you like to report (certain) exceptions manually (or have deactivated integrations like 'GlobalError'). In this case, find below how to send reports manually. 
+
 ### Usage in Vue components
 
 In a Vue component, `Sentry` is available as `this.$sentry`, so we can call functions like
