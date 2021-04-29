@@ -1,0 +1,24 @@
+---
+title: Report Pre-processing (Hooks)
+description: 'Modify data before transmission'
+position: 6
+category: Sentry
+---
+
+If you would like to modify a report's captured data before transmission (e.g. add additional or scrub sensitive data), you can use a [Sentry hook](https://docs.sentry.io/platforms/javascript/configuration/options/#hooks) within your 'config'.
+
+Example of using a hook to trigger [Sentry's native User Feedback/Error Reporting Dialog](https://docs.sentry.io/platforms/javascript/guides/vue/enriching-events/user-feedback/) to gather additional information from the user:
+```
+    config: {
+      environment: process.env.NODE_ENV,
+      beforeSend(event, hint) {
+        // Check if it is an exception, and if so, show the report dialog
+        if (event.exception) {
+          // Native Sentry JS Bug/Feedback Reporter
+          // https://docs.sentry.io/platforms/javascript/guides/vue/enriching-events/user-feedback/
+          Sentry.showReportDialog({ eventId: event.event_id })
+        }
+        return event
+      },
+    },
+```
