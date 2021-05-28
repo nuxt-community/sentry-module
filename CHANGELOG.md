@@ -1,3 +1,19 @@
+## [5.1.0](https://github.com/nuxt-community/sentry-module/compare/v5.0.3...v5.1.0) (2021-05-28)
+
+
+### Features
+
+* allow disabling automatic version detection for releases ([#314](https://github.com/nuxt-community/sentry-module/issues/314)) ([e1677fa](https://github.com/nuxt-community/sentry-module/commit/e1677fa74a808e5ab6004f693fd36da4d1b9efef))
+
+
+### Bug Fixes
+
+* serialize regexpes properly in the server-side config ([#308](https://github.com/nuxt-community/sentry-module/issues/308)) ([9e3ae22](https://github.com/nuxt-community/sentry-module/commit/9e3ae221a7d339436abf01fead73228f3175b4d8)), closes [#307](https://github.com/nuxt-community/sentry-module/issues/307)
+* **deps:** update dependency @sentry/webpack-plugin to ^1.15.0 ([#305](https://github.com/nuxt-community/sentry-module/issues/305)) ([a0396b6](https://github.com/nuxt-community/sentry-module/commit/a0396b69ccd1a8d8e2105f874e546ebc95401170))
+* handle commonjs/es import styles for @sentry/cli ([#302](https://github.com/nuxt-community/sentry-module/issues/302)) ([d6a818d](https://github.com/nuxt-community/sentry-module/commit/d6a818dd7ed549537285beb8c44a1276a76fcfb9))
+* **deps:** update sentry dependencies to ^6.2.5 ([#300](https://github.com/nuxt-community/sentry-module/issues/300)) ([faf6f67](https://github.com/nuxt-community/sentry-module/commit/faf6f67300f2ae89124f3a75e9a91db3763fe798))
+* **docs:** fixes typography & content styling ([#288](https://github.com/nuxt-community/sentry-module/issues/288)) ([744bafb](https://github.com/nuxt-community/sentry-module/commit/744bafbeb55741ffeef93c6c62f2d73ef4e93037))
+
 ### [5.0.3](https://github.com/nuxt-community/sentry-module/compare/v5.0.2...v5.0.3) (2021-03-18)
 
 
