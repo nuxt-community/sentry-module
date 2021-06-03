@@ -157,6 +157,7 @@ Normally, just setting DSN would be enough.
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
+- this option requires `SENTRY_ORG` and `SENTRY_AUTH_TOKEN` set via [env/rc/properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects)
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### sourceMapStyle
