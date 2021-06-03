@@ -157,6 +157,7 @@ Normally, just setting DSN would be enough.
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
+- This option requires the organization slug, project name and the sentry authentication token to be provided via [environment variables or a properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects). So for example when using environment variables you'd set `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT`.
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### sourceMapStyle
