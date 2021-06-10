@@ -1,3 +1,5 @@
+import 'vue'
+import 'vuex'
 import * as SentryTypes from '@sentry/minimal'
 import { ModuleConfiguration } from './sentry'
 
