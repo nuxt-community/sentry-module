@@ -5,6 +5,10 @@ module.exports = {
   extends: [
     '@nuxtjs/eslint-config'
   ],
+  rules: {
+    'import/named': 'off',
+    'import/namespace': 'off'
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
@@ -14,6 +18,7 @@ module.exports = {
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
+        'import/named': 'off',
         'no-const-assign': 'off', // ts(2588)
         'no-dupe-args': 'off', // ts(2300)
         'no-dupe-class-members': 'off', // ts(2393) & ts(2300)
