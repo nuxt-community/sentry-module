@@ -1,3 +1,10 @@
+### [5.1.1](https://github.com/nuxt-community/sentry-module/compare/v5.1.0...v5.1.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ([#309](https://github.com/nuxt-community/sentry-module/issues/309)) ([844fb57](https://github.com/nuxt-community/sentry-module/commit/844fb57bdb088a91ba08f64c7b6af17bb569ab43))
+
 ## [5.1.0](https://github.com/nuxt-community/sentry-module/compare/v5.0.3...v5.1.0) (2021-05-28)
 
 
