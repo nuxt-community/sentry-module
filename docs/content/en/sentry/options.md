@@ -157,6 +157,7 @@ Normally, just setting DSN would be enough.
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
+- Enables Sentry releases for better debugging using source maps. (using @sentry/webpack-plugin)
 - This option requires the organization slug, project name and the sentry authentication token to be provided via [environment variables or a properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects). So for example when using environment variables you'd set `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT`.
 - See https://docs.sentry.io/workflow/releases for more information
 
@@ -269,6 +270,7 @@ Normally, just setting DSN would be enough.
 - Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
 - Note that `config.dsn` is automatically set based on the root `dsn` option
 - The value for `config.release` is automatically inferred from the local repo unless specified manually
+- Do not use `config.integrations`, use clientIntegrations or serverIntegrations
 
 ### serverConfig
 
