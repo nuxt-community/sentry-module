@@ -23,7 +23,8 @@ const config = {
     publishRelease: {
       authToken: 'fakeToken',
       org: 'MyCompany',
-      project: 'TestProject'
+      project: 'TestProject',
+      dryRun: true
     }
   }
 }
