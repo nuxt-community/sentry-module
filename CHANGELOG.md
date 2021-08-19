@@ -1,3 +1,12 @@
+### [5.1.2](https://github.com/nuxt-community/sentry-module/compare/v5.1.1...v5.1.2) (2021-08-19)
+
+
+### Bug Fixes
+
+* allow overriding all "webpackConfig" options ([#338](https://github.com/nuxt-community/sentry-module/issues/338)) ([bbc46d7](https://github.com/nuxt-community/sentry-module/commit/bbc46d7785c81a6ccce17b836a3ca9f03e29719d))
+* allow overriding all webpackConfig setCommits options ([#337](https://github.com/nuxt-community/sentry-module/issues/337)) ([0ea6cbc](https://github.com/nuxt-community/sentry-module/commit/0ea6cbc0a7796921c875b098a7887ef9dbcaf090))
+* **types:** use BrowserOptions interface for clientConfig option ([#335](https://github.com/nuxt-community/sentry-module/issues/335)) ([1372a28](https://github.com/nuxt-community/sentry-module/commit/1372a283f6f1081499542292863f99b3b6b7d885))
+
 ### [5.1.1](https://github.com/nuxt-community/sentry-module/compare/v5.1.0...v5.1.1) (2021-08-10)
 
 
