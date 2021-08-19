@@ -155,12 +155,30 @@ Normally, just setting DSN would be enough.
 
 ### publishRelease
 
-- Type: `Boolean`
+- Type: `Boolean` or `[WebpackPluginOptions](https://github.com/getsentry/sentry-webpack-plugin)`
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
-- Enables Sentry releases for better debugging using source maps. (using [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin))
-- This option requires the organization slug, project name and the sentry authentication token to be provided via [environment variables or a properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects). So for example when using environment variables you'd set `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT`.
-- The releases are only published when `publishRelease` is `true` and not running in Nuxt development (`nuxt dev`) mode.
-- See https://docs.sentry.io/workflow/releases for more information
+- Enables Sentry releases for better debugging using source maps. Uses [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin).
+- Publishing releases requires the organization slug, project name and the Sentry authentication token to be provided. Those can be provided either via the `WebpackPluginOptions` object or [environment variables or a properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects). So for example, when using the options object, you'd set `authToken`, `org` and `project` options, and when using the environment variables you'd set `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT`.
+- It's recommended to pass a configuration object to this option rather than using the boolean `true`. When using the boolean, you have to provide required options through other means mentioned above.
+- The releases are only published when this option is enabled and not running in development (`nuxt dev`) mode.
+- See https://docs.sentry.io/workflow/releases for more information. Note that the Sentry CLI options mentioned in the documentation typically have a [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) equivalent options that can be set through this option.
+
+Example configuration:
+
+```js
+sentry: {
+  // ...
+  publishRelease: {
+    authToken: '<token>',
+    org: 'MyCompany',
+    project: 'my-project',
+    // Attach commits to the release (requires that the build triggered within a git repository).
+    setCommits: {
+      auto: true
+    }
+  }
+}
+```
 
 ### sourceMapStyle
 
@@ -172,15 +190,18 @@ Normally, just setting DSN would be enough.
 
 ### attachCommits
 
+- Deprecated - Set `publishRelease.setCommits.auto = true` instead.
 - Type: `Boolean`
 - Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS || false`
 - Only has effect when `publishRelease = true`
 
 ### repo
 
+- Deprecated - use `publishRelease.setCommmits.repo` instead.
 - Type: `String`
 - Default: `process.env.SENTRY_RELEASE_REPO || ''`
 - Only has effect when `publishRelease = true && attachCommits = true`
+- Alternatively this can be set using `publishRelease.setCommmits.repo` option.
 
 ### disableServerRelease
 
@@ -231,7 +252,7 @@ Normally, just setting DSN would be enough.
 ### tracing
 
 - Type: `Boolean` or `Object`
-  
+
 <alert type="info">
 
   `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
@@ -262,7 +283,7 @@ Normally, just setting DSN would be enough.
 ### config
 
 - Type: `Object`
-- Default: 
+- Default:
 ```js
   {
     environment: this.options.dev ? 'development' : 'production'
@@ -287,6 +308,7 @@ Normally, just setting DSN would be enough.
 
 ### webpackConfig
 
+- Deprecated - use `publishRelease` instead.
 - Type: `Object`
 - Default: Refer to `module.js` since defaults include various options that also change dynamically based on other options.
 - Only has effect when `publishRelease = true`
