@@ -1,6 +1,7 @@
 import { Options as WebpackOptions } from 'webpack'
 import { BrowserTracingOptions } from '@sentry/tracing/dist/browser/browsertracing'
 import { Options as SentryOptions } from '@sentry/types'
+import { BrowserOptions } from '@sentry/browser'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Handlers } from '@sentry/node'
 
@@ -49,7 +50,7 @@ export interface TracingConfiguration {
 
 export interface ModuleConfiguration {
     attachCommits?: boolean
-    clientConfig?: SentryOptions
+    clientConfig?: BrowserOptions
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
     disableClientRelease?: boolean
