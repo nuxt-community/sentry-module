@@ -4,7 +4,6 @@ import SentryModule from '../../..'
 const config = {
   rootDir: __dirname,
   telemetry: false,
-  dev: true,
   build: {
     terser: false
   },

@@ -49,6 +49,7 @@ export interface TracingConfiguration {
 }
 
 export interface ModuleConfiguration {
+    /** @deprecated Set `publishRelease.setCommits.auto = true` instead. */
     attachCommits?: boolean
     clientConfig?: BrowserOptions
     clientIntegrations?: IntegrationsConfiguration
@@ -63,12 +64,19 @@ export interface ModuleConfiguration {
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
-    publishRelease?: boolean
+    /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
+    publishRelease?: boolean | Partial<SentryCliPluginOptions>
+    /** @deprecated Set `publishRelease.setCommits.repo` instead. */
     repo?: string
     runtimeConfigKey?: string
     serverConfig?: SentryOptions
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
-    webpackConfig?: SentryCliPluginOptions
+    /** @deprecated Use `publishRelease` instead. */
+    webpackConfig?: Partial<SentryCliPluginOptions>
     requestHandlerConfig?: Handlers.RequestHandlerOptions
+}
+
+interface ResolvedModuleConfiguration extends Omit<Required<ModuleConfiguration>, 'publishRelease'> {
+    publishRelease?: Partial<SentryCliPluginOptions>
 }

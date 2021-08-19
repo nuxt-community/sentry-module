@@ -48,7 +48,7 @@
     "@sentry/node": "^6.11.0",
     "@sentry/webpack-plugin": "^1.17.1",
     "consola": "^2.15.3",
-    "lodash.merge": "^4.6.2"
+    "lodash.mergewith": "^4.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -59,7 +59,7 @@
     "@release-it/conventional-changelog": "^3.2.0",
     "@types/consola": "^2.2.5",
     "@types/jest": "^27.0.1",
-    "@types/lodash.merge": "^4.6.6",
+    "@types/lodash.mergewith": "^4.6.6",
     "@types/node": "^14.17.10",
     "@types/request-promise-native": "^1.0.18",
     "babel-core": "^7.0.0-bridge.0",
