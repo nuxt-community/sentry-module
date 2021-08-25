@@ -1,3 +1,10 @@
+### [5.1.3](https://github.com/nuxt-community/sentry-module/compare/v5.1.2...v5.1.3) (2021-08-25)
+
+
+### Bug Fixes
+
+* lodash.merge import error on using runtime config ([acfff72](https://github.com/nuxt-community/sentry-module/commit/acfff728c2702f40fea2fb538fe5eeb3cdddfd5c))
+
 ### [5.1.2](https://github.com/nuxt-community/sentry-module/compare/v5.1.1...v5.1.2) (2021-08-19)
 
 
