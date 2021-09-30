@@ -19,6 +19,7 @@
   "main": "lib/module.js",
   "scripts": {
     "dev:fixture": "nuxt -c ./test/fixture/default/nuxt.config.js",
+    "dev:generate": "nuxt generate -c ./test/fixture/default/nuxt.config.js",
     "lint": "eslint --ext .vue,.js,.ts lib test types",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
