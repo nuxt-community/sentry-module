@@ -43,9 +43,9 @@
     }
   },
   "dependencies": {
-    "@sentry/browser": "^6.11.0",
-    "@sentry/integrations": "^6.11.0",
-    "@sentry/node": "^6.11.0",
+    "@sentry/browser": "^6.13.2",
+    "@sentry/integrations": "^6.13.2",
+    "@sentry/node": "^6.13.2",
     "@sentry/webpack-plugin": "^1.17.1",
     "consola": "^2.15.3",
     "lodash.mergewith": "^4.6.2"
