@@ -1,3 +1,11 @@
+### [5.1.4](https://github.com/nuxt-community/sentry-module/compare/v5.1.3...v5.1.4) (2021-10-01)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^6.13.2 ([#345](https://github.com/nuxt-community/sentry-module/issues/345)) ([e51a438](https://github.com/nuxt-community/sentry-module/commit/e51a4388d03461846ebd2c2dacef22cccd7048f6))
+* shutdown Sentry instance after generate ([#353](https://github.com/nuxt-community/sentry-module/issues/353)) ([ee4c293](https://github.com/nuxt-community/sentry-module/commit/ee4c293ba3cd623726250c495901cb88e14299bf))
+
 ### [5.1.3](https://github.com/nuxt-community/sentry-module/compare/v5.1.2...v5.1.3) (2021-08-25)
 
 
