@@ -53,9 +53,9 @@ Example usage:
     // that triggered the load will also be captured
     this.errorListener = () => {
       this.$sentryLoad()
-      window.removeEventListener('error', errorListener)
+      window.removeEventListener('error', this.errorListener)
     }
-    window.addEventListener('error', errorListener)
+    window.addEventListener('error', this.errorListener)
   },
   destroyed() {
     window.removeEventListener('error', this.errorListener)
