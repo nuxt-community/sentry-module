@@ -1,3 +1,11 @@
+### [5.1.5](https://github.com/nuxt-community/sentry-module/compare/v5.1.4...v5.1.5) (2021-11-05)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ([#355](https://github.com/nuxt-community/sentry-module/issues/355)) ([9d23a87](https://github.com/nuxt-community/sentry-module/commit/9d23a874e389f6e291359ffa30b7891eda0a69e0))
+* **docs:** typo in the lazy-loading section ([#363](https://github.com/nuxt-community/sentry-module/issues/363)) ([dfcc0ab](https://github.com/nuxt-community/sentry-module/commit/dfcc0ab23d00cd6f94a69161bbdde1d1ba427e5b))
+
 ### [5.1.4](https://github.com/nuxt-community/sentry-module/compare/v5.1.3...v5.1.4) (2021-10-01)
 
 
