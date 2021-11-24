@@ -174,7 +174,7 @@ sentry: {
     project: 'my-project',
     // Attach commits to the release (requires that the build triggered within a git repository).
     setCommits: {
-      auto: true  // set by default
+      auto: true
     }
   }
 }
