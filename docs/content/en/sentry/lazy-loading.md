@@ -7,7 +7,7 @@ category: Sentry
 
 <alert type="warning">
 
-  Please be aware that lazy loading could prevent some errors from being reported
+  Please be aware that lazy loading could prevent some errors that happen early during app loading from being reported.
 
 </alert>
 

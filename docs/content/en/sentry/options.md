@@ -26,7 +26,7 @@ Normally, just setting DSN would be enough.
 - Default: `false`
 - Load Sentry lazily so it's not included in your main bundle
 - If `true` then the default options will be used:
-```js
+  ```js
   {
     injectMock: true,
     injectLoadHook: false,
@@ -35,7 +35,7 @@ Normally, just setting DSN would be enough.
     webpackPrefetch: false,
     webpackPreload: false
   }
-```
+  ```
 - Options:
   - **injectMock**
     - Type: `Boolean`
@@ -274,7 +274,7 @@ sentry: {
 - Default: `false`
 - Enables the BrowserTracing integration for client performance monitoring
 - Takes the following object configuration format (default values shown):
-```js
+  ```js
   {
     tracesSampleRate: 1.0,
     vueOptions: {
@@ -287,7 +287,7 @@ sentry: {
     },
     browserOptions: {}
   }
-```
+  ```
 - Sentry documentation strongly recommends reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
 - The `vueOptions` are passed to the `Vue` integration, see https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
 - `browserOptions` are passed to the `BrowserTracing` integration, see https://github.com/getsentry/sentry-javascript/tree/master/packages/tracing for more information
@@ -296,11 +296,11 @@ sentry: {
 
 - Type: `Object`
 - Default:
-```js
+  ```js
   {
     environment: this.options.dev ? 'development' : 'production'
   }
-```
+  ```
 - Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
 - Note that `config.dsn` is automatically set based on the root `dsn` option
 - The value for `config.release` is automatically inferred from the local repo unless specified manually
