@@ -1,13 +1,11 @@
 module.exports = {
-  parserOptions: {
-    parser: 'babel-eslint'
-  },
   extends: [
     '@nuxtjs/eslint-config'
   ],
   rules: {
     'import/named': 'off',
-    'import/namespace': 'off'
+    'import/namespace': 'off',
+    'vue/multi-word-component-names': 'off'
   },
   overrides: [
     {

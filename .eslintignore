@@ -2,4 +2,4 @@
 !.release-it.js
 lib/plugin.*
 lib/templates/*.*
-test/fixture/*/app
+test/fixture/*/.nuxt
