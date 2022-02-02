@@ -1,3 +1,11 @@
+### [5.1.7](https://github.com/nuxt-community/sentry-module/compare/v5.1.6...v5.1.7) (2022-02-02)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ([#379](https://github.com/nuxt-community/sentry-module/issues/379)) ([e7db004](https://github.com/nuxt-community/sentry-module/commit/e7db004716e3eeef3e990cd9410cdf68c6575408))
+* don't pass empty object to integrations constructor ([#387](https://github.com/nuxt-community/sentry-module/issues/387)) ([b4b9415](https://github.com/nuxt-community/sentry-module/commit/b4b94151f13d46697efadab80e20574eba3ac968))
+
 ### [5.1.6](https://github.com/nuxt-community/sentry-module/compare/v5.1.5...v5.1.6) (2021-11-26)
 
 
