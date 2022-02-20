@@ -16,7 +16,11 @@
     "lib",
     "types"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "lib/module.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "dev:fixture": "nuxt -c ./test/fixture/default/nuxt.config.js",
     "dev:generate": "nuxt generate -c ./test/fixture/default/nuxt.config.js",
@@ -47,7 +51,6 @@
     "@sentry/browser": "^6.17.9",
     "@sentry/integrations": "^6.17.9",
     "@sentry/node": "^6.17.9",
-    "@sentry/webpack-plugin": "^1.18.7",
     "consola": "^2.15.3",
     "lodash.mergewith": "^4.6.2"
   },
@@ -58,6 +61,7 @@
     "@nuxtjs/eslint-config-typescript": "^8.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^4.1.0",
+    "@sentry/webpack-plugin": "^1.18.7",
     "@types/jest": "^27.4.0",
     "@types/lodash.mergewith": "^4.6.6",
     "@types/node": "^14.18.12",
@@ -72,9 +76,5 @@
     "playwright-chromium": "^1.19.1",
     "release-it": "^14.12.4",
     "typescript": "^4.5.5"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "types": "types/index.d.ts"
+  }
 }
