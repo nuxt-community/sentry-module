@@ -155,6 +155,12 @@ Normally, just setting DSN would be enough.
 
 ### publishRelease
 
+<alert type="info">
+
+  `@sentry/webpack-plugin` package must be installed manually as a dev dependency to be able to publish releases.
+
+</alert>
+
 - Type: `Boolean` or [`WebpackPluginOptions`](https://github.com/getsentry/sentry-webpack-plugin)
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
 - Enables Sentry releases for better debugging using source maps. Uses [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin).
