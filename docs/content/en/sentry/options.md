@@ -186,6 +186,22 @@ sentry: {
 }
 ```
 
+Note the the module sets the following defaults when publishing is enabled:
+
+```js
+{
+  include: [], // automatically set at publishing time to relevant paths for the bundles that were built
+  ignore: [
+    'node_modules',
+    '.nuxt/dist/client/img'
+  ],
+  configFile: '.sentryclirc',
+  release: '',  // defaults to the value of "config.release" which can either be set manually or is determined automatically through `@sentry/cli`
+}
+```
+
+- Providing custom values for `include` or `ignore` will result in provided values getting appended to default values.
+
 ### sourceMapStyle
 
 - Type: `String`
@@ -308,14 +324,6 @@ sentry: {
 - Type: `Object`
 - Default: `{}`
 - Specified keys will override common Sentry options for client sentry plugin
-
-### webpackConfig
-
-- Deprecated - use `publishRelease` instead.
-- Type: `Object`
-- Default: Refer to `module.js` since defaults include various options that also change dynamically based on other options.
-- Only has effect when `publishRelease = true`
-- Options passed to `@sentry/webpack-plugin`. See documentation at https://github.com/getsentry/sentry-webpack-plugin/blob/master/README.md
 
 ### requestHandlerConfig
 

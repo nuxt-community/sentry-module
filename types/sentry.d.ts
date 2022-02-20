@@ -68,8 +68,6 @@ export interface ModuleConfiguration {
     serverConfig?: SentryOptions
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
-    /** @deprecated Use `publishRelease` instead. */
-    webpackConfig?: Partial<SentryCliPluginOptions>
     requestHandlerConfig?: Handlers.RequestHandlerOptions
 }
 
