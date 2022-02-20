@@ -194,21 +194,6 @@ sentry: {
 - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
 - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a breaking change, it won't be set as the default until next major release
 
-### attachCommits
-
-- Deprecated - Set `publishRelease.setCommits.auto = true` instead.
-- Type: `Boolean`
-- Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS || false`
-- Only has effect when `publishRelease = true`
-
-### repo
-
-- Deprecated - use `publishRelease.setCommmits.repo` instead.
-- Type: `String`
-- Default: `process.env.SENTRY_RELEASE_REPO || ''`
-- Only has effect when `publishRelease = true && attachCommits = true`
-- Alternatively this can be set using `publishRelease.setCommmits.repo` option.
-
 ### disableServerRelease
 
 - Type: `Boolean`
