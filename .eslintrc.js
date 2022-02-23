@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     '@nuxtjs/eslint-config'
   ],
+  ignorePatterns: ['dist/'],
   rules: {
     'import/named': 'off',
     'import/namespace': 'off',
