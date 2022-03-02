@@ -1,3 +1,27 @@
+## [6.0.0-beta.0](https://github.com/nuxt-community/sentry-module/compare/v5.1.7...v6.0.0-beta.0) (2022-03-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **options:** Configure through the `publishRelease` object instead.
+* **options:** The removed attachCommits and repo options can be
+set through the publishRelease object.
+* **deps:** To use the "publishRelease" option, it's now necessary
+to manually install the `@sentry/webpack-plugin` package as a dev
+dependency.
+
+### Bug Fixes
+
+* **deps:** make @sentry/webpack-plugin a peer dependency ([#390](https://github.com/nuxt-community/sentry-module/issues/390)) ([6b5e594](https://github.com/nuxt-community/sentry-module/commit/6b5e5946450420479ce642cdb7464f9ba2e3acf5))
+* **deps:** update dependency @sentry/webpack-plugin to ^1.18.7 ([#392](https://github.com/nuxt-community/sentry-module/issues/392)) ([f72147f](https://github.com/nuxt-community/sentry-module/commit/f72147f4ce22836580e6bcac72a5314bd38c24e2))
+* **deps:** update sentry dependencies ([#388](https://github.com/nuxt-community/sentry-module/issues/388)) ([5251cb6](https://github.com/nuxt-community/sentry-module/commit/5251cb64985c84dbed9841ea70bf5e6cf39ab5e9))
+
+
+### Code Refactoring
+
+* **options:** remove deprecated "attachCommits" and "repo" ([#393](https://github.com/nuxt-community/sentry-module/issues/393)) ([12b320c](https://github.com/nuxt-community/sentry-module/commit/12b320c1d30a90b5e21b99f2cf771244c95b23e7))
+* **options:** remove deprecated "webpackConfig" ([#394](https://github.com/nuxt-community/sentry-module/issues/394)) ([6152957](https://github.com/nuxt-community/sentry-module/commit/6152957d0f1572d630fb119e4baa0d43a7ad568b))
+
 ### [5.1.7](https://github.com/nuxt-community/sentry-module/compare/v5.1.6...v5.1.7) (2022-02-02)
 
 
