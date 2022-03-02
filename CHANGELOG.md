@@ -1,3 +1,10 @@
+## [6.0.0-beta.2](https://github.com/nuxt-community/sentry-module/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2022-03-02)
+
+
+### Bug Fixes
+
+* throw error instead of logging when @sentry/webpack-plugin missing ([90d6aac](https://github.com/nuxt-community/sentry-module/commit/90d6aac2d72bb00b0400ec7fe880e03d9b1247c5))
+
 ## [6.0.0-beta.1](https://github.com/nuxt-community/sentry-module/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2022-03-02)
 
 
