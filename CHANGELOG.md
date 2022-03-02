@@ -1,3 +1,14 @@
+## [6.0.0-beta.1](https://github.com/nuxt-community/sentry-module/compare/v6.0.0-beta.0...v6.0.0-beta.1) (2022-03-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove "@sentry/webpack-plugin" peer dep
+
+### Bug Fixes
+
+* remove "@sentry/webpack-plugin" peer dep ([af5cb77](https://github.com/nuxt-community/sentry-module/commit/af5cb77ab3260ac9767cc11a2fd9a134fba213a1))
+
 ## [6.0.0-beta.0](https://github.com/nuxt-community/sentry-module/compare/v5.1.7...v6.0.0-beta.0) (2022-03-02)
 
 
