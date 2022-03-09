@@ -50,9 +50,9 @@
     }
   },
   "dependencies": {
-    "@sentry/browser": "^6.17.9",
-    "@sentry/integrations": "^6.17.9",
-    "@sentry/node": "^6.17.9",
+    "@sentry/browser": "^6.18.2",
+    "@sentry/integrations": "^6.18.2",
+    "@sentry/node": "^6.18.2",
     "consola": "^2.15.3",
     "lodash.mergewith": "^4.6.2"
   },
@@ -63,7 +63,7 @@
     "@nuxtjs/eslint-config-typescript": "^8.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^4.1.0",
-    "@sentry/webpack-plugin": "^1.18.7",
+    "@sentry/webpack-plugin": "^1.18.8",
     "@types/jest": "^27.4.0",
     "@types/lodash.mergewith": "^4.6.6",
     "@types/node": "^14.18.12",
