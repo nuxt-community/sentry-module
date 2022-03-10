@@ -1768,10 +1768,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@release-it/conventional-changelog@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@release-it/conventional-changelog/-/conventional-changelog-4.2.1.tgz#bac51f7951747fff52fdfed7ec5004eca5fc6882"
-  integrity sha512-JtjrdokCDbka5jGLIJU/Z24pBqc715QwHE3D0IF/4RLlhCfptObeJkmmy/x5oDgD876ql/zkovjH2AHc+FBnxw==
+"@release-it/conventional-changelog@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@release-it/conventional-changelog/-/conventional-changelog-4.2.2.tgz#924e96f2f1de96974a5e7ae239ccfd3a9302af82"
+  integrity sha512-cbpfMSKTt8VtyltNls6Kt0WXIRmgILNpF1nqGE2oe3acs286Brrb5WFGyPhYR8XUy0nVsnjG1zmUPP6n0Xd6XA==
   dependencies:
     concat-stream "^2.0.0"
     conventional-changelog "^3.1.25"
