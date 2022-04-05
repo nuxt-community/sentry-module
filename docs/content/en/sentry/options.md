@@ -186,7 +186,7 @@ sentry: {
 }
 ```
 
-Note the the module sets the following defaults when publishing is enabled:
+Note that the module sets the following defaults when publishing is enabled:
 
 ```js
 {
