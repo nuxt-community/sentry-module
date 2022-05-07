@@ -57,26 +57,26 @@
     "lodash.mergewith": "^4.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/preset-env": "^7.16.11",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/eslint-config-typescript": "^9.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
-    "@release-it/conventional-changelog": "^4.2.2",
+    "@release-it/conventional-changelog": "^4.3.0",
     "@sentry/webpack-plugin": "^1.18.8",
-    "@types/jest": "^27.4.1",
-    "@types/lodash.mergewith": "^4.6.6",
-    "@types/node": "^14.18.12",
+    "@types/jest": "^27.5.0",
+    "@types/lodash.mergewith": "^4.6.7",
+    "@types/node": "^14.18.16",
     "@types/request-promise-native": "^1.0.18",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.5.1",
     "codecov": "^3.8.3",
-    "eslint": "^8.11.0",
+    "eslint": "^8.15.0",
     "jest": "^27.5.1",
     "nuxt": "^2.15.8",
-    "playwright-chromium": "^1.20.0",
-    "release-it": "^14.13.0",
-    "typescript": "^4.6.2"
+    "playwright-chromium": "^1.21.1",
+    "release-it": "^14.14.3",
+    "typescript": "^4.6.4"
   }
 }
