@@ -249,6 +249,7 @@ Note that the module sets the following defaults when publishing is enabled:
 
 
 ### serverIntegrations
+
 - Type: `Object`
 - Default:
   ```js
@@ -271,14 +272,14 @@ Note that the module sets the following defaults when publishing is enabled:
 ### tracing
 
 - Type: `Boolean` or `Object`
+- Default: `false`
 
 <alert type="info">
 
-  `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
+  `@sentry/tracing` should be installed manually when using this option.
 
 </alert>
 
-- Default: `false`
 - Enables the BrowserTracing integration for client performance monitoring
 - Takes the following object configuration format (default values shown):
   ```js
