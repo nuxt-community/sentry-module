@@ -10,6 +10,11 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['test/**'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+    },
+    {
       files: ['*.ts', '*.tsx'],
       extends: [
         '@nuxtjs/eslint-config-typescript'
