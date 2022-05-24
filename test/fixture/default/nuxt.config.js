@@ -19,6 +19,7 @@ const config = {
       // Integration from @Sentry/browser package.
       TryCatch: { eventTarget: false }
     },
+    customClientIntegrations: '~/config/custom-client-integrations.js',
     publishRelease: {
       authToken: 'fakeToken',
       org: 'MyCompany',
