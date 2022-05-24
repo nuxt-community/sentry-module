@@ -1,11 +1,19 @@
 module.exports = {
-  parserOptions: {
-    parser: 'babel-eslint'
-  },
   extends: [
     '@nuxtjs/eslint-config'
   ],
+  ignorePatterns: ['dist/'],
+  rules: {
+    'import/named': 'off',
+    'import/namespace': 'off',
+    'vue/multi-word-component-names': 'off'
+  },
   overrides: [
+    {
+      files: ['test/**'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+    },
     {
       files: ['*.ts', '*.tsx'],
       extends: [
@@ -14,6 +22,7 @@ module.exports = {
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
+        'import/named': 'off',
         'no-const-assign': 'off', // ts(2588)
         'no-dupe-args': 'off', // ts(2300)
         'no-dupe-class-members': 'off', // ts(2393) & ts(2300)

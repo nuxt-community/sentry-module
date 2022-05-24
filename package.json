@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/sentry",
-  "version": "5.0.3",
+  "version": "5.1.7",
   "description": "Sentry module for Nuxt.js",
   "repository": "nuxt-community/sentry-module",
   "license": "MIT",
@@ -16,9 +16,16 @@
     "lib",
     "types"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "lib/module.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "dev:fixture": "nuxt -c ./test/fixture/default/nuxt.config.js",
+    "dev:fixture": "node ./node_modules/nuxt/bin/nuxt.js -c ./test/fixture/default/nuxt.config.js",
+    "dev:fixture:build": "node ./node_modules/nuxt/bin/nuxt.js build -c ./test/fixture/default/nuxt.config.js",
+    "dev:fixture:start": "node ./node_modules/nuxt/bin/nuxt.js start -c ./test/fixture/default/nuxt.config.js",
+    "dev:generate": "nuxt generate -c ./test/fixture/default/nuxt.config.js --force-build",
     "lint": "eslint --ext .vue,.js,.ts lib test types",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
@@ -43,39 +50,35 @@
     }
   },
   "dependencies": {
-    "@sentry/browser": "^6.2.5",
-    "@sentry/integrations": "^6.2.5",
-    "@sentry/node": "^6.2.5",
-    "@sentry/webpack-plugin": "^1.15.0",
+    "@sentry/browser": "^6.19.7",
+    "@sentry/integrations": "^6.19.7",
+    "@sentry/node": "^6.19.7",
     "consola": "^2.15.3",
-    "lodash.merge": "^4.6.2"
+    "lodash.mergewith": "^4.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
-    "@babel/preset-env": "^7.13.15",
-    "@nuxt/types": "^2.15.4",
-    "@nuxtjs/eslint-config-typescript": "^6.0.0",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@nuxt/types": "^2.15.8",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
-    "@release-it/conventional-changelog": "^2.0.1",
-    "@types/consola": "^2.2.5",
-    "@types/jest": "^26.0.22",
-    "@types/lodash.merge": "^4.6.6",
-    "@types/node": "^14.14.41",
-    "@types/request-promise-native": "^1.0.17",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "@sentry/webpack-plugin": "^1.18.9",
+    "@types/jest": "^27.5.0",
+    "@types/lodash.mergewith": "^4.6.7",
+    "@types/node": "^14.18.16",
+    "@types/request-promise-native": "^1.0.18",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.6.3",
-    "codecov": "^3.8.1",
-    "eslint": "^7.24.0",
-    "jest": "^26.6.3",
-    "nuxt": "^2.15.4",
-    "playwright-chromium": "^1.10.0",
-    "release-it": "^14.6.1",
+    "babel-jest": "^28.1.0",
+    "codecov": "^3.8.3",
+    "eslint": "^8.15.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "jest": "^28.1.0",
+    "nuxt": "^2.15.8",
+    "playwright-chromium": "^1.21.1",
+    "release-it": "^15.0.0",
     "sentry-testkit": "^3.3.2",
-    "typescript": "^4.2.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "types": "types/index.d.ts"
+    "typescript": "^4.6.4"
+  }
 }

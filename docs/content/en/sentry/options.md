@@ -26,7 +26,7 @@ Normally, just setting DSN would be enough.
 - Default: `false`
 - Load Sentry lazily so it's not included in your main bundle
 - If `true` then the default options will be used:
-```js
+  ```js
   {
     injectMock: true,
     injectLoadHook: false,
@@ -35,7 +35,7 @@ Normally, just setting DSN would be enough.
     webpackPrefetch: false,
     webpackPreload: false
   }
-```
+  ```
 - Options:
   - **injectMock**
     - Type: `Boolean`
@@ -155,9 +155,52 @@ Normally, just setting DSN would be enough.
 
 ### publishRelease
 
-- Type: `Boolean`
+<alert type="info">
+
+  `@sentry/webpack-plugin` package must be installed manually as a dev dependency to be able to publish releases.
+
+</alert>
+
+- Type: `Boolean` or [`WebpackPluginOptions`](https://github.com/getsentry/sentry-webpack-plugin)
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
-- See https://docs.sentry.io/workflow/releases for more information
+- Enables Sentry releases for better debugging using source maps. Uses [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin).
+- Publishing releases requires the organization slug, project name and the Sentry authentication token to be provided. Those can be provided either via the `WebpackPluginOptions` object or [environment variables or a properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects). So for example, when using the options object, you'd set `authToken`, `org` and `project` options, and when using the environment variables you'd set `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT`.
+- It's recommended to pass a configuration object to this option rather than using the boolean `true`. When using the boolean, you have to provide the required options through other means mentioned above.
+- The releases are only published when this option is enabled and at the same time you are NOT running in development (`nuxt dev`) mode.
+- See https://docs.sentry.io/workflow/releases for more information. Note that the Sentry CLI options mentioned in the documentation typically have a [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) equivalent.
+
+Example configuration:
+
+```js
+sentry: {
+  // ...
+  publishRelease: {
+    authToken: '<token>',
+    org: 'MyCompany',
+    project: 'my-project',
+    // Attach commits to the release (requires that the build triggered within a git repository).
+    setCommits: {
+      auto: true
+    }
+  }
+}
+```
+
+Note that the module sets the following defaults when publishing is enabled:
+
+```js
+{
+  include: [], // automatically set at publishing time to relevant paths for the bundles that were built
+  ignore: [
+    'node_modules',
+    '.nuxt/dist/client/img'
+  ],
+  configFile: '.sentryclirc',
+  release: '',  // defaults to the value of "config.release" which can either be set manually or is determined automatically through `@sentry/cli`
+}
+```
+
+- Providing custom values for `include` or `ignore` will result in provided values getting appended to default values.
 
 ### sourceMapStyle
 
@@ -167,66 +210,69 @@ Normally, just setting DSN would be enough.
 - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
 - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a breaking change, it won't be set as the default until next major release
 
-### attachCommits
-
-- Type: `Boolean`
-- Default: `process.env.SENTRY_AUTO_ATTACH_COMMITS || false`
-- Only has effect when `publishRelease = true`
-
-### repo
-
-- Type: `String`
-- Default: `process.env.SENTRY_RELEASE_REPO || ''`
-- Only has effect when `publishRelease = true && attachCommits = true`
-
 ### disableServerRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
+- Only has effect when `publishRelease = true`
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### disableClientRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_CLIENT_RELEASE || false`
+- Only has effect when `publishRelease = true`
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### clientIntegrations
 
 - Type: `Object`
 - Default:
-```js
- {
+  ```js
+  {
     Dedupe: {},
     ExtraErrorData: {},
     ReportingObserver: {},
     RewriteFrames: {},
     Vue: {attachProps: true, logErrors: this.options.dev}
- }
-```
+  }
+  ```
 - Sentry by default also enables these browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `UserAgent`. Their options can be overridden by specifying them manually in the object.
-- Here is the list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`, `UserAgent`, `Vue`.
-- See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on configuring integrations
+- Here is the full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`, `UserAgent`, `Vue`.
+- User-provided configuration is merged with the default configuration so to disable integration that is enabled by default, you have to pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+  ```js
+  {
+    ExtraErrorData: false
+  }
+  ```
+- See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on the integrations and their configuration
 
 
 ### serverIntegrations
+
 - Type: `Object`
 - Default:
-```js
+  ```js
   {
     Dedupe: {},
     ExtraErrorData: {},
     RewriteFrames: {},
     Transaction: {}
   }
-```
-- Here is a list of server integrations that are supported: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Modules`, `Transaction`.
-- See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information
+  ```
+- Here is the full list of server integrations that are supported: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Modules`, `Transaction`.
+- User-provided configuration is merged with the default configuration so to disable integration that is enabled by default, you have to pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+  ```js
+  {
+    ExtraErrorData: false
+  }
+  ```
+- See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information on the integrations and their configuration
 
-### customClientIntegrationsPlugin
+### customClientIntegrations
 
 - Type: `String`
-- Default: `null`
+- Default: `undefined`
 - This option gives the flexibility to register any custom integration that is not handled internally by the `clientIntegrations` option.
 - The value needs to be a file path (can include [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file that exports a function returning an array of initialized integrations. The function will be passed the Nuxt Context.
 
@@ -239,10 +285,10 @@ export default function (context) {
 }
 ```
 
-### customServerIntegrationsPlugin
+### customServerIntegrations
 
 - Type: `String`
-- Default: `null`
+- Default: `undefined`
 - This option gives the flexibility to register any custom integration that is not handled internally by the `serverIntegrations` option.
 - The value needs to be a file path (can include [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file that exports a function returning an array of initialized integrations.
 
@@ -258,17 +304,17 @@ export default function () {
 ### tracing
 
 - Type: `Boolean` or `Object`
-  
+- Default: `false`
+
 <alert type="info">
 
-  `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
+  `@sentry/tracing` should be installed manually when using this option.
 
 </alert>
 
-- Default: `false`
 - Enables the BrowserTracing integration for client performance monitoring
 - Takes the following object configuration format (default values shown):
-```js
+  ```js
   {
     tracesSampleRate: 1.0,
     vueOptions: {
@@ -281,7 +327,7 @@ export default function () {
     },
     browserOptions: {}
   }
-```
+  ```
 - Sentry documentation strongly recommends reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
 - The `vueOptions` are passed to the `Vue` integration, see https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
 - `browserOptions` are passed to the `BrowserTracing` integration, see https://github.com/getsentry/sentry-javascript/tree/master/packages/tracing for more information
@@ -289,15 +335,16 @@ export default function () {
 ### config
 
 - Type: `Object`
-- Default: 
-```js
+- Default:
+  ```js
   {
     environment: this.options.dev ? 'development' : 'production'
   }
-```
+  ```
 - Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
 - Note that `config.dsn` is automatically set based on the root `dsn` option
 - The value for `config.release` is automatically inferred from the local repo unless specified manually
+- Do not use `config.integrations`, use clientIntegrations or serverIntegrations
 
 ### serverConfig
 
@@ -310,12 +357,6 @@ export default function () {
 - Type: `Object`
 - Default: `{}`
 - Specified keys will override common Sentry options for client sentry plugin
-
-### webpackConfig
-
-- Type: `Object`
-- Default: Refer to `module.js` since defaults include various options that also change dynamically based on other options.
-- Options passed to `@sentry/webpack-plugin`. See documentation at https://github.com/getsentry/sentry-webpack-plugin/blob/master/README.md
 
 ### requestHandlerConfig
 

@@ -1,6 +1,7 @@
 import { Options as WebpackOptions } from 'webpack'
 import { BrowserTracingOptions } from '@sentry/tracing/dist/browser/browsertracing'
 import { Options as SentryOptions } from '@sentry/types'
+import { BrowserOptions } from '@sentry/browser'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Handlers } from '@sentry/node'
 
@@ -48,12 +49,11 @@ export interface TracingConfiguration {
 }
 
 export interface ModuleConfiguration {
-    attachCommits?: boolean
-    clientConfig?: SentryOptions
+    clientConfig?: BrowserOptions
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
-    customClientIntegrationsPlugin?: string | null
-    customServerIntegrationsPlugin?: string | null
+    customClientIntegrations?: string
+    customServerIntegrations?: string
     disableClientRelease?: boolean
     disableClientSide?: boolean
     disabled?: boolean
@@ -64,12 +64,15 @@ export interface ModuleConfiguration {
     initialize?: boolean
     lazy?: boolean | LazyConfiguration
     logMockCalls?: boolean
-    publishRelease?: boolean
-    repo?: string
+    /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
+    publishRelease?: boolean | Partial<SentryCliPluginOptions>
     runtimeConfigKey?: string
     serverConfig?: SentryOptions
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
-    webpackConfig?: SentryCliPluginOptions
     requestHandlerConfig?: Handlers.RequestHandlerOptions
+}
+
+interface ResolvedModuleConfiguration extends Omit<Required<ModuleConfiguration>, 'publishRelease'> {
+    publishRelease?: Partial<SentryCliPluginOptions>
 }

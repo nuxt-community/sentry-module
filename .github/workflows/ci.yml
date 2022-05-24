@@ -16,19 +16,21 @@ jobs:
       CI: true
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x, 16.x]
     name: Use Node.js ${{ matrix.node-version }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: yarn
       - name: yarn install
         run: yarn
       - name: Unittesting
         run: yarn test
       - name: Linting
+        if: ${{ matrix.node-version == '16.x' }}
         run: yarn lint
       - name: Coverage
         run: yarn coverage

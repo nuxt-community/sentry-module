@@ -4,7 +4,6 @@ import SentryModule from '../../..'
 const config = {
   rootDir: __dirname,
   telemetry: false,
-  dev: true,
   build: {
     terser: false
   },
@@ -19,6 +18,12 @@ const config = {
     clientIntegrations: {
       // Integration from @Sentry/browser package.
       TryCatch: { eventTarget: false }
+    },
+    publishRelease: {
+      authToken: 'fakeToken',
+      org: 'MyCompany',
+      project: 'TestProject',
+      dryRun: true
     }
   }
 }

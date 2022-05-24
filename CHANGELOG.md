@@ -1,3 +1,75 @@
+### [5.1.7](https://github.com/nuxt-community/sentry-module/compare/v5.1.6...v5.1.7) (2022-02-02)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ([#379](https://github.com/nuxt-community/sentry-module/issues/379)) ([e7db004](https://github.com/nuxt-community/sentry-module/commit/e7db004716e3eeef3e990cd9410cdf68c6575408))
+* don't pass empty object to integrations constructor ([#387](https://github.com/nuxt-community/sentry-module/issues/387)) ([b4b9415](https://github.com/nuxt-community/sentry-module/commit/b4b94151f13d46697efadab80e20574eba3ac968))
+
+### [5.1.6](https://github.com/nuxt-community/sentry-module/compare/v5.1.5...v5.1.6) (2021-11-26)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^6.14.3 ([#367](https://github.com/nuxt-community/sentry-module/issues/367)) ([7a38d27](https://github.com/nuxt-community/sentry-module/commit/7a38d277206739339b8cc703cf18c8e192e205af))
+* **deps:** update sentry dependencies to ^6.15.0 ([#374](https://github.com/nuxt-community/sentry-module/issues/374)) ([77fcf74](https://github.com/nuxt-community/sentry-module/commit/77fcf745c070e8656280dcae6cc3d5b3e1aae11d))
+* don't pass empty object to integrations constructor ([#376](https://github.com/nuxt-community/sentry-module/issues/376)) ([18e12c5](https://github.com/nuxt-community/sentry-module/commit/18e12c59305974e0777bb32bb5c3ad99d7867d06))
+
+### [5.1.5](https://github.com/nuxt-community/sentry-module/compare/v5.1.4...v5.1.5) (2021-11-05)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ([#355](https://github.com/nuxt-community/sentry-module/issues/355)) ([9d23a87](https://github.com/nuxt-community/sentry-module/commit/9d23a874e389f6e291359ffa30b7891eda0a69e0))
+* **docs:** typo in the lazy-loading section ([#363](https://github.com/nuxt-community/sentry-module/issues/363)) ([dfcc0ab](https://github.com/nuxt-community/sentry-module/commit/dfcc0ab23d00cd6f94a69161bbdde1d1ba427e5b))
+
+### [5.1.4](https://github.com/nuxt-community/sentry-module/compare/v5.1.3...v5.1.4) (2021-10-01)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^6.13.2 ([#345](https://github.com/nuxt-community/sentry-module/issues/345)) ([e51a438](https://github.com/nuxt-community/sentry-module/commit/e51a4388d03461846ebd2c2dacef22cccd7048f6))
+* shutdown Sentry instance after generate ([#353](https://github.com/nuxt-community/sentry-module/issues/353)) ([ee4c293](https://github.com/nuxt-community/sentry-module/commit/ee4c293ba3cd623726250c495901cb88e14299bf))
+
+### [5.1.3](https://github.com/nuxt-community/sentry-module/compare/v5.1.2...v5.1.3) (2021-08-25)
+
+
+### Bug Fixes
+
+* lodash.merge import error on using runtime config ([acfff72](https://github.com/nuxt-community/sentry-module/commit/acfff728c2702f40fea2fb538fe5eeb3cdddfd5c))
+
+### [5.1.2](https://github.com/nuxt-community/sentry-module/compare/v5.1.1...v5.1.2) (2021-08-19)
+
+
+### Bug Fixes
+
+* allow overriding all "webpackConfig" options ([#338](https://github.com/nuxt-community/sentry-module/issues/338)) ([bbc46d7](https://github.com/nuxt-community/sentry-module/commit/bbc46d7785c81a6ccce17b836a3ca9f03e29719d))
+* allow overriding all webpackConfig setCommits options ([#337](https://github.com/nuxt-community/sentry-module/issues/337)) ([0ea6cbc](https://github.com/nuxt-community/sentry-module/commit/0ea6cbc0a7796921c875b098a7887ef9dbcaf090))
+* **types:** use BrowserOptions interface for clientConfig option ([#335](https://github.com/nuxt-community/sentry-module/issues/335)) ([1372a28](https://github.com/nuxt-community/sentry-module/commit/1372a283f6f1081499542292863f99b3b6b7d885))
+
+### [5.1.1](https://github.com/nuxt-community/sentry-module/compare/v5.1.0...v5.1.1) (2021-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies ([#309](https://github.com/nuxt-community/sentry-module/issues/309)) ([844fb57](https://github.com/nuxt-community/sentry-module/commit/844fb57bdb088a91ba08f64c7b6af17bb569ab43))
+
+## [5.1.0](https://github.com/nuxt-community/sentry-module/compare/v5.0.3...v5.1.0) (2021-05-28)
+
+
+### Features
+
+* allow disabling automatic version detection for releases ([#314](https://github.com/nuxt-community/sentry-module/issues/314)) ([e1677fa](https://github.com/nuxt-community/sentry-module/commit/e1677fa74a808e5ab6004f693fd36da4d1b9efef))
+
+
+### Bug Fixes
+
+* serialize regexpes properly in the server-side config ([#308](https://github.com/nuxt-community/sentry-module/issues/308)) ([9e3ae22](https://github.com/nuxt-community/sentry-module/commit/9e3ae221a7d339436abf01fead73228f3175b4d8)), closes [#307](https://github.com/nuxt-community/sentry-module/issues/307)
+* **deps:** update dependency @sentry/webpack-plugin to ^1.15.0 ([#305](https://github.com/nuxt-community/sentry-module/issues/305)) ([a0396b6](https://github.com/nuxt-community/sentry-module/commit/a0396b69ccd1a8d8e2105f874e546ebc95401170))
+* handle commonjs/es import styles for @sentry/cli ([#302](https://github.com/nuxt-community/sentry-module/issues/302)) ([d6a818d](https://github.com/nuxt-community/sentry-module/commit/d6a818dd7ed549537285beb8c44a1276a76fcfb9))
+* **deps:** update sentry dependencies to ^6.2.5 ([#300](https://github.com/nuxt-community/sentry-module/issues/300)) ([faf6f67](https://github.com/nuxt-community/sentry-module/commit/faf6f67300f2ae89124f3a75e9a91db3763fe798))
+* **docs:** fixes typography & content styling ([#288](https://github.com/nuxt-community/sentry-module/issues/288)) ([744bafb](https://github.com/nuxt-community/sentry-module/commit/744bafbeb55741ffeef93c6c62f2d73ef4e93037))
+
 ### [5.0.3](https://github.com/nuxt-community/sentry-module/compare/v5.0.2...v5.0.3) (2021-03-18)
 
 

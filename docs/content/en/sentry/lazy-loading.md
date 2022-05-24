@@ -7,7 +7,7 @@ category: Sentry
 
 <alert type="warning">
 
-  Please be aware that lazy loading could prevent some errors from being reported
+  Please be aware that lazy loading could prevent some errors that happen early during app loading from being reported.
 
 </alert>
 
@@ -53,9 +53,9 @@ Example usage:
     // that triggered the load will also be captured
     this.errorListener = () => {
       this.$sentryLoad()
-      window.removeEventListener('error', errorListener)
+      window.removeEventListener('error', this.errorListener)
     }
-    window.addEventListener('error', errorListener)
+    window.addEventListener('error', this.errorListener)
   },
   destroyed() {
     window.removeEventListener('error', this.errorListener)
