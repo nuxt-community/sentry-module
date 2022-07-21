@@ -247,7 +247,6 @@ Note that the module sets the following defaults when publishing is enabled:
   ```
 - See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on the integrations and their configuration
 
-
 ### serverIntegrations
 
 - Type: `Object`
@@ -276,7 +275,7 @@ Note that the module sets the following defaults when publishing is enabled:
 
 <alert type="info">
 
-  `@sentry/tracing` should be installed manually when using this option.
+  `@sentry/tracing@6` (version 6 and not newer) should be installed manually when using this option.
 
 </alert>
 
