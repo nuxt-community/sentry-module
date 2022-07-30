@@ -66,7 +66,7 @@
     "@sentry/webpack-plugin": "^1.18.9",
     "@types/jest": "^27.5.1",
     "@types/lodash.mergewith": "^4.6.7",
-    "@types/node": "^14.18.18",
+    "@types/node": "^16.11.47",
     "@types/request-promise-native": "^1.0.18",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
