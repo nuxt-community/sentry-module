@@ -19,7 +19,8 @@ const config = {
     clientIntegrations: {
       // Integration from @Sentry/browser package.
       TryCatch: { eventTarget: false }
-    }
+    },
+    customClientIntegrations: '~/config/custom-client-integrations.js'
   },
   publicRuntimeConfig: {
     sentry: {

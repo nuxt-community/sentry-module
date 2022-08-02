@@ -19,7 +19,7 @@ export default {
   created () {
     this.$sentryReady().then(() => {
       this.isSentryReady = true
-      console.log('Sentry is ready') // eslint-disable-line no-console
+      console.info('Sentry is ready')
     })
   },
   mounted () {

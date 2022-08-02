@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "checkJs": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "lib": [
       "esnext",
@@ -13,16 +13,11 @@
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "esnext",
+    "target": "ESNext",
     "types": [
-      "./types",
+      "../types",
+      "jest",
+      "jsdom",
     ],
   },
-  "include": [
-    "./lib/",
-  ],
-  "exclude": [
-    "./node_modules/",
-    "./lib/plugin.*.js",
-  ]
 }
