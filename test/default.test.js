@@ -43,4 +43,6 @@ describe('Smoke test (default)', () => {
     expect(await $$('#client-side', page)).toBe('Works!')
     expect(errors).toEqual([])
   })
+
+  // TODO: Add tests for custom integration. Blocked by various sentry-kit bugs reported in its repo.
 })
