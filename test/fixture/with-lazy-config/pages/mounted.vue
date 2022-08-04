@@ -19,14 +19,12 @@ export default {
   created () {
     this.$sentryReady().then(() => {
       this.isSentryReady = true
-      // eslint-disable-next-line no-console
-      console.log('Sentry is ready')
+      console.info('Sentry is ready')
     })
   },
   mounted () {
     this.$nextTick(() => {
-      // eslint-disable-next-line no-console
-      console.log('Loading Sentry in 1 second')
+      console.info('Loading Sentry in 1 second')
       setTimeout(this.$sentryLoad, 1000)
     })
 

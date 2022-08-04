@@ -186,7 +186,7 @@ sentry: {
 }
 ```
 
-Note the the module sets the following defaults when publishing is enabled:
+Note that the module sets the following defaults when publishing is enabled:
 
 ```js
 {
@@ -247,8 +247,8 @@ Note the the module sets the following defaults when publishing is enabled:
   ```
 - See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on the integrations and their configuration
 
-
 ### serverIntegrations
+
 - Type: `Object`
 - Default:
   ```js
@@ -268,17 +268,49 @@ Note the the module sets the following defaults when publishing is enabled:
   ```
 - See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information on the integrations and their configuration
 
+### customClientIntegrations
+
+- Type: `String`
+- Default: `undefined`
+- This option gives the flexibility to register any custom integration that is not handled internally by the `clientIntegrations` option.
+- The value needs to be a file path (can include [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file that exports a function returning an array of initialized integrations. The function will be passed a `context` argument which is the Nuxt Context.
+
+For example:
+```js
+import SentryRRWeb from '@sentry/rrweb'
+
+export default function (context) {
+  return [new SentryRRWeb()]
+}
+```
+
+### customServerIntegrations
+
+- Type: `String`
+- Default: `undefined`
+- This option gives the flexibility to register any custom integration that is not handled internally by the `serverIntegrations` option.
+- The value needs to be a file path (can include [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file that exports a function returning an array of initialized integrations.
+
+For example:
+```js
+import MyAwesomeIntegration from 'my-awesome-integration'
+
+export default function () {
+  return [new MyAwesomeIntegration()]
+}
+```
+
 ### tracing
 
 - Type: `Boolean` or `Object`
+- Default: `false`
 
 <alert type="info">
 
-  `@sentry/tracing` should be installed manually when using this option (it is currently a dependency of `@sentry/node`)
+  `@sentry/tracing@6` (version 6 and not newer) should be installed manually when using this option.
 
 </alert>
 
-- Default: `false`
 - Enables the BrowserTracing integration for client performance monitoring
 - Takes the following object configuration format (default values shown):
   ```js

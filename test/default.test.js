@@ -1,5 +1,9 @@
+import sentryTestkit from 'sentry-testkit'
 import { setup, loadConfig, url } from '@nuxtjs/module-test-utils'
 import { $$, createBrowser } from './utils'
+
+const { testkit, localServer } = sentryTestkit()
+const TEST_DSN = 'http://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001'
 
 describe('Smoke test (default)', () => {
   /** @type {any} */
@@ -8,7 +12,9 @@ describe('Smoke test (default)', () => {
   let browser
 
   beforeAll(async () => {
-    ({ nuxt } = await setup(loadConfig(__dirname, 'default')))
+    await localServer.start(TEST_DSN)
+    const dsn = localServer.getDsn()
+    nuxt = (await setup(loadConfig(__dirname, 'default', { sentry: { dsn } }, { merge: true }))).nuxt
     browser = await createBrowser()
   })
 
@@ -17,6 +23,11 @@ describe('Smoke test (default)', () => {
       await browser.close()
     }
     await nuxt.close()
+    await localServer.stop()
+  })
+
+  beforeEach(() => {
+    testkit.reset()
   })
 
   test('builds and runs', async () => {
@@ -32,4 +43,6 @@ describe('Smoke test (default)', () => {
     expect(await $$('#client-side', page)).toBe('Works!')
     expect(errors).toEqual([])
   })
+
+  // TODO: Add tests for custom integration. Blocked by various sentry-kit bugs reported in its repo.
 })

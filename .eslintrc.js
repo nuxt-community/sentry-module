@@ -6,9 +6,20 @@ module.exports = {
   rules: {
     'import/named': 'off',
     'import/namespace': 'off',
+    'import/no-absolute-path': 'off',
+    'no-console': [
+      'error', {
+        allow: ['assert', 'warn', 'error', 'info']
+      }
+    ],
     'vue/multi-word-component-names': 'off'
   },
   overrides: [
+    {
+      files: ['test/**'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended']
+    },
     {
       files: ['*.ts', '*.tsx'],
       extends: [

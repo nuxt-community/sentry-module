@@ -52,6 +52,8 @@ export interface ModuleConfiguration {
     clientConfig?: BrowserOptions
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
+    customClientIntegrations?: string
+    customServerIntegrations?: string
     disableClientRelease?: boolean
     disableClientSide?: boolean
     disabled?: boolean
