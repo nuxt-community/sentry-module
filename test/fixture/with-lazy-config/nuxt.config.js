@@ -6,25 +6,25 @@ const config = {
   telemetry: false,
   dev: false,
   render: {
-    resourceHints: false
+    resourceHints: false,
   },
   modules: [
     // @ts-ignore
-    SentryModule
+    SentryModule,
   ],
   sentry: {
     dsn: 'https://fe8b7df6ea7042f69d7a97c66c2934f7@sentry.io.nuxt/1429779',
     config: {},
     lazy: {
       mockApiMethods: [
-        'captureMessage'
+        'captureMessage',
       ],
       injectLoadHook: true,
       chunkName: 'my-chunk',
       webpackPreload: true,
-      webpackPrefetch: true
-    }
-  }
+      webpackPrefetch: true,
+    },
+  },
 }
 
 module.exports = config

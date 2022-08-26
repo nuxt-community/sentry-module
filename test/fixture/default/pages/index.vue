@@ -14,13 +14,13 @@ export default {
       /** @type {import('@sentry/minimal') | null} */
       clientSentry: null,
       /** @type {import('@sentry/minimal') | null} */
-      serverSentry: this.$sentry
+      serverSentry: this.$sentry,
     }
   },
   created () {
     if (process.client) {
       this.clientSentry = this.$sentry
     }
-  }
+  },
 }
 </script>
