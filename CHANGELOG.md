@@ -1,3 +1,37 @@
+
+
+## [6.0.0](https://github.com/nuxt-community/sentry-module/compare/v5.1.7...v6.0.0) (2022-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* The server-side `process.sentry` will be created slightly later than before WHEN running the "build" action. It will be created before the pages are built (on `build:compile` hook) while before it was available a bit earlier on `ready` hook (with an issue that it was not always able to pass the project version to Sentry).
+* **options:** Remove deprecated `webpackConfig` option. Configure through the `publishRelease` option instead.
+* **options:** Remove deprecated `attachCommits` and `repo` options. Those can now be set through the `publishRelease` option.
+* **deps:** Don't ship with `@sentry/webpack-plugin` as a dependency. To use the "publishRelease" option, it's now necessary to manually install that package as a dev dependency.
+
+### Features
+
+* support for registering external integrations ([#276](https://github.com/nuxt-community/sentry-module/issues/276)) ([2cf56ef](https://github.com/nuxt-community/sentry-module/commit/2cf56ef81344bf5350eca530dc21d9b9044d1419))
+
+
+### Bug Fixes
+
+* **deps:** update devdependency @sentry/webpack-plugin to ^1.19.0 ([#434](https://github.com/nuxt-community/sentry-module/issues/434)) ([694ba04](https://github.com/nuxt-community/sentry-module/commit/694ba041203e10eb2c72679874d897dacaa1cc61))
+* **deps:** update sentry dependencies ([#405](https://github.com/nuxt-community/sentry-module/issues/405)) ([a465f39](https://github.com/nuxt-community/sentry-module/commit/a465f39aa2ae1eff13969fb27fda28c01c316685))
+* throw error instead of logging when @sentry/webpack-plugin missing ([d437a37](https://github.com/nuxt-community/sentry-module/commit/d437a379472e98d4dd660cd9920bb2c1bc578599))
+* use different hook for initializing server-side Sentry instance ([#403](https://github.com/nuxt-community/sentry-module/issues/403)) ([20734fa](https://github.com/nuxt-community/sentry-module/commit/20734fabd9cd9aff5cd4eaa9ad3d69c96b85f6ae))
+* **deps:** Don't ship with `@sentry/webpack-plugin` as a dependency ([#390](https://github.com/nuxt-community/sentry-module/issues/390)) ([b042a46](https://github.com/nuxt-community/sentry-module/commit/b042a469e3effc6f849839c652e404c807e07d8e))
+* **deps:** update dependency @sentry/webpack-plugin to ^1.18.7 ([#392](https://github.com/nuxt-community/sentry-module/issues/392)) ([f72147f](https://github.com/nuxt-community/sentry-module/commit/f72147f4ce22836580e6bcac72a5314bd38c24e2))
+* **deps:** update sentry dependencies ([#388](https://github.com/nuxt-community/sentry-module/issues/388)) ([5251cb6](https://github.com/nuxt-community/sentry-module/commit/5251cb64985c84dbed9841ea70bf5e6cf39ab5e9))
+* **deps:** update sentry dependencies ([#396](https://github.com/nuxt-community/sentry-module/issues/396)) ([7fec526](https://github.com/nuxt-community/sentry-module/commit/7fec526df4afd9b28b61c57d52091bfadc70694f))
+
+
+### Code Refactoring
+
+* **options:** remove deprecated "attachCommits" and "repo" ([#393](https://github.com/nuxt-community/sentry-module/issues/393)) ([1efcd28](https://github.com/nuxt-community/sentry-module/commit/1efcd2850a117afd5c775b3864912e8552b971a5))
+* **options:** remove deprecated "webpackConfig" ([#394](https://github.com/nuxt-community/sentry-module/issues/394)) ([859101e](https://github.com/nuxt-community/sentry-module/commit/859101ec0a17e50ff7c56551a47e9e0fa5b39992))
+
 ### [5.1.7](https://github.com/nuxt-community/sentry-module/compare/v5.1.6...v5.1.7) (2022-02-02)
 
 
