@@ -60,7 +60,7 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "@nuxt/types": "^2.15.8",
-    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^5.1.0",
     "@sentry/webpack-plugin": "^1.19.0",
