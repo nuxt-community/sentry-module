@@ -1,29 +1,30 @@
 module.exports = {
   extends: [
-    '@nuxtjs/eslint-config'
+    '@nuxtjs/eslint-config',
   ],
   ignorePatterns: ['dist/'],
   rules: {
+    'comma-dangle': ['error', 'always-multiline'],
     'import/named': 'off',
     'import/namespace': 'off',
     'import/no-absolute-path': 'off',
     'no-console': [
       'error', {
-        allow: ['assert', 'warn', 'error', 'info']
-      }
+        allow: ['assert', 'warn', 'error', 'info'],
+      },
     ],
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
   },
   overrides: [
     {
       files: ['test/**'],
       plugins: ['jest'],
-      extends: ['plugin:jest/recommended']
+      extends: ['plugin:jest/recommended'],
     },
     {
       files: ['*.ts', '*.tsx'],
       extends: [
-        '@nuxtjs/eslint-config-typescript'
+        '@nuxtjs/eslint-config-typescript',
       ],
       rules: {
         'constructor-super': 'off', // ts(2335) & ts(2377)
@@ -77,8 +78,8 @@ module.exports = {
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: false }],
         '@typescript-eslint/semi': ['error', 'never'],
-        '@typescript-eslint/triple-slash-reference': 'error'
-      }
-    }
-  ]
+        '@typescript-eslint/triple-slash-reference': 'error',
+      },
+    },
+  ],
 }

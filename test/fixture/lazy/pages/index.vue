@@ -13,7 +13,7 @@ export default {
     return {
       isSentryReady: false,
       /** @type {import('@sentry/minimal') | null} */
-      serverSentry: this.$sentry
+      serverSentry: this.$sentry,
     }
   },
   created () {
@@ -24,6 +24,6 @@ export default {
   },
   mounted () {
     this.$sentry.captureMessage('Hi!')
-  }
+  },
 }
 </script>

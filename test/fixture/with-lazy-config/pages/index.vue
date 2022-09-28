@@ -13,7 +13,7 @@ export default {
     return {
       isSentryReady: false,
       /** @type {import('@sentry/minimal') | null} */
-      serverSentry: this.$sentry
+      serverSentry: this.$sentry,
     }
   },
   created () {
@@ -36,6 +36,6 @@ export default {
       console.info('Loading Sentry in 1 second')
       setTimeout(this.$sentryLoad, 1000)
     })
-  }
+  },
 }
 </script>

@@ -13,7 +13,7 @@ export default {
     return {
       isSentryReady: false,
       /** @type {import('@sentry/minimal') | null} */
-      serverSentry: this.$sentry
+      serverSentry: this.$sentry,
     }
   },
   created () {
@@ -31,6 +31,6 @@ export default {
     if (process.client) {
       throw new Error('oeps')
     }
-  }
+  },
 }
 </script>

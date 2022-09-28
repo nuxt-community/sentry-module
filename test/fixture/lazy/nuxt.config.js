@@ -6,11 +6,11 @@ const config = {
   telemetry: false,
   dev: false,
   render: {
-    resourceHints: false
+    resourceHints: false,
   },
   modules: [
     // @ts-ignore
-    SentryModule
+    SentryModule,
   ],
   sentry: {
     lazy: true,
@@ -18,17 +18,17 @@ const config = {
     config: {},
     clientIntegrations: {
       // Integration from @Sentry/browser package.
-      TryCatch: { eventTarget: false }
+      TryCatch: { eventTarget: false },
     },
-    customClientIntegrations: '~/config/custom-client-integrations.js'
+    customClientIntegrations: '~/config/custom-client-integrations.js',
   },
   publicRuntimeConfig: {
     sentry: {
       config: {
-        environment: 'production'
-      }
-    }
-  }
+        environment: 'production',
+      },
+    },
+  },
 }
 
 module.exports = config
