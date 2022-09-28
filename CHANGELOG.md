@@ -1,5 +1,12 @@
 
 
+### [6.0.1](https://github.com/nuxt-community/sentry-module/compare/v6.0.0...v6.0.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* **tracing:** set `tracesSampleRate` when `tracing` enabled ([#448](https://github.com/nuxt-community/sentry-module/issues/448)) ([fe6d511](https://github.com/nuxt-community/sentry-module/commit/fe6d5111726ac8acc250f83de8a0155fea6bff83)), closes [#447](https://github.com/nuxt-community/sentry-module/issues/447)
+
 ## [6.0.0](https://github.com/nuxt-community/sentry-module/compare/v5.1.7...v6.0.0) (2022-08-26)
 
 
