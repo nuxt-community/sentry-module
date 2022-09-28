@@ -63,6 +63,7 @@
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^5.1.0",
+    "@sentry/tracing": "^6.19.7",
     "@sentry/webpack-plugin": "^1.19.0",
     "@types/jest": "^29.0.3",
     "@types/lodash.mergewith": "^4.6.7",

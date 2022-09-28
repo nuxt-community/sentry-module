@@ -43,9 +43,9 @@ export interface TracingConfiguration {
     tracesSampleRate?: number
     vueOptions?: {
         tracing?: boolean
-        tracingOptions?: TracingOptions
+        tracingOptions?: Partial<TracingOptions>
     }
-    browserOptions?: BrowserTracingOptions
+    browserOptions?: Partial<BrowserTracingOptions>
 }
 
 export interface ModuleConfiguration {
