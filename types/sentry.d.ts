@@ -1,5 +1,5 @@
 import { Options as WebpackOptions } from 'webpack'
-import { BrowserTracingOptions } from '@sentry/tracing/dist/browser/browsertracing'
+import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions } from '@sentry/types'
 import { BrowserOptions } from '@sentry/browser'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
@@ -43,9 +43,9 @@ export interface TracingConfiguration {
     tracesSampleRate?: number
     vueOptions?: {
         tracing?: boolean
-        tracingOptions?: TracingOptions
+        tracingOptions?: Partial<TracingOptions>
     }
-    browserOptions?: BrowserTracingOptions
+    browserOptions?: Partial<BrowserTracing['options']>
 }
 
 export interface ModuleConfiguration {
