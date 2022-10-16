@@ -11,7 +11,8 @@ module.exports = {
     release: true,
     releaseName: '${version}',
     releaseNotes (ctx) {
-      return ctx.changelog.split('\n').slice(2).join('\n')
+      // Remove first, redundant line with version and date.
+      return ctx.changelog.split('\n').slice(1).join('\n')
     }
   },
   plugins: {
