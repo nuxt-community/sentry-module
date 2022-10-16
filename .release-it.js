@@ -11,7 +11,7 @@ module.exports = {
     release: true,
     releaseName: '${version}',
     releaseNotes (ctx) {
-      return ctx.changelog
+      return ctx.changelog.split('\n').slice(1)
     }
   },
   plugins: {
