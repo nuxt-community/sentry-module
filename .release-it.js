@@ -11,7 +11,7 @@ module.exports = {
     release: true,
     releaseName: '${version}',
     releaseNotes (ctx) {
-      console.log({ ctx })
+      return ctx.changelog
     }
   },
   plugins: {
