@@ -1,23 +1,8 @@
 {
+  "extends": "../playground/.nuxt/tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom",
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "strict": true,
-    "target": "ESNext",
     "types": [
-      "../types",
-      "jest",
-      "jsdom",
-    ],
+      "@types/jest"
+    ]
   },
 }

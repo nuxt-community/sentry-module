@@ -7,5 +7,6 @@
 
 dist/
 lib/plugin.*
-lib/templates/*.*
+templates/
+node_modules
 

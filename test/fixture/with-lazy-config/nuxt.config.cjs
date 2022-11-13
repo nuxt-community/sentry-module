@@ -1,4 +1,4 @@
-import SentryModule from '../../..'
+const SentryModule = require('../../..')
 
 /** @type {import('@nuxt/types').NuxtConfig} */
 const config = {
@@ -9,7 +9,6 @@ const config = {
     resourceHints: false,
   },
   modules: [
-    // @ts-ignore
     SentryModule,
   ],
   sentry: {

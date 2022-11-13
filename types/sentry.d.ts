@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IncomingMessage, ServerResponse } from 'http'
-import { Options as WebpackOptions } from 'webpack'
+import { Configuration as WebpackOptions } from 'webpack'
 import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions } from '@sentry/types'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
@@ -29,30 +29,34 @@ export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleR
 }
 
 export interface ModuleConfiguration {
-    clientConfig?: Partial<SentryVueOptions> | string
-    clientIntegrations?: IntegrationsConfiguration
-    config?: SentryOptions
-    customClientIntegrations?: string
-    customServerIntegrations?: string
-    disableClientRelease?: boolean
-    disableClientSide?: boolean
-    disabled?: boolean
-    disableServerRelease?: boolean
-    disableServerSide?: boolean
-    dsn?: string
-    tracing?: boolean | TracingConfiguration
-    initialize?: boolean
-    lazy?: boolean | LazyConfiguration
-    logMockCalls?: boolean
-    /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
-    publishRelease?: boolean | Partial<SentryCliPluginOptions>
-    runtimeConfigKey?: string
-    serverConfig?: NodeOptions | string
-    serverIntegrations?: IntegrationsConfiguration
-    sourceMapStyle?: WebpackOptions.Devtool
-    requestHandlerConfig?: Handlers.RequestHandlerOptions
+  clientConfig: Partial<SentryVueOptions> | string
+  clientIntegrations: IntegrationsConfiguration
+  config: SentryOptions
+  customClientIntegrations: string
+  customServerIntegrations: string
+  disableClientRelease: boolean
+  disableClientSide: boolean
+  disabled: boolean
+  disableServerRelease: boolean
+  disableServerSide: boolean
+  dsn: string
+  tracing: boolean | TracingConfiguration
+  initialize: boolean
+  lazy: boolean | LazyConfiguration
+  logMockCalls: boolean
+  /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
+  publishRelease: boolean | SentryCliPluginOptions
+  runtimeConfigKey: string
+  serverConfig: NodeOptions | string
+  serverIntegrations: IntegrationsConfiguration
+  sourceMapStyle: WebpackOptions['devtool']
+  requestHandlerConfig: Handlers.RequestHandlerOptions
 }
 
-interface ResolvedModuleConfiguration extends Omit<Required<ModuleConfiguration>, 'publishRelease'> {
-    publishRelease?: Partial<SentryCliPluginOptions>
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer I>
+    ? Array<DeepPartial<I>>
+    : DeepPartial<T[P]>;
 }
+
+export type DeepPartialModuleConfiguration = DeepPartial<ModuleConfiguration>

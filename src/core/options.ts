@@ -1,23 +1,25 @@
-import merge from 'lodash.mergewith'
+import type { Consola } from 'consola'
+import { defu } from 'defu'
+import type { Options } from '@sentry/types'
+import type { Nuxt } from '@nuxt/schema'
+import { resolveAlias } from '@nuxt/kit'
 import * as Integrations from '@sentry/integrations'
+import type { NuxtOptions } from '@nuxt/types'
+import type { IntegrationsConfiguration, LazyConfiguration, TracingConfiguration } from '../../types/sentry'
+import type { ModuleConfiguration } from '../../types'
 import { canInitialize } from './utils'
 
 export const PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'ReportingObserver', 'RewriteFrames']
 export const BROWSER_INTEGRATIONS = ['InboundFilters', 'FunctionToString', 'TryCatch', 'Breadcrumbs', 'GlobalHandlers', 'LinkedErrors', 'HttpContext']
 const SERVER_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Modules', 'Transaction']
 
-/** @param {import('../../types/sentry').IntegrationsConfiguration} integrations */
-const filterDisabledIntegrations = integrations => Object.keys(integrations).filter(key => integrations[key])
+const filterDisabledIntegrations = (integrations: IntegrationsConfiguration): string[] => Object.keys(integrations).filter(key => integrations[key])
 
-/**
- * @param {string} packageName
- */
-async function getApiMethods (packageName) {
+async function getApiMethods (packageName: string): Promise<string[]> {
   const packageApi = await import(packageName)
 
-  const apiMethods = []
+  const apiMethods: string[] = []
   for (const key in packageApi) {
-    // @ts-ignore
     if (typeof packageApi[key] === 'function') {
       apiMethods.push(key)
     }
@@ -26,15 +28,10 @@ async function getApiMethods (packageName) {
   return apiMethods
 }
 
-/**
- * @param {import('../../types/sentry').ResolvedModuleConfiguration} moduleOptions
- * @return {Promise<string | undefined>}
- */
-export async function resolveRelease (moduleOptions) {
+export async function resolveRelease (moduleOptions: ModuleConfiguration): Promise<string | undefined> {
   if (!('release' in moduleOptions.config)) {
     // Determine "config.release" automatically from local repo if not provided.
     try {
-      // @ts-ignore
       const SentryCli = await (import('@sentry/cli').then(m => m.default || m))
       const cli = new SentryCli()
       return (await cli.releases.proposeVersion()).trim()
@@ -44,12 +41,7 @@ export async function resolveRelease (moduleOptions) {
   }
 }
 
-/**
- * @param {import('../../types/sentry').ResolvedModuleConfiguration} options
- * @param {string[]} apiMethods
- * @param {import('consola').Consola} logger
- */
-function resolveLazyOptions (options, apiMethods, logger) {
+function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: Consola) {
   if (options.lazy) {
     const defaultLazyOptions = {
       injectMock: true,
@@ -60,9 +52,7 @@ function resolveLazyOptions (options, apiMethods, logger) {
       webpackPreload: false,
     }
 
-    options.lazy = /** @type {Required<import('../../types/sentry').LazyConfiguration>} */(
-      merge({}, defaultLazyOptions, options.lazy)
-    )
+    options.lazy = defu(options.lazy, defaultLazyOptions)
 
     if (!options.lazy.injectMock) {
       options.lazy.mockApiMethods = []
@@ -85,47 +75,55 @@ function resolveLazyOptions (options, apiMethods, logger) {
   }
 }
 
-/**
- * @param {import('../../types/sentry').ModuleConfiguration} options
- * @param {NonNullable<import('../../types/sentry').ModuleConfiguration['config']>} config
- */
-function resolveTracingOptions (options, config) {
+function resolveTracingOptions (options: ModuleConfiguration, config: NonNullable<ModuleConfiguration['config']>) {
   if (!options.tracing) {
     return
   }
-  /** @type {NonNullable<import('../../types/sentry').TracingConfiguration>} */
-  const defaultOptions = {
-    tracesSampleRate: 1,
+
+  const defaultTracingOptions: TracingConfiguration = {
+    tracesSampleRate: 1.0,
     browserTracing: {},
     vueOptions: {
       trackComponents: true,
     },
   }
+
   const userOptions = typeof options.tracing === 'boolean' ? {} : options.tracing
-  /** @type {NonNullable<import('../../types/sentry').TracingConfiguration>} */
-  const tracingOptions = merge(defaultOptions, userOptions)
+  const tracingOptions = defu(userOptions, defaultTracingOptions)
+
   if (config.tracesSampleRate === undefined) {
     config.tracesSampleRate = tracingOptions.tracesSampleRate
   }
+
   options.tracing = tracingOptions
 }
 
-/**
- * @param {ThisParameterType<import('@nuxt/types').Module>} moduleContainer
- * @param {import('../../types/sentry').ResolvedModuleConfiguration} moduleOptions
- * @param {import('consola').Consola} logger
- * @return {Promise<any>}
- */
-export async function resolveClientOptions (moduleContainer, moduleOptions, logger) {
-  /** @type {import('../../types/sentry').ResolvedModuleConfiguration} */
-  const options = merge({}, moduleOptions)
-  options.config = merge({}, options.config)
+export type resolvedClientOptions = {
+  PLUGGABLE_INTEGRATIONS: string[]
+  BROWSER_INTEGRATIONS: string[]
+  dev: boolean
+  runtimeConfigKey: string
+  config: Options
+  lazy: boolean | LazyConfiguration
+  apiMethods: string[]
+  clientConfigPath: string | undefined
+  customClientIntegrations: string | undefined
+  logMockCalls: boolean
+  tracing: boolean | TracingConfiguration
+  initialize: boolean
+  // TODO Fix this type
+  integrations: Record<string, unknown>
+}
 
-  let clientConfigPath
+export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedClientOptions> {
+  const options = moduleOptions
+  options.config = defu(options.clientConfig, options.config)
+
+  let clientConfigPath: string | undefined
   if (typeof (options.clientConfig) === 'string') {
-    clientConfigPath = moduleContainer.nuxt.resolver.resolveAlias(options.clientConfig)
+    clientConfigPath = resolveAlias(options.clientConfig)
   } else {
-    options.config = merge(options.config, options.clientConfig)
+    options.config = defu(options.clientConfig, options.config)
   }
 
   const apiMethods = await getApiMethods('@sentry/vue')
@@ -139,10 +137,10 @@ export async function resolveClientOptions (moduleContainer, moduleOptions, logg
     }
   }
 
-  let customClientIntegrations
+  let customClientIntegrations: string | undefined
   if (options.customClientIntegrations) {
     if (typeof (options.customClientIntegrations) === 'string') {
-      customClientIntegrations = moduleContainer.nuxt.resolver.resolveAlias(options.customClientIntegrations)
+      customClientIntegrations = resolveAlias(options.customClientIntegrations)
     } else {
       logger.warn(`Invalid customClientIntegrations option. Expected a file path, got "${typeof (options.customClientIntegrations)}".`)
     }
@@ -151,7 +149,7 @@ export async function resolveClientOptions (moduleContainer, moduleOptions, logg
   return {
     PLUGGABLE_INTEGRATIONS,
     BROWSER_INTEGRATIONS,
-    dev: moduleContainer.options.dev,
+    dev: nuxt.options.dev,
     runtimeConfigKey: options.runtimeConfigKey,
     config: {
       dsn: options.dsn,
@@ -166,22 +164,21 @@ export async function resolveClientOptions (moduleContainer, moduleOptions, logg
     initialize: canInitialize(options),
     integrations: filterDisabledIntegrations(options.clientIntegrations)
       .reduce((res, key) => {
-        // @ts-ignore
         res[key] = options.clientIntegrations[key]
         return res
-      }, {}),
+      }, {} as Record<string, unknown>),
   }
 }
 
-/**
- * @param {ThisParameterType<import('@nuxt/types').Module>} moduleContainer
- * @param {import('../../types/sentry').ResolvedModuleConfiguration} moduleOptions
- * @param {import('consola').Consola} logger
- * @return {Promise<any>}
- */
-export async function resolveServerOptions (moduleContainer, moduleOptions, logger) {
-  /** @type {import('../../types/sentry').ResolvedModuleConfiguration} */
-  const options = merge({}, moduleOptions)
+export type resolvedServerOptions = {
+  config: Options
+  apiMethods: string[]
+  lazy: boolean | LazyConfiguration
+  logMockCalls: boolean
+}
+
+export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedServerOptions> {
+  const options = moduleOptions
 
   for (const name of Object.keys(options.serverIntegrations)) {
     if (!SERVER_INTEGRATIONS.includes(name)) {
@@ -192,7 +189,7 @@ export async function resolveServerOptions (moduleContainer, moduleOptions, logg
 
   let customIntegrations = []
   if (options.customServerIntegrations) {
-    const resolvedPath = moduleContainer.nuxt.resolver.resolveAlias(options.customServerIntegrations)
+    const resolvedPath = resolveAlias(options.customServerIntegrations)
     try {
       customIntegrations = (await import(resolvedPath).then(m => m.default || m))()
       if (!Array.isArray(customIntegrations)) {
@@ -209,8 +206,9 @@ export async function resolveServerOptions (moduleContainer, moduleOptions, logg
       ...filterDisabledIntegrations(options.serverIntegrations)
         .map((name) => {
           const opt = options.serverIntegrations[name]
-          // @ts-ignore
-          return Object.keys(opt).length ? new Integrations[name](opt) : new Integrations[name]()
+          // TODO Fix this type
+          // eslint-disable-next-line import/namespace
+          return Object.keys(opt as Record<string, unknown>).length ? new Integrations[name](opt) : new Integrations[name]()
         }),
       ...customIntegrations,
     ],
@@ -218,7 +216,7 @@ export async function resolveServerOptions (moduleContainer, moduleOptions, logg
 
   let serverConfig = options.serverConfig
   if (typeof (serverConfig) === 'string') {
-    const resolvedPath = moduleContainer.nuxt.resolver.resolveAlias(options.serverConfig)
+    const resolvedPath = resolveAlias(serverConfig)
     try {
       serverConfig = (await import(resolvedPath).then(m => m.default || m))()
     } catch (error) {
@@ -226,7 +224,7 @@ export async function resolveServerOptions (moduleContainer, moduleOptions, logg
     }
   }
 
-  options.config = merge(defaultConfig, options.config, serverConfig, getRuntimeConfig(moduleContainer, options))
+  options.config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
 
   const apiMethods = await getApiMethods('@sentry/node')
   resolveLazyOptions(options, apiMethods, logger)
@@ -240,15 +238,11 @@ export async function resolveServerOptions (moduleContainer, moduleOptions, logg
   }
 }
 
-/**
- * @param {ThisParameterType<import('@nuxt/types').Module>} moduleContainer
- * @param {import('../../types/sentry').ResolvedModuleConfiguration} options
- * @return {import('../../types/sentry').ModuleConfiguration['config']}
- */
-function getRuntimeConfig (moduleContainer, options) {
-  const { publicRuntimeConfig } = moduleContainer.options
+function getRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<ModuleConfiguration['config']> | undefined {
+  // TODO Fix for nuxt 3
+  const { publicRuntimeConfig } = nuxt.options as unknown as NuxtOptions
   const { runtimeConfigKey } = options
   if (publicRuntimeConfig && typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
-    return merge(options.config, publicRuntimeConfig[runtimeConfigKey].config, publicRuntimeConfig[runtimeConfigKey].serverConfig)
+    return defu(publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>, publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>)
   }
 }
