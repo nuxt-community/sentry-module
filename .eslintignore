@@ -3,3 +3,6 @@
 lib/plugin.*
 lib/templates/*.*
 test/fixture/*/.nuxt
+dist
+node_modules
+

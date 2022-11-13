@@ -1,4 +1,4 @@
-import { chromium } from 'playwright-chromium'
+import { chromium, Page } from 'playwright-chromium'
 
 export async function createBrowser () {
   return await chromium.launch()
@@ -6,9 +6,9 @@ export async function createBrowser () {
 
 /**
  * @param {string} selector
- * @param {import('playwright-chromium').Page} page
+ * @param {Page} page
  */
-export async function $$ (selector, page) {
+export async function $$ (selector: string, page: Page) {
   const element = await page.$(selector)
   if (element) {
     return await element.textContent()

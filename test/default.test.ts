@@ -1,15 +1,21 @@
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+import type { Nuxt } from '@nuxt/schema'
+import type { Browser } from 'playwright-chromium'
 import sentryTestkit from 'sentry-testkit'
 import { setup, loadConfig, url } from '@nuxtjs/module-test-utils'
 import { $$, createBrowser } from './utils'
 
-const { testkit, localServer } = sentryTestkit()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+// @ts-ignore
+const { testkit, localServer } = sentryTestkit.default()
 const TEST_DSN = 'http://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001'
 
 describe('Smoke test (default)', () => {
-  /** @type {any} */
-  let nuxt
-  /** @type {import('playwright-chromium').Browser} */
-  let browser
+  let nuxt: Nuxt
+  let browser: Browser
 
   beforeAll(async () => {
     await localServer.start(TEST_DSN)
@@ -32,8 +38,7 @@ describe('Smoke test (default)', () => {
 
   test('builds and runs', async () => {
     const page = await browser.newPage()
-    /** @type {string[]} */
-    const errors = []
+    const errors: string[] = []
     page.on('pageerror', (error) => {
       errors.push(error.message)
     })

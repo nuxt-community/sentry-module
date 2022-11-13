@@ -1,7 +1,7 @@
 import 'vue'
 import 'vuex'
 import * as SentryTypes from '@sentry/minimal'
-import { ModuleConfiguration } from './sentry'
+import { DeepPartialModuleConfiguration } from './sentry'
 
 // add type to Vue context
 declare module 'vue/types/vue' {
@@ -25,15 +25,11 @@ declare module '@nuxt/types' {
     $sentryLoad(): Promise<void>
     $sentryReady(): Promise<typeof SentryTypes>
   }
-
-  interface NuxtOptions {
-    sentry?: ModuleConfiguration
-  }
 }
 
 declare module '@nuxt/types/config/runtime' {
   interface NuxtRuntimeConfig {
-    sentry?: ModuleConfiguration
+    sentry?: DeepPartialModuleConfiguration
   }
 }
 
