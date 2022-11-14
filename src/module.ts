@@ -7,11 +7,11 @@ import type { DeepPartialModuleConfiguration } from '../types/sentry'
 import { envToBool, boolToText, canInitialize, clientSentryEnabled, serverSentryEnabled } from './core/utils'
 import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './core/hooks'
 
-export interface ModuleOptions extends DeepPartialModuleConfiguration {}
+export type ModuleOptions = DeepPartialModuleConfiguration
 
-export interface ModulePublicRuntimeConfig extends DeepPartialModuleConfiguration {}
+export type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
 
-export interface ModulePrivateRuntimeConfig extends DeepPartialModuleConfiguration {}
+export type ModulePrivateRuntimeConfig = DeepPartialModuleConfiguration
 
 const logger = useLogger('nuxt:sentry')
 
@@ -20,8 +20,8 @@ export default defineNuxtModule<ModuleConfiguration>({
     name: '@nuxtjs/sentry',
     configKey: 'sentry',
     compatibility: {
-      nuxt: '^2.15.8',
-    },
+      nuxt: '^2.15.8'
+    }
   },
   defaults: nuxt => ({
     lazy: false,
@@ -42,31 +42,31 @@ export default defineNuxtModule<ModuleConfiguration>({
       ExtraErrorData: {},
       ReportingObserver: {},
       RewriteFrames: {},
-      Vue: { attachProps: true, logErrors: nuxt.options.dev },
+      Vue: { attachProps: true, logErrors: nuxt.options.dev }
     },
     serverIntegrations: {
       Dedupe: {},
       ExtraErrorData: {},
       RewriteFrames: {},
-      Transaction: {},
+      Transaction: {}
     },
     customClientIntegrations: '',
     customServerIntegrations: '',
     config: {
-      environment: nuxt.options.dev ? 'development' : 'production',
+      environment: nuxt.options.dev ? 'development' : 'production'
     },
     serverConfig: {},
     clientConfig: {},
-    requestHandlerConfig: {},
+    requestHandlerConfig: {}
   }),
   setup (options, nuxt) {
     const defaultsPublishRelease: SentryCliPluginOptions = {
       include: [],
       ignore: [
         'node_modules',
-        '.nuxt/dist/client/img',
+        '.nuxt/dist/client/img'
       ],
-      configFile: '.sentryclirc',
+      configFile: '.sentryclirc'
     }
 
     if (options.publishRelease) {
@@ -74,13 +74,17 @@ export default defineNuxtModule<ModuleConfiguration>({
     }
 
     if (serverSentryEnabled(options)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       nuxt.hook('render:setupMiddleware', app => app.use(SentryHandlers.requestHandler(options.requestHandlerConfig)))
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       nuxt.hook('render:errorMiddleware', app => app.use(SentryHandlers.errorHandler()))
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       nuxt.hook('generate:routeFailed', ({ route, errors }) => {
-      // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         errors.forEach(({ error }) => withScope((scope) => {
           scope.setExtra('route', route)
           captureException(error)
@@ -119,8 +123,10 @@ export default defineNuxtModule<ModuleConfiguration>({
     if (isNuxt2()) {
       const initHook = nuxt.options._build ? 'build:compile' : 'ready'
       if (serverSentryEnabled(options)) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         nuxt.hook(initHook, () => initializeServerSentry(nuxt, options, logger))
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         nuxt.hook('generate:done', () => shutdownServerSentry())
       }
@@ -132,5 +138,5 @@ export default defineNuxtModule<ModuleConfiguration>({
         nuxt.hook('webpack:config', webpackConfigs => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
       }
     }
-  },
+  }
 })

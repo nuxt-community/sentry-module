@@ -7,13 +7,13 @@ const jestConfig: JestConfigWithTsJest = {
   collectCoverageFrom: [
     '../dist/module.cjs',
     '../dist/module.mjs',
-    '../src/module.ts',
+    '../src/module.ts'
   ],
   coverageDirectory: '../coverage',
   setupFilesAfterEnv: [
-    './setup.ts',
+    './setup.ts'
   ],
-  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node', 'd.ts'],
+  moduleFileExtensions: ['js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'json', 'node', 'd.ts']
 }
 
 export default jestConfig

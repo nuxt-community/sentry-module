@@ -27,7 +27,6 @@ async function getApiMethods (packageName: string): Promise<string[]> {
 
   const apiMethods: string[] = []
   for (const key in packageApi) {
-    // @ts-ignore
     if (typeof packageApi[key] === 'function') {
       apiMethods.push(key)
     }
@@ -66,7 +65,7 @@ function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[],
       mockApiMethods: true,
       chunkName: 'sentry',
       webpackPrefetch: false,
-      webpackPreload: false,
+      webpackPreload: false
     }
 
     options.lazy = defu(options.lazy, defaultLazyOptions)
@@ -107,10 +106,10 @@ function resolveTracingOptions (tracing: ModuleConfiguration['tracing'], config:
       tracingOptions: {
         hooks: ['mount', 'update'],
         timeout: 2000,
-        trackComponents: true,
-      },
+        trackComponents: true
+      }
     },
-    browserOptions: {},
+    browserOptions: {}
   }
 
   const tracingOptions = defu(typeof tracing === 'boolean' ? {} : tracing, defaultTracingOptions)
@@ -121,18 +120,19 @@ function resolveTracingOptions (tracing: ModuleConfiguration['tracing'], config:
 }
 
 export type resolvedClientOptions = {
-  PLUGGABLE_INTEGRATIONS: string[];
-  BROWSER_INTEGRATIONS: string[];
-  dev: boolean;
-  runtimeConfigKey: string;
-  config: Options;
-  lazy: boolean | LazyConfiguration,
-  apiMethods: string[],
-  customClientIntegrations: string | undefined,
-  logMockCalls: boolean,
-  tracing: boolean | TracingConfiguration,
-  initialize: boolean,
-  integrations: {};
+  PLUGGABLE_INTEGRATIONS: string[]
+  BROWSER_INTEGRATIONS: string[]
+  dev: boolean
+  runtimeConfigKey: string
+  config: Options
+  lazy: boolean | LazyConfiguration
+  apiMethods: string[]
+  customClientIntegrations: string | undefined
+  logMockCalls: boolean
+  tracing: boolean | TracingConfiguration
+  initialize: boolean
+  // TODO Fix this type
+  integrations: Record<string, unknown>
 }
 
 /**
@@ -173,7 +173,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     runtimeConfigKey: options.runtimeConfigKey,
     config: {
       dsn: options.dsn,
-      ...options.config,
+      ...options.config
     },
     lazy: options.lazy,
     apiMethods,
@@ -183,18 +183,17 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     initialize: canInitialize(options),
     integrations: filterDisabledIntegrations(options.clientIntegrations)
       .reduce((res, key) => {
-        // @ts-ignore
         res[key] = options.clientIntegrations[key]
         return res
-      }, {}),
+      }, {})
   }
 }
 
 export type resolvedServerOptions = {
-  config: Options;
-  apiMethods: string[];
-  lazy: boolean | LazyConfiguration;
-  logMockCalls: boolean;
+  config: Options
+  apiMethods: string[]
+  lazy: boolean | LazyConfiguration
+  logMockCalls: boolean
 }
 
 /**
@@ -228,12 +227,12 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
       ...filterDisabledIntegrations(options.serverIntegrations)
         .map((name) => {
           const opt = options.serverIntegrations[name]
-          // @ts-ignore
+          // TODO Fix this type
           // eslint-disable-next-line import/namespace
-          return Object.keys(opt).length ? new Integrations[name](opt) : new Integrations[name]()
+          return Object.keys(opt as Record<string, unknown>).length ? new Integrations[name](opt) : new Integrations[name]()
         }),
-      ...customIntegrations,
-    ],
+      ...customIntegrations
+    ]
   }
 
   options.config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
@@ -246,7 +245,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     config: options.config,
     apiMethods,
     lazy: options.lazy,
-    logMockCalls: options.logMockCalls, // for mocked only
+    logMockCalls: options.logMockCalls // for mocked only
   }
 }
 

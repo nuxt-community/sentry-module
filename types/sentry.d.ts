@@ -79,4 +79,4 @@ export interface ModuleConfiguration {
   requestHandlerConfig: Handlers.RequestHandlerOptions
 }
 
-export interface DeepPartialModuleConfiguration extends DeepPartial<ModuleConfiguration> {}
+export type DeepPartialModuleConfiguration = DeepPartial<ModuleConfiguration>

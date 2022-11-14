@@ -33,7 +33,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
     src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
     fileName: 'sentry.client.js',
     mode: 'client',
-    options: clientOptions,
+    options: clientOptions
   })
 
   const pluginOptionServer = serverSentryEnabled(moduleOptions) ? 'server' : 'mocked'
@@ -42,14 +42,14 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
     src: resolve(templateDir, `plugin.${pluginOptionServer}.js`),
     fileName: 'sentry.server.js',
     mode: 'server',
-    options: serverOptions,
+    options: serverOptions
   })
 
   if (serverSentryEnabled(moduleOptions)) {
     addTemplate({
       src: resolve(templateDir, 'options.ejs'),
       fileName: RESOLVED_RELEASE_FILENAME,
-      options: { release },
+      options: { release }
     })
   }
 }
@@ -76,8 +76,10 @@ export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConf
 
   if (!publishRelease.urlPrefix) {
     // Set urlPrefix to match resources on the client. That's not technically correct for the server source maps, but it is what it is for now.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof (nuxtOptions.router.base) === 'string' && typeof (nuxtOptions.build.publicPath) === 'string') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const publicPath = posix.join(nuxtOptions.router.base, nuxtOptions.build.publicPath)
       publishRelease.urlPrefix = publicPath.startsWith('/') ? `~${publicPath}` : publicPath
@@ -169,9 +171,10 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
   process.sentry = Sentry
 }
 
-export async function shutdownServerSentry () {
+export async function shutdownServerSentry (): Promise<void> {
   if (process.sentry) {
     await process.sentry.close()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     process.sentry = undefined
   }
