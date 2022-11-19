@@ -74,18 +74,18 @@ export default defineNuxtModule<ModuleConfiguration>({
     }
 
     if (serverSentryEnabled(options)) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:setupMiddleware', app => app.use(SentryHandlers.requestHandler(options.requestHandlerConfig)))
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:errorMiddleware', app => app.use(SentryHandlers.errorHandler()))
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('generate:routeFailed', ({ route, errors }) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        errors.forEach(({ error }) => withScope((scope) => {
+        type routeGeneretorError = {
+          type: 'handled' | 'unhandled'
+          route: unknown
+          error: Error
+        }
+        (errors as routeGeneretorError[]).forEach(({ error }) => withScope((scope) => {
           scope.setExtra('route', route)
           captureException(error)
         }))
@@ -123,11 +123,9 @@ export default defineNuxtModule<ModuleConfiguration>({
     if (isNuxt2()) {
       const initHook = nuxt.options._build ? 'build:compile' : 'ready'
       if (serverSentryEnabled(options)) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error Nuxt 2 only hooks
         nuxt.hook(initHook, () => initializeServerSentry(nuxt, options, logger))
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error Nuxt 2 only hook
         nuxt.hook('generate:done', () => shutdownServerSentry())
       }
     }

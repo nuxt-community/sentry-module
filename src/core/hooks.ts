@@ -23,7 +23,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   const clientOptions: resolvedClientOptions = defu({ config: { release } }, await resolveClientOptions(nuxt, moduleOptions, logger))
   addPluginTemplate({
     src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
-    fileName: 'sentry.client.js',
+    filename: 'sentry.client.js',
     mode: 'client',
     options: clientOptions
   })
@@ -32,7 +32,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   const serverOptions: resolvedServerOptions = defu({ config: { release } }, await resolveServerOptions(nuxt, moduleOptions, logger))
   addPluginTemplate({
     src: resolve(templateDir, `plugin.${pluginOptionServer}.js`),
-    fileName: 'sentry.server.js',
+    filename: 'sentry.server.js',
     mode: 'server',
     options: serverOptions
   })
@@ -40,7 +40,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   if (serverSentryEnabled(moduleOptions)) {
     addTemplate({
       src: resolve(templateDir, 'options.ejs'),
-      fileName: RESOLVED_RELEASE_FILENAME,
+      filename: RESOLVED_RELEASE_FILENAME,
       options: { release }
     })
   }

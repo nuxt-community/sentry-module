@@ -4,6 +4,7 @@ import type { Options } from '@sentry/types'
 import type { Nuxt } from '@nuxt/schema'
 import { resolveAlias } from '@nuxt/kit'
 import * as Integrations from '@sentry/integrations'
+import type { NuxtOptions } from '@nuxt/types'
 import type { IntegrationsConfiguration, LazyConfiguration, TracingConfiguration } from '../../types/sentry'
 import type { ModuleConfiguration } from '../../types'
 import { canInitialize } from './utils'
@@ -216,13 +217,9 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   }
 }
 
-/**
- * @param {Nuxt} nuxt
- * @param {ModuleConfiguration} options
- * @return {Partial<ModuleConfiguration['config']> | undefined}
- */
 function getRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<ModuleConfiguration['config']> | undefined {
-  const { publicRuntimeConfig } = nuxt.options
+  // TODO Fix for nuxt 3
+  const { publicRuntimeConfig } = nuxt.options as unknown as NuxtOptions
   const { runtimeConfigKey } = options
   if (typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
     return defu(publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>, publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>)
