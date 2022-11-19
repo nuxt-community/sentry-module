@@ -14,14 +14,6 @@ import { resolveRelease, resolvedClientOptions, resolveClientOptions, resolvedSe
 
 const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.js'
 
-/**
- * Resolves the options and creates the plugins and the templates at build time.
- *
- * @param      {Nuxt} nuxt
- * @param      {ModuleConfiguration} moduleOptions The module options
- * @param      {Consola} logger The logger
- * @return     {Promise<void>}
- */
 export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<void> {
   const release = await resolveRelease(moduleOptions)
 
@@ -54,15 +46,6 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   }
 }
 
-/**
- * Handler for the 'webpack:config' hook
- *
- * @param      {Nuxt} nuxt
- * @param      {WebpackConfig} webpackConfigs The webpack configs
- * @param      {ModuleConfiguration & { publishRelease: SentryCliPluginOptions }} options The module options
- * @param      {Consola} logger The logger
- * @return     {Promise<void>}
- */
 export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger: Consola): Promise<void> {
   let WebpackPlugin: typeof import('@sentry/webpack-plugin')
   try {
@@ -140,14 +123,6 @@ export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConf
   config.plugins.push(new WebpackPlugin(publishRelease))
 }
 
-/**
- * Initializes the sentry.
- *
- * @param      {Nuxt} nuxt
- * @param      {ModuleConfiguration} moduleOptions
- * @param      {Consola} logger
- * @return     {Promise<void>}
- */
 export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<void> {
   if (process.sentry) {
     return

@@ -12,16 +12,8 @@ export const PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'Ext
 export const BROWSER_INTEGRATIONS = ['InboundFilters', 'FunctionToString', 'TryCatch', 'Breadcrumbs', 'GlobalHandlers', 'LinkedErrors', 'UserAgent']
 const SERVER_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Modules', 'Transaction']
 
-/**
- *  @param {IntegrationsConfiguration} integrations
- *  @return {String[]>}
-*/
 const filterDisabledIntegrations = (integrations: IntegrationsConfiguration): string[] => Object.keys(integrations).filter(key => integrations[key])
 
-/**
- * @param {string} packageName
- * @return {Promise<string[]>}
- */
 async function getApiMethods (packageName: string): Promise<string[]> {
   const packageApi = await import(packageName)
 
@@ -35,10 +27,6 @@ async function getApiMethods (packageName: string): Promise<string[]> {
   return apiMethods
 }
 
-/**
- * @param {ModuleConfiguration} moduleOptions
- * @return {Promise<string | undefined>}
- */
 export async function resolveRelease (moduleOptions: ModuleConfiguration): Promise<string | undefined> {
   if (!('release' in moduleOptions.config)) {
     // Determine "config.release" automatically from local repo if not provided.
@@ -52,11 +40,6 @@ export async function resolveRelease (moduleOptions: ModuleConfiguration): Promi
   }
 }
 
-/**
- * @param {ModuleConfiguration} options
- * @param {string[]} apiMethods
- * @param {Consola} logger
- */
 function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: Consola) {
   if (options.lazy) {
     const defaultLazyOptions = {
@@ -91,10 +74,6 @@ function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[],
   }
 }
 
-/**
- * @param {ModuleConfiguration['tracing']} tracing
- * @param {NonNullable<ModuleConfiguration['config']>} config
- */
 function resolveTracingOptions (tracing: ModuleConfiguration['tracing'], config: NonNullable<ModuleConfiguration['config']>) {
   if (!tracing) {
     return
@@ -135,12 +114,6 @@ export type resolvedClientOptions = {
   integrations: Record<string, unknown>
 }
 
-/**
- * @param {Nuxt} nuxt
- * @param {ModuleConfiguration} moduleOptions
- * @param {Consola} logger
- * @return {Promise<resolvedClientOptions>}
- */
 export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedClientOptions> {
   const options = moduleOptions
 
@@ -185,7 +158,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
       .reduce((res, key) => {
         res[key] = options.clientIntegrations[key]
         return res
-      }, {})
+      }, {} as Record<string, unknown>)
   }
 }
 
@@ -196,12 +169,6 @@ export type resolvedServerOptions = {
   logMockCalls: boolean
 }
 
-/**
- * @param {Nuxt} nuxt
- * @param {ModuleConfiguration} moduleOptions
- * @param {Consola} logger
- * @return {Promise<resolvedServerOptions>}
- */
 export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedServerOptions> {
   const options = moduleOptions
 
