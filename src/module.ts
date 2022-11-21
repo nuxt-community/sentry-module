@@ -20,8 +20,8 @@ export default defineNuxtModule<ModuleConfiguration>({
     name: '@nuxtjs/sentry',
     configKey: 'sentry',
     compatibility: {
-      nuxt: '^2.15.8'
-    }
+      nuxt: '^2.15.8',
+    },
   },
   defaults: nuxt => ({
     lazy: false,
@@ -42,31 +42,31 @@ export default defineNuxtModule<ModuleConfiguration>({
       ExtraErrorData: {},
       ReportingObserver: {},
       RewriteFrames: {},
-      Vue: { attachProps: true, logErrors: nuxt.options.dev }
+      Vue: { attachProps: true, logErrors: nuxt.options.dev },
     },
     serverIntegrations: {
       Dedupe: {},
       ExtraErrorData: {},
       RewriteFrames: {},
-      Transaction: {}
+      Transaction: {},
     },
     customClientIntegrations: '',
     customServerIntegrations: '',
     config: {
-      environment: nuxt.options.dev ? 'development' : 'production'
+      environment: nuxt.options.dev ? 'development' : 'production',
     },
     serverConfig: {},
     clientConfig: {},
-    requestHandlerConfig: {}
+    requestHandlerConfig: {},
   }),
   setup (options, nuxt) {
     const defaultsPublishRelease: SentryCliPluginOptions = {
       include: [],
       ignore: [
         'node_modules',
-        '.nuxt/dist/client/img'
+        '.nuxt/dist/client/img',
       ],
-      configFile: '.sentryclirc'
+      configFile: '.sentryclirc',
     }
 
     if (options.publishRelease) {
@@ -136,5 +136,5 @@ export default defineNuxtModule<ModuleConfiguration>({
         nuxt.hook('webpack:config', webpackConfigs => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
       }
     }
-  }
+  },
 })

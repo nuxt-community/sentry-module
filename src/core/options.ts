@@ -49,7 +49,7 @@ function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[],
       mockApiMethods: true,
       chunkName: 'sentry',
       webpackPrefetch: false,
-      webpackPreload: false
+      webpackPreload: false,
     }
 
     options.lazy = defu(options.lazy, defaultLazyOptions)
@@ -86,10 +86,10 @@ function resolveTracingOptions (tracing: ModuleConfiguration['tracing'], config:
       tracingOptions: {
         hooks: ['mount', 'update'],
         timeout: 2000,
-        trackComponents: true
-      }
+        trackComponents: true,
+      },
     },
-    browserOptions: {}
+    browserOptions: {},
   }
 
   const tracingOptions = defu(typeof tracing === 'boolean' ? {} : tracing, defaultTracingOptions)
@@ -147,7 +147,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     runtimeConfigKey: options.runtimeConfigKey,
     config: {
       dsn: options.dsn,
-      ...options.config
+      ...options.config,
     },
     lazy: options.lazy,
     apiMethods,
@@ -159,7 +159,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
       .reduce((res, key) => {
         res[key] = options.clientIntegrations[key]
         return res
-      }, {} as Record<string, unknown>)
+      }, {} as Record<string, unknown>),
   }
 }
 
@@ -199,8 +199,8 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
           // eslint-disable-next-line import/namespace
           return Object.keys(opt as Record<string, unknown>).length ? new Integrations[name](opt) : new Integrations[name]()
         }),
-      ...customIntegrations
-    ]
+      ...customIntegrations,
+    ],
   }
 
   options.config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
@@ -213,7 +213,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     config: options.config,
     apiMethods,
     lazy: options.lazy,
-    logMockCalls: options.logMockCalls // for mocked only
+    logMockCalls: options.logMockCalls, // for mocked only
   }
 }
 

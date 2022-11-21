@@ -30,6 +30,8 @@ module.exports = {
         '@nuxtjs/eslint-config-typescript',
       ],
       rules: {
+        'comma-dangle': 'off',
+        '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
         'import/named': 'off',

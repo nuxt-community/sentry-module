@@ -25,7 +25,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
     src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
     filename: 'sentry.client.js',
     mode: 'client',
-    options: clientOptions
+    options: clientOptions,
   })
 
   const pluginOptionServer = serverSentryEnabled(moduleOptions) ? 'server' : 'mocked'
@@ -34,14 +34,14 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
     src: resolve(templateDir, `plugin.${pluginOptionServer}.js`),
     filename: 'sentry.server.js',
     mode: 'server',
-    options: serverOptions
+    options: serverOptions,
   })
 
   if (serverSentryEnabled(moduleOptions)) {
     addTemplate({
       src: resolve(templateDir, 'options.ejs'),
       filename: RESOLVED_RELEASE_FILENAME,
-      options: { release }
+      options: { release },
     })
   }
 }
