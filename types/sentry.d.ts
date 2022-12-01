@@ -1,7 +1,6 @@
 import { Options as WebpackOptions } from 'webpack'
-import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions } from '@sentry/types'
-import { BrowserOptions } from '@sentry/browser'
+import type { Options as SentryVueOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Handlers } from '@sentry/node'
 
@@ -17,12 +16,8 @@ export interface LazyConfiguration {
 }
 
 declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update'
-/**
- * Vue specific configuration for Tracing Integration
- * Not exported, so have to reproduce here
- * @see https://github.com/getsentry/sentry-javascript/blob/master/packages/integrations/src/vue.ts
- **/
-interface TracingOptions {
+export interface TracingConfiguration {
+    tracesSampleRate?: number
     /**
      * Decides whether to track components by hooking into its lifecycle methods.
      * Can be either set to `boolean` to enable/disable tracking for all of them.
@@ -37,19 +32,11 @@ interface TracingOptions {
      * Based on https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
      */
     hooks: Operation[]
-}
-
-export interface TracingConfiguration {
-    tracesSampleRate?: number
-    vueOptions?: {
-        tracing?: boolean
-        tracingOptions?: Partial<TracingOptions>
-    }
-    browserOptions?: Partial<BrowserTracing['options']>
+    tracePropagationTargets: (string|RegExp)[]
 }
 
 export interface ModuleConfiguration {
-    clientConfig?: BrowserOptions
+    clientConfig?: Partial<SentryVueOptions>
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
     customClientIntegrations?: string

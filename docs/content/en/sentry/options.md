@@ -68,7 +68,7 @@ Normally, just setting DSN would be enough.
   - **mockApiMethods**
     - Type: `Boolean` or `Array`
     - Default `true`
-    - Which API methods from `@sentry/browser` should be mocked. You can use this to only mock methods you really use.
+    - Which API methods from `@sentry/vue` should be mocked. You can use this to only mock methods you really use.
     - This option is ignored when `injectMock: false`
     - If `mockApiMethods: true` then all available API methods will be mocked
     > If `injectMock: true` then _captureException_ will always be mocked for use with the window.onerror listener
@@ -233,8 +233,7 @@ Note that the module sets the following defaults when publishing is enabled:
     Dedupe: {},
     ExtraErrorData: {},
     ReportingObserver: {},
-    RewriteFrames: {},
-    Vue: {attachProps: true, logErrors: this.options.dev}
+    RewriteFrames: {}
   }
   ```
 - Sentry by default also enables these browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `UserAgent`. Their options can be overridden by specifying them manually in the object.
@@ -307,7 +306,7 @@ export default function () {
 
 <alert type="info">
 
-  `@sentry/tracing@6` (version 6 and not newer) should be installed manually when using this option.
+  `@sentry/tracing@7` (version 7 and not newer) should be installed manually when using this option.
 
 </alert>
 
@@ -316,20 +315,13 @@ export default function () {
   ```js
   {
     tracesSampleRate: 1.0,
-    vueOptions: {
-      tracing: true,
-      tracingOptions: {
-        hooks: [ 'mount', 'update' ],
-        timeout: 2000,
-        trackComponents: true
-      }
-    },
-    browserOptions: {}
+    trackComponents: true
+    hooks: [ 'mount', 'update' ],
+    timeout: 2000,
+    tracePropagationTargets: ['localhost', /^\//]
   }
   ```
 - Sentry documentation strongly recommends reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
-- The `vueOptions` are passed to the `Vue` integration, see https://docs.sentry.io/platforms/javascript/guides/vue/#monitor-performance for more information
-- `browserOptions` are passed to the `BrowserTracing` integration, see https://github.com/getsentry/sentry-javascript/tree/master/packages/tracing for more information
 
 ### config
 
