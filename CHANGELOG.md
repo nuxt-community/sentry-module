@@ -1,5 +1,12 @@
 
 
+### [6.0.2](https://github.com/nuxt-community/sentry-module/compare/v6.0.1...v6.0.2) (2022-12-12)
+
+
+### Bug Fixes
+
+* **tracing:** merge user's tracing configuration ([#463](https://github.com/nuxt-community/sentry-module/issues/463)) ([a567f82](https://github.com/nuxt-community/sentry-module/commit/a567f82ace5a22425c63a807a9736408727227f2))
+
 ### [6.0.1](https://github.com/nuxt-community/sentry-module/compare/v6.0.0...v6.0.1) (2022-09-28)
 
 
