@@ -22,7 +22,7 @@
   "main": "lib/module.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "dev:fixture": "node ./node_modules/nuxt/bin/nuxt.js -c ./test/fixture/lazy/nuxt.config.js",
+    "dev:fixture": "node ./node_modules/nuxt/bin/nuxt.js -c ./test/fixture/default/nuxt.config.js",
     "dev:fixture:build": "node ./node_modules/nuxt/bin/nuxt.js build -c ./test/fixture/default/nuxt.config.js",
     "dev:fixture:start": "node ./node_modules/nuxt/bin/nuxt.js start -c ./test/fixture/default/nuxt.config.js",
     "dev:generate": "nuxt generate -c ./test/fixture/default/nuxt.config.js --force-build",
