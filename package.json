@@ -80,6 +80,6 @@
     "playwright-chromium": "^1.28.1",
     "release-it": "^15.5.1",
     "sentry-testkit": "^4.1.0",
-    "typescript": "^4.9.4"
+    "typescript": "4.8.4"
   }
 }
