@@ -13,6 +13,12 @@
   },
   "packageRules": [
     {
+      "matchPackageNames": [
+        "node"
+      ],
+      "enabled": false
+    },
+    {
       "groupName": "Sentry Dependencies",
       "matchPackagePatterns": ["^@sentry"],
       "matchFiles": ["package.json"],
