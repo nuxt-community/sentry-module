@@ -44,7 +44,13 @@
       "matchUpdateTypes": [
         "minor",
         "patch"
-      ]
+      ],
+      "lockFileMaintenance": {
+        "enabled": true,
+        "extends": [
+          "schedule:weekly"
+        ]
+      }
     }
   ]
 }
