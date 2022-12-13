@@ -1,5 +1,14 @@
 
 
+### [6.0.3](https://github.com/nuxt-community/sentry-module/compare/v6.0.2...v6.0.3) (2022-12-13)
+
+
+### Bug Fixes
+
+* **tracing:** autoSessionTracking not working on the server-side ([#466](https://github.com/nuxt-community/sentry-module/issues/466)) ([67851ba](https://github.com/nuxt-community/sentry-module/commit/67851ba55df38ecdf60c8f7a3da57893e6acfc58))
+* incorrect option name in the warning message ([#467](https://github.com/nuxt-community/sentry-module/issues/467)) ([b81b2cf](https://github.com/nuxt-community/sentry-module/commit/b81b2cfb5cbc2055499f5601525f0576b0ff5216))
+* **deps:** update devdependency @sentry/webpack-plugin to ^1.20.0 ([#451](https://github.com/nuxt-community/sentry-module/issues/451)) ([e1fef90](https://github.com/nuxt-community/sentry-module/commit/e1fef907dfd2bae4348c9dcb5285cc0b156c8a78))
+
 ### [6.0.2](https://github.com/nuxt-community/sentry-module/compare/v6.0.1...v6.0.2) (2022-12-12)
 
 
