@@ -1,0 +1,6 @@
+# https://docs.netlify.com/configure-builds/file-based-configuration
+
+[build]
+  base    = "docs"
+  command = "yarn generate"
+  publish = "dist"

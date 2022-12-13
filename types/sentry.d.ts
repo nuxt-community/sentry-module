@@ -1,8 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { IncomingMessage, ServerResponse } from 'http'
 import { Options as WebpackOptions } from 'webpack'
 import { Options as SentryOptions } from '@sentry/types'
 import type { Options as SentryVueOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Handlers } from '@sentry/node'
+
+export interface SentryHandlerProxy {
+    errorHandler: (error: any, req: IncomingMessage, res: ServerResponse, next: (error: any) => void) => void
+    requestHandler: (req: IncomingMessage, res: ServerResponse, next: (error?: any) => void) => void
+}
 
 export type IntegrationsConfiguration = Record<string, unknown>
 
