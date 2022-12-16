@@ -49,9 +49,15 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
 }
 ```
 
+<alert type="info">
+
+  For Typescript or type-checked JavaScript projects, you might have to install the `@sentry/tracing` package even when not using the tracing functionality. In that case, the package can be installed as a dev-only dependency.
+
+</alert>
+
 ## Types
 
-For typescript projects, add `@nuxtjs/sentry` to tsconfig types array
+In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `types` array in `tsconfig.json` to enable module types.
 
 ```json [tsconfig.json]
 {
@@ -65,4 +71,4 @@ For typescript projects, add `@nuxtjs/sentry` to tsconfig types array
 
 ## Configuration
 
-See [Options](/sentry/options) for a list of available options
+See [Options](/sentry/options) for a list of available options.
