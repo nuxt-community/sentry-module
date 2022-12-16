@@ -318,10 +318,11 @@ export default function () {
     trackComponents: true
     hooks: [ 'mount', 'update' ],
     timeout: 2000,
-    tracePropagationTargets: ['localhost', /^\//]
+    browserTracing: {}
   }
   ```
 - Sentry documentation strongly recommends reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
+- Available browserTracing options can be found [here](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/#configuration-options)
 
 ### config
 
