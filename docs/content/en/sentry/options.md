@@ -237,8 +237,8 @@ Note that the module sets the following defaults when publishing is enabled:
   }
   ```
 - Sentry by default also enables these browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `UserAgent`. Their options can be overridden by specifying them manually in the object.
-- Here is the full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`, `UserAgent`, `Vue`.
-- User-provided configuration is merged with the default configuration so to disable integration that is enabled by default, you have to pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- Here is the full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`, `UserAgent`.
+- User-provided configuration is merged with the default configuration so to disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
   ```js
   {
     ExtraErrorData: false
@@ -319,7 +319,7 @@ export default function () {
     browserTracing: {},
   }
   ```
-- On the client side the `BrowserTracing` integration is enabled by default and provides instrumentation for monitoring the performance of the application. See available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- On the client side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. See available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
 
 <alert type="info">
 
