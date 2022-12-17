@@ -230,21 +230,23 @@ Note that the module sets the following defaults when publishing is enabled:
 - Default:
   ```js
   {
-    Dedupe: {},
     ExtraErrorData: {},
     ReportingObserver: {},
-    RewriteFrames: {}
+    RewriteFrames: {},
   }
   ```
-- Sentry by default also enables these browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `UserAgent`. Their options can be overridden by specifying them manually in the object.
-- Here is the full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`, `UserAgent`.
-- User-provided configuration is merged with the default configuration so to disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- Sentry by default also enables the following browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `Dedupe`, `HttpContext`.
+- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
+- Integration options can be specified in the object value corresponding to the individual integration key.
+- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
   ```js
   {
-    ExtraErrorData: false
+    ExtraErrorData: false,
+    ReportingObserver: {},
+    RewriteFrames: {},
   }
   ```
-- See https://docs.sentry.io/platforms/javascript/configuration/integrations/default/ and  https://docs.sentry.io/platforms/javascript/configuration/integrations/plugin/ for more information on the integrations and their configuration
+- See also [Sentry Browser Integrations](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/) for more information on configuring each integration.
 
 ### serverIntegrations
 
@@ -255,17 +257,20 @@ Note that the module sets the following defaults when publishing is enabled:
     Dedupe: {},
     ExtraErrorData: {},
     RewriteFrames: {},
-    Transaction: {}
   }
   ```
-- Here is the full list of server integrations that are supported: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Modules`, `Transaction`.
-- User-provided configuration is merged with the default configuration so to disable integration that is enabled by default, you have to pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- Sentry by default also enables the following server integrations: `InboundFilters`, `FunctionToString`, `Console`, `Http`, `OnUncaughtException`, `OnUnhandledRejection`, `ContextLines`, `Context`, `Modules`, `RequestData`, `LinkedErrors`.
+- The full list of server integrations that are supported includes the ones above plus: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Transaction`.
+- Integration options can be specified in the object value corresponding to the individual integration key.
+- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
   ```js
   {
-    ExtraErrorData: false
+    Dedupe: {},
+    ExtraErrorData: false,
+    RewriteFrames: {},
   }
   ```
-- See https://docs.sentry.io/platforms/node/pluggable-integrations/ for more information on the integrations and their configuration
+- See also [Sentry Server Integrations](https://docs.sentry.io/platforms/node/configuration/integrations/) for more information on configuring each integration.
 
 ### customClientIntegrations
 
