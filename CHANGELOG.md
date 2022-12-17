@@ -7,6 +7,8 @@
 
 * migrate to sentry v7 ([0d6b0a5](https://github.com/nuxt-community/sentry-module/commit/0d6b0a55f512b50b37b0ac28ed140c6a835cd234))
 
+### [6.0.3](https://github.com/nuxt-community/sentry-module/compare/v6.0.2...v6.0.3) (2022-12-13)
+
 
 ### Bug Fixes
 
