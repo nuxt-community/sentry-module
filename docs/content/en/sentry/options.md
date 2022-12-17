@@ -323,7 +323,7 @@ export default function () {
 
 <alert type="info">
 
-  Sentry documentation strongly recommends reducing the `tracesSampleRate` value from the default 1.0. It should be between 0.0 and 1.0 (percentage of requests to capture).
+  The `tracesSampleRate` value can be between 0.0 and 1.0 (percentage of requests to capture) and Sentry documentation strongly recommends reducing the value from the default 1.0.
 
 </alert>
 
