@@ -23,8 +23,9 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
-export interface TracingConfiguration extends Partial<SentryVueTracingOptions>, Pick<SentryOptions, 'tracesSampleRate'> {
+export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleRate'> {
     browserTracing?: Partial<BrowserTracing['options']>
+    vueOptions?: Partial<SentryVueTracingOptions>
 }
 
 export interface ModuleConfiguration {

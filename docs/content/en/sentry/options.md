@@ -310,16 +310,19 @@ export default function () {
 
 </alert>
 
-- Enables [Sentry Performance Monitoring](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) on the server and browser side.
+- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/performance/) and [browser]](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
 - Takes the following object configuration format (default values shown):
   ```js
   {
     tracesSampleRate: 1.0,
-    trackComponents: true,
     browserTracing: {},
+    vueOptions: {
+      trackComponents: true,
+    },
   }
   ```
-- On the client side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. See available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. See available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- On the browser side some additional options for [Tracking Vue components](https://docs.sentry.io/platforms/javascript/guides/vue/features/component-tracking/) can be passed through the `vueOptions` object.
 
 <alert type="info">
 
