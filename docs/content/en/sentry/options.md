@@ -306,11 +306,11 @@ export default function () {
 
 <alert type="info">
 
-  `@sentry/tracing@7` (version 7 and not newer) should be installed manually when using this option.
+  `@sentry/tracing@7` (version 7) should be installed manually when using this option.
 
 </alert>
 
-- Enables the BrowserTracing integration for client performance monitoring
+- Enables [Sentry Performance Monitoring](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) on the server and browser side.
 - Takes the following object configuration format (default values shown):
   ```js
   {
@@ -319,8 +319,13 @@ export default function () {
     browserTracing: {}
   }
   ```
-- Sentry documentation strongly recommends reducing the `tracesSampleRate` value; it should be between 0.0 and 1.0 (percentage of requests to capture)
-- See available [browserTracing options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/#configuration-options)
+- On the client side the `BrowserTracing` integration is enabled by default and provides instrumentation for monitoring the performance of the application. See available [`BrowserTracing options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+
+<alert type="info">
+
+  Sentry documentation strongly recommends reducing the `tracesSampleRate` value from the default 1.0. It should be between 0.0 and 1.0 (percentage of requests to capture).
+
+</alert>
 
 ### config
 
