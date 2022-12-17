@@ -319,7 +319,7 @@ export default function () {
     browserTracing: {},
   }
   ```
-- On the client side the `BrowserTracing` integration is enabled by default and provides instrumentation for monitoring the performance of the application. See available [`BrowserTracing options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- On the client side the `BrowserTracing` integration is enabled by default and provides instrumentation for monitoring the performance of the application. See available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
 
 <alert type="info">
 
