@@ -1,5 +1,14 @@
 
 
+## [7.0.0-beta.1](https://github.com/nuxt-community/sentry-module/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2022-12-17)
+
+
+### Features
+
+* allow passing all browserTracing options ([b74736c](https://github.com/nuxt-community/sentry-module/commit/b74736c4348a0bacca349233940a5566b7dc5fee))
+
+### [6.0.3](https://github.com/nuxt-community/sentry-module/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2022-12-13)
+
 ## [7.0.0-beta.0](https://github.com/nuxt-community/sentry-module/compare/v6.0.2...v7.0.0-beta.0) (2022-12-13)
 
 
