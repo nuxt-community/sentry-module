@@ -315,7 +315,7 @@ export default function () {
 
 </alert>
 
-- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/performance/) and [browser]](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
+- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/performance/) and [browser](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
 - Takes the following object configuration format (default values shown):
   ```js
   {
