@@ -315,8 +315,8 @@ export default function () {
   ```js
   {
     tracesSampleRate: 1.0,
-    trackComponents: true
-    browserTracing: {}
+    trackComponents: true,
+    browserTracing: {},
   }
   ```
 - On the client side the `BrowserTracing` integration is enabled by default and provides instrumentation for monitoring the performance of the application. See available [`BrowserTracing options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
