@@ -123,6 +123,7 @@ Normally, just setting DSN would be enough.
 - Default: `sentry`
 - Specified object in Nuxt config in `publicRuntimeConfig[runtimeConfigKey]` will override some options at runtime. See documentation at https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
 - Used to define the environment at runtime for example
+- See also [Runtime Config](/sentry/runtime-config) documentation.
 
 ### disabled
 

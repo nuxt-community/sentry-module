@@ -28,3 +28,5 @@ publicRuntimeConfig: {
 ```
 
 You can customize the key that is used to access settings from `publicRuntimeConfig` by setting [`runtimeConfigKey`](/sentry/options#runtimeconfigkey) in the non-runtime options.
+
+This functionality is supported from Nuxt 2.13 and up.
