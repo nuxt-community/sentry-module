@@ -30,7 +30,7 @@ Add `@nuxtjs/sentry` dependency to your project:
   </code-block>
 </code-group>
 
-Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
+Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js` and set your unique `dsn` value:
 
 ```js [nuxt.config.js]
 {
@@ -38,10 +38,10 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
     '@nuxtjs/sentry'
   ],
   sentry: {
-    dsn: '', // Enter your project's DSN here
-    // Additional Module Options go here (refer to "Options" documentation).
+    dsn: '', // Enter your project's DSN.
+    // Additional Module Options.
     config: {
-      // Optional Sentry SDK configuration here.
+      // Optional Sentry SDK configuration.
       // Those options are shared by both the Browser and the Server instances.
       // Browser-only and Server-only options should go
       // into `clientConfig` and `serverConfig` objects respectively.
@@ -49,6 +49,8 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
   }
 }
 ```
+
+See [Options](/sentry/options) for a list of available options.
 
 <alert type="info">
 
@@ -69,7 +71,3 @@ In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `
   }
 }
 ```
-
-## Configuration
-
-See [Options](/sentry/options) for a list of available options.

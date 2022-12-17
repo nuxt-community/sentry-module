@@ -12,13 +12,13 @@ Options can be passed using either:
 
 The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/sentry/runtime-config).
 
-Normally, just setting DSN would be enough.
+The `dsn` is the only option that is required to enable Sentry reporting.
 
 ### dsn
 
 - Type: `String`
 - Default: `process.env.SENTRY_DSN || ''`
-- If no `dsn` is provided, Sentry will be initialised, but errors will not be logged. See [#47](https://github.com/nuxt-community/sentry-module/issues/47) for more information about this.
+- If no `dsn` is provided then Sentry will be initialized using mocked instance to prevent the code that references `$sentry` from crashing. No errors will be reported using that mocked instance.
 
 ### lazy
 
@@ -344,22 +344,24 @@ export default function () {
     environment: this.options.dev ? 'development' : 'production'
   }
   ```
-- Sentry options common to the server and client that are passed to `Sentry.init(options)`. See Sentry documentation at https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
-- Note that `config.dsn` is automatically set based on the root `dsn` option
-- The value for `config.release` is automatically inferred from the local repo unless specified manually
-- Do not use `config.integrations`, use clientIntegrations or serverIntegrations
+- Sentry options common to the Server and Browser SDKs that are passed to `Sentry.init()`. See Sentry's documentation for [Basic Browser Options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/) and [Basic Server Options](https://docs.sentry.io/platforms/node/configuration/options/).
+- Note that `config.dsn` is automatically set based on the root `dsn` option.
+- The value for `config.release` is automatically inferred from the local repo unless specified manually.
+- Do not set `config.integrations`, use `clientIntegrations` and `serverIntegrations` options instead.
 
 ### serverConfig
 
 - Type: `Object`
 - Default: `{}`
-- Specified key will override common Sentry options for server sentry plugin
+- Server-specific Sentry SDK options.
+- The specified keys will override common options set in `config` key.
 
 ### clientConfig
 
 - Type: `Object`
 - Default: `{}`
-- Specified keys will override common Sentry options for client sentry plugin
+- Browser-specific Sentry SDK options.
+- The specified keys will override common options set in `config` key.
 
 ### requestHandlerConfig
 
