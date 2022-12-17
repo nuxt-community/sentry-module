@@ -354,14 +354,14 @@ export default function () {
 - Type: `Object`
 - Default: `{}`
 - Server-specific Sentry SDK options.
-- The specified keys will override common options set in `config` key.
+- The specified keys will override common options set in the `config` key.
 
 ### clientConfig
 
 - Type: `Object`
 - Default: `{}`
 - Browser-specific Sentry SDK options.
-- The specified keys will override common options set in `config` key.
+- The specified keys will override common options set in the `config` key.
 
 ### requestHandlerConfig
 
