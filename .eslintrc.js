@@ -27,6 +27,7 @@ module.exports = {
         '@nuxtjs/eslint-config-typescript',
       ],
       rules: {
+        'comma-dangle': 'off',
         'constructor-super': 'off', // ts(2335) & ts(2377)
         'getter-return': 'off', // ts(2378)
         'import/named': 'off',
@@ -54,6 +55,7 @@ module.exports = {
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/ban-ts-comment': 'error',
         '@typescript-eslint/ban-types': 'error',
+        '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
         '@typescript-eslint/explicit-module-boundary-types': 'warn',
         'no-array-constructor': 'off',
         '@typescript-eslint/member-delimiter-style': ['error', { multiline: { delimiter: 'none', requireLast: false } }],

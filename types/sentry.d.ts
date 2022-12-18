@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { Options as WebpackOptions } from 'webpack'
 import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions } from '@sentry/types'
-import { BrowserOptions } from '@sentry/browser'
+import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Handlers } from '@sentry/node'
 
@@ -23,40 +23,13 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
-declare type Operation = 'activate' | 'create' | 'destroy' | 'mount' | 'update'
-/**
- * Vue specific configuration for Tracing Integration
- * Not exported, so have to reproduce here
- * @see https://github.com/getsentry/sentry-javascript/blob/master/packages/integrations/src/vue.ts
- **/
-interface TracingOptions {
-    /**
-     * Decides whether to track components by hooking into its lifecycle methods.
-     * Can be either set to `boolean` to enable/disable tracking for all of them.
-     * Or to an array of specific component names (case-sensitive).
-     */
-    trackComponents: boolean | string[]
-    /** How long to wait until the tracked root activity is marked as finished and sent of to Sentry */
-    timeout: number
-    /**
-     * List of hooks to keep track of during component lifecycle.
-     * Available hooks: 'activate' | 'create' | 'destroy' | 'mount' | 'update'
-     * Based on https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
-     */
-    hooks: Operation[]
-}
-
-export interface TracingConfiguration {
-    tracesSampleRate?: number
-    vueOptions?: {
-        tracing?: boolean
-        tracingOptions?: Partial<TracingOptions>
-    }
-    browserOptions?: Partial<BrowserTracing['options']>
+export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleRate'> {
+    browserTracing?: Partial<BrowserTracing['options']>
+    vueOptions?: Partial<SentryVueTracingOptions>
 }
 
 export interface ModuleConfiguration {
-    clientConfig?: BrowserOptions
+    clientConfig?: Partial<SentryVueOptions>
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
     customClientIntegrations?: string
