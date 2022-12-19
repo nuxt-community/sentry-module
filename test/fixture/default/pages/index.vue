@@ -4,6 +4,11 @@
     <span id="server-side">{{ serverSentry ? 'Works!' : '$sentry object is missing!' }}</span>
     <h3>Client-side</h3>
     <span id="client-side">{{ clientSentry ? 'Works!' : '$sentry object is missing!' }}</span>
+    <p>
+      <button id="crash-button" @click="crash_me()">
+        crash me
+      </button>
+    </p>
   </div>
 </template>
 
