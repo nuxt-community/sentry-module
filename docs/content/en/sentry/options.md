@@ -373,7 +373,7 @@ export default function () {
 - Default: `{}`
 - Sentry SDK [Basic Browser Options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/).
 - The specified keys will override common options set in the `config` key.
-- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function is passed the `Nuxt Context` argument and can be `async`. Example of how to enable [User Feedback](https://docs.sentry.io/platforms/javascript/enriching-events/user-feedback/) dialog:
+- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function is passed a `Nuxt Context` argument and can be `async`. Example of how to enable [User Feedback](https://docs.sentry.io/platforms/javascript/enriching-events/user-feedback/) dialog:
   ```js [~/config/sentry-client-config.js]
   import { showReportDialog } from '@sentry/vue'
 
