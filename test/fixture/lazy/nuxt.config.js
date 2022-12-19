@@ -21,7 +21,6 @@ const config = {
       TryCatch: { eventTarget: false },
     },
     customClientIntegrations: '~/config/custom-client-integrations.js',
-    tracing: true,
   },
   publicRuntimeConfig: {
     sentry: {

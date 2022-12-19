@@ -44,17 +44,5 @@ describe('Smoke test (default)', () => {
     expect(errors).toEqual([])
   })
 
-  test('reports error on crash', async () => {
-    const page = await browser.newPage()
-    await page.goto(url('/'))
-    expect(await $$('#server-side', page)).toBe('Works!')
-    expect(await $$('#client-side', page)).toBe('Works!')
-    const crashButton = await page.$('#crash-button')
-    expect(crashButton).not.toBeNull()
-    await crashButton?.click()
-    const reports = testkit.reports()
-    expect(reports).toHaveLength(1)
-  })
-
   // TODO: Add tests for custom integration. Blocked by various sentry-kit bugs reported in its repo.
 })

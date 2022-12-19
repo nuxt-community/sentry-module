@@ -327,7 +327,7 @@ export default function () {
     },
   }
   ```
-- On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. The Vue Router instrumentation (`Sentry.vueRouterInstrumentation`) is also automatically enabled. See all available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. See available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
 - On the browser side extra options for [Tracking Vue components](https://docs.sentry.io/platforms/javascript/guides/vue/features/component-tracking/) can be passed through the `vueOptions` object.
 
 <alert type="info">
