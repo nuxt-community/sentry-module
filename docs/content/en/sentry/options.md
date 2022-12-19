@@ -338,7 +338,7 @@ export default function () {
 
 ### config
 
-- Type: `Object` or `String`
+- Type: `Object`
 - Default:
   ```js
   {
