@@ -5,15 +5,15 @@ position: 6
 category: Sentry
 ---
 
-<alert type="warning">
-
-  Please be aware that lazy loading could prevent some errors that happen early during app loading from being reported.
-
-</alert>
-
-Set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle **but could result in some errors not being reported**.
+Set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle and should result in a faster initial page load.
 
 You can also pass a lazy config object in your module options (see [options](/sentry/options#lazy) for more information).
+
+<alert type="info">
+
+  Please be aware that lazy loading could prevent some errors that happen early during app loading from being reported and, if `tracing` is enabled, some performance metrics might not be accurate.
+
+</alert>
 
 ### Injected properties
 
