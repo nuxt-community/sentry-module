@@ -1,5 +1,25 @@
 
 
+## [7.0.0-beta.2](https://github.com/nuxt-community/sentry-module/compare/v7.0.0-beta.1...v7.0.0-beta.2) (2022-12-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* Refer to https://sentry.nuxtjs.org/guide/migration for migration guide.
+
+### Features
+
+* enable tree shaking of Sentry SDK debug code ([45362c6](https://github.com/nuxt-community/sentry-module/commit/45362c69f4da5d4db5ff8a3edb4beb5d29d1ffdd))
+* support plugin path for clientConfig and serverConfig ([#477](https://github.com/nuxt-community/sentry-module/issues/477)) ([63e698a](https://github.com/nuxt-community/sentry-module/commit/63e698aea18d453fae733bc2551d1f185f892860))
+* **tracing:** enable Vue Router instrumentation by default ([#476](https://github.com/nuxt-community/sentry-module/issues/476)) ([acb2aaf](https://github.com/nuxt-community/sentry-module/commit/acb2aaff6fa99cb35875ae61fe6df13154f99454))
+* update Sentry SDK from v6 to v7 ([#461](https://github.com/nuxt-community/sentry-module/issues/461)) ([53bbeec](https://github.com/nuxt-community/sentry-module/commit/53bbeecb74ca11b8228769b7b2f1b02e35db5a3e))
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.28.0 ([#478](https://github.com/nuxt-community/sentry-module/issues/478)) ([877dce5](https://github.com/nuxt-community/sentry-module/commit/877dce58190d3b63142e42308934702338541b86))
+* gracefully handle Nuxt versions without Runtime Config ([#472](https://github.com/nuxt-community/sentry-module/issues/472)) ([08d7e6c](https://github.com/nuxt-community/sentry-module/commit/08d7e6c8c1f38c519b4ed71bc46b5c39cdb4d89c))
+
 ## [7.0.0-beta.1](https://github.com/nuxt-community/sentry-module/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2022-12-17)
 
 
