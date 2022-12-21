@@ -2,18 +2,18 @@ module.exports = {
   testEnvironment: 'node',
   collectCoverage: true,
   collectCoverageFrom: [
-    'lib/module.js'
+    'lib/module.js',
   ],
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/lib/$1',
     '^~~$': '<rootDir>',
     '^@@$': '<rootDir>',
-    '^@/(.*)$': '<rootDir>/lib/$1'
+    '^@/(.*)$': '<rootDir>/lib/$1',
   },
   setupFilesAfterEnv: [
-    './test/setup'
+    './test/setup',
   ],
   transform: {
-    '^.+\\.js$': 'babel-jest'
-  }
+    '^.+\\.js$': 'babel-jest',
+  },
 }
