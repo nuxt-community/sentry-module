@@ -70,7 +70,6 @@
     "@types/node": "^16.18.8",
     "@types/request-promise-native": "^1.0.18",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^29.3.1",
     "codecov": "^3.8.3",
     "eslint": "^8.29.0",
