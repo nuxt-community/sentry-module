@@ -10,7 +10,6 @@ module.exports = {
   github: {
     release: true,
     releaseName: '${version}',
-    releaseNotes: 'echo "${changelog}" | sed 1,2d',
   },
   plugins: {
     '@release-it/conventional-changelog': {
