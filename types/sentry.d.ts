@@ -29,7 +29,7 @@ export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleR
 }
 
 export interface ModuleConfiguration {
-    clientConfig?: Partial<SentryVueOptions>
+    clientConfig?: Partial<SentryVueOptions> | string
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
     customClientIntegrations?: string
@@ -47,7 +47,7 @@ export interface ModuleConfiguration {
     /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
     publishRelease?: boolean | Partial<SentryCliPluginOptions>
     runtimeConfigKey?: string
-    serverConfig?: SentryOptions
+    serverConfig?: SentryOptions | string
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     requestHandlerConfig?: Handlers.RequestHandlerOptions
