@@ -2,7 +2,6 @@ module.exports = {
   extends: [
     '@nuxtjs/eslint-config',
   ],
-  ignorePatterns: ['dist/'],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     'import/named': 'off',

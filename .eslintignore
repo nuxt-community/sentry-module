@@ -1,5 +1,11 @@
 !.eslintrc.js
 !.release-it.js
+
+# un-ignore @nuxtjs/eslint-config
+!*.d.ts
+!.nuxt/sentry.*.js
+
+dist/
 lib/plugin.*
 lib/templates/*.*
-test/fixture/*/.nuxt
+

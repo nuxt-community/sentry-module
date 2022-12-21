@@ -23,12 +23,13 @@ export interface LazyConfiguration {
     webpackPreload?: boolean
 }
 
-export interface TracingConfiguration extends Partial<SentryVueTracingOptions>, Pick<SentryOptions, 'tracesSampleRate'> {
+export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleRate'> {
     browserTracing?: Partial<BrowserTracing['options']>
+    vueOptions?: Partial<SentryVueTracingOptions>
 }
 
 export interface ModuleConfiguration {
-    clientConfig?: Partial<SentryVueOptions>
+    clientConfig?: Partial<SentryVueOptions> | string
     clientIntegrations?: IntegrationsConfiguration
     config?: SentryOptions
     customClientIntegrations?: string
@@ -46,7 +47,7 @@ export interface ModuleConfiguration {
     /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
     publishRelease?: boolean | Partial<SentryCliPluginOptions>
     runtimeConfigKey?: string
-    serverConfig?: SentryOptions
+    serverConfig?: SentryOptions | string
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     requestHandlerConfig?: Handlers.RequestHandlerOptions

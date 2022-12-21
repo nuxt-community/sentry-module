@@ -2,20 +2,20 @@
 module.exports = {
   git: {
     commitMessage: 'chore: release ${version}',
-    tagName: 'v${version}'
+    tagName: 'v${version}',
   },
   npm: {
-    publish: false
+    publish: false,
   },
   github: {
     release: true,
     releaseName: '${version}',
-    releaseNotes: 'echo "${changelog}" | sed 1,2d'
+    releaseNotes: 'echo "${changelog}" | sed 1,2d',
   },
   plugins: {
     '@release-it/conventional-changelog': {
       preset: 'conventionalcommits',
-      infile: 'CHANGELOG.md'
-    }
-  }
+      infile: 'CHANGELOG.md',
+    },
+  },
 }
