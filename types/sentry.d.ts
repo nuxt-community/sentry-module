@@ -5,7 +5,7 @@ import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions } from '@sentry/types'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
-import { Handlers } from '@sentry/node'
+import { NodeOptions, Handlers } from '@sentry/node'
 
 export interface SentryHandlerProxy {
     errorHandler: (error: any, req: IncomingMessage, res: ServerResponse, next: (error: any) => void) => void
@@ -47,7 +47,7 @@ export interface ModuleConfiguration {
     /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
     publishRelease?: boolean | Partial<SentryCliPluginOptions>
     runtimeConfigKey?: string
-    serverConfig?: SentryOptions | string
+    serverConfig?: NodeOptions | string
     serverIntegrations?: IntegrationsConfiguration
     sourceMapStyle?: WebpackOptions.Devtool
     requestHandlerConfig?: Handlers.RequestHandlerOptions
