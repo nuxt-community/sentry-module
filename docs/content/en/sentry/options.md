@@ -352,11 +352,11 @@ export default function () {
 
 ### serverConfig
 
-- Type: `Object`
+- Type: `Object` or `String`
 - Default: `{}`
 - Sentry SDK [Basic Server Options](https://docs.sentry.io/platforms/node/configuration/options/).
 - The specified keys will override common options set in the `config` key.
-- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function can be `async`. Artificial example that switches out the `transport`:
+- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function can be `async`. An artificial example that switches out the `transport`:
   ```js [~/config/sentry-server-config.js]
   import { makeNodeTransport } from '@sentry/node'
 
