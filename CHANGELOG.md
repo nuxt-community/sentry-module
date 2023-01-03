@@ -1,5 +1,12 @@
 
 
+### [7.0.1](https://github.com/nuxt-community/sentry-module/compare/v7.0.0...v7.0.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* more accurate type for `serverConfig` option ([#484](https://github.com/nuxt-community/sentry-module/issues/484)) ([95f9f4f](https://github.com/nuxt-community/sentry-module/commit/95f9f4fcb81d56298d9827add9edee112a814fd8))
+
 ## [7.0.0](https://github.com/nuxt-community/sentry-module/compare/v6.0.3...v7.0.0) (2022-12-21)
 
 
