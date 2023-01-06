@@ -56,7 +56,8 @@
     "@sentry/node": "^7.28.0",
     "@sentry/vue": "^7.28.0",
     "consola": "^2.15.3",
-    "lodash.mergewith": "^4.6.2"
+    "lodash.mergewith": "^4.6.2",
+    "mlly": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
