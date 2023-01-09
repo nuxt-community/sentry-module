@@ -52,9 +52,9 @@
     }
   },
   "dependencies": {
-    "@sentry/integrations": "^7.28.0",
-    "@sentry/node": "^7.28.0",
-    "@sentry/vue": "^7.28.0",
+    "@sentry/integrations": "^7.29.0",
+    "@sentry/node": "^7.29.0",
+    "@sentry/vue": "^7.29.0",
     "consola": "^2.15.3",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.0.0"
@@ -66,7 +66,7 @@
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^5.1.1",
-    "@sentry/tracing": "^7.28.0",
+    "@sentry/tracing": "^7.29.0",
     "@sentry/webpack-plugin": "^1.20.0",
     "@types/jest": "^29.2.5",
     "@types/lodash.mergewith": "^4.6.7",
