@@ -1,5 +1,13 @@
 
 
+### [7.0.2](https://github.com/nuxt-community/sentry-module/compare/v7.0.1...v7.0.2) (2023-01-09)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.29.0 ([#482](https://github.com/nuxt-community/sentry-module/issues/482)) ([96d7a8c](https://github.com/nuxt-community/sentry-module/commit/96d7a8c257be6f3dd625c80544704d91324f958f))
+* not able to resolve un-hoisted client-side dependencies ([#486](https://github.com/nuxt-community/sentry-module/issues/486)) ([82071ce](https://github.com/nuxt-community/sentry-module/commit/82071cef777de3d92d145c54aa01febb6a07cb9d))
+
 ### [7.0.1](https://github.com/nuxt-community/sentry-module/compare/v7.0.0...v7.0.1) (2023-01-03)
 
 
