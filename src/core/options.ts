@@ -9,8 +9,8 @@ import type { IntegrationsConfiguration, LazyConfiguration, TracingConfiguration
 import type { ModuleConfiguration } from '../../types'
 import { canInitialize } from './utils'
 
-export const PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'ReportingObserver', 'RewriteFrames', 'Vue']
-export const BROWSER_INTEGRATIONS = ['InboundFilters', 'FunctionToString', 'TryCatch', 'Breadcrumbs', 'GlobalHandlers', 'LinkedErrors', 'UserAgent']
+export const PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'ReportingObserver', 'RewriteFrames']
+export const BROWSER_INTEGRATIONS = ['InboundFilters', 'FunctionToString', 'TryCatch', 'Breadcrumbs', 'GlobalHandlers', 'LinkedErrors', 'HttpContext']
 const SERVER_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Modules', 'Transaction']
 
 const filterDisabledIntegrations = (integrations: IntegrationsConfiguration): string[] => Object.keys(integrations).filter(key => integrations[key])
@@ -64,7 +64,7 @@ function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[],
 
       const notfoundMethods = mockMethods.filter(method => !apiMethods.includes(method))
       if (notfoundMethods.length) {
-        logger.warn('Some specified methods to mock weren\'t found in @sentry/browser:', notfoundMethods)
+        logger.warn('Some specified methods to mock weren\'t found in @sentry/vue:', notfoundMethods)
       }
 
       if (!options.lazy.mockApiMethods.includes('captureException')) {
@@ -75,28 +75,27 @@ function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[],
   }
 }
 
-function resolveTracingOptions (tracing: ModuleConfiguration['tracing'], config: NonNullable<ModuleConfiguration['config']>) {
-  if (!tracing) {
+function resolveTracingOptions (options: ModuleConfiguration, config: NonNullable<ModuleConfiguration['config']>) {
+  if (!options.tracing) {
     return
   }
+
   const defaultTracingOptions: TracingConfiguration = {
     tracesSampleRate: 1.0,
+    browserTracing: {},
     vueOptions: {
-      tracing: true,
-      tracingOptions: {
-        hooks: ['mount', 'update'],
-        timeout: 2000,
-        trackComponents: true,
-      },
+      trackComponents: true,
     },
-    browserOptions: {},
   }
 
-  const tracingOptions = defu(typeof tracing === 'boolean' ? {} : tracing, defaultTracingOptions)
+  const userOptions = typeof options.tracing === 'boolean' ? {} : options.tracing
+  const tracingOptions = defu(userOptions, defaultTracingOptions)
 
-  if (tracingOptions && !config.tracesSampleRate) {
+  if (config.tracesSampleRate === undefined) {
     config.tracesSampleRate = tracingOptions.tracesSampleRate
   }
+
+  options.tracing = tracingOptions
 }
 
 export type resolvedClientOptions = {
@@ -107,6 +106,7 @@ export type resolvedClientOptions = {
   config: Options
   lazy: boolean | LazyConfiguration
   apiMethods: string[]
+  clientConfigPath: string | undefined
   customClientIntegrations: string | undefined
   logMockCalls: boolean
   tracing: boolean | TracingConfiguration
@@ -117,12 +117,18 @@ export type resolvedClientOptions = {
 
 export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedClientOptions> {
   const options = moduleOptions
-
   options.config = defu(options.clientConfig, options.config)
 
-  const apiMethods = await getApiMethods('@sentry/browser')
+  let clientConfigPath: string | undefined
+  if (typeof (options.clientConfig) === 'string') {
+    clientConfigPath = resolveAlias(options.clientConfig)
+  } else {
+    options.config = defu(options.clientConfig, options.config)
+  }
+
+  const apiMethods = await getApiMethods('@sentry/vue')
   resolveLazyOptions(options, apiMethods, logger)
-  resolveTracingOptions(options.tracing, options.config)
+  resolveTracingOptions(options, options.config)
 
   for (const name of Object.keys(options.clientIntegrations)) {
     if (!PLUGGABLE_INTEGRATIONS.includes(name) && !BROWSER_INTEGRATIONS.includes(name)) {
@@ -136,7 +142,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     if (typeof (options.customClientIntegrations) === 'string') {
       customClientIntegrations = resolveAlias(options.customClientIntegrations)
     } else {
-      logger.warn(`Invalid customServerIntegrations option. Expected a file path, got "${typeof (options.customClientIntegrations)}".`)
+      logger.warn(`Invalid customClientIntegrations option. Expected a file path, got "${typeof (options.customClientIntegrations)}".`)
     }
   }
 
@@ -149,6 +155,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
       dsn: options.dsn,
       ...options.config,
     },
+    clientConfigPath,
     lazy: options.lazy,
     apiMethods,
     customClientIntegrations,
@@ -183,9 +190,13 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   let customIntegrations = []
   if (options.customServerIntegrations) {
     const resolvedPath = resolveAlias(options.customServerIntegrations)
-    customIntegrations = (await import(resolvedPath).then(m => m.default || m))()
-    if (!Array.isArray(customIntegrations)) {
-      logger.error(`Invalid value returned from customServerIntegrations plugin. Expected an array, got "${typeof (customIntegrations)}".`)
+    try {
+      customIntegrations = (await import(resolvedPath).then(m => m.default || m))()
+      if (!Array.isArray(customIntegrations)) {
+        logger.error(`Invalid value returned from customServerIntegrations plugin. Expected an array, got "${typeof (customIntegrations)}".`)
+      }
+    } catch (error) {
+      logger.error(`Error handling the customServerIntegrations plugin:\n${error}`)
     }
   }
 
@@ -203,11 +214,21 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     ],
   }
 
+  let serverConfig = options.serverConfig
+  if (typeof (serverConfig) === 'string') {
+    const resolvedPath = resolveAlias(serverConfig)
+    try {
+      serverConfig = (await import(resolvedPath).then(m => m.default || m))()
+    } catch (error) {
+      logger.error(`Error handling the serverConfig plugin:\n${error}`)
+    }
+  }
+
   options.config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
 
   const apiMethods = await getApiMethods('@sentry/node')
   resolveLazyOptions(options, apiMethods, logger)
-  resolveTracingOptions(options.tracing, options.config)
+  resolveTracingOptions(options, options.config)
 
   return {
     config: options.config,
@@ -221,7 +242,7 @@ function getRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<Mo
   // TODO Fix for nuxt 3
   const { publicRuntimeConfig } = nuxt.options as unknown as NuxtOptions
   const { runtimeConfigKey } = options
-  if (typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
+  if (publicRuntimeConfig && typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
     return defu(publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>, publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>)
   }
 }

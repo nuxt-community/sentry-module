@@ -12,7 +12,7 @@ export default {
   data () {
     return {
       isSentryReady: false,
-      /** @type {import('@sentry/minimal') | null} */
+      /** @type {import('@sentry/core') | null} */
       serverSentry: this.$sentry,
     }
   },

@@ -5,22 +5,22 @@ position: 6
 category: Sentry
 ---
 
-<alert type="warning">
-
-  Please be aware that lazy loading could prevent some errors that happen early during app loading from being reported.
-
-</alert>
-
-Set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle **but could result in some errors not being reported**.
+Set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle and should result in a faster initial page load.
 
 You can also pass a lazy config object in your module options (see [options](/sentry/options#lazy) for more information).
+
+<alert type="info">
+
+  Please be aware that lazy loading could prevent some errors that happen early during app loading from being reported and, if `tracing` is enabled, some performance metrics might not be accurate.
+
+</alert>
 
 ### Injected properties
 
 #### `$sentry` (mocked)
 - Type: `Object`
 
-Normally `$sentry` would always refer to the `@sentry/browser` API. But if we lazy load Sentry this API wont be available until Sentry has loaded. If you don't want to worry about whether Sentry is loaded or not, a mocked Sentry API is injected into the Nuxt.js context that will execute all Sentry API calls once Sentry is loaded
+Normally `$sentry` would always refer to the `@sentry/vue` API. But if we lazy load Sentry this API wont be available until Sentry has loaded. If you don't want to worry about whether Sentry is loaded or not, a mocked Sentry API is injected into the Nuxt.js context that will execute all Sentry API calls once Sentry is loaded
 
 See: [`injectMock`](/sentry/options#lazy) and [`mockApiMethods`](/sentry/options#lazy) options.
 

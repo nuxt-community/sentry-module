@@ -30,7 +30,7 @@ Add `@nuxtjs/sentry` dependency to your project:
   </code-block>
 </code-group>
 
-Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
+Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js` and set your unique `dsn` value:
 
 ```js [nuxt.config.js]
 {
@@ -38,20 +38,31 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js`:
     '@nuxtjs/sentry'
   ],
   sentry: {
-    dsn: '', // Enter your project's DSN here
-    // Additional Module Options go here
-    // https://sentry.nuxtjs.org/sentry/options
+    dsn: '', // Enter your project's DSN.
+    // Additional Module Options.
     config: {
-      // Add native Sentry config here
-      // https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/
+      // Optional Sentry SDK configuration.
+      // Those options are shared by both the Browser and the Server instances.
+      // Browser-only and Server-only options should go
+      // into `clientConfig` and `serverConfig` objects respectively.
     },
   }
 }
 ```
 
+See [Options](/sentry/options) for a list of available options.
+
+Note that the Sentry SDK dependencies (`@sentry/*`) are not pinned and can be updated independently from the module itself by running `npm upgrade @nuxtjs/sentry` or `yarn update @nuxtjs/sentry`. That means you don't have to wait for a new module release if you want to update to the latest SDK version.
+
+<alert type="info">
+
+  For Typescript or type-checked JavaScript projects, you might have to install the `@sentry/tracing` package even when not using the tracing functionality. In that case, the package can be installed as a dev-only dependency.
+
+</alert>
+
 ## Types
 
-For typescript projects, add `@nuxtjs/sentry` to tsconfig types array
+In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `types` array in `tsconfig.json` to enable module types.
 
 ```json [tsconfig.json]
 {
@@ -62,7 +73,3 @@ For typescript projects, add `@nuxtjs/sentry` to tsconfig types array
   }
 }
 ```
-
-## Configuration
-
-See [Options](/sentry/options) for a list of available options

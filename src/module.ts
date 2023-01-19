@@ -1,16 +1,15 @@
-import { defineNuxtModule, useLogger, isNuxt2 } from '@nuxt/kit'
 import { defu } from 'defu'
+import { resolvePath } from 'mlly'
+import { defineNuxtModule, useLogger, isNuxt2 } from '@nuxt/kit'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
-import { Handlers as SentryHandlers, captureException, withScope } from '@sentry/node'
-import type { ModuleConfiguration } from '../types'
+import { captureException, withScope } from '@sentry/node'
+import type { ModuleConfiguration, SentryHandlerProxy } from '../types'
 import type { DeepPartialModuleConfiguration } from '../types/sentry'
-import { envToBool, boolToText, canInitialize, clientSentryEnabled, serverSentryEnabled } from './core/utils'
+import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './core/utils'
 import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './core/hooks'
 
 export type ModuleOptions = DeepPartialModuleConfiguration
-
 export type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
-
 export type ModulePrivateRuntimeConfig = DeepPartialModuleConfiguration
 
 const logger = useLogger('nuxt:sentry')
@@ -59,7 +58,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     clientConfig: {},
     requestHandlerConfig: {},
   }),
-  setup (options, nuxt) {
+  async setup (options, nuxt) {
     const defaultsPublishRelease: SentryCliPluginOptions = {
       include: [],
       ignore: [
@@ -71,25 +70,6 @@ export default defineNuxtModule<ModuleConfiguration>({
 
     if (options.publishRelease) {
       options.publishRelease = defu(options.publishRelease, defaultsPublishRelease)
-    }
-
-    if (serverSentryEnabled(options)) {
-      // @ts-expect-error Nuxt 2 only hook
-      nuxt.hook('render:setupMiddleware', app => app.use(SentryHandlers.requestHandler(options.requestHandlerConfig)))
-      // @ts-expect-error Nuxt 2 only hook
-      nuxt.hook('render:errorMiddleware', app => app.use(SentryHandlers.errorHandler()))
-      // @ts-expect-error Nuxt 2 only hook
-      nuxt.hook('generate:routeFailed', ({ route, errors }) => {
-        type routeGeneretorError = {
-          type: 'handled' | 'unhandled'
-          route: unknown
-          error: Error
-        }
-        (errors as routeGeneretorError[]).forEach(({ error }) => withScope((scope) => {
-          scope.setExtra('route', route)
-          captureException(error)
-        }))
-      })
     }
 
     if (canInitialize(options) && (clientSentryEnabled(options) || serverSentryEnabled(options))) {
@@ -109,26 +89,61 @@ export default defineNuxtModule<ModuleConfiguration>({
       logger.info(`Sentry reporting is disabled (${why})`)
     }
 
-    nuxt.hook('build:before', () => buildHook(nuxt, options, logger))
-
-    // This is messy but Nuxt provides many modes that it can be started with like:
-    // - nuxt dev
-    // - nuxt build
-    // - nuxt start
-    // - nuxt generate
-    // but it doesn't really provide great way to differentiate those or enough hooks to
-    // pick from. This should ensure that server Sentry will only be initialized **after**
-    // the release version has been determined and the options template created but before
-    // the build is started (if building).
-    if (isNuxt2()) {
-      const initHook = nuxt.options._build ? 'build:compile' : 'ready'
-      if (serverSentryEnabled(options)) {
-        // @ts-expect-error Nuxt 2 only hooks
-        nuxt.hook(initHook, () => initializeServerSentry(nuxt, options, logger))
-        // @ts-expect-error Nuxt 2 only hook
-        nuxt.hook('generate:done', () => shutdownServerSentry())
+    if (clientSentryEnabled(options)) {
+      // Work-around issues with Nuxt not being able to resolve unhoisted "@sentry/*" dependencies on the client-side.
+      const clientDependencies = ['lodash.mergewith', '@sentry/integrations', '@sentry/vue', ...(options.tracing ? ['@sentry/tracing'] : [])]
+      for (const dep of clientDependencies) {
+        nuxt.options.alias[`~${dep}`] = (await resolvePath(dep)).replace(/\/cjs\//, '/esm/')
       }
     }
+
+    if (serverSentryEnabled(options)) {
+      /**
+       * Proxy that provides a dummy request handler before Sentry is initialized and gets replaced with Sentry's own
+       * handler after initialization. Otherwise server-side request tracing would not work as it depends on Sentry being
+       * initialized already during handler creation.
+       */
+      const sentryHandlerProxy: SentryHandlerProxy = {
+        errorHandler: (error, req, res, next) => { next(error) },
+        requestHandler: (req, res, next) => { next() },
+      }
+      // @ts-expect-error Nuxt 2 only hook
+      nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.requestHandler(req, res, next) }))
+      // @ts-expect-error Nuxt 2 only hook
+      nuxt.hook('render:errorMiddleware', app => app.use((error, req, res, next) => { sentryHandlerProxy.errorHandler(error, req, res, next) }))
+      // @ts-expect-error Nuxt 2 only hook
+      nuxt.hook('generate:routeFailed', ({ route, errors }) => {
+        type routeGeneretorError = {
+          type: 'handled' | 'unhandled'
+          route: unknown
+          error: Error
+        }
+        (errors as routeGeneretorError[]).forEach(({ error }) => withScope((scope) => {
+          scope.setExtra('route', route)
+          captureException(error)
+        }))
+      })
+      // This is messy but Nuxt provides many modes that it can be started with like:
+      // - nuxt dev
+      // - nuxt build
+      // - nuxt start
+      // - nuxt generate
+      // but it doesn't really provide great way to differentiate those or enough hooks to
+      // pick from. This should ensure that server Sentry will only be initialized **after**
+      // the release version has been determined and the options template created but before
+      // the build is started (if building).
+      if (isNuxt2()) {
+        const initHook = nuxt.options._build ? 'build:compile' : 'ready'
+        // @ts-expect-error Nuxt 2 only hooks
+        nuxt.hook(initHook, () => initializeServerSentry(nuxt, options, sentryHandlerProxy, logger))
+        const shutdownServerSentryOnce = callOnce(() => shutdownServerSentry())
+        // @ts-expect-error Nuxt 2 only hook
+        nuxt.hook('generate:done', shutdownServerSentryOnce)
+        nuxt.hook('close', shutdownServerSentryOnce)
+      }
+    }
+
+    nuxt.hook('build:before', () => buildHook(nuxt, options, logger))
 
     // Enable publishing of sourcemaps
     if (options.publishRelease && !options.disabled) {

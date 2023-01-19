@@ -1,14 +1,15 @@
 import { fileURLToPath } from 'url'
 import { resolve, posix } from 'path'
-import type { Nuxt } from '@nuxt/schema'
-import type { Consola } from 'consola'
 import { defu } from 'defu'
-import { addPluginTemplate, addTemplate } from '@nuxt/kit'
+import type { Consola } from 'consola'
+import { DefinePlugin } from 'webpack'
+import type { Nuxt } from '@nuxt/schema'
+import { addPluginTemplate, addTemplate, addWebpackPlugin } from '@nuxt/kit'
 import type { Configuration as WebpackConfig } from 'webpack'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import type { Options } from '@sentry/types'
 import * as Sentry from '@sentry/node'
-import type { ModuleConfiguration } from '../../types'
+import type { ModuleConfiguration, SentryHandlerProxy } from '../../types'
 import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
 import { resolveRelease, resolvedClientOptions, resolveClientOptions, resolvedServerOptions, resolveServerOptions } from './options'
 
@@ -43,6 +44,14 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
       filename: RESOLVED_RELEASE_FILENAME,
       options: { release },
     })
+  }
+
+  // Tree shake debugging code if not running in dev mode and Sentry debug option is not enabled on the client.
+  if (!clientOptions.dev && !clientOptions.config.debug) {
+    addWebpackPlugin(new DefinePlugin({
+      __SENTRY_DEBUG__: 'false',
+    }))
+    // TODO: Handle Vite
   }
 }
 
@@ -123,7 +132,7 @@ export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConf
   config.plugins.push(new WebpackPlugin(publishRelease))
 }
 
-export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<void> {
+export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, sentryHandlerProxy: SentryHandlerProxy, logger: Consola): Promise<void> {
   if (process.sentry) {
     return
   }
@@ -141,6 +150,8 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
 
   if (canInitialize(moduleOptions)) {
     Sentry.init(config)
+    sentryHandlerProxy.errorHandler = Sentry.Handlers.errorHandler()
+    sentryHandlerProxy.requestHandler = Sentry.Handlers.requestHandler(moduleOptions.requestHandlerConfig)
   }
 
   process.sentry = Sentry

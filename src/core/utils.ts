@@ -9,3 +9,13 @@ export const canInitialize = (options: ModuleConfiguration): boolean => Boolean(
 export const clientSentryEnabled = (options: ModuleConfiguration): boolean => !options.disabled && !options.disableClientSide
 
 export const serverSentryEnabled = (options: ModuleConfiguration): boolean => !options.disabled && !options.disableServerSide
+
+export function callOnce (fn: (...args: any[]) => any): (...args: any[]) => any {
+  let called = false
+  return function callOnceWrapper () {
+    if (!called) {
+      called = true
+      return fn(arguments)
+    }
+  }
+}

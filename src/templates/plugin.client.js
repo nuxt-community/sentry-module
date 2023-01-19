@@ -1,10 +1,13 @@
-import VueLib from 'vue'
-import merge from 'lodash.mergewith'
-import * as Sentry from '@sentry/browser'
+import Vue from 'vue'
+import merge from '~lodash.mergewith'
+import * as Sentry from '~@sentry/vue'
+<% if (options.tracing) { %>import { BrowserTracing } from '~@sentry/tracing'<% } %>
 <%
 if (options.initialize) {
   let integrations = options.PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
-  if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '@sentry/integrations'
+  if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
+<%}
+  if (options.clientConfigPath) {%>import getClientConfig from '<%= options.clientConfigPath %>'
 <%}
   if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= options.customClientIntegrations %>'
 <%}
@@ -14,20 +17,19 @@ const { <%= integrations.join(', ') %> } = Sentry.Integrations
 <%}
 }
 %>
-<% if (options.tracing) { %>
-import { Integrations as TracingIntegrations } from '@sentry/tracing'
-<% } %>
 
-// eslint-disable-next-line require-await
 export default async function (ctx, inject) {
   <% if (options.initialize) { %>
   /* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
   const config = {
-    <%= Object.entries(options.config).map(([key, option]) =>
-      typeof option === 'function'
-        ? `${key}:${serializeFunction(option)}`
-        : `${key}:${serialize(option)}`
-    ).join(',\n    ') %>,
+    Vue,
+    <%= Object
+      .entries(options.config)
+      .map(([key, option]) => {
+        const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
+        return `${key}:${value}`
+      })
+      .join(',\n    ') %>,
   }
 
   const runtimeConfigKey = <%= serialize(options.runtimeConfigKey) %>
@@ -36,26 +38,36 @@ export default async function (ctx, inject) {
   }
 
   config.integrations = [
-    <%= Object.entries(options.integrations).map(([name, integration]) => {
-      if (name === 'Vue') {
-        if (options.tracing) {
-          integration = { ...integration, ...options.tracing.vueOptions }
-        }
-        return `new ${name}({ Vue: VueLib, ...${serialize(integration)}})`
-      }
+    <%= Object
+      .entries(options.integrations)
+      .filter(([name]) => name !== 'Vue')
+      .map(([name, integration]) => {
+        const integrationOptions = Object
+          .entries(integration)
+          .map(([key, option]) => {
+            const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
+            return `${key}:${value}`
+          })
 
-      const integrationOptions = Object.entries(integration).map(([key, option]) =>
-        typeof option === 'function'
-          ? `${key}:${serializeFunction(option)}`
-          : `${key}:${serialize(option)}`
-      )
-
-      return `new ${name}(${integrationOptions.length ? '{' + integrationOptions.join(',') + '}' : ''})`
-    }).join(',\n    ')%>,
+        return `new ${name}(${integrationOptions.length ? '{ ' + integrationOptions.join(',') + ' }' : ''})`
+      })
+      .join(',\n    ') %>,
   ]
   <% if (options.tracing) { %>
-    config.integrations.push(<%= `new TracingIntegrations.BrowserTracing(${serialize(options.tracing.browserOptions)})` %>)
+  // eslint-disable-next-line prefer-regex-literals
+  const { browserTracing, vueOptions, ...tracingOptions } = <%= serialize(options.tracing) %>
+  config.integrations.push(new BrowserTracing({
+    ...(ctx.app.router ? { routingInstrumentation: Sentry.vueRouterInstrumentation(ctx.app.router) } : {}),
+    ...browserTracing,
+  }))
+  merge(config, vueOptions, tracingOptions)
   <% } %>
+
+  <% if (options.clientConfigPath) { %>
+  const clientConfig = await getClientConfig(ctx)
+  clientConfig ? merge(config, clientConfig) : console.error(`[@nuxtjs/sentry] Invalid value returned from the clientConfig plugin.`)
+  <% } %>
+
   <% if (options.customClientIntegrations) { %>
   const customIntegrations = await getCustomIntegrations(ctx)
   if (Array.isArray(customIntegrations)) {

@@ -1,6 +1,6 @@
 import 'vue'
 import 'vuex'
-import * as SentryTypes from '@sentry/minimal'
+import * as SentryTypes from '@sentry/core'
 import { DeepPartialModuleConfiguration } from './sentry'
 
 // add type to Vue context

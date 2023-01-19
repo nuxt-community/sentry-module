@@ -1,7 +1,6 @@
-import VueLib from 'vue'
+import Vue from 'vue'
 
 <% if (options.lazy.injectMock) { %>
-/* eslint-enable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
 let delayedCalls = []
 let SentryMock = {}
 <% } %>
@@ -20,16 +19,16 @@ const delayUnhandledRejection = function (event) {
   delayedUnhandledRejections.push('reason' in event ? event.reason : 'detail' in event && 'reason' in event.detail ? event.detail.reason : event)
 }
 
-const vueErrorHandler = VueLib.config.errorHandler
+const vueErrorHandler = Vue.config.errorHandler
 
-VueLib.config.errorHandler = (error, vm, info) => {
+Vue.config.errorHandler = (error, vm, info) => {
   if (!loadCompleted) {
     if (vm) {
       vm.$sentry.captureException(error)
     }
 
-    if (VueLib.util) {
-      VueLib.util.warn(`Error in ${info}: "${error.toString()}"`, vm)
+    if (Vue.util) {
+      Vue.util.warn(`Error in ${info}: "${error.toString()}"`, vm)
     }
     console.error(error)
   }
@@ -42,7 +41,7 @@ VueLib.config.errorHandler = (error, vm, info) => {
 
 export default function SentryPlugin (ctx, inject) {
   <% if (options.lazy.injectMock) { %>
-  /* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
+  /* eslint-disable-next-line quotes, comma-spacing */
   const apiMethods = <%= JSON.stringify(options.lazy.mockApiMethods)%>
   apiMethods.forEach((key) => {
     SentryMock[key] = (...args) => delayedCalls.push([key, args])
@@ -110,40 +109,77 @@ async function loadSentry (ctx, inject) {
     magicComments.push('webpackPreload: true')
   }
   %>
-  const Sentry = await import(/* <%= magicComments.join(', ') %> */ '@sentry/browser')
+  const Sentry = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/vue')
+  <% if (options.tracing) { %>const { BrowserTracing } = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/tracing')<% } %>
   <%
   if (options.initialize) {
     let integrations = options.PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
-    if (integrations.length) {%>const { <%= integrations.join(', ') %> } = await import(/* <%= magicComments.join(', ') %> */ '@sentry/integrations')
+    if (integrations.length) {%>const { <%= integrations.join(', ') %> } = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/integrations')
 <%  }
     integrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
     if (integrations.length) {%>  const { <%= integrations.join(', ') %> } = Sentry.Integrations
 <%}
+
+  const serializedConfig = Object
+    .entries({
+      ...options.config,
+      ...(options.tracing ? options.tracing.vueOptions : {}),
+    })
+    .map(([key, option]) => {
+      const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
+      return`${key}: ${value}`
+    })
+    .join(',\n    ')
   %>
-  /* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
-  const config = <%= serialize(options.config) %>
+  /* eslint-disable quotes, key-spacing */
+  const config = {
+    Vue,
+    <%= serializedConfig %>,
+  }
 
   const runtimeConfigKey = <%= serialize(options.runtimeConfigKey) %>
   if (ctx.$config && runtimeConfigKey && ctx.$config[runtimeConfigKey]) {
-    const { default: merge } = await import(/* <%= magicComments.join(', ') %> */ 'lodash.mergewith')
+    const { default: merge } = await import(/* <%= magicComments.join(', ') %> */ '~lodash.mergewith')
     merge(config, ctx.$config[runtimeConfigKey].config, ctx.$config[runtimeConfigKey].clientConfig)
   }
 
   config.integrations = [
-    <%= Object.entries(options.integrations).map(([name, integration]) => {
-      if (name === 'Vue') {
-        return `new ${name}({ Vue: VueLib, ...${serialize(integration)}})`
-      }
+    <%= Object
+      .entries(options.integrations)
+      .filter(([name]) => name !== 'Vue')
+      .map(([name, integration]) => {
+        const integrationOptions = Object
+          .entries(integration)
+          .map(([key, option]) => {
+            const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
+            return `${key}:${value}`
+          })
 
-      const integrationOptions = Object.entries(integration).map(([key, option]) =>
-        typeof option === 'function'
-          ? `${key}:${serializeFunction(option)}`
-          : `${key}:${serialize(option)}`
-      )
-
-      return `new ${name}(${integrationOptions.length ? '{' + integrationOptions.join(',') + '}' : ''})`
-    }).join(',\n    ')%>,
+        return `new ${name}(${integrationOptions.length ? '{ ' + integrationOptions.join(',') + ' }' : ''})`
+      }).join(',\n    ')
+    %>,
   ]
+  <% if (options.tracing) {
+  const serializedTracingConfig = Object
+    .entries(options.tracing.browserTracing)
+    .map(([key, option]) => {
+      const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
+      return`${key}: ${value}`
+    })
+    .join(',\n    ')
+%>
+  config.integrations.push(new BrowserTracing({
+    ...(ctx.app.router ? { routingInstrumentation: Sentry.vueRouterInstrumentation(ctx.app.router) } : {}),
+    <%= serializedTracingConfig %>
+  }))
+  <% } %>
+
+  <% if (options.clientConfigPath) { %>
+  const clientConfig = (await import(/* <%= magicComments.join(', ') %> */ '<%= options.clientConfigPath %>').then(m => m.default || m))(ctx)
+  const { default: merge } = await import(/* <%= magicComments.join(', ') %> */ '~lodash.mergewith')
+  clientConfig ? merge(config, clientConfig) : console.error(`[@nuxtjs/sentry] Invalid value returned from the clientConfig plugin.`)
+  <% } %>
+
   <%if (options.customClientIntegrations) {%>
   const customIntegrations = (await import(/* <%= magicComments.join(', ') %> */ '<%= options.customClientIntegrations %>').then(m => m.default || m))(ctx)
   if (Array.isArray(customIntegrations)) {
@@ -152,7 +188,6 @@ async function loadSentry (ctx, inject) {
     console.error(`[@nuxtjs/sentry] Invalid value returned from customClientIntegrations plugin. Expected an array, got "${typeof customIntegrations}".`)
   }
   <% } %>
-  /* eslint-enable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
   Sentry.init(config)
   <% } %>
 
