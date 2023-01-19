@@ -14,7 +14,7 @@ export default defineBuildConfig({
     '@nuxt/types',
     '@sentry/browser',
     '@sentry/cli',
-    '@sentry/minimal',
+    '@sentry/core',
     '@sentry/node',
     '@sentry/tracing',
     '@sentry/types',

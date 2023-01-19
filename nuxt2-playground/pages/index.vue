@@ -11,9 +11,9 @@
 export default {
   data () {
     return {
-      /** @type {import('@sentry/minimal') | null} */
+      /** @type {import('@sentry/core') | null} */
       clientSentry: null,
-      /** @type {import('@sentry/minimal') | null} */
+      /** @type {import('@sentry/core') | null} */
       serverSentry: this.$sentry,
     }
   },
