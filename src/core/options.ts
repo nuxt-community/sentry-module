@@ -117,18 +117,18 @@ export type resolvedClientOptions = {
 
 export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedClientOptions> {
   const options = moduleOptions
-  options.config = defu(options.clientConfig, options.config)
+  let config = defu({}, options.config)
 
   let clientConfigPath: string | undefined
   if (typeof (options.clientConfig) === 'string') {
     clientConfigPath = resolveAlias(options.clientConfig)
   } else {
-    options.config = defu(options.clientConfig, options.config)
+    config = defu(options.clientConfig, options.config)
   }
 
   const apiMethods = await getApiMethods('@sentry/vue')
   resolveLazyOptions(options, apiMethods, logger)
-  resolveTracingOptions(options, options.config)
+  resolveTracingOptions(options, config)
 
   for (const name of Object.keys(options.clientIntegrations)) {
     if (!PLUGGABLE_INTEGRATIONS.includes(name) && !BROWSER_INTEGRATIONS.includes(name)) {
@@ -153,7 +153,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     runtimeConfigKey: options.runtimeConfigKey,
     config: {
       dsn: options.dsn,
-      ...options.config,
+      ...config,
     },
     clientConfigPath,
     lazy: options.lazy,
