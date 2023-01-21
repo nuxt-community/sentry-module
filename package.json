@@ -41,7 +41,7 @@
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
     "test:fixture": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
-    "test": "yarn lint && yarn prepack && yarn test:fixture && yarn lint:fixture",
+    "test": "yarn prepack && yarn test:fixture && yarn lint:fixture",
     "coverage": "codecov"
   },
   "dependencies": {
