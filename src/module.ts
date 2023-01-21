@@ -144,7 +144,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     nuxt.hook('build:before', () => buildHook(nuxt, options, logger))
 
     // Enable publishing of sourcemaps
-    if (options.publishRelease && !options.disabled) {
+    if (options.publishRelease && !options.disabled && !nuxt.options.dev) {
       if (isNuxt2()) {
         nuxt.hook('webpack:config', webpackConfigs => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
       }
