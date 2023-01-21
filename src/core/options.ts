@@ -98,7 +98,7 @@ function resolveTracingOptions (options: ModuleConfiguration, config: NonNullabl
   options.tracing = tracingOptions
 }
 
-export type resolvedClientOptions = {
+export type ResolvedClientOptions = {
   PLUGGABLE_INTEGRATIONS: string[]
   BROWSER_INTEGRATIONS: string[]
   dev: boolean
@@ -115,7 +115,7 @@ export type resolvedClientOptions = {
   integrations: Record<string, unknown>
 }
 
-export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedClientOptions> {
+export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<ResolvedClientOptions> {
   const options = moduleOptions
   let config = defu({}, options.config)
 
@@ -170,14 +170,14 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   }
 }
 
-export type resolvedServerOptions = {
+export type ResolvedServerOptions = {
   config: Options
   apiMethods: string[]
   lazy: boolean | LazyConfiguration
   logMockCalls: boolean
 }
 
-export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<resolvedServerOptions> {
+export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<ResolvedServerOptions> {
   const options = moduleOptions
 
   for (const name of Object.keys(options.serverIntegrations)) {

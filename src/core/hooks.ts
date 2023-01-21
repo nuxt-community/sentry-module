@@ -11,7 +11,7 @@ import type { Options } from '@sentry/types'
 import * as Sentry from '@sentry/node'
 import type { ModuleConfiguration, SentryHandlerProxy } from '../../types'
 import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
-import { resolveRelease, resolvedClientOptions, resolveClientOptions, resolvedServerOptions, resolveServerOptions } from './options'
+import { resolveRelease, ResolvedClientOptions, resolveClientOptions, ResolvedServerOptions, resolveServerOptions } from './options'
 
 const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.mjs'
 
@@ -21,7 +21,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   const templateDir = fileURLToPath(new URL('./templates', import.meta.url))
 
   const pluginOptionClient = clientSentryEnabled(moduleOptions) ? (moduleOptions.lazy ? 'lazy' : 'client') : 'mocked'
-  const clientOptions: resolvedClientOptions = defu({ config: { release } }, await resolveClientOptions(nuxt, moduleOptions, logger))
+  const clientOptions: ResolvedClientOptions = defu({ config: { release } }, await resolveClientOptions(nuxt, moduleOptions, logger))
   addPluginTemplate({
     src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
     filename: 'sentry.client.js',
@@ -30,7 +30,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   })
 
   const pluginOptionServer = serverSentryEnabled(moduleOptions) ? 'server' : 'mocked'
-  const serverOptions: resolvedServerOptions = defu({ config: { release } }, await resolveServerOptions(nuxt, moduleOptions, logger))
+  const serverOptions: ResolvedServerOptions = defu({ config: { release } }, await resolveServerOptions(nuxt, moduleOptions, logger))
   addPluginTemplate({
     src: resolve(templateDir, `plugin.${pluginOptionServer}.js`),
     filename: 'sentry.server.js',
