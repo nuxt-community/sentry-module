@@ -29,7 +29,6 @@
     "types"
   ],
   "scripts": {
-    "prepare": "yarn dev:prepare",
     "prepack": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
