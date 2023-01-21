@@ -9,8 +9,6 @@ import { $$, createBrowser } from './utils'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 const { testkit, localServer } = sentryTestkit.default()
 const TEST_DSN = 'http://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001'
 

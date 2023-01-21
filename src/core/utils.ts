@@ -10,12 +10,13 @@ export const clientSentryEnabled = (options: ModuleConfiguration): boolean => !o
 
 export const serverSentryEnabled = (options: ModuleConfiguration): boolean => !options.disabled && !options.disableServerSide
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function callOnce (fn: (...args: any[]) => any): (...args: any[]) => any {
   let called = false
-  return function callOnceWrapper () {
+  return function callOnceWrapper (...subargs) {
     if (!called) {
       called = true
-      return fn(arguments)
+      return fn(...subargs)
     }
   }
 }
