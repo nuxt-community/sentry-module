@@ -13,7 +13,7 @@ import type { ModuleConfiguration, SentryHandlerProxy } from '../../types'
 import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
 import { resolveRelease, resolvedClientOptions, resolveClientOptions, resolvedServerOptions, resolveServerOptions } from './options'
 
-const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.js'
+const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.mjs'
 
 export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<void> {
   const release = await resolveRelease(moduleOptions)

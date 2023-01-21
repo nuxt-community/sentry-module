@@ -5,26 +5,26 @@ export default {
   rootDir: __dirname,
   telemetry: false,
   build: {
-    terser: false
+    terser: false,
   },
   render: {
-    resourceHints: false
+    resourceHints: false,
   },
   modules: [
     // @ts-ignore
-    SentryModule
+    SentryModule,
   ],
   sentry: {
     clientIntegrations: {
       // Integration from @Sentry/browser package.
-      TryCatch: { eventTarget: false }
+      TryCatch: { eventTarget: false },
     },
     customClientIntegrations: '~/config/custom-client-integrations.js',
     publishRelease: {
       authToken: 'fakeToken',
       org: 'MyCompany',
       project: 'TestProject',
-      dryRun: true
-    }
-  }
+      dryRun: true,
+    },
+  },
 }
