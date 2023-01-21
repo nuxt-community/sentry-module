@@ -1,4 +1,4 @@
-import type { ModuleConfiguration } from '../../types'
+import type { ModuleConfiguration } from '../types'
 
 export const boolToText = (value: boolean): 'enabled' | 'disabled' => value ? 'enabled' : 'disabled'
 

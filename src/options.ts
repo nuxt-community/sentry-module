@@ -5,8 +5,8 @@ import type { Nuxt } from '@nuxt/schema'
 import { resolveAlias } from '@nuxt/kit'
 import * as Integrations from '@sentry/integrations'
 import type { NuxtOptions } from '@nuxt/types'
-import type { IntegrationsConfiguration, LazyConfiguration, TracingConfiguration } from '../../types/sentry'
-import type { ModuleConfiguration } from '../../types'
+import type { IntegrationsConfiguration, LazyConfiguration, TracingConfiguration } from '../types/sentry'
+import type { ModuleConfiguration } from '../types'
 import { canInitialize } from './utils'
 
 export const PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'ReportingObserver', 'RewriteFrames']

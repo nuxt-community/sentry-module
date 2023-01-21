@@ -5,8 +5,8 @@ import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { captureException, withScope } from '@sentry/node'
 import type { ModuleConfiguration, SentryHandlerProxy } from '../types'
 import type { DeepPartialModuleConfiguration } from '../types/sentry'
-import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './core/utils'
-import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './core/hooks'
+import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './utils'
+import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './hooks'
 
 export type ModuleOptions = DeepPartialModuleConfiguration
 export type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
