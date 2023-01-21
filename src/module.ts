@@ -37,11 +37,9 @@ export default defineNuxtModule<ModuleConfiguration>({
     sourceMapStyle: 'source-map',
     tracing: false,
     clientIntegrations: {
-      Dedupe: {},
       ExtraErrorData: {},
       ReportingObserver: {},
       RewriteFrames: {},
-      Vue: { attachProps: true, logErrors: nuxt.options.dev },
     },
     serverIntegrations: {
       Dedupe: {},
