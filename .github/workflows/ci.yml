@@ -26,9 +26,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: yarn
       - name: yarn install
-        run: yarn && yarn dev:prepare
+        run: yarn && yarn dev:prepare && cd test && yarn
       - name: Unittesting Nuxt 2
-        run: cd test && yarn test
+        run: cd test && yarn && yarn test
       - name: Unittesting Nuxt 3
         run: yarn test
       - name: Linting
