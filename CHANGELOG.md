@@ -1,5 +1,13 @@
 
 
+### [7.0.3](https://github.com/nuxt-community/sentry-module/compare/v7.0.2...v7.0.3) (2023-01-25)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.33.0 ([#487](https://github.com/nuxt-community/sentry-module/issues/487)) ([23fc7c1](https://github.com/nuxt-community/sentry-module/commit/23fc7c1c38230a92044b68fc9154c264335283da))
+* don't require webpack dependency at runtime ([#492](https://github.com/nuxt-community/sentry-module/issues/492)) ([db79dd0](https://github.com/nuxt-community/sentry-module/commit/db79dd032e929b7953d7bd621fccc24b9e364a5f))
+
 ### [7.0.2](https://github.com/nuxt-community/sentry-module/compare/v7.0.1...v7.0.2) (2023-01-09)
 
 
