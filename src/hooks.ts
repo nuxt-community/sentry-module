@@ -2,7 +2,6 @@ import { fileURLToPath } from 'url'
 import { resolve, posix } from 'path'
 import { defu } from 'defu'
 import type { Consola } from 'consola'
-// import { DefinePlugin } from 'webpack'
 import type { Nuxt } from '@nuxt/schema'
 import { addPluginTemplate, addTemplate, addWebpackPlugin } from '@nuxt/kit'
 import type { Configuration as WebpackConfig } from 'webpack'
@@ -47,12 +46,13 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   }
 
   // Tree shake debugging code if not running in dev mode and Sentry debug option is not enabled on the client.
-  // if (!clientOptions.dev && !clientOptions.config.debug) {
-  //   addWebpackPlugin(new DefinePlugin({
-  //     __SENTRY_DEBUG__: 'false',
-  //   }))
-  //   // TODO: Handle Vite
-  // }
+  if (!clientOptions.dev && !clientOptions.config.debug) {
+    const webpack = await import('webpack').then(m => m.default || m)
+    addWebpackPlugin(new webpack.DefinePlugin({
+      __SENTRY_DEBUG__: 'false',
+    }))
+    // TODO: Handle Vite
+  }
 }
 
 export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger: Consola): Promise<void> {

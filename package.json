@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/sentry",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Sentry module for Nuxt.js",
   "repository": "nuxt-community/sentry-module",
   "license": "MIT",
@@ -46,9 +46,9 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",
-    "@sentry/integrations": "^7.29.0",
-    "@sentry/node": "^7.29.0",
-    "@sentry/vue": "^7.29.0",
+    "@sentry/integrations": "^7.33.0",
+    "@sentry/node": "^7.33.0",
+    "@sentry/vue": "^7.33.0",
     "defu": "^6.1.1",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.1.0"
@@ -60,7 +60,7 @@
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^5.1.1",
-    "@sentry/tracing": "^7.29.0",
+    "@sentry/tracing": "^7.33.0",
     "@sentry/webpack-plugin": "^1.20.0",
     "@types/jest": "^29.2.5",
     "@types/lodash.mergewith": "^4.6.7",
