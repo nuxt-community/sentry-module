@@ -52,7 +52,7 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js` and set 
 
 See [Options](/sentry/options) for a list of available options.
 
-Note that the Sentry SDK dependencies (`@sentry/*`) are not pinned and can be updated independently from the module itself by running `npm upgrade @nuxtjs/sentry` or `yarn update @nuxtjs/sentry`. That means you don't have to wait for a new module release if you want to update to the latest SDK version.
+Note that the Sentry SDK dependencies (`@sentry/*`) are not pinned and can be updated independently from the module itself by running `npm upgrade @nuxtjs/sentry` or `yarn upgrade @nuxtjs/sentry`. That means you don't have to wait for a new module release if you want to update to the latest SDK version.
 
 <alert type="info">
 
