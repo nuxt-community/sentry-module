@@ -1,5 +1,14 @@
 
 
+### [7.0.4](https://github.com/nuxt-community/sentry-module/compare/v7.0.3...v7.0.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* apply runtime config last, after merging tracing options ([#499](https://github.com/nuxt-community/sentry-module/issues/499)) ([f434ec4](https://github.com/nuxt-community/sentry-module/commit/f434ec47868b5ad0511f16dc5b50cb4d7760e39c))
+* **deps:** update sentry dependencies to ^7.37.2 ([#493](https://github.com/nuxt-community/sentry-module/issues/493)) ([2306a9f](https://github.com/nuxt-community/sentry-module/commit/2306a9f67ebf10ba808e0abe755e78bf610d9e66))
+* **docs:** use correct yarn upgrade command ([#494](https://github.com/nuxt-community/sentry-module/issues/494)) ([9614795](https://github.com/nuxt-community/sentry-module/commit/9614795af3a5aa9730a2fbf4346f1eb0f7010059))
+
 ### [7.0.3](https://github.com/nuxt-community/sentry-module/compare/v7.0.2...v7.0.3) (2023-01-25)
 
 
