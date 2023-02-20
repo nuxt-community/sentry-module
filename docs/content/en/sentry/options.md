@@ -237,7 +237,7 @@ Note that the module sets the following defaults when publishing is enabled:
   }
   ```
 - Sentry by default also enables the following browser integrations: `InboundFilters`, `FunctionToString`, `TryCatch`, `Breadcrumbs`, `GlobalHandlers`, `LinkedErrors`, `Dedupe`, `HttpContext`.
-- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
+- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
 - To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
   ```js
