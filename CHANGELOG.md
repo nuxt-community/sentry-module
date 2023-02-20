@@ -1,5 +1,17 @@
 
 
+## [7.1.0](https://github.com/nuxt-community/sentry-module/compare/v7.0.4...v7.1.0) (2023-02-20)
+
+
+### Features
+
+* support HttpClient client integration ([#504](https://github.com/nuxt-community/sentry-module/issues/504)) ([24d4871](https://github.com/nuxt-community/sentry-module/commit/24d48719e3e2550941d2e664be25a4b5ace39c34))
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.38.0 ([#501](https://github.com/nuxt-community/sentry-module/issues/501)) ([4f8b727](https://github.com/nuxt-community/sentry-module/commit/4f8b727d108d0044c089d0098bcf77e22962e464))
+
 ### [7.0.4](https://github.com/nuxt-community/sentry-module/compare/v7.0.3...v7.0.4) (2023-02-17)
 
 
