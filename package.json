@@ -52,6 +52,7 @@
     }
   },
   "dependencies": {
+    "@nuxt/utils": "2.x",
     "@sentry/integrations": "^7.38.0",
     "@sentry/node": "^7.38.0",
     "@sentry/vue": "^7.38.0",
