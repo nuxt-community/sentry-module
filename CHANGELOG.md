@@ -1,5 +1,13 @@
 
 
+### [7.1.1](https://github.com/nuxt-community/sentry-module/compare/v7.1.0...v7.1.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.39.0 ([#509](https://github.com/nuxt-community/sentry-module/issues/509)) ([46324d7](https://github.com/nuxt-community/sentry-module/commit/46324d737736b14f0ecb9d17dc0574c0ec85864c))
+* Windows paths for custom client configuration files ([#510](https://github.com/nuxt-community/sentry-module/issues/510)) ([bdea5fd](https://github.com/nuxt-community/sentry-module/commit/bdea5fd8d42098a5bb03d84c9e00584b40d7e47d))
+
 ## [7.1.0](https://github.com/nuxt-community/sentry-module/compare/v7.0.4...v7.1.0) (2023-02-20)
 
 
