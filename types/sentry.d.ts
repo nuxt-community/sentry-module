@@ -10,6 +10,7 @@ import { NodeOptions, Handlers } from '@sentry/node'
 export interface SentryHandlerProxy {
     errorHandler: (error: any, req: IncomingMessage, res: ServerResponse, next: (error: any) => void) => void
     requestHandler: (req: IncomingMessage, res: ServerResponse, next: (error?: any) => void) => void
+    tracingHandler: (req: IncomingMessage, res: ServerResponse, next: (error?: any) => void) => void
 }
 
 export type IntegrationsConfiguration = Record<string, unknown>
