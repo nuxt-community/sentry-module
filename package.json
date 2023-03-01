@@ -53,9 +53,9 @@
   },
   "dependencies": {
     "@nuxt/utils": "2.x",
-    "@sentry/integrations": "^7.39.0",
-    "@sentry/node": "^7.39.0",
-    "@sentry/vue": "^7.39.0",
+    "@sentry/integrations": "^7.40.0",
+    "@sentry/node": "^7.40.0",
+    "@sentry/vue": "^7.40.0",
     "consola": "^2.15.3",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.1.1"
@@ -67,7 +67,7 @@
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^5.1.1",
-    "@sentry/tracing": "^7.39.0",
+    "@sentry/tracing": "^7.40.0",
     "@sentry/webpack-plugin": "^1.20.0",
     "@types/jest": "^29.4.0",
     "@types/lodash.mergewith": "^4.6.7",
