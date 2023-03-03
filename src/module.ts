@@ -104,9 +104,14 @@ export default defineNuxtModule<ModuleConfiguration>({
       const sentryHandlerProxy: SentryHandlerProxy = {
         errorHandler: (error, req, res, next) => { next(error) },
         requestHandler: (req, res, next) => { next() },
+        tracingHandler: (req, res, next) => { next() },
       }
       // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.requestHandler(req, res, next) }))
+      if (options.tracing) {
+        // @ts-expect-error Nuxt 2 only hook
+        nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.tracingHandler(req, res, next) }))
+      }
       // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:errorMiddleware', app => app.use((error, req, res, next) => { sentryHandlerProxy.errorHandler(error, req, res, next) }))
       // @ts-expect-error Nuxt 2 only hook

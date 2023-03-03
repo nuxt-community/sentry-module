@@ -152,6 +152,9 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
     Sentry.init(config)
     sentryHandlerProxy.errorHandler = Sentry.Handlers.errorHandler()
     sentryHandlerProxy.requestHandler = Sentry.Handlers.requestHandler(moduleOptions.requestHandlerConfig)
+    if (serverOptions.tracing) {
+      sentryHandlerProxy.tracingHandler = Sentry.Handlers.tracingHandler()
+    }
   }
 
   process.sentry = Sentry
