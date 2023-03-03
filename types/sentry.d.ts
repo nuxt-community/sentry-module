@@ -3,9 +3,11 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { Configuration as WebpackOptions } from 'webpack'
 import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions } from '@sentry/types'
+import * as PluggableIntegrations from '@sentry/integrations'
+import type { Integrations as BrowserIntegrations } from '@sentry/vue'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
-import { NodeOptions, Handlers } from '@sentry/node'
+import { Integrations as ServerIntegrations, NodeOptions, Handlers } from '@sentry/node'
 
 export interface SentryHandlerProxy {
     errorHandler: (error: any, req: IncomingMessage, res: ServerResponse, next: (error: any) => void) => void
@@ -13,7 +15,7 @@ export interface SentryHandlerProxy {
     tracingHandler: (req: IncomingMessage, res: ServerResponse, next: (error?: any) => void) => void
 }
 
-export type IntegrationsConfiguration = Record<string, unknown>
+export type Integrations<T = Record<string, unknown>> = Partial<Record<keyof T, unknown>>
 
 export interface LazyConfiguration {
     chunkName?: string
@@ -31,7 +33,7 @@ export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleR
 
 export interface ModuleConfiguration {
   clientConfig: Partial<SentryVueOptions> | string
-  clientIntegrations: IntegrationsConfiguration
+  clientIntegrations: Integrations<typeof BrowserIntegrations & typeof PluggableIntegrations>
   config: SentryOptions
   customClientIntegrations: string
   customServerIntegrations: string
@@ -49,7 +51,7 @@ export interface ModuleConfiguration {
   publishRelease: boolean | SentryCliPluginOptions
   runtimeConfigKey: string
   serverConfig: NodeOptions | string
-  serverIntegrations: IntegrationsConfiguration
+  serverIntegrations: Integrations<typeof ServerIntegrations & typeof PluggableIntegrations>
   sourceMapStyle: WebpackOptions['devtool']
   requestHandlerConfig: Handlers.RequestHandlerOptions
 }

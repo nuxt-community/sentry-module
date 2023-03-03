@@ -1,5 +1,5 @@
 {
-  "extends": "../playground/.nuxt/tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "types": [
       "@types/jest"

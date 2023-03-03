@@ -2,31 +2,45 @@ import type { Consola } from 'consola'
 import { defu } from 'defu'
 import { relative } from 'pathe'
 import { Integrations as ServerIntegrations } from '@sentry/node'
-import * as ServerPluggableIntegrations from '@sentry/integrations'
+import * as PluggableIntegrations from '@sentry/integrations'
 import type { Options } from '@sentry/types'
 import type { Nuxt } from '@nuxt/schema'
 import { resolveAlias } from '@nuxt/kit'
 import type { NuxtOptions } from '@nuxt/types'
-import type { IntegrationsConfiguration, LazyConfiguration, TracingConfiguration } from '../types/sentry'
+import type { Integrations, LazyConfiguration, TracingConfiguration } from '../types/sentry'
 import type { ModuleConfiguration } from '../types'
 import { canInitialize } from './utils'
 
 // Enabled by default in Vue - https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/default/
 export const BROWSER_INTEGRATIONS = ['Breadcrumbs', 'Dedupe', 'FunctionToString', 'GlobalHandlers', 'HttpContext', 'InboundFilters', 'LinkedErrors', 'TryCatch']
 // Optional in Vue - https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/plugin/
-export const BROWSER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'ExtraErrorData', 'HttpClient', 'ReportingObserver', 'RewriteFrames']
+export const BROWSER_PLUGGABLE_INTEGRATIONS: Array<keyof typeof PluggableIntegrations> = ['CaptureConsole', 'Debug', 'ExtraErrorData', 'HttpClient', 'ReportingObserver', 'RewriteFrames']
 // Enabled by default in Node.js - https://docs.sentry.io/platforms/node/configuration/integrations/default-integrations/
-const SERVER_INTEGRATIONS = ['Console', 'ContextLines', 'FunctionToString', 'Http', 'InboundFilters', 'LinkedErrors', 'LocalVariables', 'Modules', 'OnUncaughtException', 'OnUnhandledRejection', 'RequestData']
+const SERVER_INTEGRATIONS: Array<keyof typeof ServerIntegrations> = ['Console', 'ContextLines', 'FunctionToString', 'Http', 'InboundFilters', 'LinkedErrors', 'LocalVariables', 'Modules', 'OnUncaughtException', 'OnUnhandledRejection', 'RequestData']
 // Optional in Node.js - https://docs.sentry.io/platforms/node/configuration/integrations/pluggable-integrations/
-const SERVER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']
+const SERVER_PLUGGABLE_INTEGRATIONS: Array<keyof typeof PluggableIntegrations> = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']
 
-const filterDisabledIntegrations = (integrations: IntegrationsConfiguration): string[] => Object.keys(integrations).filter(key => integrations[key])
+function filterDisabledIntegrations<T extends Integrations> (integrations: T): Array<keyof T> {
+  return getIntegrationsKeys(integrations).filter(key => integrations[key])
+}
+
+function getIntegrationsKeys<T extends Integrations> (integrations: T): Array<keyof T> {
+  return Object.keys(integrations)
+}
 
 async function getApiMethods (packageName: string): Promise<string[]> {
   const packageApi = await import(packageName)
 
   const apiMethods: string[] = []
   for (const key in packageApi) {
+    if (key === 'default') {
+      for (const subKey in packageApi[key]) {
+        if (typeof packageApi[key][subKey] === 'function') {
+          apiMethods.push(subKey)
+        }
+      }
+      continue
+    }
     if (typeof packageApi[key] === 'function') {
       apiMethods.push(key)
     }
@@ -140,7 +154,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   resolveLazyOptions(options, apiMethods, logger)
   resolveTracingOptions(options, config)
 
-  for (const name of Object.keys(options.clientIntegrations)) {
+  for (const name of getIntegrationsKeys(options.clientIntegrations)) {
     if (![...BROWSER_INTEGRATIONS, ...BROWSER_PLUGGABLE_INTEGRATIONS].includes(name)) {
       logger.warn(`Sentry clientIntegration "${name}" is not recognized and will be ignored.`)
       delete options.clientIntegrations[name]
@@ -191,7 +205,7 @@ export type ResolvedServerOptions = {
 export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<ResolvedServerOptions> {
   const options = moduleOptions
 
-  for (const name of Object.keys(options.serverIntegrations)) {
+  for (const name of getIntegrationsKeys(options.serverIntegrations)) {
     if (![...SERVER_INTEGRATIONS, ...SERVER_PLUGGABLE_INTEGRATIONS].includes(name)) {
       logger.warn(`Sentry serverIntegration "${name}" is not recognized and will be ignored.`)
       delete options.serverIntegrations[name]
@@ -223,7 +237,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
             } else {
               // TODO Fix this type
               // eslint-disable-next-line import/namespace
-              return Object.keys(opt as Record<string, unknown>).length ? new ServerPluggableIntegrations[name](opt) : new ServerPluggableIntegrations[name]()
+              return Object.keys(opt as Record<string, unknown>).length ? new PluggableIntegrations[name](opt) : new PluggableIntegrations[name]()
             }
           } catch (error) {
             throw new Error(`Failed initializing server integration "${name}".\n${error}`)
@@ -243,14 +257,14 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     }
   }
 
-  options.config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
+  const config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
 
   const apiMethods = await getApiMethods('@sentry/node')
   resolveLazyOptions(options, apiMethods, logger)
   resolveTracingOptions(options, options.config)
 
   return {
-    config: options.config,
+    config,
     apiMethods,
     lazy: options.lazy,
     logMockCalls: options.logMockCalls, // for mocked only
