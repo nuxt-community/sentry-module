@@ -1,10 +1,11 @@
+/* eslint-disable import/order */
 import Vue from 'vue'
 import merge from '~lodash.mergewith'
 import * as Sentry from '~@sentry/vue'
 <% if (options.tracing) { %>import { BrowserTracing } from '~@sentry/tracing'<% } %>
 <%
 if (options.initialize) {
-  let integrations = options.PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
+  let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
   if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
 <%}
   if (options.clientConfigPath) {%>import getClientConfig from '<%= options.clientConfigPath %>'
@@ -30,11 +31,6 @@ export default async function (ctx, inject) {
         return `${key}:${value}`
       })
       .join(',\n    ') %>,
-  }
-
-  const runtimeConfigKey = <%= serialize(options.runtimeConfigKey) %>
-  if (ctx.$config && runtimeConfigKey && ctx.$config[runtimeConfigKey]) {
-    merge(config, ctx.$config[runtimeConfigKey].config, ctx.$config[runtimeConfigKey].clientConfig)
   }
 
   config.integrations = [
@@ -76,6 +72,12 @@ export default async function (ctx, inject) {
     console.error(`[@nuxtjs/sentry] Invalid value returned from customClientIntegrations plugin. Expected an array, got "${typeof customIntegrations}".`)
   }
   <% } %>
+
+  const runtimeConfigKey = <%= serialize(options.runtimeConfigKey) %>
+  if (ctx.$config && runtimeConfigKey && ctx.$config[runtimeConfigKey]) {
+    merge(config, ctx.$config[runtimeConfigKey].config, ctx.$config[runtimeConfigKey].clientConfig)
+  }
+
   /* eslint-enable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
   Sentry.init(config)
   <% } %>

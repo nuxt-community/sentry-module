@@ -1,5 +1,51 @@
 
 
+### [7.1.2](https://github.com/nuxt-community/sentry-module/compare/v7.1.1...v7.1.2) (2023-03-03)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.40.0 ([#515](https://github.com/nuxt-community/sentry-module/issues/515)) ([ce402a4](https://github.com/nuxt-community/sentry-module/commit/ce402a4a3a20758cea5f11b0122b0c86c8e38fdd))
+* **tracing:** automatically instrument server-side requests ([#514](https://github.com/nuxt-community/sentry-module/issues/514)) ([1d96f8b](https://github.com/nuxt-community/sentry-module/commit/1d96f8bb5c85d3c3247b518c97910cf32a8a268b))
+* update list of allowed integrations and allow configuring them ([#513](https://github.com/nuxt-community/sentry-module/issues/513)) ([7933761](https://github.com/nuxt-community/sentry-module/commit/793376171fd00925eb8b09a4cd6d22609513e58d))
+
+### [7.1.1](https://github.com/nuxt-community/sentry-module/compare/v7.1.0...v7.1.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.39.0 ([#509](https://github.com/nuxt-community/sentry-module/issues/509)) ([46324d7](https://github.com/nuxt-community/sentry-module/commit/46324d737736b14f0ecb9d17dc0574c0ec85864c))
+* Windows paths for custom client configuration files ([#510](https://github.com/nuxt-community/sentry-module/issues/510)) ([bdea5fd](https://github.com/nuxt-community/sentry-module/commit/bdea5fd8d42098a5bb03d84c9e00584b40d7e47d))
+
+## [7.1.0](https://github.com/nuxt-community/sentry-module/compare/v7.0.4...v7.1.0) (2023-02-20)
+
+
+### Features
+
+* support HttpClient client integration ([#504](https://github.com/nuxt-community/sentry-module/issues/504)) ([24d4871](https://github.com/nuxt-community/sentry-module/commit/24d48719e3e2550941d2e664be25a4b5ace39c34))
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.38.0 ([#501](https://github.com/nuxt-community/sentry-module/issues/501)) ([4f8b727](https://github.com/nuxt-community/sentry-module/commit/4f8b727d108d0044c089d0098bcf77e22962e464))
+
+### [7.0.4](https://github.com/nuxt-community/sentry-module/compare/v7.0.3...v7.0.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* apply runtime config last, after merging tracing options ([#499](https://github.com/nuxt-community/sentry-module/issues/499)) ([f434ec4](https://github.com/nuxt-community/sentry-module/commit/f434ec47868b5ad0511f16dc5b50cb4d7760e39c))
+* **deps:** update sentry dependencies to ^7.37.2 ([#493](https://github.com/nuxt-community/sentry-module/issues/493)) ([2306a9f](https://github.com/nuxt-community/sentry-module/commit/2306a9f67ebf10ba808e0abe755e78bf610d9e66))
+* **docs:** use correct yarn upgrade command ([#494](https://github.com/nuxt-community/sentry-module/issues/494)) ([9614795](https://github.com/nuxt-community/sentry-module/commit/9614795af3a5aa9730a2fbf4346f1eb0f7010059))
+
+### [7.0.3](https://github.com/nuxt-community/sentry-module/compare/v7.0.2...v7.0.3) (2023-01-25)
+
+
+### Bug Fixes
+
+* **deps:** update sentry dependencies to ^7.33.0 ([#487](https://github.com/nuxt-community/sentry-module/issues/487)) ([23fc7c1](https://github.com/nuxt-community/sentry-module/commit/23fc7c1c38230a92044b68fc9154c264335283da))
+* don't require webpack dependency at runtime ([#492](https://github.com/nuxt-community/sentry-module/issues/492)) ([db79dd0](https://github.com/nuxt-community/sentry-module/commit/db79dd032e929b7953d7bd621fccc24b9e364a5f))
+
 ### [7.0.2](https://github.com/nuxt-community/sentry-module/compare/v7.0.1...v7.0.2) (2023-01-09)
 
 

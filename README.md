@@ -10,6 +10,15 @@
 
 - [✨ &nbsp;Release Notes](https://sentry.nuxtjs.org/releases)
 - [📖 &nbsp;Documentation](https://sentry.nuxtjs.org)
+
+## Contributing
+
+1. Install dependencies with `yarn`.
+2. Run `yarn dev:prepare` to generate stubbed `dist` directory.
+3. Make your changes.
+4. Run `yarn lint` and `yarn test` to verify that there is no issues (consider adding new test for your changes).
+5. Submit a PR.
+
 ## License
 
 [MIT License](./LICENSE)

@@ -5,8 +5,8 @@ import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { captureException, withScope } from '@sentry/node'
 import type { ModuleConfiguration, SentryHandlerProxy } from '../types'
 import type { DeepPartialModuleConfiguration } from '../types/sentry'
-import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './core/utils'
-import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './core/hooks'
+import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './utils'
+import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './hooks'
 
 export type ModuleOptions = DeepPartialModuleConfiguration
 export type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
@@ -37,11 +37,9 @@ export default defineNuxtModule<ModuleConfiguration>({
     sourceMapStyle: 'source-map',
     tracing: false,
     clientIntegrations: {
-      Dedupe: {},
       ExtraErrorData: {},
       ReportingObserver: {},
       RewriteFrames: {},
-      Vue: { attachProps: true, logErrors: nuxt.options.dev },
     },
     serverIntegrations: {
       Dedupe: {},
@@ -106,9 +104,14 @@ export default defineNuxtModule<ModuleConfiguration>({
       const sentryHandlerProxy: SentryHandlerProxy = {
         errorHandler: (error, req, res, next) => { next(error) },
         requestHandler: (req, res, next) => { next() },
+        tracingHandler: (req, res, next) => { next() },
       }
       // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.requestHandler(req, res, next) }))
+      if (options.tracing) {
+        // @ts-expect-error Nuxt 2 only hook
+        nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.tracingHandler(req, res, next) }))
+      }
       // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:errorMiddleware', app => app.use((error, req, res, next) => { sentryHandlerProxy.errorHandler(error, req, res, next) }))
       // @ts-expect-error Nuxt 2 only hook
@@ -146,7 +149,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     nuxt.hook('build:before', () => buildHook(nuxt, options, logger))
 
     // Enable publishing of sourcemaps
-    if (options.publishRelease && !options.disabled) {
+    if (options.publishRelease && !options.disabled && !nuxt.options.dev) {
       if (isNuxt2()) {
         nuxt.hook('webpack:config', webpackConfigs => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
       }

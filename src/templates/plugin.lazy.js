@@ -82,7 +82,7 @@ async function attemptLoadSentry (ctx, inject) {
 
   if (!window.<%= globals.nuxt %>) {
     <% if (options.dev) { %>
-    console.warn(`$sentryLoad was called but window.<%= globals.nuxt %> is not available, delaying sentry loading until onNuxtReady callback. Do you really need to use lazy loading for Sentry?`)
+    console.warn('$sentryLoad was called but window.<%= globals.nuxt %> is not available, delaying sentry loading until onNuxtReady callback. Do you really need to use lazy loading for Sentry?')
     <% } %>
     <% if (options.lazy.injectLoadHook) { %>
     window.<%= globals.readyCallback %>(() => loadSentry(ctx, inject))
@@ -113,7 +113,7 @@ async function loadSentry (ctx, inject) {
   <% if (options.tracing) { %>const { BrowserTracing } = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/tracing')<% } %>
   <%
   if (options.initialize) {
-    let integrations = options.PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
+    let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
     if (integrations.length) {%>const { <%= integrations.join(', ') %> } = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/integrations')
 <%  }
     integrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
