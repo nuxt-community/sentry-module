@@ -26,10 +26,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: yarn
       - name: yarn install
-        run: yarn && yarn dev:prepare && cd test && yarn
-      - name: Unittesting Nuxt 2
-        run: cd test && yarn && yarn test
-      - name: Unittesting Nuxt 3
+        run: yarn
+      - name: Unittesting
         run: yarn test
       - name: Linting
         if: ${{ matrix.node-version == '16.x' }}
