@@ -1,4 +1,4 @@
-const SentryModule = require('../../..')
+import SentryModule from '../../..'
 
 /** @type {import('@nuxt/types').NuxtConfig} */
 const config = {
