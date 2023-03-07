@@ -5,14 +5,14 @@ import * as PluggableIntegrations from '@sentry/integrations'
 import { Integrations as BrowserIntegrations } from '@sentry/vue'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
-import { Integrations as ServerIntegrations, NodeOptions, Handlers } from '@sentry/node'
+import { Integrations as NodeIntegrations, NodeOptions, Handlers } from '@sentry/node'
 
 type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<unknown>>> = Partial<{
     [K in keyof T]: ConstructorParameters<T[K]>[0] | Record<string, never>
 }>
 
 type ClientIntegrations = IntegrationsConfig<typeof BrowserIntegrations & typeof PluggableIntegrations>
-type ServerIntegrations = IntegrationsConfig<typeof ServerIntegrations & typeof PluggableIntegrations>
+type ServerIntegrations = IntegrationsConfig<typeof NodeIntegrations & typeof PluggableIntegrations>
 type AllIntegrations = ClientIntegrations | ServerIntegrations
 
 export interface LazyConfiguration {
