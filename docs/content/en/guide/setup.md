@@ -54,12 +54,6 @@ See [Options](/sentry/options) for a list of available options.
 
 Note that the Sentry SDK dependencies (`@sentry/*`) are not pinned and can be updated independently from the module itself by running `npm upgrade @nuxtjs/sentry` or `yarn upgrade @nuxtjs/sentry`. That means you don't have to wait for a new module release if you want to update to the latest SDK version.
 
-<alert type="info">
-
-  For Typescript or type-checked JavaScript projects, you might have to install the `@sentry/tracing` package even when not using the tracing functionality. In that case, the package can be installed as a dev-only dependency.
-
-</alert>
-
 ## Types
 
 In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `types` array in `tsconfig.json` to enable module types.
@@ -73,3 +67,11 @@ In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `
   }
 }
 ```
+
+<alert type="info">
+
+  The otherwise optional packages `@sentry/tracing` and `@sentry/webpack-plugin` have to be installed for types to be fully working.
+
+  If not using the relevant functionality (`tracing` and `publishRelease` options are not enabled) then those packages can be installed as dev-only dependencies.
+
+</alert>
