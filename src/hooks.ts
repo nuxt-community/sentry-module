@@ -8,9 +8,10 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import type { Options } from '@sentry/types'
 import * as Sentry from '@sentry/node'
-import type { ModuleConfiguration, SentryHandlerProxy } from '../types'
+import type { ModuleConfiguration } from '../types'
 import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
 import { resolveRelease, ResolvedClientOptions, resolveClientOptions, ResolvedServerOptions, resolveServerOptions } from './options'
+import type { SentryHandlerProxy } from './options'
 
 const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.mjs'
 
@@ -153,6 +154,8 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
     sentryHandlerProxy.errorHandler = Sentry.Handlers.errorHandler()
     sentryHandlerProxy.requestHandler = Sentry.Handlers.requestHandler(moduleOptions.requestHandlerConfig)
     if (serverOptions.tracing) {
+      // Triggers initialization of the tracing integration as a side effect.
+      await import('@sentry/tracing')
       sentryHandlerProxy.tracingHandler = Sentry.Handlers.tracingHandler()
     }
   }

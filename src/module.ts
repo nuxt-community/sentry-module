@@ -3,10 +3,11 @@ import { resolvePath } from 'mlly'
 import { defineNuxtModule, useLogger, isNuxt2 } from '@nuxt/kit'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { captureException, withScope } from '@sentry/node'
-import type { ModuleConfiguration, SentryHandlerProxy } from '../types'
+import type { ModuleConfiguration } from '../types'
 import type { DeepPartialModuleConfiguration } from '../types/sentry'
 import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './utils'
 import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './hooks'
+import type { SentryHandlerProxy } from './options'
 
 export type ModuleOptions = DeepPartialModuleConfiguration
 export type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
@@ -102,9 +103,9 @@ export default defineNuxtModule<ModuleConfiguration>({
        * initialized already during handler creation.
        */
       const sentryHandlerProxy: SentryHandlerProxy = {
-        errorHandler: (error, req, res, next) => { next(error) },
-        requestHandler: (req, res, next) => { next() },
-        tracingHandler: (req, res, next) => { next() },
+        errorHandler: (error, _, __, next) => { next(error) },
+        requestHandler: (_, __, next) => { next() },
+        tracingHandler: (_, __, next) => { next() },
       }
       // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.requestHandler(req, res, next) }))
