@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Configuration as WebpackOptions } from 'webpack'
 import { BrowserTracing } from '@sentry/tracing'
 import { Options as SentryOptions, IntegrationClass } from '@sentry/types'
 import * as PluggableIntegrations from '@sentry/integrations'
-import type { Integrations as BrowserIntegrations } from '@sentry/vue'
+import { Integrations as BrowserIntegrations } from '@sentry/vue'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Integrations as ServerIntegrations, NodeOptions, Handlers } from '@sentry/node'
 
-type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<any>>> = Partial<{
+type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<unknown>>> = Partial<{
     [K in keyof T]: ConstructorParameters<T[K]>[0] | Record<string, never>
 }>
 
