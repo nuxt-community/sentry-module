@@ -268,6 +268,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     apiMethods,
     lazy: options.lazy,
     logMockCalls: options.logMockCalls, // for mocked only
+    tracing: options.tracing,
   }
 }
 
