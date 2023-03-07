@@ -1,5 +1,7 @@
 
 
+### [7.1.4](https://github.com/nuxt-community/sentry-module/compare/v7.1.3...v7.1.4) (2023-03-07)
+
 ### [7.1.3](https://github.com/nuxt-community/sentry-module/compare/v7.1.2...v7.1.3) (2023-03-07)
 
 
