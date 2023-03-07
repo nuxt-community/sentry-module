@@ -178,7 +178,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   resolveTracingOptions(options, config)
 
   for (const name of getIntegrationsKeys(options.clientIntegrations)) {
-    if (!isBrowserDefaultIntegration(name) && !(isBrowserPluggableIntegration(name))) {
+    if (!isBrowserDefaultIntegration(name) && !isBrowserPluggableIntegration(name)) {
       logger.warn(`Sentry clientIntegration "${name}" is not recognized and will be ignored.`)
       delete options.clientIntegrations[name]
     }
