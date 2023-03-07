@@ -8,9 +8,10 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import type { Options } from '@sentry/types'
 import * as Sentry from '@sentry/node'
-import type { ModuleConfiguration, SentryHandlerProxy } from '../types'
+import type { ModuleConfiguration } from '../types'
 import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
 import { resolveRelease, ResolvedClientOptions, resolveClientOptions, ResolvedServerOptions, resolveServerOptions } from './options'
+import type { SentryHandlerProxy } from './options'
 
 const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.mjs'
 

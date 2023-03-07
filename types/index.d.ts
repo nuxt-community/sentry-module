@@ -1,9 +1,9 @@
 import { Module } from '@nuxt/types'
-import { ModuleConfiguration, SentryHandlerProxy } from './sentry'
+import { ModuleConfiguration } from './sentry'
 import './extend'
 import './node'
 
 type SentryModule = Module<ModuleConfiguration>
 
-export { ModuleConfiguration, SentryHandlerProxy }
+export { ModuleConfiguration }
 export default SentryModule

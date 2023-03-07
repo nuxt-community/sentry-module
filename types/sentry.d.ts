@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IncomingMessage, ServerResponse } from 'http'
 import { Configuration as WebpackOptions } from 'webpack'
 import { BrowserTracing } from '@sentry/tracing'
-import { Options as SentryOptions } from '@sentry/types'
+import { Options as SentryOptions, IntegrationClass } from '@sentry/types'
 import * as PluggableIntegrations from '@sentry/integrations'
 import type { Integrations as BrowserIntegrations } from '@sentry/vue'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Integrations as ServerIntegrations, NodeOptions, Handlers } from '@sentry/node'
 
-export interface SentryHandlerProxy {
-    errorHandler: (error: any, req: IncomingMessage, res: ServerResponse, next: (error: any) => void) => void
-    requestHandler: (req: IncomingMessage, res: ServerResponse, next: (error?: any) => void) => void
-    tracingHandler: (req: IncomingMessage, res: ServerResponse, next: (error?: any) => void) => void
-}
+type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<any>>> = Partial<{
+    [K in keyof T]: ConstructorParameters<T[K]>[0] | Record<string, never>
+}>
 
-export type Integrations<T = Record<string, unknown>> = Partial<Record<keyof T, unknown>>
+type ClientIntegrations = IntegrationsConfig<typeof BrowserIntegrations & typeof PluggableIntegrations>
+type ServerIntegrations = IntegrationsConfig<typeof ServerIntegrations & typeof PluggableIntegrations>
+type AllIntegrations = ClientIntegrations | ServerIntegrations
 
 export interface LazyConfiguration {
     chunkName?: string
@@ -33,7 +32,7 @@ export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleR
 
 export interface ModuleConfiguration {
   clientConfig: Partial<SentryVueOptions> | string
-  clientIntegrations: Integrations<typeof BrowserIntegrations & typeof PluggableIntegrations>
+  clientIntegrations: ClientIntegrations
   config: SentryOptions
   customClientIntegrations: string
   customServerIntegrations: string
@@ -51,7 +50,7 @@ export interface ModuleConfiguration {
   publishRelease: boolean | SentryCliPluginOptions
   runtimeConfigKey: string
   serverConfig: NodeOptions | string
-  serverIntegrations: Integrations<typeof ServerIntegrations & typeof PluggableIntegrations>
+  serverIntegrations: ServerIntegrations
   sourceMapStyle: WebpackOptions['devtool']
   requestHandlerConfig: Handlers.RequestHandlerOptions
 }
