@@ -21,6 +21,10 @@ declare module '@nuxt/types' {
     $sentryReady(): Promise<typeof SentryTypes>
   }
 
+  interface NuxtOptions {
+    sentry?: DeepPartialModuleConfiguration
+  }
+
   interface NuxtAppOptions {
     readonly $sentry: typeof SentryTypes
     $sentryLoad(): Promise<void>
