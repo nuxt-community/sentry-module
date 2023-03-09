@@ -15,7 +15,6 @@
     "target": "ES2022",
     "types": [
       "@types/jest",
-      "./types",
     ],
   },
   "include": [

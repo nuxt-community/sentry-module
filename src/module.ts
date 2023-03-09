@@ -3,15 +3,10 @@ import { resolvePath } from 'mlly'
 import { defineNuxtModule, useLogger, isNuxt2 } from '@nuxt/kit'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { captureException, withScope } from '@sentry/node'
-import type { ModuleConfiguration } from '../types'
-import type { DeepPartialModuleConfiguration } from '../types/sentry'
 import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './utils'
 import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './hooks'
 import type { SentryHandlerProxy } from './options'
-
-export type ModuleOptions = DeepPartialModuleConfiguration
-export type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
-export type ModulePrivateRuntimeConfig = DeepPartialModuleConfiguration
+import type { ModuleConfiguration } from './types'
 
 const logger = useLogger('nuxt:sentry')
 
@@ -156,4 +151,4 @@ export default defineNuxtModule<ModuleConfiguration>({
       }
     }
   },
-})
+}) as unknown /* casting to "any" prevents "@nuxt/schema" being referenced in the resulting type definitions */

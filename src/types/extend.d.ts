@@ -1,7 +1,8 @@
 import 'vue'
 import 'vuex'
+import '@nuxt/types'
 import * as SentryTypes from '@sentry/core'
-import { DeepPartialModuleConfiguration } from './sentry'
+import { DeepPartialModuleConfiguration } from './configuration'
 
 // add type to Vue context
 declare module 'vue/types/vue' {
