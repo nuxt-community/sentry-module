@@ -9,11 +9,6 @@ export default defineBuildConfig({
       ext: 'js',
       declaration: false,
     },
-    {
-      builder: 'mkdist',
-      input: './src/types/',
-      outDir: './dist/types',
-    },
   ],
   externals: [
     '@nuxt/types',
