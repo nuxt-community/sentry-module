@@ -52,7 +52,6 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
     addWebpackPlugin(new webpack.DefinePlugin({
       __SENTRY_DEBUG__: 'false',
     }))
-    // TODO: Handle Vite
   }
 }
 
@@ -69,11 +68,7 @@ export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConf
 
   if (!publishRelease.urlPrefix) {
     // Set urlPrefix to match resources on the client. That's not technically correct for the server source maps, but it is what it is for now.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     if (typeof (nuxtOptions.router.base) === 'string' && typeof (nuxtOptions.build.publicPath) === 'string') {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       const publicPath = posix.join(nuxtOptions.router.base, nuxtOptions.build.publicPath)
       publishRelease.urlPrefix = publicPath.startsWith('/') ? `~${publicPath}` : publicPath
     }
@@ -166,8 +161,7 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
 export async function shutdownServerSentry (): Promise<void> {
   if (process.sentry) {
     await process.sentry.close()
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error not mutable in types
     process.sentry = undefined
   }
 }

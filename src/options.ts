@@ -297,8 +297,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
 }
 
 function getRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<ModuleConfiguration['config']> | undefined {
-  // TODO Fix for nuxt 3
-  const { publicRuntimeConfig } = nuxt.options as unknown as NuxtOptions
+  const { publicRuntimeConfig } = nuxt.options
   const { runtimeConfigKey } = options
   if (publicRuntimeConfig && typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
     return defu(publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>, publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>)
