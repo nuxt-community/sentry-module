@@ -23,6 +23,7 @@
     }
   },
   "main": "./dist/module.cjs",
+  "types": "./dist/module.d.ts",
   "files": [
     "dist"
   ],
