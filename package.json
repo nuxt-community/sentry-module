@@ -45,24 +45,25 @@
     "coverage": "codecov"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.2.3",
     "@sentry/integrations": "^7.41.0",
     "@sentry/node": "^7.41.0",
     "@sentry/vue": "^7.41.0",
     "defu": "^6.1.2",
+    "hash-sum": "^2.0.0",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.1.1",
-    "pathe": "^1.1.0"
+    "pathe": "^1.1.0",
+    "unctx": "^2.1.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.2.3",
     "@nuxt/types": "^2.16.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/module-test-utils": "^1.6.3",
     "@release-it/conventional-changelog": "^5.1.1",
     "@sentry/tracing": "^7.41.0",
     "@sentry/webpack-plugin": "^1.20.0",
+    "@types/hash-sum": "^1.0.0",
     "@types/jest": "^29.4.0",
     "@types/lodash.mergewith": "^4.6.7",
     "@types/node": "^16.18.14",
@@ -70,6 +71,7 @@
     "consola": "^2.15.3",
     "eslint": "^8.35.0",
     "eslint-plugin-jest": "^27.2.1",
+    "hookable": "^5.5.1",
     "jest": "^29.4.3",
     "nuxt": "^2.16.2",
     "playwright-chromium": "^1.31.1",

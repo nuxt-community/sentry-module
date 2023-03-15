@@ -1,12 +1,15 @@
 import { defu } from 'defu'
 import { resolvePath } from 'mlly'
-import { defineNuxtModule, useLogger, isNuxt2 } from '@nuxt/kit'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { captureException, withScope } from '@sentry/node'
+import type { Configuration as WebpackConfig } from 'webpack'
+import { defineNuxtModule, isNuxt2, useLogger } from './kit-shim'
 import { envToBool, boolToText, callOnce, canInitialize, clientSentryEnabled, serverSentryEnabled } from './utils'
 import { buildHook, initializeServerSentry, shutdownServerSentry, webpackConfigHook } from './hooks'
 import type { SentryHandlerProxy } from './options'
-import type { ModuleConfiguration } from './types'
+import type { ModuleConfiguration, ModuleOptions, ModulePublicRuntimeConfig } from './types'
+
+export type { ModuleOptions, ModulePublicRuntimeConfig }
 
 const logger = useLogger('nuxt:sentry')
 
@@ -14,9 +17,6 @@ export default defineNuxtModule<ModuleConfiguration>({
   meta: {
     name: '@nuxtjs/sentry',
     configKey: 'sentry',
-    compatibility: {
-      nuxt: '^2.15.8',
-    },
   },
   defaults: nuxt => ({
     lazy: false,
@@ -133,10 +133,8 @@ export default defineNuxtModule<ModuleConfiguration>({
       // the build is started (if building).
       if (isNuxt2()) {
         const initHook = nuxt.options._build ? 'build:compile' : 'ready'
-        // @ts-expect-error Nuxt 2 only hooks
         nuxt.hook(initHook, () => initializeServerSentry(nuxt, options, sentryHandlerProxy, logger))
         const shutdownServerSentryOnce = callOnce(() => shutdownServerSentry())
-        // @ts-expect-error Nuxt 2 only hook
         nuxt.hook('generate:done', shutdownServerSentryOnce)
         nuxt.hook('close', shutdownServerSentryOnce)
       }
@@ -147,8 +145,8 @@ export default defineNuxtModule<ModuleConfiguration>({
     // Enable publishing of sourcemaps
     if (options.publishRelease && !options.disabled && !nuxt.options.dev) {
       if (isNuxt2()) {
-        nuxt.hook('webpack:config', webpackConfigs => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
+        nuxt.hook('webpack:config', (webpackConfigs: WebpackConfig[]) => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
       }
     }
   },
-}) as unknown /* casting to "any" prevents "@nuxt/schema" being referenced in the resulting type definitions */
+}) as unknown /* casting to "unkown" prevents unnecessary types being exposed in the generated type definitions */

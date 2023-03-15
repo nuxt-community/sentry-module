@@ -1,9 +1,7 @@
 import { DeepPartialModuleConfiguration, ModuleConfiguration } from './configuration'
-import './extend'
+import { ModulePublicRuntimeConfig } from './extend'
 import './node'
 
 type ModuleOptions = DeepPartialModuleConfiguration
-type ModulePublicRuntimeConfig = DeepPartialModuleConfiguration
-type ModulePrivateRuntimeConfig = DeepPartialModuleConfiguration
 
-export { ModuleOptions, ModulePublicRuntimeConfig, ModulePrivateRuntimeConfig, DeepPartialModuleConfiguration, ModuleConfiguration }
+export { ModuleOptions, ModulePublicRuntimeConfig, ModuleConfiguration }
