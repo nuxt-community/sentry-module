@@ -149,4 +149,4 @@ export default defineNuxtModule<ModuleConfiguration>({
       }
     }
   },
-}) as unknown /* casting to "unkown" prevents unnecessary types being exposed in the generated type definitions */
+}) as unknown /* casting to "unknown" prevents unnecessary types being exposed in the generated type definitions */
