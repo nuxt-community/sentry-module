@@ -3,8 +3,8 @@ import { dirname } from 'path'
 import type { Browser } from 'playwright-chromium'
 import sentryTestkit from 'sentry-testkit'
 import { setup, loadConfig, url } from '@nuxtjs/module-test-utils'
+import type { Nuxt } from '../src/kit-shim'
 import { $$, createBrowser } from './utils'
-import type { Nuxt } from '@nuxtjs/sentry'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
