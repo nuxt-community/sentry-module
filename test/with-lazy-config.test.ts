@@ -1,9 +1,9 @@
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
-import type { Nuxt } from '@nuxt/schema'
 import type { Browser } from 'playwright-chromium'
 import sentryTestkit from 'sentry-testkit'
 import { setup, loadConfig, url } from '@nuxtjs/module-test-utils'
+import type { Nuxt } from '../src/kit-shim'
 import { $$, createBrowser } from './utils'
 
 const __filename = fileURLToPath(import.meta.url)

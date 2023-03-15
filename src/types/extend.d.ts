@@ -4,6 +4,8 @@ import '@nuxt/types'
 import * as SentryTypes from '@sentry/core'
 import { DeepPartialModuleConfiguration } from './configuration'
 
+export type ModulePublicRuntimeConfig = Pick<DeepPartialModuleConfiguration, 'config' | 'clientConfig' | 'serverConfig'>
+
 // add type to Vue context
 declare module 'vue/types/vue' {
   interface Vue {
@@ -34,7 +36,7 @@ declare module '@nuxt/types' {
 
 declare module '@nuxt/types/config/runtime' {
   interface NuxtRuntimeConfig {
-    sentry?: DeepPartialModuleConfiguration
+    sentry?: ModulePublicRuntimeConfig
   }
 }
 
