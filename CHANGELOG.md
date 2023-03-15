@@ -1,5 +1,7 @@
 
 
+## [8.0.0-beta.10](https://github.com/nuxt-community/sentry-module/compare/v8.0.0-beta.9...v8.0.0-beta.10) (2023-03-15)
+
 ## [8.0.0-beta.9](https://github.com/nuxt-community/sentry-module/compare/v8.0.0-beta.8...v8.0.0-beta.9) (2023-03-15)
 
 ## [8.0.0-beta.8](https://github.com/nuxt-community/sentry-module/compare/v8.0.0-beta.7...v8.0.0-beta.8) (2023-03-15)
