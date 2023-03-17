@@ -40,12 +40,10 @@ Then, add `@nuxtjs/sentry` to the `modules` section of `nuxt.config.js` and set 
   sentry: {
     dsn: '', // Enter your project's DSN.
     // Additional Module Options.
-    config: {
-      // Optional Sentry SDK configuration.
-      // Those options are shared by both the Browser and the Server instances.
-      // Browser-only and Server-only options should go
-      // into `clientConfig` and `serverConfig` objects respectively.
-    },
+    // Optional Sentry SDK configuration.
+    // Those options are shared by both the Browser and the Server instances.
+    // Browser-only and Server-only options should go
+    // into `clientConfig` and `serverConfig` objects respectively.
   }
 }
 ```
