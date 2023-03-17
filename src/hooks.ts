@@ -1,44 +1,47 @@
+import { fileURLToPath } from 'url'
 import { resolve, posix } from 'path'
-import merge from 'lodash.mergewith'
+import { defu } from 'defu'
+import type { Consola } from 'consola'
+import type { Configuration as WebpackConfig } from 'webpack'
+import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
+import type { Options } from '@sentry/types'
 import * as Sentry from '@sentry/node'
-import { canInitialize, clientSentryEnabled, envToBool, serverSentryEnabled } from './utils'
-import { resolveRelease, resolveClientOptions, resolveServerOptions } from './options'
+import { addPluginTemplate, addTemplate, addWebpackPlugin } from './kit-shim'
+import type { Nuxt } from './kit-shim'
+import type { ModuleConfiguration } from './types/configuration'
+import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
+import { resolveRelease, ResolvedClientOptions, resolveClientOptions, ResolvedServerOptions, resolveServerOptions } from './options'
+import type { SentryHandlerProxy } from './options'
 
-const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.js'
+const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.mjs'
 
-/**
- * Resolves the options and creates the plugins and the templates at build time.
- *
- * @param      {ThisParameterType<import('@nuxt/types').Module>} moduleContainer
- * @param      {import('../../types/sentry').ResolvedModuleConfiguration} moduleOptions The module options
- * @param      {import('consola').Consola} logger The logger
- * @return     {Promise<void>}
- */
-export async function buildHook (moduleContainer, moduleOptions, logger) {
+export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<void> {
   const release = await resolveRelease(moduleOptions)
 
+  const templateDir = fileURLToPath(new URL('./templates', import.meta.url))
+
   const pluginOptionClient = clientSentryEnabled(moduleOptions) ? (moduleOptions.lazy ? 'lazy' : 'client') : 'mocked'
-  const clientOptions = merge({ config: { release } }, await resolveClientOptions(moduleContainer, moduleOptions, logger))
-  moduleContainer.addPlugin({
-    src: resolve(__dirname, '..', `plugin.${pluginOptionClient}.js`),
-    fileName: 'sentry.client.js',
+  const clientOptions: ResolvedClientOptions = defu({ config: { release } }, await resolveClientOptions(nuxt, moduleOptions, logger))
+  addPluginTemplate({
+    src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
+    filename: 'sentry.client.js',
     mode: 'client',
     options: clientOptions,
   })
 
   const pluginOptionServer = serverSentryEnabled(moduleOptions) ? 'server' : 'mocked'
-  const serverOptions = merge({ config: { release } }, await resolveServerOptions(moduleContainer, moduleOptions, logger))
-  moduleContainer.addPlugin({
-    src: resolve(__dirname, '..', `plugin.${pluginOptionServer}.js`),
-    fileName: 'sentry.server.js',
+  const serverOptions: ResolvedServerOptions = defu({ config: { release } }, await resolveServerOptions(nuxt, moduleOptions, logger))
+  addPluginTemplate({
+    src: resolve(templateDir, `plugin.${pluginOptionServer}.js`),
+    filename: 'sentry.server.js',
     mode: 'server',
     options: serverOptions,
   })
 
   if (serverSentryEnabled(moduleOptions)) {
-    moduleContainer.addTemplate({
-      src: resolve(__dirname, '..', 'templates', 'options.ejs'),
-      fileName: RESOLVED_RELEASE_FILENAME,
+    addTemplate({
+      src: resolve(templateDir, 'options.ejs'),
+      filename: RESOLVED_RELEASE_FILENAME,
       options: { release },
     })
   }
@@ -46,36 +49,22 @@ export async function buildHook (moduleContainer, moduleOptions, logger) {
   // Tree shake debugging code if not running in dev mode and Sentry debug option is not enabled on the client.
   if (!clientOptions.dev && !clientOptions.config.debug) {
     const webpack = await import('webpack').then(m => m.default || m)
-    moduleContainer.options.build.plugins = moduleContainer.options.build.plugins || []
-    moduleContainer.options.build.plugins.push(
-      new webpack.DefinePlugin({
-        __SENTRY_DEBUG__: 'false',
-      }),
-    )
+    addWebpackPlugin(new webpack.DefinePlugin({
+      __SENTRY_DEBUG__: 'false',
+    }))
   }
 }
 
-/**
- * Handler for the 'webpack:config' hook
- *
- * @param      {ThisParameterType<import('@nuxt/types').Module>} moduleContainer
- * @param      {any[]} webpackConfigs The webpack configs
- * @param      {Required<import('../../types/sentry').ResolvedModuleConfiguration>} options The module options
- * @param      {import('consola').Consola} logger The logger
- * @return     {Promise<void>}
- */
-export async function webpackConfigHook (moduleContainer, webpackConfigs, options, logger) {
-  /** @type {typeof import('@sentry/webpack-plugin')} */
-  let WebpackPlugin
+export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger: Consola): Promise<void> {
+  let WebpackPlugin: typeof import('@sentry/webpack-plugin')
   try {
     WebpackPlugin = await (import('@sentry/webpack-plugin').then(m => m.default || m))
   } catch {
     throw new Error('The "@sentry/webpack-plugin" package must be installed as a dev dependency to use the "publishRelease" option.')
   }
 
-  /** @type {import('@sentry/webpack-plugin').SentryCliPluginOptions} */
-  const publishRelease = merge({}, options.publishRelease)
-  const nuxtOptions = moduleContainer.options
+  const publishRelease: SentryCliPluginOptions = defu({}, options.publishRelease)
+  const nuxtOptions = nuxt.options
 
   if (!publishRelease.urlPrefix) {
     // Set urlPrefix to match resources on the client. That's not technically correct for the server source maps, but it is what it is for now.
@@ -139,30 +128,21 @@ export async function webpackConfigHook (moduleContainer, webpackConfigs, option
   config.plugins.push(new WebpackPlugin(publishRelease))
 }
 
-/**
- * Initializes the sentry.
- *
- * @param      {ThisParameterType<import('@nuxt/types').Module>} moduleContainer
- * @param      {import('../../types/sentry').ResolvedModuleConfiguration} moduleOptions
- * @param      {import('../../types/sentry').SentryHandlerProxy} sentryHandlerProxy
- * @param      {import('consola').Consola} logger
- * @return     {Promise<void>}
- */
-export async function initializeServerSentry (moduleContainer, moduleOptions, sentryHandlerProxy, logger) {
+export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, sentryHandlerProxy: SentryHandlerProxy, logger: Consola): Promise<void> {
   if (process.sentry) {
     return
   }
 
-  let release
+  let release: string | undefined
   try {
-    const path = resolve(moduleContainer.options.buildDir, RESOLVED_RELEASE_FILENAME)
+    const path = resolve(nuxt.options.buildDir, RESOLVED_RELEASE_FILENAME)
     release = (await import(path)).release
   } catch {
     // Ignored
   }
 
-  const serverOptions = await resolveServerOptions(moduleContainer, moduleOptions, logger)
-  const config = merge({ release }, serverOptions.config)
+  const serverOptions = await resolveServerOptions(nuxt, moduleOptions, logger)
+  const config: Options = defu({ release }, serverOptions.config)
 
   if (canInitialize(moduleOptions)) {
     Sentry.init(config)
@@ -178,10 +158,10 @@ export async function initializeServerSentry (moduleContainer, moduleOptions, se
   process.sentry = Sentry
 }
 
-export async function shutdownServerSentry () {
+export async function shutdownServerSentry (): Promise<void> {
   if (process.sentry) {
     await process.sentry.close()
-    // @ts-ignore
+    // @ts-expect-error not mutable in types
     process.sentry = undefined
   }
 }

@@ -6,6 +6,6 @@
 !.nuxt/sentry.*.js
 
 dist/
-lib/plugin.*
-lib/templates/*.*
+templates/
+node_modules
 

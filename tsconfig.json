@@ -2,27 +2,26 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
-    "checkJs": true,
+    "checkJs": false,
     "esModuleInterop": true,
     "lib": [
-      "esnext",
-      "esnext.asynciterable",
+      "ESNext",
       "dom",
     ],
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "esnext",
     "types": [
-      "./types",
+      "jest",
     ],
   },
   "include": [
-    "./lib/",
+    "./src/",
   ],
   "exclude": [
     "./node_modules/",
-    "./lib/plugin.*.js",
+    "./src/templates/plugin.*.js",
   ]
 }
