@@ -27,10 +27,6 @@
       "groupName": "Sentry Dependencies",
       "matchPackagePatterns": ["^@sentry"],
       "matchFiles": ["package.json"],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
       "rangeStrategy": "bump",
       "semanticCommitType": "fix"
     },
