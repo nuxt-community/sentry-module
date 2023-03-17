@@ -24,7 +24,7 @@
       "enabled": false
     },
     {
-      "groupName": "Sentry Dependencies",
+      "groupName": "Sentry SDK",
       "matchPackagePatterns": ["^@sentry"],
       "matchFiles": ["package.json"],
       "rangeStrategy": "bump",
