@@ -348,7 +348,8 @@ export default function () {
     environment: this.options.dev ? 'development' : 'production'
   }
   ```
-- Sentry options common to the Server and Browser SDKs that are passed to `Sentry.init()`. See Sentry's documentation for [Basic Browser Options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/) and [Basic Server Options](https://docs.sentry.io/platforms/node/configuration/options/).
+- Additional options to pass to the Sentry SDK common to the Server and the Browser SDKs and which are passed to `Sentry.init()`. See Sentry's documentation for [Basic Browser Options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/) and [Basic Server Options](https://docs.sentry.io/platforms/node/configuration/options/).
+- If you need to pass options only to the client or the server SDK instance then use `clientConfig` and `serverConfig` respectively.
 - Note that `config.dsn` is automatically set based on the root `dsn` option.
 - The value for `config.release` is automatically inferred from the local repo unless specified manually.
 - Do not set `config.integrations`, use `clientIntegrations` and `serverIntegrations` options instead.
