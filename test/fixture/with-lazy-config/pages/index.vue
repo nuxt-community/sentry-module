@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Server-side</h3>
-    <span id="server-side">{{ serverSentry ? 'Works!' : '$sentry object is missing!' }}</span>
+    <span id="server-side">{{ serverSentryPresent ? 'Works!' : '$sentry object is missing!' }}</span>
     <h3>Client-side</h3>
     <span id="client-side">Works {{ isSentryReady ? 'and is' : 'but is not' }} ready!</span>
   </div>
@@ -12,15 +12,19 @@ export default {
   data () {
     return {
       isSentryReady: false,
-      /** @type {import('@sentry/core') | null} */
-      serverSentry: this.$sentry,
+      serverSentryPresent: false,
     }
   },
   created () {
-    this.$sentryReady().then(() => {
-      this.isSentryReady = true
-      console.info('Sentry is ready')
-    })
+    if (process.server) {
+      this.serverSentryPresent = Boolean(this.$sentry?.captureException)
+    }
+    if (process.client) {
+      this.$sentryReady().then(() => {
+        this.isSentryReady = true
+        console.info('Sentry is ready')
+      })
+    }
   },
   mounted () {
     this.$sentry.captureMessage('Hi!')

@@ -47,6 +47,7 @@
   "dependencies": {
     "@sentry/integrations": "^7.44.2",
     "@sentry/node": "^7.44.2",
+    "@sentry/utils": "^7.44.2",
     "@sentry/vue": "^7.44.2",
     "consola": "^2.0.0",
     "defu": "^6.0.0",
