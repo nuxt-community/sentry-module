@@ -28,9 +28,6 @@ function connectBackendTraces (ctx) {
     return
   }
   const scope = ctx.$sentry.getCurrentHub().getScope()
-  if (!scope) {
-    return
-  }
   const span = scope.getSpan()
   const transaction = scope.getTransaction()
   if (!span || !transaction) {
