@@ -27,7 +27,6 @@ function connectBackendTraces (ctx) {
     console.warn('[@nuxtjs/sentry] can not connect backend and frontend traces because app.head is a function or missing!')
     return
   }
-  head.meta = head.meta || []
   const scope = ctx.$sentry.getCurrentHub().getScope()
   if (!scope) {
     return
@@ -37,6 +36,7 @@ function connectBackendTraces (ctx) {
   if (!span || !transaction) {
     return
   }
+  head.meta = head.meta || []
   head.meta.push({ hid: 'sentry-trace', name: 'sentry-trace', content: span.toTraceparent() })
   const dsc = transaction.getDynamicSamplingContext()
   if (dsc) {
