@@ -153,9 +153,9 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
       await import('@sentry/tracing')
       sentryHandlerProxy.tracingHandler = Sentry.Handlers.tracingHandler()
     }
-  }
 
-  process.sentry = Sentry
+    process.sentry = Sentry.getCurrentHub().getClient() as Sentry.NodeClient
+  }
 }
 
 export async function shutdownServerSentry (): Promise<void> {

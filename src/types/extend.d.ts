@@ -1,7 +1,7 @@
 import 'vue'
 import 'vuex'
 import '@nuxt/types'
-import * as SentryTypes from '@sentry/core'
+import { Client } from '@sentry/types'
 import { DeepPartialModuleConfiguration } from './configuration'
 
 export type ModulePublicRuntimeConfig = Pick<DeepPartialModuleConfiguration, 'config' | 'clientConfig' | 'serverConfig'>
@@ -9,18 +9,18 @@ export type ModulePublicRuntimeConfig = Pick<DeepPartialModuleConfiguration, 'co
 // add type to Vue context
 declare module 'vue/types/vue' {
   interface Vue {
-    readonly $sentry: typeof SentryTypes
+    readonly $sentry: Client
     $sentryLoad(): Promise<void>
-    $sentryReady(): Promise<typeof SentryTypes>
+    $sentryReady(): Promise<Client>
   }
 }
 
 // App Context and NuxtAppOptions
 declare module '@nuxt/types' {
   interface Context {
-    readonly $sentry: typeof SentryTypes
+    readonly $sentry: Client
     $sentryLoad(): Promise<void>
-    $sentryReady(): Promise<typeof SentryTypes>
+    $sentryReady(): Promise<Client>
   }
 
   interface NuxtOptions {
@@ -28,9 +28,9 @@ declare module '@nuxt/types' {
   }
 
   interface NuxtAppOptions {
-    readonly $sentry: typeof SentryTypes
+    readonly $sentry: Client
     $sentryLoad(): Promise<void>
-    $sentryReady(): Promise<typeof SentryTypes>
+    $sentryReady(): Promise<Client>
   }
 }
 
@@ -43,8 +43,16 @@ declare module '@nuxt/types/config/runtime' {
 // add types for Vuex Store
 declare module 'vuex/types' {
   interface Store<S> {
-    readonly $sentry: typeof SentryTypes
+    readonly $sentry: Client
     $sentryLoad(): Promise<void>
-    $sentryReady(): Promise<typeof SentryTypes>
+    $sentryReady(): Promise<Client>
+  }
+}
+
+declare global {
+  namespace NodeJS {
+    interface Process {
+      sentry: Client
+    }
   }
 }
