@@ -21,7 +21,7 @@ export default function (ctx, inject) {
 }
 
 <% if (options.tracing) { %>
-function connectBackendTraces(ctx) {
+function connectBackendTraces (ctx) {
   const { head } = ctx.app
   if (!head || head instanceof Function) {
     console.warn('[@nuxtjs/sentry] can not connect backend and frontend traces because app.head is a function or missing!')
