@@ -5,7 +5,6 @@ import { Integrations as ServerIntegrations } from '@sentry/node'
 import type Sentry from '@sentry/node'
 import * as PluggableIntegrations from '@sentry/integrations'
 import type { Options } from '@sentry/types'
-import type { NuxtOptions } from '@nuxt/types'
 import type { AllIntegrations, LazyConfiguration, TracingConfiguration } from './types/configuration'
 import type { ModuleConfiguration } from './types'
 import { Nuxt, resolveAlias } from './kit-shim'
@@ -104,14 +103,12 @@ function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[],
     } else if (Array.isArray(options.lazy.mockApiMethods)) {
       const mockMethods = options.lazy.mockApiMethods
       options.lazy.mockApiMethods = mockMethods.filter(method => apiMethods.includes(method))
-
       const notfoundMethods = mockMethods.filter(method => !apiMethods.includes(method))
       if (notfoundMethods.length) {
         logger.warn('Some specified methods to mock weren\'t found in @sentry/vue:', notfoundMethods)
       }
-
       if (!options.lazy.mockApiMethods.includes('captureException')) {
-      // always add captureException if a sentry mock is requested
+        // always add captureException if a sentry mock is requested
         options.lazy.mockApiMethods.push('captureException')
       }
     }

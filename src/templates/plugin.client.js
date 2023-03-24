@@ -1,26 +1,26 @@
 /* eslint-disable import/order */
 import Vue from 'vue'
 import merge from '~lodash.mergewith'
-import * as Sentry from '~@sentry/vue'
-<% if (options.tracing) { %>import { BrowserTracing } from '~@sentry/tracing'<% } %>
 <%
-if (options.initialize) {
-  let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
-  if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
+const vueImports = ['getCurrentHub', 'init', 'Integrations', ...(options.tracing ? ['vueRouterInstrumentation'] : [])]
+%>import { <%= vueImports.join(', ') %> } from '~@sentry/vue'
+<%
+if (options.tracing) {%>import { BrowserTracing } from '~@sentry/tracing'
 <%}
-  if (options.clientConfigPath) {%>import getClientConfig from '<%= options.clientConfigPath %>'
+let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
+if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
 <%}
-  if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= options.customClientIntegrations %>'
+if (options.clientConfigPath) {%>import getClientConfig from '<%= options.clientConfigPath %>'
 <%}
-  integrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
-  if (integrations.length) {%>
-const { <%= integrations.join(', ') %> } = Sentry.Integrations
+if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= options.customClientIntegrations %>'
 <%}
-}
+integrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
+if (integrations.length) {%>
+const { <%= integrations.join(', ') %> } = Integrations
+<%}
 %>
 
 export default async function (ctx, inject) {
-  <% if (options.initialize) { %>
   /* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
   const config = {
     Vue,
@@ -53,7 +53,7 @@ export default async function (ctx, inject) {
   // eslint-disable-next-line prefer-regex-literals
   const { browserTracing, vueOptions, ...tracingOptions } = <%= serialize(options.tracing) %>
   config.integrations.push(new BrowserTracing({
-    ...(ctx.app.router ? { routingInstrumentation: Sentry.vueRouterInstrumentation(ctx.app.router) } : {}),
+    ...(ctx.app.router ? { routingInstrumentation: vueRouterInstrumentation(ctx.app.router) } : {}),
     ...browserTracing,
   }))
   merge(config, vueOptions, tracingOptions)
@@ -79,9 +79,8 @@ export default async function (ctx, inject) {
   }
 
   /* eslint-enable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
-  Sentry.init(config)
-  <% } %>
-
-  inject('sentry', Sentry)
-  ctx.$sentry = Sentry
+  init(config)
+  const sentryClient = getCurrentHub().getClient()
+  inject('sentry', sentryClient)
+  ctx.$sentry = sentryClient
 }
