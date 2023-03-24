@@ -83,12 +83,10 @@ export default defineNuxtModule<ModuleConfiguration>({
       logger.info(`Sentry reporting is disabled (${why})`)
     }
 
-    if (clientSentryEnabled(options)) {
-      // Work-around issues with Nuxt not being able to resolve unhoisted "@sentry/*" dependencies on the client-side.
-      const clientDependencies = ['lodash.mergewith', '@sentry/integrations', '@sentry/vue', ...(options.tracing ? ['@sentry/tracing'] : [])]
-      for (const dep of clientDependencies) {
-        nuxt.options.alias[`~${dep}`] = (await resolvePath(dep)).replace(/\/cjs\//, '/esm/')
-      }
+    // Work-around issues with Nuxt not being able to resolve unhoisted dependencies that are imported in webpack context.
+    const aliasedDependencies = ['lodash.mergewith', '@sentry/integrations', '@sentry/utils', '@sentry/vue', ...(options.tracing ? ['@sentry/tracing'] : [])]
+    for (const dep of aliasedDependencies) {
+      nuxt.options.alias[`~${dep}`] = (await resolvePath(dep)).replace(/\/cjs\//, '/esm/')
     }
 
     if (serverSentryEnabled(options)) {
