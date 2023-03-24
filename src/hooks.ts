@@ -20,7 +20,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
 
   const templateDir = fileURLToPath(new URL('./templates', import.meta.url))
 
-  const pluginOptionClient = clientSentryEnabled(moduleOptions) ? (moduleOptions.lazy ? 'lazy' : 'client') : 'mocked'
+  const pluginOptionClient = clientSentryEnabled(moduleOptions) && canInitialize(moduleOptions) ? (moduleOptions.lazy ? 'lazy' : 'client') : 'mocked'
   const clientOptions: ResolvedClientOptions = defu({ config: { release } }, await resolveClientOptions(nuxt, moduleOptions, logger))
   addPluginTemplate({
     src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
