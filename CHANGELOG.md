@@ -1,5 +1,15 @@
 
 
+### [7.1.5](https://github.com/nuxt-community/sentry-module/compare/v7.1.4...v7.1.5) (2023-03-24)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk to ^7.43.0 ([#522](https://github.com/nuxt-community/sentry-module/issues/522)) ([80de6b9](https://github.com/nuxt-community/sentry-module/commit/80de6b97fca02905a1fbe51ae5c9d0a536aaf5e1))
+* **deps:** update sentry sdk to ^7.44.2 ([#527](https://github.com/nuxt-community/sentry-module/issues/527)) ([82d1f08](https://github.com/nuxt-community/sentry-module/commit/82d1f0821fc7391687675d3e3798666218599ede))
+* **deps:** update sentry sdk to ^7.45.0 ([#531](https://github.com/nuxt-community/sentry-module/issues/531)) ([888b395](https://github.com/nuxt-community/sentry-module/commit/888b395584f8d8f2cd1a4c105946f7c6a944ba11))
+* **tracing:** connect backend and frontend traces ([#529](https://github.com/nuxt-community/sentry-module/issues/529)) ([30c3127](https://github.com/nuxt-community/sentry-module/commit/30c3127be674614ff1528d77084fcc7822489f64))
+
 ### [7.1.4](https://github.com/nuxt-community/sentry-module/compare/v7.1.3...v7.1.4) (2023-03-07)
 
 ### [7.1.3](https://github.com/nuxt-community/sentry-module/compare/v7.1.2...v7.1.3) (2023-03-07)
