@@ -35,7 +35,7 @@
     "dev:fixture:build": "node ./node_modules/nuxt/bin/nuxt.js build -c ./test/fixture/default/nuxt.config.cjs",
     "dev:fixture:start": "node ./node_modules/nuxt/bin/nuxt.js start -c ./test/fixture/default/nuxt.config.cjs",
     "dev:generate": "nuxt generate -c ./test/fixture/default/nuxt.config.cjs --force-build",
-    "analyze": "node ./node_modules/nuxt/bin/nuxt.js build --analyze -c ./test/fixture/default/nuxt.config.js",
+    "analyze": "node ./node_modules/nuxt/bin/nuxt.js build --analyze -c ./test/fixture/default/nuxt.config.cjs",
     "lint": "eslint --ext .vue,.js,.ts .",
     "lint:fix": "eslint --ext .vue,.js,.ts . --fix",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
