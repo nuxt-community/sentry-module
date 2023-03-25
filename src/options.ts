@@ -253,8 +253,10 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
           const opt = options.serverIntegrations[name]
           try {
             if (isServerDefaultIntegration(name)) {
+              // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
               return Object.keys(opt as Record<string, unknown>).length ? new ServerIntegrations[name](opt) : new ServerIntegrations[name]()
             } else if (isServerPlugabbleIntegration(name)) {
+              // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
               // eslint-disable-next-line import/namespace
               return Object.keys(opt as Record<string, unknown>).length ? new PluggableIntegrations[name](opt) : new PluggableIntegrations[name]()
             } else {
