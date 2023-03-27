@@ -1,5 +1,12 @@
 
 
+### [7.1.7](https://github.com/nuxt-community/sentry-module/compare/v7.1.6...v7.1.7) (2023-03-27)
+
+
+### Bug Fixes
+
+* **types:** restore type for process.sentry and improve $sentry types ([#534](https://github.com/nuxt-community/sentry-module/issues/534)) ([ed6fd1c](https://github.com/nuxt-community/sentry-module/commit/ed6fd1cffde640d779c541b494fa9654997ee534))
+
 ### [7.1.6](https://github.com/nuxt-community/sentry-module/compare/v7.1.5...v7.1.6) (2023-03-24)
 
 
