@@ -1,5 +1,12 @@
 
 
+### [7.1.9](https://github.com/nuxt-community/sentry-module/compare/v7.1.8...v7.1.9) (2023-03-27)
+
+
+### Bug Fixes
+
+* **types:** restore original client types which have more methods ([#540](https://github.com/nuxt-community/sentry-module/issues/540)) ([16bc644](https://github.com/nuxt-community/sentry-module/commit/16bc644d5bdfb363c9d5fa2f9fd222feea21b2c4))
+
 ### [7.1.8](https://github.com/nuxt-community/sentry-module/compare/v7.1.7...v7.1.8) (2023-03-27)
 
 
