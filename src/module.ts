@@ -63,6 +63,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     }
 
     if (options.publishRelease) {
+      // @ts-expect-error Defu introduces "null" value in its merged types which cause error.
       options.publishRelease = defu(options.publishRelease, defaultsPublishRelease)
     }
 

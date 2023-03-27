@@ -2,9 +2,9 @@ import 'vue'
 import 'vuex'
 import '@nuxt/types'
 import { Client } from '@sentry/types'
-import { DeepPartialModuleConfiguration } from './configuration'
+import { PartialModuleConfiguration } from './configuration'
 
-export type ModulePublicRuntimeConfig = Pick<DeepPartialModuleConfiguration, 'config' | 'clientConfig' | 'serverConfig'>
+export type ModulePublicRuntimeConfig = Pick<PartialModuleConfiguration, 'config' | 'clientConfig' | 'serverConfig'>
 
 // add type to Vue context
 declare module 'vue/types/vue' {
@@ -24,7 +24,7 @@ declare module '@nuxt/types' {
   }
 
   interface NuxtOptions {
-    sentry?: DeepPartialModuleConfiguration
+    sentry?: PartialModuleConfiguration
   }
 
   interface NuxtAppOptions {
