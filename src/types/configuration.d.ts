@@ -46,7 +46,7 @@ export interface ModuleConfiguration {
   lazy: boolean | LazyConfiguration
   logMockCalls: boolean
   /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
-  publishRelease: boolean | SentryCliPluginOptions
+  publishRelease: boolean | Partial<SentryCliPluginOptions>
   runtimeConfigKey: string
   serverConfig: NodeOptions | string
   serverIntegrations: ServerIntegrations
@@ -54,10 +54,4 @@ export interface ModuleConfiguration {
   requestHandlerConfig: Handlers.RequestHandlerOptions
 }
 
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends Array<infer I>
-    ? Array<DeepPartial<I>>
-    : DeepPartial<T[P]>;
-}
-
-export type DeepPartialModuleConfiguration = DeepPartial<ModuleConfiguration>
+export type PartialModuleConfiguration = Partial<ModuleConfiguration>

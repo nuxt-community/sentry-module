@@ -1,6 +1,6 @@
-import { DeepPartialModuleConfiguration, ModuleConfiguration } from './configuration'
+import { PartialModuleConfiguration, ModuleConfiguration } from './configuration'
 import { ModulePublicRuntimeConfig } from './extend'
 
-type ModuleOptions = DeepPartialModuleConfiguration
+type ModuleOptions = PartialModuleConfiguration
 
 export { ModuleOptions, ModulePublicRuntimeConfig, ModuleConfiguration }
