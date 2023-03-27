@@ -9,6 +9,13 @@
 
 <script>
 export default {
+  asyncData ({ $sentry }) {
+    if (process.server) {
+      return {
+        serverSentryPresent: Boolean($sentry?.captureException),
+      }
+    }
+  },
   data () {
     return {
       isSentryReady: false,
@@ -16,9 +23,6 @@ export default {
     }
   },
   created () {
-    if (process.server) {
-      this.serverSentryPresent = Boolean(this.$sentry?.captureException)
-    }
     if (process.client) {
       this.$sentryReady().then(() => {
         this.isSentryReady = true

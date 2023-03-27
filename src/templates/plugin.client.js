@@ -1,11 +1,11 @@
 /* eslint-disable import/order */
 import Vue from 'vue'
 import merge from '~lodash.mergewith'
+import * as Sentry from '~@sentry/vue'
 <%
-const vueImports = ['getCurrentHub', 'init', 'Integrations', ...(options.tracing ? ['vueRouterInstrumentation'] : [])]
-%>import { <%= vueImports.join(', ') %> } from '~@sentry/vue'
-<%
-if (options.tracing) {%>import { BrowserTracing } from '~@sentry/tracing'
+if (options.tracing) {
+%>import { BrowserTracing } from '~@sentry/tracing'
+import { vueRouterInstrumentation } from '~@sentry/vue'
 <%}
 let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
 if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
@@ -16,7 +16,7 @@ if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= 
 <%}
 integrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
 if (integrations.length) {%>
-const { <%= integrations.join(', ') %> } = Integrations
+const { <%= integrations.join(', ') %> } = Sentry.Integrations
 <%}
 %>
 
@@ -79,8 +79,7 @@ export default async function (ctx, inject) {
   }
 
   /* eslint-enable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
-  init(config)
-  const sentryClient = getCurrentHub().getClient()
-  inject('sentry', sentryClient)
-  ctx.$sentry = sentryClient
+  Sentry.init(config)
+  inject('sentry', Sentry)
+  ctx.$sentry = Sentry
 }
