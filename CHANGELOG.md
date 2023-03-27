@@ -1,5 +1,12 @@
 
 
+### [7.1.8](https://github.com/nuxt-community/sentry-module/compare/v7.1.7...v7.1.8) (2023-03-27)
+
+
+### Bug Fixes
+
+* **types:** fix "any" type in arguments of config.beforeSend ([#539](https://github.com/nuxt-community/sentry-module/issues/539)) ([b4b5b48](https://github.com/nuxt-community/sentry-module/commit/b4b5b48a35b8e6276758615cafbf9ad7914aeda2))
+
 ### [7.1.7](https://github.com/nuxt-community/sentry-module/compare/v7.1.6...v7.1.7) (2023-03-27)
 
 
