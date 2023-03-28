@@ -1,5 +1,12 @@
 
 
+### [7.1.10](https://github.com/nuxt-community/sentry-module/compare/v7.1.9...v7.1.10) (2023-03-28)
+
+
+### Bug Fixes
+
+* **types:** allow "false" in integrations options ([#543](https://github.com/nuxt-community/sentry-module/issues/543)) ([f4ffef2](https://github.com/nuxt-community/sentry-module/commit/f4ffef24f4d9afeb54cee2253a9252e380fa11ca))
+
 ### [7.1.9](https://github.com/nuxt-community/sentry-module/compare/v7.1.8...v7.1.9) (2023-03-27)
 
 
