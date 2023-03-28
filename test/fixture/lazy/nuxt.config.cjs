@@ -9,7 +9,7 @@ const config = {
     resourceHints: false,
   },
   modules: [
-    SentryModule,
+    /** @type {import('@nuxt/types').Module} */(/** @type {unknown} */(SentryModule)),
   ],
   sentry: {
     lazy: true,
