@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
-    "checkJs": false,
+    "checkJs": true,
     "esModuleInterop": true,
     "lib": [
       "ESNext",
@@ -15,12 +15,15 @@
     "strict": true,
     "types": [
       "jest",
+      "node",
     ],
   },
   "include": [
     "./src/",
+    "./test/",
   ],
   "exclude": [
+    "./dist",
     "./node_modules/",
     "./src/templates/plugin.*.js",
   ]

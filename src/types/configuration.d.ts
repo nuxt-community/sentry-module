@@ -8,7 +8,7 @@ import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Integrations as NodeIntegrations, NodeOptions, Handlers } from '@sentry/node'
 
 type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<unknown>>> = Partial<{
-    [K in keyof T]: ConstructorParameters<T[K]>[0] | Record<string, never>
+    [K in keyof T]: ConstructorParameters<T[K]>[0] | Record<string, never> | false
 }>
 
 type ClientIntegrations = IntegrationsConfig<typeof BrowserIntegrations & typeof PluggableIntegrations>
