@@ -85,10 +85,18 @@ export default defineNuxtModule<ModuleConfiguration>({
     }
 
     // Work-around issues with Nuxt not being able to resolve unhoisted dependencies that are imported in webpack context.
-    const aliasedDependencies = ['lodash.mergewith', '@sentry/integrations', '@sentry/utils', '@sentry/vue', ...(options.tracing ? ['@sentry/tracing'] : [])]
+    const aliasedDependencies = [
+      'lodash.mergewith',
+      '@sentry/core',
+      '@sentry/integrations',
+      '@sentry/utils',
+      '@sentry/vue',
+      ...(options.tracing ? ['@sentry/tracing'] : []),
+    ]
     for (const dep of aliasedDependencies) {
       nuxt.options.alias[`~${dep}`] = (await resolvePath(dep)).replace(/\/cjs\//, '/esm/')
     }
+    nuxt.options.alias['~@sentry/browser-sdk'] = (await resolvePath('@sentry/browser/esm/sdk'))
 
     if (serverSentryEnabled(options)) {
       /**

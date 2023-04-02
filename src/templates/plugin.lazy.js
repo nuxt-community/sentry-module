@@ -83,13 +83,10 @@ async function attemptLoadSentry (ctx, inject) {
   if (!window.<%= globals.nuxt %>) {
     <% if (options.dev) { %>
     console.warn('$sentryLoad was called but window.<%= globals.nuxt %> is not available, delaying sentry loading until onNuxtReady callback. Do you really need to use lazy loading for Sentry?')
-    <% } %>
-    <% if (options.lazy.injectLoadHook) { %>
-    window.<%= globals.readyCallback %>(() => loadSentry(ctx, inject))
-    <% } else { %>
-    // Wait for onNuxtReady hook to trigger.
-    <% } %>
-    return
+    <% }
+    if (options.lazy.injectLoadHook) { %>window.<%= globals.readyCallback %>(() => loadSentry(ctx, inject))
+    <% } else { %>// Wait for onNuxtReady hook to trigger.
+    <% } %>return
   }
 
   await loadSentry(ctx, inject)
@@ -109,86 +106,10 @@ async function loadSentry (ctx, inject) {
     magicComments.push('webpackPreload: true')
   }
   %>
-  const Sentry = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/vue')
-  <% if (options.tracing) { %>const { BrowserTracing } = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/tracing')<% } %>
-  <%
-  if (options.initialize) {
-    let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
-    if (integrations.length) {%>const { <%= integrations.join(', ') %> } = await import(/* <%= magicComments.join(', ') %> */ '~@sentry/integrations')
-<%  }
-    integrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
-    if (integrations.length) {%>  const { <%= integrations.join(', ') %> } = Sentry.Integrations
-<%}
-
-  const serializedConfig = Object
-    .entries({
-      ...options.config,
-      ...(options.tracing ? options.tracing.vueOptions : {}),
-    })
-    .map(([key, option]) => {
-      const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
-      return`${key}: ${value}`
-    })
-    .join(',\n    ')
-  %>
-  /* eslint-disable quotes, key-spacing */
-  const config = {
-    Vue,
-    <%= serializedConfig %>,
-  }
-
-  const runtimeConfigKey = <%= serialize(options.runtimeConfigKey) %>
-  if (ctx.$config && runtimeConfigKey && ctx.$config[runtimeConfigKey]) {
-    const { default: merge } = await import(/* <%= magicComments.join(', ') %> */ '~lodash.mergewith')
-    merge(config, ctx.$config[runtimeConfigKey].config, ctx.$config[runtimeConfigKey].clientConfig)
-  }
-
-  config.integrations = [
-    <%= Object
-      .entries(options.integrations)
-      .filter(([name]) => name !== 'Vue')
-      .map(([name, integration]) => {
-        const integrationOptions = Object
-          .entries(integration)
-          .map(([key, option]) => {
-            const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
-            return `${key}:${value}`
-          })
-
-        return `new ${name}(${integrationOptions.length ? '{ ' + integrationOptions.join(',') + ' }' : ''})`
-      }).join(',\n    ')
-    %>,
-  ]
-  <% if (options.tracing) {
-  const serializedTracingConfig = Object
-    .entries(options.tracing.browserTracing)
-    .map(([key, option]) => {
-      const value = typeof option === 'function' ? serializeFunction(option) : serialize(option)
-      return`${key}: ${value}`
-    })
-    .join(',\n    ')
-%>
-  config.integrations.push(new BrowserTracing({
-    ...(ctx.app.router ? { routingInstrumentation: Sentry.vueRouterInstrumentation(ctx.app.router) } : {}),
-    <%= serializedTracingConfig %>
-  }))
-  <% } %>
-
-  <% if (options.clientConfigPath) { %>
-  const clientConfig = (await import(/* <%= magicComments.join(', ') %> */ '<%= options.clientConfigPath %>').then(m => m.default || m))(ctx)
-  const { default: merge } = await import(/* <%= magicComments.join(', ') %> */ '~lodash.mergewith')
-  clientConfig ? merge(config, clientConfig) : console.error(`[@nuxtjs/sentry] Invalid value returned from the clientConfig plugin.`)
-  <% } %>
-
-  <%if (options.customClientIntegrations) {%>
-  const customIntegrations = (await import(/* <%= magicComments.join(', ') %> */ '<%= options.customClientIntegrations %>').then(m => m.default || m))(ctx)
-  if (Array.isArray(customIntegrations)) {
-    config.integrations.push(...customIntegrations)
-  } else {
-    console.error(`[@nuxtjs/sentry] Invalid value returned from customClientIntegrations plugin. Expected an array, got "${typeof customIntegrations}".`)
-  }
-  <% } %>
-  Sentry.init(config)
+  const { getConfig, init, SentrySdk } = await import(/* <%= magicComments.join(', ') %> */ './sentry.client.shared')
+  <% if (options.initialize) {%>
+  const config = await getConfig(ctx)
+  init({ Vue, ...config })
   <% } %>
 
   loadCompleted = true
@@ -213,12 +134,10 @@ async function loadSentry (ctx, inject) {
     }
     delayedUnhandledRejections = []
   }
-  delayedCalls.forEach(([methodName, args]) => Sentry[methodName].apply(Sentry, args))
+  delayedCalls.forEach(([methodName, args]) => SentrySdk[methodName].apply(SentrySdk, args))
   <% } %>
-
-  forceInject(ctx, inject, 'sentry', Sentry)
-
-  sentryReadyResolve(Sentry)
+  forceInject(ctx, inject, 'sentry', SentrySdk)
+  sentryReadyResolve(SentrySdk)
 
   // help gc
   <% if (options.lazy.injectMock) { %>
@@ -233,7 +152,6 @@ async function loadSentry (ctx, inject) {
   <% } %>
   sentryReadyResolve = undefined
 }
-
 
 // Custom inject function that is able to overwrite previously injected values,
 // which original inject doesn't allow to do.
