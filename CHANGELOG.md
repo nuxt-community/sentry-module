@@ -1,5 +1,13 @@
 
 
+### [7.1.11](https://github.com/nuxt-community/sentry-module/compare/v7.1.10...v7.1.11) (2023-04-03)
+
+
+### Bug Fixes
+
+* resolve aliases relative to module's dir ([#548](https://github.com/nuxt-community/sentry-module/issues/548)) ([94d7c90](https://github.com/nuxt-community/sentry-module/commit/94d7c907d89e977928f9838b3de7c8af016428a4))
+* significantly reduce client bundle size ([#547](https://github.com/nuxt-community/sentry-module/issues/547)) ([ad8eefd](https://github.com/nuxt-community/sentry-module/commit/ad8eefd0e4359f23701f3b92ea2d0d398772404d))
+
 ### [7.1.10](https://github.com/nuxt-community/sentry-module/compare/v7.1.9...v7.1.10) (2023-03-28)
 
 
