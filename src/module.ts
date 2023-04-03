@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'url'
 import { defu } from 'defu'
 import { resolvePath } from 'mlly'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
@@ -12,6 +13,8 @@ import type { ModuleConfiguration, ModuleOptions, ModulePublicRuntimeConfig } fr
 export type { ModuleOptions, ModulePublicRuntimeConfig }
 
 const logger = useLogger('nuxt:sentry')
+
+const moduleDir = fileURLToPath(new URL('./', import.meta.url))
 
 export default defineNuxtModule<ModuleConfiguration>({
   meta: {
@@ -94,9 +97,9 @@ export default defineNuxtModule<ModuleConfiguration>({
       ...(options.tracing ? ['@sentry/tracing'] : []),
     ]
     for (const dep of aliasedDependencies) {
-      nuxt.options.alias[`~${dep}`] = (await resolvePath(dep)).replace(/\/cjs\//, '/esm/')
+      nuxt.options.alias[`~${dep}`] = (await resolvePath(dep, { url: moduleDir })).replace(/\/cjs\//, '/esm/')
     }
-    nuxt.options.alias['~@sentry/browser-sdk'] = (await resolvePath('@sentry/browser/esm/sdk'))
+    nuxt.options.alias['~@sentry/browser-sdk'] = (await resolvePath('@sentry/browser/esm/sdk', { url: moduleDir }))
 
     if (serverSentryEnabled(options)) {
       /**
