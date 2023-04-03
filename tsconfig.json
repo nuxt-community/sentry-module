@@ -25,6 +25,7 @@
   "exclude": [
     "./dist",
     "./node_modules/",
+    "./src/templates/client.*.js",
     "./src/templates/plugin.*.js",
   ]
 }

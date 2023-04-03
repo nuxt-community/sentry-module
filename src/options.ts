@@ -83,7 +83,7 @@ export async function resolveRelease (moduleOptions: ModuleConfiguration): Promi
   }
 }
 
-function resolveLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: Consola) {
+function resolveClientLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: Consola) {
   if (options.lazy) {
     const defaultLazyOptions = {
       injectMock: true,
@@ -170,7 +170,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   }
 
   const apiMethods = await getApiMethods('@sentry/vue')
-  resolveLazyOptions(options, apiMethods, logger)
+  resolveClientLazyOptions(options, apiMethods, logger)
   resolveTracingOptions(options, config)
 
   for (const name of getIntegrationsKeys(options.clientIntegrations)) {
@@ -281,14 +281,11 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   }
 
   const config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
-
-  const apiMethods = await getApiMethods('@sentry/node')
-  resolveLazyOptions(options, apiMethods, logger)
   resolveTracingOptions(options, options.config)
 
   return {
     config,
-    apiMethods,
+    apiMethods: await getApiMethods('@sentry/node'),
     lazy: options.lazy,
     logMockCalls: options.logMockCalls, // for mocked only
     tracing: options.tracing,
