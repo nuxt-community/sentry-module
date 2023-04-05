@@ -24,7 +24,7 @@
     "./test/",
   ],
   "exclude": [
-    "./dist",
+    "**/dist",
     "./node_modules/",
     "./src/templates/client.*.js",
     "./src/templates/plugin.*.js",
