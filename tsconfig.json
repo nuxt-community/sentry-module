@@ -19,6 +19,7 @@
     ],
   },
   "include": [
+    "./size-check/",
     "./src/",
     "./test/",
   ],
