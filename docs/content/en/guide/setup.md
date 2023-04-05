@@ -65,7 +65,7 @@ In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `
 
 <alert type="info">
 
-  The otherwise optional packages `@sentry/tracing` and `@sentry/webpack-plugin` have to be installed for types to be fully working.
+  The otherwise optional package `@sentry/webpack-plugin` has to be installed for types to be fully working.
 
   If not using the relevant functionality (`tracing` and `publishRelease` options are not enabled) then those packages can be installed as dev-only dependencies.
 

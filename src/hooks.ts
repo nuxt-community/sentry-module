@@ -154,8 +154,6 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
     sentryHandlerProxy.errorHandler = Sentry.Handlers.errorHandler()
     sentryHandlerProxy.requestHandler = Sentry.Handlers.requestHandler(moduleOptions.requestHandlerConfig)
     if (serverOptions.tracing) {
-      // Triggers initialization of the tracing integration as a side effect.
-      await import('@sentry/tracing')
       sentryHandlerProxy.tracingHandler = Sentry.Handlers.tracingHandler()
     }
 

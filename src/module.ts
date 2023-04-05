@@ -94,7 +94,6 @@ export default defineNuxtModule<ModuleConfiguration>({
       '@sentry/integrations',
       '@sentry/utils',
       '@sentry/vue',
-      ...(options.tracing ? ['@sentry/tracing'] : []),
     ]
     for (const dep of aliasedDependencies) {
       nuxt.options.alias[`~${dep}`] = (await resolvePath(dep, { url: moduleDir })).replace(/\/cjs\//, '/esm/')

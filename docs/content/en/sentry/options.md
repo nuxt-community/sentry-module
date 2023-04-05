@@ -313,12 +313,6 @@ export default function () {
 - Type: `Boolean` or `Object`
 - Default: `false`
 
-<alert type="info">
-
-  `@sentry/tracing@7` (version 7) should be installed manually when using this option.
-
-</alert>
-
 - Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/performance/) and [browser](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
 - Takes the following object configuration format (default values shown):
   ```js
