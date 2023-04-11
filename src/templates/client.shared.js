@@ -9,14 +9,12 @@ const browserIntegrations = options.BROWSER_INTEGRATIONS.filter(key => key in op
 const vueImports = [
   'init',
   ...(browserIntegrations.length ? ['Integrations'] : []),
-  ...(options.tracing ? ['vueRouterInstrumentation'] : [])
+  ...(options.tracing ? ['vueRouterInstrumentation', 'BrowserTracing'] : [])
 ]
 %>import { <%= vueImports.join(', ') %> } from '~@sentry/vue'
 import * as CoreSdk from '~@sentry/core'
 import * as BrowserSdk from '~@sentry/browser-sdk'
 <%
-if (options.tracing) {%>import { BrowserTracing } from '~@sentry/tracing'
-<%}
 let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
 if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
 <%}%>

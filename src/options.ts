@@ -1,7 +1,7 @@
 import type { Consola } from 'consola'
 import { defu } from 'defu'
 import { relative } from 'pathe'
-import { Integrations as ServerIntegrations } from '@sentry/node'
+import { Integrations as ServerIntegrations, autoDiscoverNodePerformanceMonitoringIntegrations } from '@sentry/node'
 import type Sentry from '@sentry/node'
 import * as PluggableIntegrations from '@sentry/integrations'
 import type { Options } from '@sentry/types'
@@ -248,6 +248,8 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   const defaultConfig = {
     dsn: options.dsn,
     integrations: [
+      // Automatically instrument Node.js libraries and frameworks
+      ...(options.tracing ? autoDiscoverNodePerformanceMonitoringIntegrations() : []),
       ...filterDisabledIntegrations(options.serverIntegrations)
         .map((name) => {
           const opt = options.serverIntegrations[name]
