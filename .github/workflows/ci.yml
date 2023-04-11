@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Use Node.js ${{ matrix.node-version }}
+    name: Lint and test
     runs-on: ubuntu-latest
     env:
       CI: true
