@@ -1,5 +1,12 @@
 
 
+### [7.1.13](https://github.com/nuxt-community/sentry-module/compare/v7.1.12...v7.1.13) (2023-04-11)
+
+
+### Bug Fixes
+
+* don't shutdown Sentry SDK after build in dev mode ([#555](https://github.com/nuxt-community/sentry-module/issues/555)) ([b4c1312](https://github.com/nuxt-community/sentry-module/commit/b4c13126da05c9d382567077623553bb63f5a164))
+
 ### [7.1.12](https://github.com/nuxt-community/sentry-module/compare/v7.1.11...v7.1.12) (2023-04-11)
 
 
