@@ -149,6 +149,8 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
   const serverOptions = await resolveServerOptions(nuxt, moduleOptions, logger)
   const config: Options = defu({ release }, serverOptions.config)
 
+  process.sentry = Sentry
+
   if (canInitialize(moduleOptions)) {
     Sentry.init(config)
     sentryHandlerProxy.errorHandler = Sentry.Handlers.errorHandler()
@@ -156,8 +158,6 @@ export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleC
     if (serverOptions.tracing) {
       sentryHandlerProxy.tracingHandler = Sentry.Handlers.tracingHandler()
     }
-
-    process.sentry = Sentry
   }
 }
 
