@@ -1,5 +1,13 @@
 
 
+### [7.1.12](https://github.com/nuxt-community/sentry-module/compare/v7.1.11...v7.1.12) (2023-04-11)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk to ^7.47.0 ([#552](https://github.com/nuxt-community/sentry-module/issues/552)) ([30c1a97](https://github.com/nuxt-community/sentry-module/commit/30c1a97cf0769fb94591f017914227dc0df8db57))
+* shutdown server Sentry SDK when `nuxt build` is done ([#551](https://github.com/nuxt-community/sentry-module/issues/551)) ([f24cfb2](https://github.com/nuxt-community/sentry-module/commit/f24cfb26a132f5214a8a81f5a2158e3f5317f4c2))
+
 ### [7.1.11](https://github.com/nuxt-community/sentry-module/compare/v7.1.10...v7.1.11) (2023-04-03)
 
 
