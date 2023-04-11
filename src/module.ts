@@ -141,7 +141,7 @@ export default defineNuxtModule<ModuleConfiguration>({
       // the release version has been determined and the options template created but before
       // the build is started (if building).
       if (isNuxt2()) {
-        const isBuilding = nuxt.options._build
+        const isBuilding = nuxt.options._build && !nuxt.options.dev
         const initHook = isBuilding ? 'build:compile' : 'ready'
         nuxt.hook(initHook, () => initializeServerSentry(nuxt, options, sentryHandlerProxy, logger))
         const shutdownHook = isBuilding ? 'build:done' : 'close'
