@@ -5,6 +5,7 @@ import { Integrations as ServerIntegrations, autoDiscoverNodePerformanceMonitori
 import type Sentry from '@sentry/node'
 import * as PluggableIntegrations from '@sentry/integrations'
 import type { Options } from '@sentry/types'
+import type { Replay } from '@sentry/vue'
 import type { AllIntegrations, LazyConfiguration, TracingConfiguration } from './types/configuration'
 import type { ModuleConfiguration } from './types'
 import { Nuxt, resolveAlias } from './kit-shim'
@@ -20,6 +21,8 @@ export interface SentryHandlerProxy {
 export const BROWSER_INTEGRATIONS = ['Breadcrumbs', 'Dedupe', 'FunctionToString', 'GlobalHandlers', 'HttpContext', 'InboundFilters', 'LinkedErrors', 'TryCatch']
 // Optional in Vue - https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/plugin/
 export const BROWSER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'ExtraErrorData', 'HttpClient', 'ReportingObserver', 'RewriteFrames']
+// Optional, separately exported integration - https://docs.sentry.io/platforms/javascript/guides/vue/session-replay/
+export const BROWSER_VUE_INTEGRATIONS = ['Replay']
 // Enabled by default in Node.js - https://docs.sentry.io/platforms/node/configuration/integrations/default-integrations/
 const SERVER_INTEGRATIONS = ['Console', 'ContextLines', 'FunctionToString', 'Http', 'InboundFilters', 'LinkedErrors', 'LocalVariables', 'Modules', 'OnUncaughtException', 'OnUnhandledRejection', 'RequestData']
 // Optional in Node.js - https://docs.sentry.io/platforms/node/configuration/integrations/pluggable-integrations/
@@ -39,6 +42,10 @@ function isBrowserDefaultIntegration (name: string): name is keyof typeof Server
 
 function isBrowserPluggableIntegration (name: string): name is keyof typeof PluggableIntegrations {
   return BROWSER_PLUGGABLE_INTEGRATIONS.includes(name)
+}
+
+function isBrowserVueIntegration (name: string): name is keyof { Replay: Replay } {
+  return BROWSER_VUE_INTEGRATIONS.includes(name)
 }
 
 function isServerDefaultIntegration (name: string): name is keyof typeof ServerIntegrations {
@@ -143,6 +150,7 @@ function resolveTracingOptions (options: ModuleConfiguration, config: NonNullabl
 export type ResolvedClientOptions = {
   BROWSER_INTEGRATIONS: string[]
   BROWSER_PLUGGABLE_INTEGRATIONS: string[]
+  BROWSER_VUE_INTEGRATIONS: string[]
   dev: boolean
   runtimeConfigKey: string
   config: Options
@@ -174,7 +182,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   resolveTracingOptions(options, config)
 
   for (const name of getIntegrationsKeys(options.clientIntegrations)) {
-    if (!isBrowserDefaultIntegration(name) && !isBrowserPluggableIntegration(name)) {
+    if (!isBrowserDefaultIntegration(name) && !isBrowserPluggableIntegration(name) && !isBrowserVueIntegration(name)) {
       logger.warn(`Sentry clientIntegration "${name}" is not recognized and will be ignored.`)
       delete options.clientIntegrations[name]
     }
@@ -193,6 +201,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   return {
     BROWSER_INTEGRATIONS,
     BROWSER_PLUGGABLE_INTEGRATIONS,
+    BROWSER_VUE_INTEGRATIONS,
     dev: nuxt.options.dev,
     runtimeConfigKey: options.runtimeConfigKey,
     config: {

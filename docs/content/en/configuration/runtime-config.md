@@ -1,13 +1,13 @@
 ---
 title: Runtime config
 description: "Load Sentry configuration at runtime"
-position: 5
-category: Sentry
+position: 16
+category: Configuration
 ---
 
 Defining options using the [Nuxt Runtime Config](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/) functionality allows them to be runtime-based rather than build-time based, as is the case by default.
 
-Currently only the `config`, `clientConfig` and `serverConfig` [options](/sentry/options) can be configured using the runtime config.
+Currently, only the `config`, `clientConfig` and `serverConfig` [options](/configuration/options) can be configured using the runtime config.
 
 In the Nuxt configuration file define a `publicRuntimeConfig.sentry` configuration object with settings that will be applied at runtime. For example:
 
@@ -27,6 +27,6 @@ publicRuntimeConfig: {
 }
 ```
 
-You can customize the key that is used to access settings from `publicRuntimeConfig` by setting [`runtimeConfigKey`](/sentry/options#runtimeconfigkey) in the non-runtime options.
+You can customize the key that is used to access settings from `publicRuntimeConfig` by setting [`runtimeConfigKey`](/configuration/options#runtimeconfigkey) in the non-runtime options.
 
 This functionality is supported from Nuxt 2.13 and up.

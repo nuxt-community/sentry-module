@@ -1,8 +1,8 @@
 ---
 title: Options
 description: 'Options can be passed to Sentry using either environment variables'
-position: 4
-category: Sentry
+position: 15
+category: Configuration
 ---
 
 Options can be passed using either:
@@ -10,7 +10,7 @@ Options can be passed using either:
  - `sentry` object in `nuxt.config.js`
  - when registering the module: `modules: [['@nuxtjs/sentry', {/*options*/}]]`
 
-The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/sentry/runtime-config).
+The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/configuration/runtime-config).
 
 The `dsn` is the only option that is required to enable Sentry reporting.
 
@@ -123,13 +123,13 @@ The `dsn` is the only option that is required to enable Sentry reporting.
 - Default: `sentry`
 - Specified object in Nuxt config in `publicRuntimeConfig[runtimeConfigKey]` will override some options at runtime. See documentation at https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
 - Used to define the environment at runtime for example
-- See also [Runtime Config](/sentry/runtime-config) documentation.
+- See also [Runtime Config](/configuration/runtime-config) documentation.
 
 ### disabled
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLED || false`
-- Sentry will not be initialised if set to `true`.
+- Sentry will not be initialized if set to `true`.
 
 ### disableClientSide
 
@@ -207,7 +207,7 @@ Note that the module sets the following defaults when publishing is enabled:
 
 - Type: `String`
 - Default: `source-map`
-- Only has effect when `publishRelease = true`
+- Only has effect when `publishRelease` is enabled
 - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
 - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a breaking change, it won't be set as the default until next major release
 
@@ -215,14 +215,14 @@ Note that the module sets the following defaults when publishing is enabled:
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
-- Only has effect when `publishRelease = true`
+- Only has effect when `publishRelease` is enabled
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### disableClientRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_CLIENT_RELEASE || false`
-- Only has effect when `publishRelease = true`
+- Only has effect when `publishRelease` is enabled
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### clientIntegrations
@@ -238,9 +238,9 @@ Note that the module sets the following defaults when publishing is enabled:
   ```
 - Sentry by default also enables the following browser integrations: `Breadcrumbs`, `Dedupe`, `FunctionToString`, `GlobalHandlers`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `TryCatch`.
 - When `tracing` option is enabled then the [Vue Router Instrumentation](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also enabled.
-- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
+- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `Reply`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
-- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only) set the option to:
   ```js
   {
     ExtraErrorData: false,
@@ -265,7 +265,7 @@ Note that the module sets the following defaults when publishing is enabled:
 - Sentry by default enables the following server integrations: `Console`, `ContextLines`, `Context`, `FunctionToString`, `Http`,  `InboundFilters`, `LinkedErrors`, `Modules`,`OnUncaughtException`, `OnUnhandledRejection`, `RequestData`.
 - The full list of server integrations that are supported includes the ones above plus: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Transaction`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
-- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only) set the option to:
   ```js
   {
     Dedupe: {},
@@ -313,7 +313,7 @@ export default function () {
 - Type: `Boolean` or `Object`
 - Default: `false`
 
-- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/performance/) and [browser](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
+- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/guides/express/performance/) and [browser](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
 - Takes the following object configuration format (default values shown):
   ```js
   {
@@ -326,6 +326,8 @@ export default function () {
   ```
 - On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. The [Vue Router Integration](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also automatically enabled. See all available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
 - On the browser side extra options for [Tracking Vue components](https://docs.sentry.io/platforms/javascript/guides/vue/features/component-tracking/) can be passed through the `vueOptions` object.
+- On the server side the `Http` integration is enabled to trace HTTP requests and [tracingHandler](https://docs.sentry.io/platforms/node/guides/express/performance/) is enabled to trace `connect` and `express` routes.
+- See also the [Performance Monitoring](/guide/performance) section for more information.
 
 <alert type="info">
 
@@ -377,27 +379,8 @@ export default function () {
 - Default: `{}`
 - Sentry SDK [Basic Browser Options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/).
 - The specified keys will override common options set in the `config` key.
-- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function is passed a `Nuxt Context` argument and can be `async`. Example of how to enable [User Feedback](https://docs.sentry.io/platforms/javascript/enriching-events/user-feedback/) dialog:
-  ```js [nuxt.config.js]
-  sentry: {
-    dsn: '...',
-    clientConfig: '~/config/sentry-client-config.js',
-  }
-  ```
-  ```js [~/config/sentry-client-config.js]
-  import { showReportDialog } from '@sentry/vue'
-
-  export default function(context) {
-    return {
-      beforeSend (event, hint) {
-        if (event.exception) {
-          showReportDialog({ eventId: event.event_id })
-        }
-        return event
-      },
-    }
-  }
-  ```
+- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function is passed a `Nuxt Context` argument and can be `async`.
+- See an example usage on the [User Feedback](/guide/user-feedback) page.
 
 ### requestHandlerConfig
 
