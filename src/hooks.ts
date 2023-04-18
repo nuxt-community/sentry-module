@@ -28,11 +28,13 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
     mode: 'client',
     options: clientOptions,
   })
-  addTemplate({
-    src: resolve(templateDir, 'client.shared.js'),
-    filename: 'sentry.client.shared.js',
-    options: clientOptions,
-  })
+  if (pluginOptionClient !== 'mocked') {
+    addTemplate({
+      src: resolve(templateDir, 'client.shared.js'),
+      filename: 'sentry.client.shared.js',
+      options: clientOptions,
+    })
+  }
 
   const pluginOptionServer = serverSentryEnabled(moduleOptions) ? 'server' : 'mocked'
   const serverOptions: ResolvedServerOptions = defu({ config: { release } }, await resolveServerOptions(nuxt, moduleOptions, logger))
