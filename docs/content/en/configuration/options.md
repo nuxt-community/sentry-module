@@ -123,7 +123,7 @@ The `dsn` is the only option that is required to enable Sentry reporting.
 - Default: `sentry`
 - Specified object in Nuxt config in `publicRuntimeConfig[runtimeConfigKey]` will override some options at runtime. See documentation at https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
 - Used to define the environment at runtime for example
-- See also [Runtime Config](/sentry/runtime-config) documentation.
+- See also [Runtime Config](/configuration/runtime-config) documentation.
 
 ### disabled
 
