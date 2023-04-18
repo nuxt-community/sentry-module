@@ -37,7 +37,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     tracing: false,
     clientIntegrations: {
       ExtraErrorData: {},
-      ReportingObserver: {},
+      ReportingObserver: { types: ['crash'] },
       RewriteFrames: {},
     },
     serverIntegrations: {
