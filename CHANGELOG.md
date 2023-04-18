@@ -1,5 +1,17 @@
 
 
+## [7.2.0](https://github.com/nuxt-community/sentry-module/compare/v7.1.13...v7.2.0) (2023-04-18)
+
+
+### Features
+
+* extend guides in docs and add simpler way to enable Replay ([#559](https://github.com/nuxt-community/sentry-module/issues/559)) ([fd57b07](https://github.com/nuxt-community/sentry-module/commit/fd57b070832a3fbe2457d681c063cd59fe910745))
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk to ^7.48.0 ([#545](https://github.com/nuxt-community/sentry-module/issues/545)) ([30b283a](https://github.com/nuxt-community/sentry-module/commit/30b283a395c43027d5b0b06e2604f988c262003d))
+
 ### [7.1.13](https://github.com/nuxt-community/sentry-module/compare/v7.1.12...v7.1.13) (2023-04-11)
 
 
