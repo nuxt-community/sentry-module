@@ -1,8 +1,8 @@
 ---
 title: Lazy-Loading (client-side)
-description: 'Load Sentry module lazily on the client'
-position: 6
-category: Sentry
+description: Load Sentry module lazily on the client
+position: 22
+category: Guide
 ---
 
 Set `lazy: true` in your module options to load Sentry lazily on the client. This will prevent Sentry from being included in your main bundle and should result in a faster initial page load.

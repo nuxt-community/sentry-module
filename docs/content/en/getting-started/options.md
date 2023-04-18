@@ -1,8 +1,8 @@
 ---
 title: Options
 description: 'Options can be passed to Sentry using either environment variables'
-position: 4
-category: Sentry
+position: 11
+category: Getting Started
 ---
 
 Options can be passed using either:
@@ -207,7 +207,7 @@ Note that the module sets the following defaults when publishing is enabled:
 
 - Type: `String`
 - Default: `source-map`
-- Only has effect when `publishRelease = true`
+- Only has effect when `publishRelease` is enabled
 - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
 - **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a breaking change, it won't be set as the default until next major release
 
@@ -215,14 +215,14 @@ Note that the module sets the following defaults when publishing is enabled:
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
-- Only has effect when `publishRelease = true`
+- Only has effect when `publishRelease` is enabled
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### disableClientRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_CLIENT_RELEASE || false`
-- Only has effect when `publishRelease = true`
+- Only has effect when `publishRelease` is enabled
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### clientIntegrations
@@ -238,9 +238,9 @@ Note that the module sets the following defaults when publishing is enabled:
   ```
 - Sentry by default also enables the following browser integrations: `Breadcrumbs`, `Dedupe`, `FunctionToString`, `GlobalHandlers`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `TryCatch`.
 - When `tracing` option is enabled then the [Vue Router Instrumentation](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also enabled.
-- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
+- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `Reply`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
-- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only) set the option to:
   ```js
   {
     ExtraErrorData: false,
@@ -313,7 +313,7 @@ export default function () {
 - Type: `Boolean` or `Object`
 - Default: `false`
 
-- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/performance/) and [browser](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
+- Enables Sentry Performance Monitoring on the [server](https://docs.sentry.io/platforms/node/guides/express/performance/) and [browser](https://docs.sentry.io/platforms/javascript/guides/vue/performance/) side.
 - Takes the following object configuration format (default values shown):
   ```js
   {
@@ -326,6 +326,8 @@ export default function () {
   ```
 - On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. The [Vue Router Integration](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also automatically enabled. See all available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
 - On the browser side extra options for [Tracking Vue components](https://docs.sentry.io/platforms/javascript/guides/vue/features/component-tracking/) can be passed through the `vueOptions` object.
+- On the server side the `Http` integration is enabled to trace HTTP requests and [tracingHandler](https://docs.sentry.io/platforms/node/guides/express/performance/) is enabled to trace `connect` and `express` routes.
+- See also the [Performance Monitoring](/guide/performance) section for more information.
 
 <alert type="info">
 

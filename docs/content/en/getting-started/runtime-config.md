@@ -1,8 +1,8 @@
 ---
 title: Runtime config
 description: "Load Sentry configuration at runtime"
-position: 5
-category: Sentry
+position: 12
+category: Getting Started
 ---
 
 Defining options using the [Nuxt Runtime Config](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/) functionality allows them to be runtime-based rather than build-time based, as is the case by default.

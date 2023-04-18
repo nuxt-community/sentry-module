@@ -6,9 +6,11 @@ if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= 
 import merge from '~lodash.mergewith'
 <%
 const browserIntegrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
+const browserVueIntegrations = options.BROWSER_VUE_INTEGRATIONS.filter(key => key in options.integrations)
 const vueImports = [
   'init',
   ...(browserIntegrations.length ? ['Integrations'] : []),
+  ...browserVueIntegrations,
   ...(options.tracing ? ['vueRouterInstrumentation', 'BrowserTracing'] : [])
 ]
 %>import { <%= vueImports.join(', ') %> } from '~@sentry/vue'

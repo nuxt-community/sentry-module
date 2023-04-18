@@ -1,13 +1,13 @@
 ---
 title: Setup
 description: 'Setup the sentry module into Nuxt'
-position: 2
-category: Guide
+position: 10
+category: Getting Started
 ---
 
 Check the [Nuxt.js documentation](https://nuxtjs.org/guides/configuration-glossary/configuration-modules) for more information about installing and using modules in Nuxt.js.
 
-> Nuxt.js v2.4.0+ is required, earlier versions are not supported
+> Nuxt.js v2.16.0+ is required, earlier versions are not supported.
 
 ## Installation
 
