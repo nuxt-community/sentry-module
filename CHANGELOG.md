@@ -1,5 +1,12 @@
 
 
+### [7.2.1](https://github.com/nuxt-community/sentry-module/compare/v7.2.0...v7.2.1) (2023-04-18)
+
+
+### Bug Fixes
+
+* only include 'crash' type for `ReportingObserver` integration ([#560](https://github.com/nuxt-community/sentry-module/issues/560)) ([782b9d1](https://github.com/nuxt-community/sentry-module/commit/782b9d186bcc6fc144c229876a8321a48789a3f2))
+
 ## [7.2.0](https://github.com/nuxt-community/sentry-module/compare/v7.1.13...v7.2.0) (2023-04-18)
 
 
