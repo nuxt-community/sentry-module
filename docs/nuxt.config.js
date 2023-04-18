@@ -22,12 +22,12 @@ export default theme({
       },
       {
         from: '^/sentry/options',
-        to: '/getting-started/options',
+        to: '/configuration/options',
         statusCode: 301,
       },
       {
         from: '^/sentry/runtime-config',
-        to: '/getting-started/runtime-config',
+        to: '/configuration/runtime-config',
         statusCode: 301,
       },
     ],

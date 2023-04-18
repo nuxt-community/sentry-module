@@ -1,8 +1,8 @@
 ---
 title: Options
 description: 'Options can be passed to Sentry using either environment variables'
-position: 11
-category: Getting Started
+position: 15
+category: Configuration
 ---
 
 Options can be passed using either:
@@ -10,7 +10,7 @@ Options can be passed using either:
  - `sentry` object in `nuxt.config.js`
  - when registering the module: `modules: [['@nuxtjs/sentry', {/*options*/}]]`
 
-The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/sentry/runtime-config).
+The `config`, `serverConfig` and `clientConfig` options can also be configured using [Runtime Config](/configuration/runtime-config).
 
 The `dsn` is the only option that is required to enable Sentry reporting.
 
@@ -129,7 +129,7 @@ The `dsn` is the only option that is required to enable Sentry reporting.
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLED || false`
-- Sentry will not be initialised if set to `true`.
+- Sentry will not be initialized if set to `true`.
 
 ### disableClientSide
 
@@ -265,7 +265,7 @@ Note that the module sets the following defaults when publishing is enabled:
 - Sentry by default enables the following server integrations: `Console`, `ContextLines`, `Context`, `FunctionToString`, `Http`,  `InboundFilters`, `LinkedErrors`, `Modules`,`OnUncaughtException`, `OnUnhandledRejection`, `RequestData`.
 - The full list of server integrations that are supported includes the ones above plus: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Transaction`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
-- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only), set the option to:
+- To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only) set the option to:
   ```js
   {
     Dedupe: {},
@@ -379,27 +379,8 @@ export default function () {
 - Default: `{}`
 - Sentry SDK [Basic Browser Options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/).
 - The specified keys will override common options set in the `config` key.
-- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function is passed a `Nuxt Context` argument and can be `async`. Example of how to enable [User Feedback](https://docs.sentry.io/platforms/javascript/enriching-events/user-feedback/) dialog:
-  ```js [nuxt.config.js]
-  sentry: {
-    dsn: '...',
-    clientConfig: '~/config/sentry-client-config.js',
-  }
-  ```
-  ```js [~/config/sentry-client-config.js]
-  import { showReportDialog } from '@sentry/vue'
-
-  export default function(context) {
-    return {
-      beforeSend (event, hint) {
-        if (event.exception) {
-          showReportDialog({ eventId: event.event_id })
-        }
-        return event
-      },
-    }
-  }
-  ```
+- The value can be a string in which case it needs to be a file path (can use [webpack aliases](https://nuxtjs.org/docs/2.x/directory-structure/assets#aliases)) pointing to a javascript file whose default export (a function) returns the configuration object. This is necessary in case some of the options rely on imported values or can't be serialized. The function is passed a `Nuxt Context` argument and can be `async`.
+- See an example usage on the [User Feedback](/guide/user-feedback) page.
 
 ### requestHandlerConfig
 

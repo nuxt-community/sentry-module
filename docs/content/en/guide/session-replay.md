@@ -7,9 +7,9 @@ category: Guide
 
 Session Replay helps you get to the root cause of an error or latency issue faster by providing you with a video-like reproduction of what was happening in the user's browser before, during, and after the issue.
 
-### Enabling
+### Setup
 
-Session Replay comes as a separate integration that is not enabled by default. To enable it, add `Replay: {}` to the [`clientIntegrations`](/getting-started/options#clientintegrations) option like so:
+Session Replay comes as a separate integration that is not enabled by default. To enable it, add `Replay: {}` to the [`clientIntegrations`](/configuration/options#clientintegrations) option like so:
 
 ```js [nuxt.config.js]
 sentry: {
@@ -44,4 +44,4 @@ You can customize integration options by passing them within the `{}` object.
 
 ### Documentation
 
-See also Sentry's [Session Replay](https://docs.sentry.io/platforms/javascript/guides/vue/session-replay/) pages for additional information.
+See Sentry's [Session Replay](https://docs.sentry.io/platforms/javascript/guides/vue/session-replay/) pages for additional information.
