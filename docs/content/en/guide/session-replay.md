@@ -15,7 +15,7 @@ Session Replay comes as a separate integration that is not enabled by default. T
 sentry: {
   dsn: '...',
   clientIntegrations: [
-    Reply: {},
+    Replay: {},
   ],
   clientConfig: {
     // This sets the sample rate to be 10%. You may want this to be 100% while
