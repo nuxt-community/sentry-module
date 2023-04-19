@@ -14,9 +14,9 @@ Session Replay comes as a separate integration that is not enabled by default. T
 ```js [nuxt.config.js]
 sentry: {
   dsn: '...',
-  clientIntegrations: [
-    Reply: {},
-  ],
+  clientIntegrations: {
+    Replay: {},
+  },
   clientConfig: {
     // This sets the sample rate to be 10%. You may want this to be 100% while
     // in development and sample at a lower rate in production
