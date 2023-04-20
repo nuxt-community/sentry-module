@@ -1,5 +1,12 @@
 
 
+### [7.2.2](https://github.com/nuxt-community/sentry-module/compare/v7.2.1...v7.2.2) (2023-04-20)
+
+
+### Bug Fixes
+
+* **deps:** add `@sentry/core` explicitly as its used in types ([7124678](https://github.com/nuxt-community/sentry-module/commit/7124678e4d1e8a787594958ced3bbe5e0e23d42b))
+
 ### [7.2.1](https://github.com/nuxt-community/sentry-module/compare/v7.2.0...v7.2.1) (2023-04-18)
 
 
