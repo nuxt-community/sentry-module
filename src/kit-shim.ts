@@ -1,7 +1,7 @@
 // Shim created based on v3.2.3 of @nuxt/kit
 
 import { existsSync } from 'node:fs'
-import consola from 'consola'
+import { consola } from 'consola'
 import { defu } from 'defu'
 import hash from 'hash-sum'
 import { basename, parse, normalize, resolve } from 'pathe'
@@ -170,8 +170,8 @@ export function defineNuxtModule<OptionsT extends ModuleOptions> (definition: Mo
 
 export const logger = consola
 
-export function useLogger (scope?: string): typeof consola {
-  return scope ? logger.withScope(scope) : logger
+export function useLogger (tag?: string): typeof consola {
+  return tag ? logger.withTag(tag) : logger
 }
 
 export function isNuxt2 (): boolean {

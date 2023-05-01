@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { resolve, posix } from 'path'
 import { defu } from 'defu'
-import type { Consola } from 'consola'
+import type { ConsolaInstance } from 'consola'
 import type { Configuration as WebpackConfig } from 'webpack'
 import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import type { Options } from '@sentry/types'
@@ -15,7 +15,7 @@ import type { SentryHandlerProxy } from './options'
 
 const RESOLVED_RELEASE_FILENAME = 'sentry.release.config.mjs'
 
-export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<void> {
+export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: ConsolaInstance): Promise<void> {
   const release = await resolveRelease(moduleOptions)
 
   const templateDir = fileURLToPath(new URL('./templates', import.meta.url))
@@ -62,7 +62,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   }
 }
 
-export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger: Consola): Promise<void> {
+export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger: ConsolaInstance): Promise<void> {
   let WebpackPlugin: typeof import('@sentry/webpack-plugin')
   try {
     WebpackPlugin = await (import('@sentry/webpack-plugin').then(m => m.default || m))
@@ -135,7 +135,7 @@ export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConf
   config.plugins.push(new WebpackPlugin(publishRelease))
 }
 
-export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, sentryHandlerProxy: SentryHandlerProxy, logger: Consola): Promise<void> {
+export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, sentryHandlerProxy: SentryHandlerProxy, logger: ConsolaInstance): Promise<void> {
   if (process.sentry) {
     return
   }
