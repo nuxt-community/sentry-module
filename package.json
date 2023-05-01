@@ -64,7 +64,7 @@
     "@sentry/node": "^7.48.0",
     "@sentry/utils": "^7.48.0",
     "@sentry/vue": "^7.48.0",
-    "consola": "^2.0.0",
+    "consola": "^3.0.0",
     "defu": "^6.0.0",
     "hash-sum": "^2.0.0",
     "lodash.mergewith": "^4.6.2",
