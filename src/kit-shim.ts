@@ -118,8 +118,6 @@ function nuxt2Shims (nuxt: Nuxt) {
 }
 
 export function defineNuxtModule<OptionsT extends ModuleOptions> (definition: ModuleDefinition<OptionsT>): NuxtModule<OptionsT> {
-  let nuxt: Nuxt
-
   // Normalize definition and meta
   if (!definition.meta) { definition.meta = {} }
   if (definition.meta.configKey === undefined) {
@@ -128,6 +126,7 @@ export function defineNuxtModule<OptionsT extends ModuleOptions> (definition: Mo
 
   // Resolves module options from inline options, [configKey] in nuxt.config, defaults and schema
   function getOptions (inlineOptions?: OptionsT) {
+    const nuxt = useNuxt()
     const configKey = definition.meta!.configKey || definition.meta!.name!
     const _defaults = definition.defaults instanceof Function ? definition.defaults(nuxt) : definition.defaults
     const _options = defu(inlineOptions, nuxt.options[configKey as keyof NuxtOptions], _defaults) as OptionsT
@@ -136,9 +135,7 @@ export function defineNuxtModule<OptionsT extends ModuleOptions> (definition: Mo
 
   // Module format is always a simple function
   async function normalizedModule (this: any, inlineOptions: OptionsT) {
-    if (!nuxt) {
-      nuxt = this.nuxt
-    }
+    const nuxt = this.nuxt
 
     // Avoid duplicate installs
     const uniqueKey = definition.meta!.name || definition.meta!.configKey
