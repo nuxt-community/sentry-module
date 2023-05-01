@@ -1,3 +1,5 @@
+// Shim created based on v3.2.3 of @nuxt/kit
+
 import { existsSync } from 'node:fs'
 import consola from 'consola'
 import { defu } from 'defu'
