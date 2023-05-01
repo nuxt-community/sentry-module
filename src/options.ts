@@ -1,4 +1,4 @@
-import type { Consola } from 'consola'
+import type { ConsolaInstance } from 'consola'
 import { defu } from 'defu'
 import { relative } from 'pathe'
 import { Integrations as ServerIntegrations, autoDiscoverNodePerformanceMonitoringIntegrations } from '@sentry/node'
@@ -90,7 +90,7 @@ export async function resolveRelease (moduleOptions: ModuleConfiguration): Promi
   }
 }
 
-function resolveClientLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: Consola) {
+function resolveClientLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: ConsolaInstance) {
   if (options.lazy) {
     const defaultLazyOptions = {
       injectMock: true,
@@ -165,7 +165,7 @@ export type ResolvedClientOptions = {
   integrations: Record<string, unknown>
 }
 
-export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<ResolvedClientOptions> {
+export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: ConsolaInstance): Promise<ResolvedClientOptions> {
   const options = moduleOptions
   let config = defu({}, options.config)
 
@@ -231,7 +231,7 @@ export type ResolvedServerOptions = {
   tracing: ModuleConfiguration['tracing']
 }
 
-export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: Consola): Promise<ResolvedServerOptions> {
+export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: ConsolaInstance): Promise<ResolvedServerOptions> {
   const options = moduleOptions
 
   for (const name of getIntegrationsKeys(options.serverIntegrations)) {
