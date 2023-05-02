@@ -1,5 +1,12 @@
 
 
+### [7.2.3](https://github.com/nuxt-community/sentry-module/compare/v7.2.2...v7.2.3) (2023-05-02)
+
+
+### Bug Fixes
+
+* ensure Sentry re-initializes in Dev after Nuxt config change ([#565](https://github.com/nuxt-community/sentry-module/issues/565)) ([5ee045d](https://github.com/nuxt-community/sentry-module/commit/5ee045d0c7393070e45505ca1c922c0f4ce7168a))
+
 ### [7.2.2](https://github.com/nuxt-community/sentry-module/compare/v7.2.1...v7.2.2) (2023-04-20)
 
 
