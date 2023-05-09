@@ -1,5 +1,13 @@
 
 
+### [7.2.4](https://github.com/nuxt-community/sentry-module/compare/v7.2.3...v7.2.4) (2023-05-09)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk ([#563](https://github.com/nuxt-community/sentry-module/issues/563)) ([bcb9500](https://github.com/nuxt-community/sentry-module/commit/bcb95002ceaedffed5056f55241abad59b91879e))
+* remove use of unctx to avoid issues with conflicting versions ([#566](https://github.com/nuxt-community/sentry-module/issues/566)) ([d8dc14b](https://github.com/nuxt-community/sentry-module/commit/d8dc14b06f3276fef2d41c80c5608b75d9543ae5))
+
 ### [7.2.3](https://github.com/nuxt-community/sentry-module/compare/v7.2.2...v7.2.3) (2023-05-02)
 
 
