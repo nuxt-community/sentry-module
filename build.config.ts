@@ -22,7 +22,6 @@ export default defineBuildConfig({
     'hash-sum',
     'hookable',
     'pathe',
-    'unctx',
     'webpack',
     'vuex',
   ],

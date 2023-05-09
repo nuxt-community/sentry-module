@@ -69,8 +69,7 @@
     "hash-sum": "^2.0.0",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.0.0",
-    "pathe": "^1.0.0",
-    "unctx": "^2.0.0"
+    "pathe": "^1.0.0"
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.2.1",

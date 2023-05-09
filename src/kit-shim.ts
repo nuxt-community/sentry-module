@@ -7,7 +7,6 @@ import hash from 'hash-sum'
 import { basename, parse, normalize, resolve } from 'pathe'
 import { resolveAlias as _resolveAlias } from 'pathe/utils'
 import type { Hookable } from 'hookable'
-import { getContext } from 'unctx'
 import type { WebpackPluginInstance, Configuration as WebpackConfig } from 'webpack'
 import type { NuxtOptions } from '@nuxt/types'
 
@@ -58,7 +57,7 @@ export interface NuxtModule<T extends ModuleOptions = ModuleOptions> {
 }
 
 /** Direct access to the Nuxt context - see https://github.com/unjs/unctx. */
-export const nuxtCtx = getContext<Nuxt>('nuxt')
+let nuxtCtx: Nuxt | null = null
 
 // TODO: Use use/tryUse from unctx. https://github.com/unjs/unctx/issues/6
 
@@ -73,7 +72,7 @@ export const nuxtCtx = getContext<Nuxt>('nuxt')
  * ```
  */
 export function useNuxt (): Nuxt {
-  const instance = nuxtCtx.tryUse()
+  const instance = nuxtCtx
   if (!instance) {
     throw new Error('Nuxt instance is unavailable!')
   }
@@ -94,7 +93,7 @@ export function useNuxt (): Nuxt {
  * ```
  */
 export function tryUseNuxt (): Nuxt | null {
-  return nuxtCtx.tryUse()
+  return nuxtCtx
 }
 
 // -- Nuxt 2 compatibility shims --
@@ -111,9 +110,9 @@ function nuxt2Shims (nuxt: Nuxt) {
   nuxt.hooks = nuxt
 
   // Allow using useNuxt()
-  if (!nuxtCtx.tryUse()) {
-    nuxtCtx.set(nuxt)
-    nuxt.hook('close', () => nuxtCtx.unset())
+  if (!nuxtCtx) {
+    nuxtCtx = nuxt
+    nuxt.hook('close', () => { nuxtCtx = null })
   }
 }
 
