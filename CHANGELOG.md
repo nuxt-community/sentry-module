@@ -1,5 +1,12 @@
 
 
+### [7.2.6](https://github.com/nuxt-community/sentry-module/compare/v7.2.5...v7.2.6) (2023-05-10)
+
+
+### Bug Fixes
+
+* crash happening when `@nuxt/kit` is installed ([#571](https://github.com/nuxt-community/sentry-module/issues/571)) ([10e650a](https://github.com/nuxt-community/sentry-module/commit/10e650a21881877d7ee89253defabaef77a71c9c))
+
 ### [7.2.5](https://github.com/nuxt-community/sentry-module/compare/v7.2.4...v7.2.5) (2023-05-10)
 
 
