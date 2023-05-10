@@ -1,5 +1,12 @@
 
 
+### [7.2.5](https://github.com/nuxt-community/sentry-module/compare/v7.2.4...v7.2.5) (2023-05-10)
+
+
+### Bug Fixes
+
+* config merging order on the server side ([#568](https://github.com/nuxt-community/sentry-module/issues/568)) ([4fc42dd](https://github.com/nuxt-community/sentry-module/commit/4fc42dd6c3ebc3947ebf84529b3a7d4b0354c812))
+
 ### [7.2.4](https://github.com/nuxt-community/sentry-module/compare/v7.2.3...v7.2.4) (2023-05-09)
 
 
