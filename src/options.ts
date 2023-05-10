@@ -291,7 +291,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     }
   }
 
-  const config = defu(defaultConfig, options.config, options.serverConfig, getRuntimeConfig(nuxt, options))
+  const config = defu(getServerRuntimeConfig(nuxt, options), options.serverConfig, options.config, defaultConfig)
   resolveTracingOptions(options, options.config)
 
   return {
@@ -303,10 +303,13 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   }
 }
 
-function getRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<ModuleConfiguration['config']> | undefined {
+function getServerRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<ModuleConfiguration['config']> | undefined {
   const { publicRuntimeConfig } = nuxt.options
   const { runtimeConfigKey } = options
   if (publicRuntimeConfig && typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
-    return defu(publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>, publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>)
+    return defu(
+      publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>,
+      publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>,
+    )
   }
 }
