@@ -97,7 +97,7 @@ export function tryUseNuxt (): Nuxt | null {
 }
 
 // -- Nuxt 2 compatibility shims --
-const NUXT2_SHIMS_KEY = '__nuxt2_shims_key__'
+const NUXT2_SHIMS_KEY = '__nuxt2_shims_sentry_key__'
 function nuxt2Shims (nuxt: Nuxt) {
   // Avoid duplicate install and only apply to Nuxt2
   // @ts-expect-error nuxt2
