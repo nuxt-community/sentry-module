@@ -3,6 +3,7 @@
   "version": "7.2.6",
   "description": "Sentry module for Nuxt.js",
   "repository": "nuxt-community/sentry-module",
+  "private": true,
   "license": "MIT",
   "contributors": [
     {
@@ -42,8 +43,8 @@
     "lint:fix": "eslint --ext .vue,.js,.ts . --fix",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
-    "test:fixture": "vitest",
-    "test": "yarn prepack && yarn test:fixture run && yarn lint:fixture && yarn typecheck",
+    "test": "yarn prepack && vitest run && yarn lint:fixture && yarn typecheck",
+    "test:watch": "vitest",
     "typecheck": "tsc",
     "coverage": "codecov"
   },

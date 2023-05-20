@@ -57,7 +57,9 @@ export interface NuxtModule<T extends ModuleOptions = ModuleOptions> {
 }
 
 /** Direct access to the Nuxt context - see https://github.com/unjs/unctx. */
-let nuxtCtx: Nuxt | null = null
+export const nuxtCtx: { value: Nuxt | null } = {
+  value: null,
+}
 
 // TODO: Use use/tryUse from unctx. https://github.com/unjs/unctx/issues/6
 
@@ -72,7 +74,7 @@ let nuxtCtx: Nuxt | null = null
  * ```
  */
 export function useNuxt (): Nuxt {
-  const instance = nuxtCtx
+  const instance = nuxtCtx.value
   if (!instance) {
     throw new Error('Nuxt instance is unavailable!')
   }
@@ -93,7 +95,7 @@ export function useNuxt (): Nuxt {
  * ```
  */
 export function tryUseNuxt (): Nuxt | null {
-  return nuxtCtx
+  return nuxtCtx.value
 }
 
 // -- Nuxt 2 compatibility shims --
@@ -110,9 +112,9 @@ function nuxt2Shims (nuxt: Nuxt) {
   nuxt.hooks = nuxt
 
   // Allow using useNuxt()
-  if (!nuxtCtx) {
-    nuxtCtx = nuxt
-    nuxt.hook('close', () => { nuxtCtx = null })
+  if (!nuxtCtx.value) {
+    nuxtCtx.value = nuxt
+    nuxt.hook('close', () => { nuxtCtx.value = null })
   }
 }
 

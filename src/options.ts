@@ -6,7 +6,7 @@ import type Sentry from '@sentry/node'
 import * as PluggableIntegrations from '@sentry/integrations'
 import type { Options } from '@sentry/types'
 import type { Replay } from '@sentry/vue'
-import type { AllIntegrations, LazyConfiguration, TracingConfiguration } from './types/configuration'
+import type { AllIntegrations, ClientIntegrations, LazyConfiguration, TracingConfiguration } from './types/configuration'
 import type { ModuleConfiguration } from './types'
 import { Nuxt, resolveAlias } from './kit-shim'
 import { canInitialize } from './utils'
@@ -77,7 +77,7 @@ async function getApiMethods (packageName: string): Promise<string[]> {
   return apiMethods
 }
 
-export async function resolveRelease (moduleOptions: ModuleConfiguration): Promise<string | undefined> {
+export async function resolveRelease (moduleOptions: Readonly<ModuleConfiguration>): Promise<string | undefined> {
   if (!('release' in moduleOptions.config)) {
     // Determine "config.release" automatically from local repo if not provided.
     try {
@@ -90,39 +90,41 @@ export async function resolveRelease (moduleOptions: ModuleConfiguration): Promi
   }
 }
 
-function resolveClientLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: ConsolaInstance) {
-  if (options.lazy) {
-    const defaultLazyOptions = {
-      injectMock: true,
-      injectLoadHook: false,
-      mockApiMethods: true,
-      chunkName: 'sentry',
-      webpackPrefetch: false,
-      webpackPreload: false,
+function resolveClientLazyOptions (options: ModuleConfiguration, apiMethods: string[], logger: ConsolaInstance): void {
+  if (!options.lazy) {
+    return
+  }
+
+  const defaultLazyOptions: LazyConfiguration = {
+    injectMock: true,
+    injectLoadHook: false,
+    mockApiMethods: true,
+    chunkName: 'sentry',
+    webpackPrefetch: false,
+    webpackPreload: false,
+  }
+
+  options.lazy = defu(options.lazy, defaultLazyOptions)
+
+  if (!options.lazy.injectMock) {
+    options.lazy.mockApiMethods = []
+  } else if (options.lazy.mockApiMethods === true) {
+    options.lazy.mockApiMethods = apiMethods
+  } else if (Array.isArray(options.lazy.mockApiMethods)) {
+    const mockMethods = options.lazy.mockApiMethods
+    options.lazy.mockApiMethods = mockMethods.filter(method => apiMethods.includes(method))
+    const notfoundMethods = mockMethods.filter(method => !apiMethods.includes(method))
+    if (notfoundMethods.length) {
+      logger.warn('Some specified methods to mock weren\'t found in @sentry/vue:', notfoundMethods)
     }
-
-    options.lazy = defu(options.lazy, defaultLazyOptions)
-
-    if (!options.lazy.injectMock) {
-      options.lazy.mockApiMethods = []
-    } else if (options.lazy.mockApiMethods === true) {
-      options.lazy.mockApiMethods = apiMethods
-    } else if (Array.isArray(options.lazy.mockApiMethods)) {
-      const mockMethods = options.lazy.mockApiMethods
-      options.lazy.mockApiMethods = mockMethods.filter(method => apiMethods.includes(method))
-      const notfoundMethods = mockMethods.filter(method => !apiMethods.includes(method))
-      if (notfoundMethods.length) {
-        logger.warn('Some specified methods to mock weren\'t found in @sentry/vue:', notfoundMethods)
-      }
-      if (!options.lazy.mockApiMethods.includes('captureException')) {
-        // always add captureException if a sentry mock is requested
-        options.lazy.mockApiMethods.push('captureException')
-      }
+    if (!options.lazy.mockApiMethods.includes('captureException')) {
+      // always add captureException if a sentry mock is requested
+      options.lazy.mockApiMethods.push('captureException')
     }
   }
 }
 
-function resolveTracingOptions (options: ModuleConfiguration, config: NonNullable<ModuleConfiguration['config']>) {
+function resolveTracingOptions (options: ModuleConfiguration): void {
   if (!options.tracing) {
     return
   }
@@ -135,16 +137,11 @@ function resolveTracingOptions (options: ModuleConfiguration, config: NonNullabl
     },
   }
 
-  const userOptions = typeof options.tracing === 'boolean' ? {} : options.tracing
-  const tracingOptions = defu(userOptions, defaultTracingOptions)
+  options.tracing = defu(options.tracing, defaultTracingOptions)
 
-  if (config.tracesSampleRate === undefined) {
-    config.tracesSampleRate = tracingOptions.tracesSampleRate
+  if (options.config.tracesSampleRate === undefined) {
+    options.config.tracesSampleRate = options.tracing.tracesSampleRate
   }
-
-  options.tracing = tracingOptions
-  // Enable tracing for `Http` integration.
-  options.serverIntegrations = defu(options.serverIntegrations, { Http: { tracing: true } })
 }
 
 export type ResolvedClientOptions = {
@@ -161,25 +158,23 @@ export type ResolvedClientOptions = {
   logMockCalls: boolean
   tracing: boolean | TracingConfiguration
   initialize: boolean
-  // TODO Fix this type
-  integrations: Record<string, unknown>
+  integrations: ClientIntegrations
 }
 
-export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: ConsolaInstance): Promise<ResolvedClientOptions> {
-  const options = moduleOptions
-  let config = defu({}, options.config)
+export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: Readonly<ModuleConfiguration>, logger: ConsolaInstance): Promise<ResolvedClientOptions> {
+  const options: ModuleConfiguration = defu(moduleOptions)
 
   let clientConfigPath: string | undefined
   if (typeof (options.clientConfig) === 'string') {
     clientConfigPath = resolveAlias(options.clientConfig)
     clientConfigPath = relative(nuxt.options.buildDir, clientConfigPath)
   } else {
-    config = defu(options.clientConfig, options.config)
+    options.config = defu(options.clientConfig, options.config)
   }
 
   const apiMethods = await getApiMethods('@sentry/vue')
   resolveClientLazyOptions(options, apiMethods, logger)
-  resolveTracingOptions(options, config)
+  resolveTracingOptions(options)
 
   for (const name of getIntegrationsKeys(options.clientIntegrations)) {
     if (!isBrowserDefaultIntegration(name) && !isBrowserPluggableIntegration(name) && !isBrowserVueIntegration(name)) {
@@ -206,7 +201,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     runtimeConfigKey: options.runtimeConfigKey,
     config: {
       dsn: options.dsn,
-      ...config,
+      ...options.config,
     },
     clientConfigPath,
     lazy: options.lazy,
@@ -231,8 +226,24 @@ export type ResolvedServerOptions = {
   tracing: ModuleConfiguration['tracing']
 }
 
-export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleConfiguration, logger: ConsolaInstance): Promise<ResolvedServerOptions> {
-  const options = moduleOptions
+export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<ModuleConfiguration>, logger: ConsolaInstance): Promise<ResolvedServerOptions> {
+  const options: ModuleConfiguration = defu(moduleOptions)
+
+  if (options.tracing) {
+    resolveTracingOptions(options)
+    options.serverIntegrations = defu(options.serverIntegrations, { Http: { tracing: true } })
+  }
+
+  if (typeof (options.serverConfig) === 'string') {
+    const resolvedPath = resolveAlias(options.serverConfig)
+    try {
+      options.serverConfig = (await import(resolvedPath).then(m => m.default || m))()
+    } catch (error) {
+      logger.error(`Error handling the serverConfig plugin:\n${error}`)
+    }
+  }
+
+  options.config = defu(getServerRuntimeConfig(nuxt, options), options.serverConfig, options.config)
 
   for (const name of getIntegrationsKeys(options.serverIntegrations)) {
     if (!isServerDefaultIntegration(name) && !isServerPlugabbleIntegration(name)) {
@@ -254,48 +265,35 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
     }
   }
 
-  const defaultConfig = {
-    dsn: options.dsn,
-    integrations: [
-      // Automatically instrument Node.js libraries and frameworks
-      ...(options.tracing ? autoDiscoverNodePerformanceMonitoringIntegrations() : []),
-      ...filterDisabledIntegrations(options.serverIntegrations)
-        .map((name) => {
-          const opt = options.serverIntegrations[name]
-          try {
-            if (isServerDefaultIntegration(name)) {
-              // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
-              return Object.keys(opt as Record<string, unknown>).length ? new ServerIntegrations[name](opt) : new ServerIntegrations[name]()
-            } else if (isServerPlugabbleIntegration(name)) {
-              // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
-              // eslint-disable-next-line import/namespace
-              return Object.keys(opt as Record<string, unknown>).length ? new PluggableIntegrations[name](opt) : new PluggableIntegrations[name]()
-            } else {
-              throw new Error(`Unsupported server integration "${name}"`)
-            }
-          } catch (error) {
-            throw new Error(`Failed initializing server integration "${name}".\n${error}`)
+  options.config.integrations = [
+    // Automatically instrument Node.js libraries and frameworks
+    ...(options.tracing ? autoDiscoverNodePerformanceMonitoringIntegrations() : []),
+    ...filterDisabledIntegrations(options.serverIntegrations)
+      .map((name) => {
+        const opt = options.serverIntegrations[name]
+        try {
+          if (isServerDefaultIntegration(name)) {
+            // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
+            return Object.keys(opt as Record<string, unknown>).length ? new ServerIntegrations[name](opt) : new ServerIntegrations[name]()
+          } else if (isServerPlugabbleIntegration(name)) {
+            // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
+            // eslint-disable-next-line import/namespace
+            return Object.keys(opt as Record<string, unknown>).length ? new PluggableIntegrations[name](opt) : new PluggableIntegrations[name]()
+          } else {
+            throw new Error(`Unsupported server integration "${name}"`)
           }
-        }),
-      ...customIntegrations,
-    ],
-  }
-
-  let serverConfig = options.serverConfig
-  if (typeof (serverConfig) === 'string') {
-    const resolvedPath = resolveAlias(serverConfig)
-    try {
-      serverConfig = (await import(resolvedPath).then(m => m.default || m))()
-    } catch (error) {
-      logger.error(`Error handling the serverConfig plugin:\n${error}`)
-    }
-  }
-
-  const config = defu(getServerRuntimeConfig(nuxt, options), options.serverConfig, options.config, defaultConfig)
-  resolveTracingOptions(options, options.config)
+        } catch (error) {
+          throw new Error(`Failed initializing server integration "${name}".\n${error}`)
+        }
+      }),
+    ...customIntegrations,
+  ]
 
   return {
-    config,
+    config: {
+      dsn: options.dsn,
+      ...options.config,
+    },
     apiMethods: await getApiMethods('@sentry/node'),
     lazy: options.lazy,
     logMockCalls: options.logMockCalls, // for mocked only
@@ -303,7 +301,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: ModuleCon
   }
 }
 
-function getServerRuntimeConfig (nuxt: Nuxt, options: ModuleConfiguration): Partial<ModuleConfiguration['config']> | undefined {
+function getServerRuntimeConfig (nuxt: Nuxt, options: Readonly<ModuleConfiguration>): Partial<ModuleConfiguration['config']> | undefined {
   const { publicRuntimeConfig } = nuxt.options
   const { runtimeConfigKey } = options
   if (publicRuntimeConfig && typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
