@@ -10,8 +10,11 @@ type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<unknown>>> = 
     [K in keyof T]: ConstructorParameters<T[K]>[0] | Record<string, never> | false
 }>
 
+// A replacement type since we don't want to depend on `@sentry/profiling-node`
+type ProfilingIntegration = { ProfilingIntegration?: Record<string, never> | false }
+
 type ClientIntegrations = IntegrationsConfig<typeof BrowserIntegrations & typeof PluggableIntegrations & { Replay: typeof Replay }>
-type ServerIntegrations = IntegrationsConfig<typeof NodeIntegrations & typeof PluggableIntegrations>
+type ServerIntegrations = IntegrationsConfig<typeof NodeIntegrations & typeof PluggableIntegrations> & ProfilingIntegration
 type AllIntegrations = ClientIntegrations | ServerIntegrations
 
 export interface LazyConfiguration {

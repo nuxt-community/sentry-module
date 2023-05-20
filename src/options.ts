@@ -4,9 +4,9 @@ import { relative } from 'pathe'
 import { Integrations as ServerIntegrations, autoDiscoverNodePerformanceMonitoringIntegrations } from '@sentry/node'
 import type Sentry from '@sentry/node'
 import * as PluggableIntegrations from '@sentry/integrations'
-import type { Options } from '@sentry/types'
+import type { Integration, Options } from '@sentry/types'
 import type { Replay } from '@sentry/vue'
-import type { AllIntegrations, ClientIntegrations, LazyConfiguration, TracingConfiguration } from './types/configuration'
+import type { AllIntegrations, ClientIntegrations, LazyConfiguration, ProfilingIntegration, TracingConfiguration } from './types/configuration'
 import type { ModuleConfiguration } from './types'
 import { Nuxt, resolveAlias } from './kit-shim'
 import { canInitialize } from './utils'
@@ -27,6 +27,8 @@ export const BROWSER_VUE_INTEGRATIONS = ['Replay']
 const SERVER_INTEGRATIONS = ['Console', 'ContextLines', 'FunctionToString', 'Http', 'InboundFilters', 'LinkedErrors', 'LocalVariables', 'Modules', 'OnUncaughtException', 'OnUnhandledRejection', 'RequestData']
 // Optional in Node.js - https://docs.sentry.io/platforms/node/configuration/integrations/pluggable-integrations/
 const SERVER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']
+// External and optional Node.js integration - https://docs.sentry.io/platforms/node/profiling/
+export const SERVER_PROFILING_INTEGRATION: keyof ProfilingIntegration = 'ProfilingIntegration'
 
 function filterDisabledIntegrations<T extends AllIntegrations> (integrations: T): (keyof T)[] {
   return getIntegrationsKeys(integrations).filter(key => integrations[key])
@@ -246,13 +248,13 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
   options.config = defu(getServerRuntimeConfig(nuxt, options), options.serverConfig, options.config)
 
   for (const name of getIntegrationsKeys(options.serverIntegrations)) {
-    if (!isServerDefaultIntegration(name) && !isServerPlugabbleIntegration(name)) {
+    if (!isServerDefaultIntegration(name) && !isServerPlugabbleIntegration(name) && name !== SERVER_PROFILING_INTEGRATION) {
       logger.warn(`Sentry serverIntegration "${name}" is not recognized and will be ignored.`)
       delete options.serverIntegrations[name]
     }
   }
 
-  let customIntegrations = []
+  let customIntegrations: Integration[] = []
   if (options.customServerIntegrations) {
     const resolvedPath = resolveAlias(options.customServerIntegrations)
     try {
@@ -262,6 +264,20 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
       }
     } catch (error) {
       logger.error(`Error handling the customServerIntegrations plugin:\n${error}`)
+    }
+  }
+
+  if (SERVER_PROFILING_INTEGRATION in options.serverIntegrations) {
+    const enabled = options.serverIntegrations[SERVER_PROFILING_INTEGRATION]
+    delete options.serverIntegrations[SERVER_PROFILING_INTEGRATION]
+    if (enabled) {
+      try {
+        const { ProfilingIntegration } = await (import('@sentry/profiling-node').then(m => m.default || m))
+        customIntegrations.push(new ProfilingIntegration())
+      } catch (error) {
+        logger.error(`To use the ${SERVER_PROFILING_INTEGRATION} integration you need to install the "@sentry/profiling-node" dependency.`)
+        throw new Error((error as Error).message)
+      }
     }
   }
 
