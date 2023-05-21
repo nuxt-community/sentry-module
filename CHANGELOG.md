@@ -1,5 +1,18 @@
 
 
+## [7.3.0](https://github.com/nuxt-community/sentry-module/compare/v7.2.6...v7.3.0) (2023-05-21)
+
+
+### Features
+
+* **profiling:** add support for enabling Profiling integration ([#577](https://github.com/nuxt-community/sentry-module/issues/577)) ([9a9aa85](https://github.com/nuxt-community/sentry-module/commit/9a9aa859bec6ca9c6032f3dba5d8f06286fea6ff))
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk to ^7.52.1 ([#573](https://github.com/nuxt-community/sentry-module/issues/573)) ([a74cf7f](https://github.com/nuxt-community/sentry-module/commit/a74cf7f8ac63ec2db1f447dd458241311ef7e804))
+* **tracing:** tracing not enabled on the server ([#575](https://github.com/nuxt-community/sentry-module/issues/575)) ([7839d03](https://github.com/nuxt-community/sentry-module/commit/7839d037beef628c6c2f5b2860e16fcd3e9617f8))
+
 ### [7.2.6](https://github.com/nuxt-community/sentry-module/compare/v7.2.5...v7.2.6) (2023-05-10)
 
 
