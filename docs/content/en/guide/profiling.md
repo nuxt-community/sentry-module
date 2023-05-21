@@ -5,7 +5,7 @@ position: 25
 category: Guide
 ---
 
-Node profiling can be enabled through an integration provided by the `@sentry/profiling-node` dependency. This dependency does not come with this module by default.
+Node profiling can be enabled through an integration provided by the `@sentry/profiling-node` dependency that does not come with this module by default.
 
 ### Setup
 
