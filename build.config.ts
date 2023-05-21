@@ -16,6 +16,7 @@ export default defineBuildConfig({
     '@sentry/cli',
     '@sentry/core',
     '@sentry/node',
+    '@sentry/profiling-node',
     '@sentry/types',
     '@sentry/webpack-plugin',
     'consola',
