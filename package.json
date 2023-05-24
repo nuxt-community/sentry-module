@@ -3,7 +3,6 @@
   "version": "7.3.0",
   "description": "Sentry module for Nuxt.js",
   "repository": "nuxt-community/sentry-module",
-  "private": true,
   "license": "MIT",
   "contributors": [
     {
