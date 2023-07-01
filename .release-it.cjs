@@ -13,7 +13,7 @@ module.exports = {
     releaseNotes (ctx) {
       // Remove first, redundant line with the version and the date.
       return ctx.changelog.split('\n').slice(1).join('\n')
-    }
+    },
   },
   plugins: {
     '@release-it/conventional-changelog': {

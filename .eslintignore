@@ -1,5 +1,5 @@
-!.eslintrc.js
-!.release-it.js
+!.eslintrc.cjs
+!.release-it.cjs
 
 # un-ignore @nuxtjs/eslint-config
 !*.d.ts
