@@ -1,5 +1,12 @@
 
 
+## [7.3.1](https://github.com/nuxt-community/sentry-module/compare/v7.3.0...v7.3.1) (2023-07-04)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk to ^7.57.0 ([663147b](https://github.com/nuxt-community/sentry-module/commit/663147b0ca6a78d01056de44a538965113291ba4))
+
 ## [7.3.0](https://github.com/nuxt-community/sentry-module/compare/v7.2.6...v7.3.0) (2023-05-21)
 
 
