@@ -158,7 +158,7 @@ The `dsn` is the only option that is required to enable Sentry reporting.
 
 <alert type="info">
 
-  `@sentry/webpack-plugin` package must be installed manually as a dev dependency to be able to publish releases.
+  `@sentry/webpack-plugin@1` package must be installed manually as a dev dependency to be able to publish releases.
 
 </alert>
 

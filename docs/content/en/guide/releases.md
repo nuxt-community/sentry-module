@@ -14,7 +14,7 @@ category: Guide
 
 Follow the following steps to create and publish releases to Sentry.
 
-1. Install the `@sentry/webpack-plugin` package as a dev dependency.
+1. Install the `@sentry/webpack-plugin@1` package as a dev dependency.
 2. Enable the [publishRelease](http://localhost:3000/configuration/options#publishrelease) option. Follow the link for mode detailed explanation of available options.
 
 <alert type="info">
