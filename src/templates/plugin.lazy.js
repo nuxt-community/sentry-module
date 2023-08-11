@@ -1,6 +1,8 @@
 import Vue from 'vue'
 
 <% if (options.lazy.injectMock) { %>
+/* eslint-disable-next-line quotes, comma-spacing */
+const API_METHODS = <%= JSON.stringify(options.lazy.mockApiMethods)%>
 let delayedCalls = []
 let SentryMock = {}
 <% } %>
@@ -41,9 +43,7 @@ Vue.config.errorHandler = (error, vm, info) => {
 
 export default function SentryPlugin (ctx, inject) {
   <% if (options.lazy.injectMock) { %>
-  /* eslint-disable-next-line quotes, comma-spacing */
-  const apiMethods = <%= JSON.stringify(options.lazy.mockApiMethods)%>
-  apiMethods.forEach((key) => {
+  API_METHODS.forEach((key) => {
     SentryMock[key] = (...args) => delayedCalls.push([key, args])
   })
 
@@ -141,8 +141,12 @@ async function loadSentry (ctx, inject) {
 
   // help gc
   <% if (options.lazy.injectMock) { %>
-  // Dont unset delayedCalls & SentryMock during
-  // development, this will cause HMR issues
+  // Avoid crashes in case the reference to the mocked object is being used after the actual Sentry instance has loaded.
+  API_METHODS.forEach((key) => {
+    SentryMock[key] = (...args) => SentrySdk[key].apply(SentrySdk, args)
+  })
+
+  // Dont unset delayedCalls & SentryMock during development - this will cause HMR issues.
   <% if (!options.dev) { %>
   delayedCalls = undefined
   SentryMock = undefined

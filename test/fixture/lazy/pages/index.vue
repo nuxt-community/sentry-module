@@ -24,9 +24,12 @@ export default {
   },
   created () {
     if (process.client) {
+      const mockedSentry = this.$sentry
       this.$sentryReady().then(() => {
         this.isSentryReady = true
         console.info('Sentry is ready')
+        // Verify that it doesn't crash.
+        mockedSentry.captureMessage('test')
       })
     }
   },
