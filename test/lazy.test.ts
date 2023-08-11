@@ -39,11 +39,18 @@ describe('Smoke test (lazy)', () => {
     page.on('pageerror', (error) => {
       errors.push(error.message)
     })
+
+    const consoleMessages: string[] = []
+    page.on('console', (message) => {
+      consoleMessages.push(message.text())
+    })
+
     await page.goto(url('/'))
 
     // process.sentry is not initialized in webpack context in tests.
     // expect(await $$('#server-side', page)).toBe('Works!')
     expect(await $$('#client-side', page)).toBe('Works and is ready!')
     expect(errors).toEqual([])
+    expect(consoleMessages).toEqual(['Sentry is ready'])
   })
 })
