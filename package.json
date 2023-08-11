@@ -64,12 +64,12 @@
     "@sentry/node": "^7.63.0",
     "@sentry/utils": "^7.63.0",
     "@sentry/vue": "^7.63.0",
-    "consola": "^3.0.0",
-    "defu": "^6.0.0",
+    "consola": "^3.2.3",
+    "defu": "^6.1.2",
     "hash-sum": "^2.0.0",
     "lodash.mergewith": "^4.6.2",
-    "mlly": "^1.0.0",
-    "pathe": "^1.0.0"
+    "mlly": "^1.4.0",
+    "pathe": "^1.1.1"
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.4.0",
@@ -79,7 +79,7 @@
     "@release-it/conventional-changelog": "7.0.0",
     "@sentry/profiling-node": "^1.1.2",
     "@sentry/webpack-plugin": "1.20.1",
-    "@size-limit/file": "^8.2.4",
+    "@size-limit/file": "^8.2.6",
     "@types/hash-sum": "1.0.0",
     "@types/lodash.mergewith": "4.6.7",
     "@types/node": "16.18.40",
@@ -96,9 +96,9 @@
     "release-it": "16.1.4",
     "sass": "1.65.1",
     "sentry-testkit": "5.0.5",
-    "size-limit": "^8.2.4",
+    "size-limit": "^8.2.6",
     "typescript": "5.1.6",
-    "vitest": "^0.34.0",
+    "vitest": "^0.34.1",
     "vue": "2.7.14",
     "vuex": "3.6.2"
   }

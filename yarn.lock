@@ -2406,7 +2406,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-5.6.0.tgz#41dd6093d34652cddb5d5bdeee04eafc33826668"
   integrity sha512-TV7t8GKYaJWsn00tFDqBw8+Uqmr8A0fRU1tvTQhyZzGv0sJCGRQL3JGMI3ucuKo3XIZdUP+Lx7/gh2t3lewy7g==
 
-"@size-limit/file@^8.2.4":
+"@size-limit/file@^8.2.6":
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-8.2.6.tgz#0e17045a0fa8009fc787c85e3c09f611316f908c"
   integrity sha512-B7ayjxiJsbtXdIIWazJkB5gezi5WBMecdHTFPMDhI3NwEML1RVvUjAkrb1mPAAkIpt2LVHPnhdCUHjqDdjugwg==
@@ -4639,7 +4639,7 @@ consola@^2.15.0, consola@^2.15.3, consola@^2.6.0:
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
   integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
 
-consola@^3.0.0, consola@^3.0.2, consola@^3.1.0, consola@^3.2.3:
+consola@^3.0.2, consola@^3.1.0, consola@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/consola/-/consola-3.2.3.tgz#0741857aa88cfa0d6fd53f1cff0375136e98502f"
   integrity sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==
@@ -9068,7 +9068,7 @@ mkdist@^1.2.0:
     mri "^1.2.0"
     pathe "^1.1.1"
 
-mlly@^1.0.0, mlly@^1.2.0, mlly@^1.3.0, mlly@^1.4.0:
+mlly@^1.2.0, mlly@^1.3.0, mlly@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.4.0.tgz#830c10d63f1f97bd8785377b24dc2a15d972832b"
   integrity sha512-ua8PAThnTwpprIaU47EPeZ/bPUVp2QYBbWMphUQpVdBI3Lgqzm5KZQ45Agm3YJedHXaIHl6pBGabaLSUPPSptg==
@@ -9967,7 +9967,7 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-pathe@^1.0.0, pathe@^1.1.0, pathe@^1.1.1:
+pathe@^1.1.0, pathe@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/pathe/-/pathe-1.1.1.tgz#1dd31d382b974ba69809adc9a7a347e65d84829a"
   integrity sha512-d+RQGp0MAYTIaDBIMmOfMwz3E+LOZnxx1HZd5R18mmCZY0QBlK0LDZfPc8FW8Ed2DlvsuE6PRjroDY+wg4+j/Q==
@@ -11947,7 +11947,7 @@ sirv@^1.0.7:
     mrmime "^1.0.0"
     totalist "^1.0.0"
 
-size-limit@^8.2.4:
+size-limit@^8.2.6:
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-8.2.6.tgz#e41dbc74a4d7fc13be72551b6ef31ea50007d18d"
   integrity sha512-zpznim/tX/NegjoQuRKgWTF4XiB0cn2qt90uJzxYNTFAqexk4b94DOAkBD3TwhC6c3kw2r0KcnA5upziVMZqDg==
@@ -13281,7 +13281,7 @@ vite-node@0.34.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@^0.34.0:
+vitest@^0.34.1:
   version "0.34.1"
   resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.34.1.tgz#3ad7f845e7a9fb0d72ab703cae832a54b8469e1e"
   integrity sha512-G1PzuBEq9A75XSU88yO5G4vPT20UovbC/2osB2KEuV/FisSIIsw7m5y2xMdB7RsAGHAfg2lPmp2qKr3KWliVlQ==
