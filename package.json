@@ -59,11 +59,11 @@
     }
   },
   "dependencies": {
-    "@sentry/core": "^7.60.0",
-    "@sentry/integrations": "^7.60.0",
-    "@sentry/node": "^7.60.0",
-    "@sentry/utils": "^7.60.0",
-    "@sentry/vue": "^7.60.0",
+    "@sentry/core": "^7.63.0",
+    "@sentry/integrations": "^7.63.0",
+    "@sentry/node": "^7.63.0",
+    "@sentry/utils": "^7.63.0",
+    "@sentry/vue": "^7.63.0",
     "consola": "^3.0.0",
     "defu": "^6.0.0",
     "hash-sum": "^2.0.0",
