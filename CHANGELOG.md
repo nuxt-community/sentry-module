@@ -1,5 +1,14 @@
 
 
+## [7.4.0](https://github.com/nuxt-community/sentry-module/compare/v7.3.1...v7.4.0) (2023-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk ([#593](https://github.com/nuxt-community/sentry-module/issues/593)) ([35daec5](https://github.com/nuxt-community/sentry-module/commit/35daec5a015bf087893fd13f20d13a415e9a9c3a))
+* **deps:** update sentry sdk to ^7.63.0 ([ecdce1f](https://github.com/nuxt-community/sentry-module/commit/ecdce1f6f7488b016f1f8949a9455cf7ebc2d9d9))
+* **lazy:** avoid crash on using mocked instance after real one loaded ([#606](https://github.com/nuxt-community/sentry-module/issues/606)) ([e728a34](https://github.com/nuxt-community/sentry-module/commit/e728a349e212cb422a385ee8619cf00353b318fd))
+
 ## [7.3.1](https://github.com/nuxt-community/sentry-module/compare/v7.3.0...v7.3.1) (2023-07-04)
 
 
