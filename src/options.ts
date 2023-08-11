@@ -20,7 +20,7 @@ export interface SentryHandlerProxy {
 // Enabled by default in Vue - https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/default/
 export const BROWSER_INTEGRATIONS = ['Breadcrumbs', 'Dedupe', 'FunctionToString', 'GlobalHandlers', 'HttpContext', 'InboundFilters', 'LinkedErrors', 'TryCatch']
 // Optional in Vue - https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/plugin/
-export const BROWSER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'ExtraErrorData', 'HttpClient', 'ReportingObserver', 'RewriteFrames']
+export const BROWSER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'ContextLines', 'Debug', 'ExtraErrorData', 'HttpClient', 'ReportingObserver', 'RewriteFrames']
 // Optional, separately exported integration - https://docs.sentry.io/platforms/javascript/guides/vue/session-replay/
 export const BROWSER_VUE_INTEGRATIONS = ['Replay']
 // Enabled by default in Node.js - https://docs.sentry.io/platforms/node/configuration/integrations/default-integrations/
