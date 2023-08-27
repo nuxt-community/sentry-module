@@ -1,7 +1,7 @@
 import { Configuration as WebpackOptions } from 'webpack'
 import { Options as SentryOptions, IntegrationClass } from '@sentry/types'
 import * as PluggableIntegrations from '@sentry/integrations'
-import { BrowserTracing, Integrations as BrowserIntegrations, Replay } from '@sentry/vue'
+import { BrowserTracing, Integrations as BrowserIntegrations, Replay, vueRouterInstrumentation } from '@sentry/vue'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
 import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
 import { Integrations as NodeIntegrations, NodeOptions, Handlers } from '@sentry/node'
@@ -29,6 +29,7 @@ export interface LazyConfiguration {
 export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleRate'> {
     browserTracing?: Partial<BrowserTracing['options']>
     vueOptions?: Partial<SentryVueTracingOptions>
+    vueRouterInstrumentationOptions?: Parameters<typeof vueRouterInstrumentation>[1]
 }
 
 export interface ModuleConfiguration {

@@ -56,9 +56,9 @@ export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' asy
       .join(',\n    ') %>,
   ]
   <% if (options.tracing) { %>
-  const { browserTracing, vueOptions, ...tracingOptions } = <%= serialize(options.tracing) %>
+  const { browserTracing, vueOptions, vueRouterInstrumentationOptions, ...tracingOptions } = <%= serialize(options.tracing) %>
   config.integrations.push(new BrowserTracing({
-    ...(ctx.app.router ? { routingInstrumentation: vueRouterInstrumentation(ctx.app.router) } : {}),
+    ...(ctx.app.router ? { routingInstrumentation: vueRouterInstrumentation(ctx.app.router, vueRouterInstrumentationOptions) } : {}),
     ...browserTracing,
   }))
   merge(config, vueOptions, tracingOptions)

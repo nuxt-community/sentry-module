@@ -137,6 +137,9 @@ function resolveTracingOptions (options: ModuleConfiguration): void {
     vueOptions: {
       trackComponents: true,
     },
+    vueRouterInstrumentationOptions: {
+      routeLabel: 'name',
+    },
   }
 
   options.tracing = defu(options.tracing, defaultTracingOptions)

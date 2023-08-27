@@ -155,6 +155,9 @@ describe('Resolve Server Options', () => {
         vueOptions: {
           trackComponents: true,
         },
+        vueRouterInstrumentationOptions: {
+          routeLabel: 'name',
+        },
       },
     })
     const integrations = Array.isArray(resolvedOptions.config.integrations) ? resolvedOptions.config.integrations : null
