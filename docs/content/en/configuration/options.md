@@ -317,9 +317,13 @@ export default function () {
     vueOptions: {
       trackComponents: true,
     },
+    vueRouterInstrumentationOptions: {
+      routeLabel: 'name',
+    },
   }
   ```
-- On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. The [Vue Router Integration](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also automatically enabled. See all available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- On the browser side the `BrowserTracing` integration is enabled by default and adds automatic instrumentation for monitoring the performance of the application. See all available [`BrowserTracing` options](https://docs.sentry.io/platforms/javascript/guides/vue/performance/instrumentation/automatic-instrumentation/).
+- The [Vue Router Integration](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also automatically enabled on the browser side and defaults to using route names as labels. [Supported options](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/#configuration) can be passed through the `vueRouterInstrumentationOptions` object.
 - On the browser side extra options for [Tracking Vue components](https://docs.sentry.io/platforms/javascript/guides/vue/features/component-tracking/) can be passed through the `vueOptions` object.
 - On the server side the `Http` integration is enabled to trace HTTP requests and [tracingHandler](https://docs.sentry.io/platforms/node/guides/express/performance/) is enabled to trace `connect` and `express` routes.
 - See also the [Performance Monitoring](/guide/performance) section for more information.
