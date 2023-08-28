@@ -1,5 +1,12 @@
 
 
+## [7.5.0](https://github.com/nuxt-community/sentry-module/compare/v7.4.0...v7.5.0) (2023-08-28)
+
+
+### Features
+
+* **tracing:** allow configuring vueRouterInstrumentation options ([#614](https://github.com/nuxt-community/sentry-module/issues/614)) ([977a74e](https://github.com/nuxt-community/sentry-module/commit/977a74e7b28f360116514258adcf8cbcec2b5be1))
+
 ## [7.4.0](https://github.com/nuxt-community/sentry-module/compare/v7.3.1...v7.4.0) (2023-08-11)
 
 
