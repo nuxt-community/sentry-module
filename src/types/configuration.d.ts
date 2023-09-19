@@ -3,7 +3,7 @@ import { Options as SentryOptions, IntegrationClass } from '@sentry/types'
 import * as PluggableIntegrations from '@sentry/integrations'
 import { BrowserTracing, Integrations as BrowserIntegrations, Replay, vueRouterInstrumentation } from '@sentry/vue'
 import { Options as SentryVueOptions, TracingOptions as SentryVueTracingOptions } from '@sentry/vue/types/types'
-import { SentryCliPluginOptions } from '@sentry/webpack-plugin'
+import { SentryWebpackPluginOptions } from '@sentry/webpack-plugin'
 import { Integrations as NodeIntegrations, NodeOptions, Handlers } from '@sentry/node'
 
 type IntegrationsConfig<T extends Record<keyof T, IntegrationClass<unknown>>> = Partial<{
@@ -48,8 +48,8 @@ export interface ModuleConfiguration {
   initialize: boolean
   lazy: boolean | LazyConfiguration
   logMockCalls: boolean
-  /** See available options at https://github.com/getsentry/sentry-webpack-plugin */
-  publishRelease: boolean | Partial<SentryCliPluginOptions>
+  /** See available options at https://docs.sentry.io/platforms/node/sourcemaps/uploading/webpack/ */
+  publishRelease: boolean | SentryWebpackPluginOptions
   runtimeConfigKey: string
   serverConfig: NodeOptions | string
   serverIntegrations: ServerIntegrations

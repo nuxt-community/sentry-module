@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { defu } from 'defu'
 import { resolvePath } from 'mlly'
-import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
+import type { SentryWebpackPluginOptions } from '@sentry/webpack-plugin'
 import { captureException, withScope } from '@sentry/node'
 import type { Configuration as WebpackConfig } from 'webpack'
 import { defineNuxtModule, isNuxt2, useLogger } from './kit-shim'
@@ -33,7 +33,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     disableServerRelease: envToBool(process.env.SENTRY_DISABLE_SERVER_RELEASE) || false,
     disableClientRelease: envToBool(process.env.SENTRY_DISABLE_CLIENT_RELEASE) || false,
     logMockCalls: true,
-    sourceMapStyle: 'source-map',
+    sourceMapStyle: 'hidden-source-map',
     tracing: false,
     clientIntegrations: {
       ExtraErrorData: {},
@@ -56,17 +56,15 @@ export default defineNuxtModule<ModuleConfiguration>({
     requestHandlerConfig: {},
   }),
   async setup (options, nuxt) {
-    const defaultsPublishRelease: SentryCliPluginOptions = {
-      include: [],
-      ignore: [
-        'node_modules',
-        '.nuxt/dist/client/img',
-      ],
-      configFile: '.sentryclirc',
+    const defaultsPublishRelease: SentryWebpackPluginOptions = {
+      sourcemaps: {
+        ignore: [
+          'node_modules/**/*',
+        ],
+      },
     }
 
     if (options.publishRelease) {
-      // @ts-expect-error Defu introduces "null" value in its merged types which cause error.
       options.publishRelease = defu(options.publishRelease, defaultsPublishRelease)
     }
 
@@ -155,7 +153,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     // Enable publishing of sourcemaps
     if (options.publishRelease && !options.disabled && !nuxt.options.dev) {
       if (isNuxt2()) {
-        nuxt.hook('webpack:config', (webpackConfigs: WebpackConfig[]) => webpackConfigHook(nuxt, webpackConfigs, options as ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger))
+        nuxt.hook('webpack:config', (webpackConfigs: WebpackConfig[]) => webpackConfigHook(nuxt, webpackConfigs, options, logger))
       }
     }
   },

@@ -65,7 +65,7 @@ In Typescript or type-checked JavaScript projects, add `@nuxtjs/sentry` to the `
 
 <alert type="info">
 
-  The otherwise optional package `@sentry/webpack-plugin@1` has to be installed for types to be fully working.
+  The otherwise optional package `@sentry/webpack-plugin@2` has to be installed for types to be fully working.
 
   If not using the relevant functionality (`publishRelease` option is not enabled) then this package can be installed as dev-only dependency.
 
