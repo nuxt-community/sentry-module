@@ -2424,7 +2424,7 @@
     lru_map "^0.3.3"
     tslib "^2.4.1 || ^1.9.3"
 
-"@sentry/profiling-node@^1.2.1":
+"@sentry/profiling-node@1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@sentry/profiling-node/-/profiling-node-1.2.1.tgz#b7755f95d01a8f6975c861b0f2412caa50233f4b"
   integrity sha512-+bu3qRG5Yd7a34YhkHfnfkrwPmsAPdp5cUhIx5BKit4hQf7zUaIw9UOUI/+VvK9rn8SUhC0oLNQf6HQJ0CIFUQ==
@@ -2503,7 +2503,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-5.6.0.tgz#41dd6093d34652cddb5d5bdeee04eafc33826668"
   integrity sha512-TV7t8GKYaJWsn00tFDqBw8+Uqmr8A0fRU1tvTQhyZzGv0sJCGRQL3JGMI3ucuKo3XIZdUP+Lx7/gh2t3lewy7g==
 
-"@size-limit/file@^8.2.6":
+"@size-limit/file@8.2.6":
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-8.2.6.tgz#0e17045a0fa8009fc787c85e3c09f611316f908c"
   integrity sha512-B7ayjxiJsbtXdIIWazJkB5gezi5WBMecdHTFPMDhI3NwEML1RVvUjAkrb1mPAAkIpt2LVHPnhdCUHjqDdjugwg==
@@ -2784,7 +2784,7 @@
   resolved "https://registry.yarnpkg.com/@types/relateurl/-/relateurl-0.2.29.tgz#68ccecec3d4ffdafb9c577fe764f912afc050fe6"
   integrity sha512-QSvevZ+IRww2ldtfv1QskYsqVVVwCKQf1XbwtcyyoRvLIQzfyPhj/C+3+PKzSDRdiyejaiLgnq//XTkleorpLg==
 
-"@types/request-promise-native@^1.0.18":
+"@types/request-promise-native@1.0.18":
   version "1.0.18"
   resolved "https://registry.yarnpkg.com/@types/request-promise-native/-/request-promise-native-1.0.18.tgz#437ee2d0b772e01c9691a983b558084b4b3efc2c"
   integrity sha512-tPnODeISFc/c1LjWyLuZUY+Z0uLB3+IMfNoQyDEi395+j6kTFTTRAqjENjoPJUid4vHRGEozoTrcTrfZM+AcbA==
@@ -9634,7 +9634,7 @@ normalize-url@^8.0.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-8.0.0.tgz#593dbd284f743e8dcf6a5ddf8fadff149c82701a"
   integrity sha512-uVFpKhj5MheNBJRTiMZ9pE/7hD1QTeEvugSJW/OmLzAp78PB5O6adfMNTvmfKhXBkvCzC+rqifWcVYpGFwTjnw==
 
-npm-run-all@^4.1.5:
+npm-run-all@4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-4.1.5.tgz#04476202a15ee0e2e214080861bff12a51d98fba"
   integrity sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==
@@ -12223,7 +12223,7 @@ sirv@^1.0.7:
     mrmime "^1.0.0"
     totalist "^1.0.0"
 
-size-limit@^8.2.6:
+size-limit@8.2.6:
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-8.2.6.tgz#e41dbc74a4d7fc13be72551b6ef31ea50007d18d"
   integrity sha512-zpznim/tX/NegjoQuRKgWTF4XiB0cn2qt90uJzxYNTFAqexk4b94DOAkBD3TwhC6c3kw2r0KcnA5upziVMZqDg==
@@ -13583,7 +13583,7 @@ vite-node@0.34.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@^0.34.1:
+vitest@0.34.1:
   version "0.34.1"
   resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.34.1.tgz#3ad7f845e7a9fb0d72ab703cae832a54b8469e1e"
   integrity sha512-G1PzuBEq9A75XSU88yO5G4vPT20UovbC/2osB2KEuV/FisSIIsw7m5y2xMdB7RsAGHAfg2lPmp2qKr3KWliVlQ==
