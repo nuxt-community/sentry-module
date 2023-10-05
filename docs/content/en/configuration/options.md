@@ -158,17 +158,17 @@ The `dsn` is the only option that is required to enable Sentry reporting.
 
 <alert type="info">
 
-  `@sentry/webpack-plugin@1` package must be installed manually as a dev dependency to be able to publish releases.
+  `@sentry/webpack-plugin@2` package must be installed manually as a dev dependency to be able to publish releases.
 
 </alert>
 
-- Type: `Boolean` or [`WebpackPluginOptions`](https://github.com/getsentry/sentry-webpack-plugin)
+- Type: `Boolean` or [`SentryWebpackPluginOptions`](https://github.com/getsentry/sentry-javascript-bundler-plugins/blob/main/packages/bundler-plugin-core/src/types.ts)
 - Default: `process.env.SENTRY_PUBLISH_RELEASE || false`
-- Enables Sentry releases for better debugging using source maps. Uses [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin).
+- Enables Sentry releases for better debugging using source maps. Uses [@sentry/webpack-plugin](https://github.com/getsentry/sentry-javascript-bundler-plugins/).
 - Publishing releases requires the organization slug, project name and the Sentry authentication token to be provided. Those can be provided either via an object value or [environment variables or a properties file](https://docs.sentry.io/product/cli/configuration/#sentry-cli-working-with-projects). So for example, when using the object value, you'd set `authToken`, `org` and `project` options, and when using the environment variables you'd set `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT`.
 - It's recommended to pass an object value to this option rather than using the boolean `true`. When using the boolean, you have to provide all required options through other means mentioned above.
 - The releases are only published when this option is enabled and at the same time you are NOT running in development (`nuxt dev`) mode.
-- See https://docs.sentry.io/workflow/releases for more information. Note that the Sentry CLI options mentioned in the documentation typically have a [@sentry/webpack-plugin](https://github.com/getsentry/sentry-webpack-plugin) equivalent.
+- See https://docs.sentry.io/workflow/releases for more information. Note that the Sentry CLI options mentioned in the documentation typically have a [@sentry/webpack-plugin](https://github.com/getsentry/sentry-javascript-bundler-plugins/) equivalent.
 
 Example configuration:
 
@@ -179,50 +179,37 @@ sentry: {
     authToken: '<token>',
     org: 'MyCompany',
     project: 'my-project',
-    // Attach commits to the release (requires that the build triggered within a git repository).
-    setCommits: {
-      auto: true
+    release: {
+      // Attach commits to the release (requires that the build triggered within a git repository).
+      setCommits: {
+        auto: true
+      }
     }
   }
 }
 ```
 
-Note that the module sets the following defaults when publishing is enabled:
-
-```js
-{
-  include: [], // automatically set at publishing time to relevant paths for the bundles that were built
-  ignore: [
-    'node_modules',
-    '.nuxt/dist/client/img'
-  ],
-  configFile: '.sentryclirc',
-  release: '',  // defaults to the value of "config.release" which can either be set manually or is determined automatically through `@sentry/cli`
-}
-```
-
-- Providing custom values for `include` or `ignore` will result in provided values getting appended to default values.
+- module by default includes all js/map assets generated during the build step.
 
 ### sourceMapStyle
 
 - Type: `String`
-- Default: `source-map`
-- Only has effect when `publishRelease` is enabled
+- Default: `hidden-source-map`
+- Only has an effect when `publishRelease` is enabled
 - The type of source maps generated when publishing release to Sentry. See https://webpack.js.org/configuration/devtool for a list of available options
-- **Note**: Consider using `hidden-source-map` instead. For most people, that should be a better option but due to it being a breaking change, it won't be set as the default until next major release
 
 ### disableServerRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_SERVER_RELEASE || false`
-- Only has effect when `publishRelease` is enabled
+- Only has an effect when `publishRelease` is enabled
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### disableClientRelease
 
 - Type: `Boolean`
 - Default: `process.env.SENTRY_DISABLE_CLIENT_RELEASE || false`
-- Only has effect when `publishRelease` is enabled
+- Only has an effect when `publishRelease` is enabled
 - See https://docs.sentry.io/workflow/releases for more information
 
 ### clientIntegrations

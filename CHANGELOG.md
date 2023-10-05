@@ -1,5 +1,16 @@
 
 
+## [8.0.0-rc.0](https://github.com/nuxt-community/sentry-module/compare/v7.5.0...v8.0.0-rc.0) (2023-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **publishRelease:** See migration guide at https://sentry.nuxtjs.org/guide/migration
+
+### Features
+
+* **publishRelease:** upgrade to webpack-plugin v2 ([d3ed0eb](https://github.com/nuxt-community/sentry-module/commit/d3ed0ebbec899d24ce13b963d9132282e5cdc26a))
+
 ## [7.5.0](https://github.com/nuxt-community/sentry-module/compare/v7.4.0...v7.5.0) (2023-08-28)
 
 

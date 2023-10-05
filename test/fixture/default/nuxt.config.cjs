@@ -30,12 +30,6 @@ const config = {
     },
     customClientIntegrations: '~/config/custom-client-integrations.js',
     tracing: true,
-    publishRelease: {
-      authToken: 'fakeToken',
-      org: 'MyCompany',
-      project: 'TestProject',
-      dryRun: true,
-    },
   },
 }
 

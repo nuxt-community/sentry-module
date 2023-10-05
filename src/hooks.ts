@@ -1,15 +1,15 @@
 import { fileURLToPath } from 'url'
-import { resolve, posix } from 'path'
+import { resolve } from 'path'
 import { defu } from 'defu'
 import type { ConsolaInstance } from 'consola'
 import type { Configuration as WebpackConfig } from 'webpack'
-import type { SentryCliPluginOptions } from '@sentry/webpack-plugin'
+import type { SentryWebpackPluginOptions } from '@sentry/webpack-plugin'
 import type { Options } from '@sentry/types'
 import * as Sentry from '@sentry/node'
 import { addPluginTemplate, addTemplate, addWebpackPlugin } from './kit-shim'
 import type { Nuxt } from './kit-shim'
 import type { ModuleConfiguration } from './types/configuration'
-import { clientSentryEnabled, serverSentryEnabled, envToBool, canInitialize } from './utils'
+import { clientSentryEnabled, serverSentryEnabled, canInitialize } from './utils'
 import { resolveRelease, ResolvedClientOptions, resolveClientOptions, ResolvedServerOptions, resolveServerOptions } from './options'
 import type { SentryHandlerProxy } from './options'
 
@@ -62,7 +62,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   }
 }
 
-export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration & { publishRelease: SentryCliPluginOptions }, logger: ConsolaInstance): Promise<void> {
+export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration, logger: ConsolaInstance): Promise<void> {
   let WebpackPlugin: typeof import('@sentry/webpack-plugin')
   try {
     WebpackPlugin = await (import('@sentry/webpack-plugin').then(m => m.default || m))
@@ -70,69 +70,32 @@ export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConf
     throw new Error('The "@sentry/webpack-plugin" package must be installed as a dev dependency to use the "publishRelease" option.')
   }
 
-  const publishRelease: SentryCliPluginOptions = defu({}, options.publishRelease)
-  const nuxtOptions = nuxt.options
-
-  if (!publishRelease.urlPrefix) {
-    // Set urlPrefix to match resources on the client. That's not technically correct for the server source maps, but it is what it is for now.
-    if (typeof (nuxtOptions.router.base) === 'string' && typeof (nuxtOptions.build.publicPath) === 'string') {
-      const publicPath = posix.join(nuxtOptions.router.base, nuxtOptions.build.publicPath)
-      publishRelease.urlPrefix = publicPath.startsWith('/') ? `~${publicPath}` : publicPath
-    }
+  const publishRelease: SentryWebpackPluginOptions = defu(options.publishRelease)
+  if (!publishRelease.sourcemaps) {
+    publishRelease.sourcemaps = {}
   }
-
-  if (!Array.isArray(publishRelease.include)) {
-    const { include } = publishRelease
-    publishRelease.include = [...(include ? [include] : [])]
+  if (!publishRelease.sourcemaps.ignore) {
+    publishRelease.sourcemaps.ignore = []
   }
-
-  const { buildDir } = nuxtOptions
-
-  if (!options.disableServerRelease) {
-    publishRelease.include.push(`${buildDir}/dist/server`)
+  if (!Array.isArray(publishRelease.sourcemaps.ignore)) {
+    publishRelease.sourcemaps.ignore = [publishRelease.sourcemaps.ignore]
   }
-  if (!options.disableClientRelease) {
-    publishRelease.include.push(`${buildDir}/dist/client`)
-  }
-
-  publishRelease.release = options.config.release || publishRelease.release || await resolveRelease(options)
-
   if (!publishRelease.release) {
-    // We've already tried to determine "release" manually using Sentry CLI so to avoid webpack
-    // plugin crashing, we'll just bail here.
-    logger.warn('Sentry release will not be published because "config.release" was not set nor it ' +
-                'was possible to determine it automatically from the repository')
-    return
+    publishRelease.release = {}
   }
-
-  const attachCommits = envToBool(process.env.SENTRY_AUTO_ATTACH_COMMITS)
-
-  if (attachCommits) {
-    publishRelease.setCommits = publishRelease.setCommits || {}
-
-    const { setCommits } = publishRelease
-
-    if (setCommits.auto === undefined) {
-      setCommits.auto = true
-    }
-
-    const repo = process.env.SENTRY_RELEASE_REPO || ''
-
-    if (repo && setCommits.repo === undefined) {
-      setCommits.repo = repo
-    }
+  publishRelease.release.name = publishRelease.release.name || options.config.release || await resolveRelease(options)
+  if (!publishRelease.release.name) {
+    // We've already tried to determine "release" manually using Sentry CLI so to avoid webpack plugin crashing, we'll just bail here.
+    logger.warn('Sentry release will not be published because "config.release" or "publishRelease.release.name" was not set nor it ' +
+                'was possible to determine it automatically from the repository.')
+    return
   }
 
   for (const config of webpackConfigs) {
     config.devtool = options.sourceMapStyle
+    config.plugins = config.plugins || []
+    config.plugins.push(WebpackPlugin.sentryWebpackPlugin(publishRelease))
   }
-
-  // Add WebpackPlugin to the last build config
-
-  const config = webpackConfigs[webpackConfigs.length - 1]
-
-  config.plugins = config.plugins || []
-  config.plugins.push(new WebpackPlugin(publishRelease))
 }
 
 export async function initializeServerSentry (nuxt: Nuxt, moduleOptions: ModuleConfiguration, sentryHandlerProxy: SentryHandlerProxy, logger: ConsolaInstance): Promise<void> {
