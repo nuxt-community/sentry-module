@@ -78,7 +78,7 @@
     "@nuxtjs/module-test-utils": "1.6.3",
     "@release-it/conventional-changelog": "7.0.0",
     "@sentry/profiling-node": "^1.2.1",
-    "@sentry/webpack-plugin": "2.7.1",
+    "@sentry/webpack-plugin": "2.8.0",
     "@size-limit/file": "^8.2.6",
     "@types/hash-sum": "1.0.0",
     "@types/lodash.mergewith": "4.6.7",
