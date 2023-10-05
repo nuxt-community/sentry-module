@@ -96,7 +96,7 @@
     "release-it": "16.2.1",
     "sass": "1.68.0",
     "sentry-testkit": "5.0.6",
-    "size-limit": "8.2.6",
+    "size-limit": "9.0.0",
     "typescript": "5.2.2",
     "vitest": "0.34.1",
     "vue": "2.7.14",
