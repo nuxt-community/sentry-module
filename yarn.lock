@@ -12223,14 +12223,14 @@ sirv@^1.0.7:
     mrmime "^1.0.0"
     totalist "^1.0.0"
 
-size-limit@8.2.6:
-  version "8.2.6"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-8.2.6.tgz#e41dbc74a4d7fc13be72551b6ef31ea50007d18d"
-  integrity sha512-zpznim/tX/NegjoQuRKgWTF4XiB0cn2qt90uJzxYNTFAqexk4b94DOAkBD3TwhC6c3kw2r0KcnA5upziVMZqDg==
+size-limit@10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-10.0.1.tgz#50f8208a883a961c948b8379e074aa0a00a76528"
+  integrity sha512-lANGZsG+kk5P9zv84J/ratfT6LPTbWR8IitFXNfy41OyfnxoDBHqsl5+JVcG4YSU1UYcmShbp99O/SEPlDs1ZA==
   dependencies:
     bytes-iec "^3.1.1"
     chokidar "^3.5.3"
-    globby "^11.1.0"
+    globby "^13.2.2"
     lilconfig "^2.1.0"
     nanospinner "^1.1.0"
     picocolors "^1.0.0"
