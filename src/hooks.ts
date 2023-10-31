@@ -60,6 +60,16 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
       __SENTRY_DEBUG__: 'false',
     }))
   }
+
+  // Tree shake RRWEB code if Replay integration not enabled.
+  if (!clientOptions.integrations.Replay) {
+    const webpack = await import('webpack').then(m => m.default || m)
+    addWebpackPlugin(new webpack.DefinePlugin({
+      __RRWEB_EXCLUDE_CANVAS__: 'true',
+      __RRWEB_EXCLUDE_IFRAME__: 'true',
+      __RRWEB_EXCLUDE_SHADOW_DOM__: 'true',
+    }))
+  }
 }
 
 export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration, logger: ConsolaInstance): Promise<void> {
