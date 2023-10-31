@@ -65,9 +65,9 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
   if (!clientOptions.integrations.Replay) {
     const webpack = await import('webpack').then(m => m.default || m)
     addWebpackPlugin(new webpack.DefinePlugin({
-      __RRWEB_EXCLUDE_CANVAS__: 'true',
-      __RRWEB_EXCLUDE_IFRAME__: 'true',
-      __RRWEB_EXCLUDE_SHADOW_DOM__: 'true',
+      __RRWEB_EXCLUDE_CANVAS__: true,
+      __RRWEB_EXCLUDE_IFRAME__: true,
+      __RRWEB_EXCLUDE_SHADOW_DOM__: true,
     }))
   }
 }
