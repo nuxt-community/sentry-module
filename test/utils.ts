@@ -18,7 +18,9 @@ export async function $$ (selector: string, page: Page): Promise<string | null> 
 }
 
 export async function loadConfig (dir: string, fixture: string | null = null, override: Record<string, unknown> = {}, { merge = false } = {}): Promise<Record<string, unknown>> {
-  const config = await import(`${dir}/fixture/${fixture ? fixture + '/' : ''}nuxt.config.cjs`)
+  // Returned object has "Module" type which defu ignores because it's not plain object.
+  // Copy properties to the new object so that the object is not ignored.
+  const config = Object.assign({}, await import(`${dir}/fixture/${fixture ? fixture + '/' : ''}nuxt.config.cjs`))
 
   if (merge) {
     return defu(override, config)
