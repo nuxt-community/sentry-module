@@ -14,14 +14,14 @@ const __dirname = dirname(__filename)
 const { testkit, localServer } = sentryTestkit.default()
 const TEST_DSN = 'http://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001'
 
-describe('Smoke test (default)', () => {
+describe('Smoke test (typescript)', () => {
   let nuxt: Nuxt
   let browser: Browser
 
   beforeAll(async () => {
     await localServer.start(TEST_DSN)
     const dsn = localServer.getDsn()
-    nuxt = (await setup(loadConfig(__dirname, 'default', { sentry: { dsn } }, { merge: true }))).nuxt
+    nuxt = (await setup(loadConfig(__dirname, 'typescript', { sentry: { dsn } }, { merge: true }))).nuxt
     browser = await createBrowser()
   })
 
@@ -51,7 +51,7 @@ describe('Smoke test (default)', () => {
     expect(errors).toEqual([])
   })
 
-  test('catches a server crash', async () => {
+  test('reads serverConfig from external file', async () => {
     const page = await browser.newPage()
     const response = await page.goto(url('/?crashOnLoad=1'))
     expect(response!.status()).toBe(500)
@@ -59,6 +59,9 @@ describe('Smoke test (default)', () => {
     const reports = testkit.reports()
     expect(reports).toHaveLength(1)
     expect(reports[0].error?.message).toContain('crashOnLoad is not defined')
+    // Coming from `serverConfig` file-based configuration
+    expect(reports[0].extra).toBeDefined()
+    expect(reports[0].extra!.foo).toBe('1')
   })
 
   test('catches a client crash', async () => {

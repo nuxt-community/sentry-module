@@ -19,4 +19,9 @@ module.exports = [
     path: 'size-check/lazy+tracing/.nuxt/dist/client/',
     gzip: false,
   },
+  {
+    name: 'fixture: typescript',
+    path: 'size-check/typescript/.nuxt/dist/client/',
+    gzip: false,
+  },
 ];

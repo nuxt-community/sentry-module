@@ -1,5 +1,10 @@
+import { fileURLToPath } from 'node:url'
+import initJiti from 'jiti'
 import { defu } from 'defu'
+import { join } from 'pathe'
 import { chromium, Browser, Page } from 'playwright-chromium'
+
+const jitiImport = initJiti(fileURLToPath(import.meta.url))
 
 export async function createBrowser (): Promise<Browser> {
   return await chromium.launch()
@@ -17,10 +22,9 @@ export async function $$ (selector: string, page: Page): Promise<string | null> 
   return null
 }
 
-export async function loadConfig (dir: string, fixture: string | null = null, override: Record<string, unknown> = {}, { merge = false } = {}): Promise<Record<string, unknown>> {
-  // Returned object has "Module" type which defu ignores because it's not plain object.
-  // Copy properties to the new object so that the object is not ignored.
-  const config = Object.assign({}, await import(`${dir}/fixture/${fixture ? fixture + '/' : ''}nuxt.config.cjs`))
+export function loadConfig (dir: string, fixture: string | null = null, override: Record<string, unknown> = {}, { merge = false } = {}): Record<string, unknown> {
+  const fixtureConfig = jitiImport(join(dir, 'fixture', fixture ?? '', 'nuxt.config'))
+  const config = Object.assign({}, fixtureConfig.default || fixtureConfig)
 
   if (merge) {
     return defu(override, config)
