@@ -7,12 +7,6 @@ const jiti = initJiti(fileURLToPath(import.meta.url))
 const config: NuxtConfig = {
   rootDir: __dirname,
   telemetry: false,
-  build: {
-    terser: false,
-  },
-  render: {
-    resourceHints: false,
-  },
   buildModules: [
     '@nuxt/typescript-build',
   ],
