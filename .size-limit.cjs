@@ -5,6 +5,11 @@ module.exports = [
     gzip: false,
   },
   {
+    name: 'fixture: replay',
+    path: 'size-check/replay/.nuxt/dist/client/',
+    gzip: false,
+  },
+  {
     name: 'fixture: lazy',
     path: 'size-check/lazy/.nuxt/dist/client/',
     gzip: false,
@@ -20,7 +25,7 @@ module.exports = [
     gzip: false,
   },
   {
-    name: 'fixture: typescript (+replay)',
+    name: 'fixture: typescript',
     path: 'size-check/typescript/.nuxt/dist/client/',
     gzip: false,
   },
