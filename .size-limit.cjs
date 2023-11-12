@@ -20,7 +20,7 @@ module.exports = [
     gzip: false,
   },
   {
-    name: 'fixture: typescript',
+    name: 'fixture: typescript (+replay)',
     path: 'size-check/typescript/.nuxt/dist/client/',
     gzip: false,
   },
