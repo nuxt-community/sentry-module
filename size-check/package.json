@@ -6,6 +6,6 @@
         "build:tracing": "nuxt build -c ./tracing/nuxt.config",
         "build:lazy": "nuxt build -c ./lazy/nuxt.config",
         "build:lazy+tracing": "nuxt build -c ./lazy+tracing/nuxt.config",
-        "build:typescript": "nuxt build -c ./lazy+tracing/nuxt.config"
+        "build:typescript": "nuxt build -c ./typescript/nuxt.config"
     }
 }
