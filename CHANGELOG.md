@@ -1,5 +1,13 @@
 
 
+## [8.0.2](https://github.com/nuxt-community/sentry-module/compare/v8.0.1...v8.0.2) (2023-11-13)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk ([#632](https://github.com/nuxt-community/sentry-module/issues/632)) ([2de0ed1](https://github.com/nuxt-community/sentry-module/commit/2de0ed19b2b67fe53c9403477304e8f15ada8a7c))
+* support external configuration in form of *.ts ([#639](https://github.com/nuxt-community/sentry-module/issues/639)) ([e481548](https://github.com/nuxt-community/sentry-module/commit/e48154899a4a5a3a5fb8b67664f3ae394f995056))
+
 ## [8.0.1](https://github.com/nuxt-community/sentry-module/compare/v8.0.0...v8.0.1) (2023-10-31)
 
 
