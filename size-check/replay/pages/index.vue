@@ -14,13 +14,7 @@
 
 <script>
 export default {
-  asyncData ({ $sentry, query }) {
-    if (query.crashOnLoad) {
-      // @ts-ignore forces a crash
-      // eslint-disable-next-line no-undef
-      crashOnLoad()
-    }
-
+  asyncData ({ $sentry }) {
     if (process.server) {
       return {
         serverSentryPresent: Boolean($sentry?.captureException),

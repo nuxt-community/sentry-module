@@ -2,9 +2,11 @@
     "private": true,
     "scripts": {
         "build": "run-p build:*",
-        "build:base": "nuxt build -c ./base/nuxt.config.cjs",
-        "build:tracing": "nuxt build -c ./tracing/nuxt.config.cjs",
-        "build:lazy": "nuxt build -c ./lazy/nuxt.config.cjs",
-        "build:lazy+tracing": "nuxt build -c ./lazy+tracing/nuxt.config.cjs"
+        "build:base": "nuxt build -c ./base/nuxt.config",
+        "build:replay": "nuxt build -c ./replay/nuxt.config",
+        "build:tracing": "nuxt build -c ./tracing/nuxt.config",
+        "build:lazy": "nuxt build -c ./lazy/nuxt.config",
+        "build:lazy+tracing": "nuxt build -c ./lazy+tracing/nuxt.config",
+        "build:typescript": "nuxt build -c ./typescript/nuxt.config"
     }
 }

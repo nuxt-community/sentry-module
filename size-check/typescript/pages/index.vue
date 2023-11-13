@@ -12,8 +12,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   asyncData ({ $sentry, query }) {
     if (query.crashOnLoad) {
       // @ts-ignore forces a crash
@@ -38,5 +40,5 @@ export default {
       this.clientSentryPresent = Boolean(this.$sentry?.captureException)
     }
   },
-}
+})
 </script>

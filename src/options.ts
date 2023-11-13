@@ -1,5 +1,7 @@
+import { fileURLToPath } from 'node:url'
 import type { ConsolaInstance } from 'consola'
 import { defu } from 'defu'
+import initJiti from 'jiti'
 import { relative } from 'pathe'
 import { Integrations as ServerIntegrations, autoDiscoverNodePerformanceMonitoringIntegrations } from '@sentry/node'
 import type Sentry from '@sentry/node'
@@ -10,6 +12,8 @@ import type { AllIntegrations, ClientIntegrations, LazyConfiguration, ProfilingI
 import type { ModuleConfiguration } from './types'
 import { Nuxt, resolveAlias } from './kit-shim'
 import { canInitialize } from './utils'
+
+const jiti = initJiti(fileURLToPath(import.meta.url))
 
 export interface SentryHandlerProxy {
     errorHandler: ReturnType<typeof Sentry.Handlers.errorHandler>
@@ -242,7 +246,8 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
   if (typeof (options.serverConfig) === 'string') {
     const resolvedPath = resolveAlias(options.serverConfig)
     try {
-      options.serverConfig = (await import(resolvedPath).then(m => m.default || m))()
+      const mod = jiti(resolvedPath)
+      options.serverConfig = (mod.default || mod)()
     } catch (error) {
       logger.error(`Error handling the serverConfig plugin:\n${error}`)
     }
@@ -261,7 +266,8 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
   if (options.customServerIntegrations) {
     const resolvedPath = resolveAlias(options.customServerIntegrations)
     try {
-      customIntegrations = (await import(resolvedPath).then(m => m.default || m))()
+      const mod = jiti(resolvedPath)
+      customIntegrations = (mod.default || mod)()
       if (!Array.isArray(customIntegrations)) {
         logger.error(`Invalid value returned from customServerIntegrations plugin. Expected an array, got "${typeof (customIntegrations)}".`)
       }
