@@ -79,7 +79,7 @@
     "@release-it/conventional-changelog": "7.0.2",
     "@sentry/profiling-node": "1.2.4",
     "@sentry/webpack-plugin": "2.9.0",
-    "@size-limit/file": "10.0.1",
+    "@size-limit/file": "11.0.0",
     "@types/hash-sum": "1.0.1",
     "@types/lodash.mergewith": "4.6.8",
     "@types/node": "18.18.8",
