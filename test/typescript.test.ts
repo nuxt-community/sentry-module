@@ -11,12 +11,12 @@ import { $$, createBrowser, loadConfig } from './utils'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const { testkit, localServer } = sentryTestkit.default()
 const TEST_DSN = 'http://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001'
 
 describe('Smoke test (typescript)', () => {
   let nuxt: Nuxt
   let browser: Browser
+  const { testkit, localServer } = sentryTestkit.default()
 
   beforeAll(async () => {
     await localServer.start(TEST_DSN)
