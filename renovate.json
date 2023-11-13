@@ -33,7 +33,10 @@
     {
       "groupName": "size-limit",
       "matchPackagePatterns": ["^@?size-limit"],
-      "matchFiles": ["package.json"]
+      "matchFiles": ["package.json"],
+      "matchUpdateTypes": [
+        "major"
+      ]
     },
     {
       "excludePackagePatterns": ["^@sentry", "^@?size-limit"],
