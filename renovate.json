@@ -39,7 +39,7 @@
       ]
     },
     {
-      "excludePackagePatterns": ["^@sentry", "^@?size-limit"],
+      "excludePackagePatterns": ["^@sentry"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "matchFiles": ["package.json"],
