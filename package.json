@@ -103,5 +103,8 @@
     "vitest": "0.34.6",
     "vue": "2.7.15",
     "vuex": "3.6.2"
+  },
+  "resolutions": {
+    "watchpack": "^2.0.0"
   }
 }
