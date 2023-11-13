@@ -42,7 +42,7 @@
     "lint:fix": "eslint --ext .vue,.js,.ts . --fix",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
-    "test": "yarn prepack && vitest run && yarn lint:fixture && yarn typecheck",
+    "test": "yarn prepack && vitest run --single-thread && yarn lint:fixture && yarn typecheck",
     "test:watch": "vitest",
     "typecheck": "yarn dev:prepare && tsc",
     "coverage": "codecov"
