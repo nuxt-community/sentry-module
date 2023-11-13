@@ -2213,14 +2213,14 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.23.tgz#498e41218ab3b6a1419c735e5c6ae2c5ed609b6c"
   integrity sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==
 
-"@release-it/conventional-changelog@7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@release-it/conventional-changelog/-/conventional-changelog-7.0.2.tgz#0d4f3a8b3af0657607f14b8a9fedf4a6aa70b304"
-  integrity sha512-rsUKWNnU39xivgC2IanjRkEOPsTu2X2jgJGpNHF+mndpOUr1WAROmIaix1o3ne2zseT+GLyZII2NC8FgYaM7xA==
+"@release-it/conventional-changelog@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@release-it/conventional-changelog/-/conventional-changelog-8.0.1.tgz#7aba0162769a001b11fa72ab05ca3f108c2657e3"
+  integrity sha512-pwc9jaBYDaSX5TXw6rEnPfqDkKJN2sFBhYpON1kBi9T3sA9EOBncC4ed0Bv3L1ciNb6eqEJXPfp+tQMqVlv/eg==
   dependencies:
     concat-stream "^2.0.0"
     conventional-changelog "^5.1.0"
-    conventional-recommended-bump "^8.0.0"
+    conventional-recommended-bump "^9.0.0"
     semver "^7.5.4"
 
 "@rollup/plugin-alias@^5.0.0":
@@ -4764,7 +4764,7 @@ conventional-changelog-jshint@^4.0.0:
   dependencies:
     compare-func "^2.0.0"
 
-conventional-changelog-preset-loader@^4.0.0, conventional-changelog-preset-loader@^4.1.0:
+conventional-changelog-preset-loader@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/conventional-changelog-preset-loader/-/conventional-changelog-preset-loader-4.1.0.tgz#996bc40d516471c5bf8248fdc30222563b9bcfe6"
   integrity sha512-HozQjJicZTuRhCRTq4rZbefaiCzRM2pr6u2NL3XhrmQm4RMnDXfESU6JKu/pnKwx5xtdkYfNCsbhN5exhiKGJA==
@@ -4813,17 +4813,16 @@ conventional-commits-parser@^5.0.0:
     meow "^12.0.1"
     split2 "^4.0.0"
 
-conventional-recommended-bump@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/conventional-recommended-bump/-/conventional-recommended-bump-8.0.0.tgz#81d959ca9b0bf2321acd6abaa59b7505d9ab1400"
-  integrity sha512-yvGN+VMy00WIe/pJufpmN+I4B2cM/WFK+CFCmDcjyVLyQR6J1KT2iecmA4NQ58gQAiNkvStEjcZp/W9h1JDM1A==
+conventional-recommended-bump@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/conventional-recommended-bump/-/conventional-recommended-bump-9.0.0.tgz#2910b08b10e6c705301335ab916e7438eba5907f"
+  integrity sha512-HR1yD0G5HgYAu6K0wJjLd7QGRK8MQDqqj6Tn1n/ja1dFwBCE6QmV+iSgQ5F7hkx7OUR/8bHpxJqYtXj2f/opPQ==
   dependencies:
-    concat-stream "^2.0.0"
-    conventional-changelog-preset-loader "^4.0.0"
+    conventional-changelog-preset-loader "^4.1.0"
     conventional-commits-filter "^4.0.0"
     conventional-commits-parser "^5.0.0"
     git-raw-commits "^4.0.0"
-    git-semver-tags "^6.0.0"
+    git-semver-tags "^7.0.0"
     meow "^12.0.1"
 
 convert-source-map@^2.0.0:
@@ -6933,14 +6932,6 @@ git-raw-commits@^4.0.0:
     dargs "^8.0.0"
     meow "^12.0.1"
     split2 "^4.0.0"
-
-git-semver-tags@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/git-semver-tags/-/git-semver-tags-6.0.0.tgz#b011ef94ae23ec8121f311d92a5969fc91502e15"
-  integrity sha512-v5BL6psuUy+Ftuo99141XlOIDoJtKw5+YyDANS7fknSP0iT4cVIanc3toDsH4K+VpIWc19l2/xkwQmXMfloeUA==
-  dependencies:
-    meow "^12.0.1"
-    semver "^7.5.2"
 
 git-semver-tags@^7.0.0:
   version "7.0.1"

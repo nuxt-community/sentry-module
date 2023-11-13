@@ -78,7 +78,7 @@
     "@nuxt/typescript-build": "^3.0.1",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/module-test-utils": "1.6.3",
-    "@release-it/conventional-changelog": "7.0.2",
+    "@release-it/conventional-changelog": "8.0.1",
     "@sentry/profiling-node": "1.2.4",
     "@sentry/webpack-plugin": "2.9.0",
     "@size-limit/file": "10.0.3",
