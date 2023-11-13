@@ -36,7 +36,7 @@
       "matchFiles": ["package.json"]
     },
     {
-      "excludePackagePatterns": ["^@sentry"],
+      "excludePackagePatterns": ["^@sentry", "^@?size-limit"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
       "matchFiles": ["package.json"],
