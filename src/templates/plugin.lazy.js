@@ -18,7 +18,12 @@ const delayGlobalError = function (event) {
   delayedGlobalErrors.push([event.message, event.filename, event.lineno, event.colno, event.error])
 }
 const delayUnhandledRejection = function (event) {
-  delayedUnhandledRejections.push('reason' in event ? event.reason : 'detail' in event && 'reason' in event.detail ? event.detail.reason : event)
+  if ('reason' in event && event.reason) {
+    event = event.reason
+  } else if ('detail' in event && event.detail && 'reason' in event.detail && event.detail.reason) {
+    event = event.detail.reason
+  }
+  delayedUnhandledRejections.push(event)
 }
 
 const vueErrorHandler = Vue.config.errorHandler
