@@ -1,5 +1,12 @@
 
 
+## [8.0.3](https://github.com/nuxt-community/sentry-module/compare/v8.0.2...v8.0.3) (2023-11-16)
+
+
+### Bug Fixes
+
+* crash on handling unhandled exceptions ([#647](https://github.com/nuxt-community/sentry-module/issues/647)) ([007d84d](https://github.com/nuxt-community/sentry-module/commit/007d84d73e4acb9598641076e4712bbd928c66dc))
+
 ## [8.0.2](https://github.com/nuxt-community/sentry-module/compare/v8.0.1...v8.0.2) (2023-11-13)
 
 
