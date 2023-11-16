@@ -20,8 +20,7 @@ const delayGlobalError = function (event) {
 const delayUnhandledRejection = function (event) {
   if ('reason' in event && event.reason) {
     event = event.reason
-  }
-  if ('detail' in event && event.detail && 'reason' in event.detail && event.detail.reason) {
+  } else if ('detail' in event && event.detail && 'reason' in event.detail && event.detail.reason) {
     event = event.detail.reason
   }
   delayedUnhandledRejections.push(event)
