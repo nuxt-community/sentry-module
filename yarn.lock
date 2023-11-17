@@ -1547,10 +1547,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@8.53.0":
-  version "8.53.0"
-  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.53.0.tgz#bea56f2ed2b5baea164348ff4d5a879f6f81f20d"
-  integrity sha512-Kn7K8dx/5U6+cT1yEhpX1w4PCSg0M+XyRILPgvwcEBjerFWCwQj5sbr3/VmxqV0JGHCBCzyd6LxypEuehypY1w==
+"@eslint/js@8.54.0":
+  version "8.54.0"
+  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.54.0.tgz#4fab9a2ff7860082c304f750e94acd644cf984cf"
+  integrity sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==
 
 "@gar/promisify@^1.0.1", "@gar/promisify@^1.1.3":
   version "1.1.3"
@@ -1939,11 +1939,11 @@
     "@types/webpack-hot-middleware" "2.25.5"
 
 "@nuxt/typescript-build@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/typescript-build/-/typescript-build-3.0.1.tgz#5faf34119885d5b15a53f55bf6f2f42ced863893"
-  integrity sha512-+9mQuLlwYSDTesyt5lYjWzUit/DD78V+OSzaqGJUkybjS63YZUBcUw6Fr4jAeRreMlseFnJFIjtQQV1osunrhg==
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@nuxt/typescript-build/-/typescript-build-3.0.2.tgz#3bc9db607c83207f8dcbd8790a579710eb87469b"
+  integrity sha512-IFSznjafW5xm0XHg9Q9aHVW7i9J2pAYfyorh3ro3Pf0OnCbS0acmwBnp2juza+DqNhZa1DhNentmUsgiYp730g==
   dependencies:
-    consola "^2.15.3"
+    consola "^3.0.0"
     defu "^6.0.0"
     fork-ts-checker-webpack-plugin "6.5.3"
     ts-loader "8.4.0"
@@ -4633,7 +4633,7 @@ consola@^2.15.0, consola@^2.15.3, consola@^2.6.0:
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
   integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
 
-consola@^3.2.3:
+consola@^3.0.0, consola@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/consola/-/consola-3.2.3.tgz#0741857aa88cfa0d6fd53f1cff0375136e98502f"
   integrity sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==
@@ -6090,15 +6090,15 @@ eslint-visitor-keys@^3.3.0, eslint-visitor-keys@^3.4.1, eslint-visitor-keys@^3.4
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.4.3.tgz#0cd72fe8550e3c2eae156a96a4dddcd1c8ac5800"
   integrity sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==
 
-eslint@8.53.0:
-  version "8.53.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.53.0.tgz#14f2c8244298fcae1f46945459577413ba2697ce"
-  integrity sha512-N4VuiPjXDUa4xVeV/GC/RV3hQW9Nw+Y463lkWaKKXKYMvmRiRDAtfpuPFLN+E1/6ZhyR8J2ig+eVREnYgUsiag==
+eslint@8.54.0:
+  version "8.54.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.54.0.tgz#588e0dd4388af91a2e8fa37ea64924074c783537"
+  integrity sha512-NY0DfAkM8BIZDVl6PgSa1ttZbx3xHgJzSNJKYcQglem6CppHyMhRIQkBVSSMaSRnLhig3jsDbEzOjwCVt4AmmA==
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.6.1"
     "@eslint/eslintrc" "^2.1.3"
-    "@eslint/js" "8.53.0"
+    "@eslint/js" "8.54.0"
     "@humanwhocodes/config-array" "^0.11.13"
     "@humanwhocodes/module-importer" "^1.0.1"
     "@nodelib/fs.walk" "^1.2.8"
@@ -9967,17 +9967,17 @@ pkg-types@^1.0.3:
     mlly "^1.2.0"
     pathe "^1.1.0"
 
-playwright-chromium@1.39.0:
-  version "1.39.0"
-  resolved "https://registry.yarnpkg.com/playwright-chromium/-/playwright-chromium-1.39.0.tgz#18066603043e076ec0c88873a01f5fd811665ef8"
-  integrity sha512-0WVmvn9ppPbcyb2PQherIpzsvJlyjqziCZiAiexTEYSz8k6/+/3wljmFaMRMP1lcv2xKyHDn9yWd/lHb7IzYyA==
+playwright-chromium@1.40.0:
+  version "1.40.0"
+  resolved "https://registry.yarnpkg.com/playwright-chromium/-/playwright-chromium-1.40.0.tgz#00b0695acf4fe6fa3e03c7f57a7e3c297d892e50"
+  integrity sha512-LEObqtviC8ik5QM9dHcx3YYGxTl2bBrUnePHibHX/a7KVbkvt1P13b9oYHylytKBh8C84pg+D3yfs/t5MgGDpg==
   dependencies:
-    playwright-core "1.39.0"
+    playwright-core "1.40.0"
 
-playwright-core@1.39.0:
-  version "1.39.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.39.0.tgz#efeaea754af4fb170d11845b8da30b2323287c63"
-  integrity sha512-+k4pdZgs1qiM+OUkSjx96YiKsXsmb59evFoqv8SKO067qBA+Z2s/dCzJij/ZhdQcs2zlTAgRKfeiiLm8PQ2qvw==
+playwright-core@1.40.0:
+  version "1.40.0"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.40.0.tgz#82f61e5504cb3097803b6f8bbd98190dd34bdf14"
+  integrity sha512-fvKewVJpGeca8t0ipM56jkVSU6Eo0RmFvQ/MaCQNDYm+sdvKkMBBWTE1FdeMqIdumRaXXjZChWHvIzCGM/tA/Q==
 
 please-upgrade-node@^3.2.0:
   version "3.2.0"
@@ -11651,10 +11651,10 @@ send@0.18.0:
     range-parser "~1.2.1"
     statuses "2.0.1"
 
-sentry-testkit@5.0.6:
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-5.0.6.tgz#cde408ee902537a87c12e3d8e5274303fbfcd4de"
-  integrity sha512-9nuJYJOUpQxwhZf4zpDWbwM5SDqUMQ/tge1ftTW76Oa9vDrRhhijW0QNhinAKXak0q9KSn4DQwIec8CFspaJ0Q==
+sentry-testkit@5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-5.0.7.tgz#9e525d6b2d0a032cb2c04e2f06a48a33d448b9fc"
+  integrity sha512-NvjKA8sAOXO8tU1Bb/T2EAqTM9CxZ3qEZiMyIH8rDyZkn5uLb7LUbB3/yC6vXCEW7iUJN6tKSQdj4fdJuxjemw==
   dependencies:
     body-parser "^1.20.1"
     express "^4.18.2"
