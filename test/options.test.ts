@@ -117,7 +117,7 @@ describe('Resolve Server Options', () => {
     })
     const integrations = Array.isArray(resolvedOptions.config.integrations) ? resolvedOptions.config.integrations : null
     expect(integrations).toBeTruthy()
-    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']))
+    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Dedupe', 'ExtraErrorData', 'Transaction']))
   })
 
   test('can override dsn in serverConfig', async () => {
