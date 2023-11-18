@@ -38,12 +38,10 @@ export default defineNuxtModule<ModuleConfiguration>({
     clientIntegrations: {
       ExtraErrorData: {},
       ReportingObserver: { types: ['crash'] },
-      RewriteFrames: {},
     },
     serverIntegrations: {
       Dedupe: {},
       ExtraErrorData: {},
-      RewriteFrames: {},
       Transaction: {},
     },
     customClientIntegrations: '',

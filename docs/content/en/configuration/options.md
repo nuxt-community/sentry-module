@@ -220,7 +220,6 @@ sentry: {
   {
     ExtraErrorData: {},
     ReportingObserver: { types: ['crash'] },
-    RewriteFrames: {},
   }
   ```
 - Sentry by default also enables the following browser integrations: `Breadcrumbs`, `Dedupe`, `FunctionToString`, `GlobalHandlers`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `TryCatch`.
@@ -243,7 +242,6 @@ sentry: {
   {
     Dedupe: {},
     ExtraErrorData: {},
-    RewriteFrames: {},
     Transaction: {},
   }
   ```

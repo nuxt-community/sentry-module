@@ -35,7 +35,6 @@ describe('Resolve Client Options', () => {
       integrations: {
         ExtraErrorData: {},
         ReportingObserver: {},
-        RewriteFrames: {},
       },
       lazy: false,
       logMockCalls: true,
@@ -72,7 +71,6 @@ describe('Resolve Client Options', () => {
       integrations: {
         ExtraErrorData: {},
         ReportingObserver: {},
-        RewriteFrames: {},
       },
       lazy: false,
       logMockCalls: true,
@@ -162,7 +160,7 @@ describe('Resolve Server Options', () => {
     })
     const integrations = Array.isArray(resolvedOptions.config.integrations) ? resolvedOptions.config.integrations : null
     expect(integrations).toBeTruthy()
-    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Http', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']))
+    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Http', 'Dedupe', 'ExtraErrorData', 'Transaction']))
   })
 
   test('can override tracesSampleRate', async () => {
