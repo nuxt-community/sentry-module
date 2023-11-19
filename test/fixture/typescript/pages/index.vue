@@ -16,11 +16,14 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  asyncData ({ $sentry, query }) {
+  async asyncData ({ $sentry, $config, query }) {
     if (query.crashOnLoad) {
       // @ts-ignore forces a crash
       // eslint-disable-next-line no-undef
       crashOnLoad()
+    } else if (query.crashOnLoadInApi) {
+      // Request crashes but doesn't propagate to asyncData.
+      await fetch(`${$config.baseURL}/api`)
     }
 
     if (process.server) {

@@ -35,7 +35,6 @@ describe('Resolve Client Options', () => {
       integrations: {
         ExtraErrorData: {},
         ReportingObserver: {},
-        RewriteFrames: {},
       },
       lazy: false,
       logMockCalls: true,
@@ -72,7 +71,6 @@ describe('Resolve Client Options', () => {
       integrations: {
         ExtraErrorData: {},
         ReportingObserver: {},
-        RewriteFrames: {},
       },
       lazy: false,
       logMockCalls: true,

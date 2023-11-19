@@ -19,6 +19,9 @@ const config: NuxtConfig = {
   modules: [
     jiti.resolve('../../..'),
   ],
+  publicRuntimeConfig: {
+    baseURL: 'http://localhost:3000',
+  },
   sentry: {
     dsn: 'https://fe8b7df6ea7042f69d7a97c66c2934f7@sentry.io.nuxt/1429779',
     clientIntegrations: {
@@ -38,6 +41,9 @@ const config: NuxtConfig = {
     serverConfig: '~/config/server.config',
     tracing: true,
   },
+  serverMiddleware: [
+    { path: '/api', handler: '~/api/index' },
+  ],
   typescript: {
     typeCheck: false,
   },
