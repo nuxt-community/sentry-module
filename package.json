@@ -84,7 +84,7 @@
     "@size-limit/file": "11.0.0",
     "@types/hash-sum": "1.0.2",
     "@types/lodash.mergewith": "4.6.9",
-    "@types/node": "18.18.9",
+    "@types/node": "18.18.10",
     "@types/request-promise-native": "1.0.21",
     "codecov": "3.8.3",
     "eslint": "8.54.0",
