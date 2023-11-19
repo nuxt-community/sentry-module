@@ -13,7 +13,7 @@
     "commitMessageExtra": "({{packageFile}})"
   },
   "postUpdateOptions": [
-    "npmDedupe"
+    "yarnDedupeFewer"
   ],
   "rangeStrategy": "auto",
   "npm": {
