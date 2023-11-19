@@ -12,6 +12,9 @@
     "branchTopic": "lock-file-maintenance-{{packageFile}}",
     "commitMessageExtra": "({{packageFile}})"
   },
+  "postUpdateOptions": [
+    "npmDedupe"
+  ],
   "rangeStrategy": "auto",
   "npm": {
     "commitMessageTopic": "{{prettyDepType}} {{depName}}"
