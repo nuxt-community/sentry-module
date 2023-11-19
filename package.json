@@ -104,6 +104,7 @@
     "vuex": "3.6.2"
   },
   "resolutions": {
+    "vite": "^4.5.0",
     "watchpack": "^2.0.0"
   }
 }
