@@ -88,7 +88,6 @@
     "@types/request-promise-native": "1.0.21",
     "codecov": "3.8.3",
     "eslint": "8.54.0",
-    "globby": "11.1.0",
     "hookable": "5.5.3",
     "husky": "4.3.8",
     "lint-staged": "15.1.0",
