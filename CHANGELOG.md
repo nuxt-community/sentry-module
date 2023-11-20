@@ -1,5 +1,13 @@
 
 
+## [8.0.4](https://github.com/nuxt-community/sentry-module/compare/v8.0.3...v8.0.4) (2023-11-20)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk ([#646](https://github.com/nuxt-community/sentry-module/issues/646)) ([630c80b](https://github.com/nuxt-community/sentry-module/commit/630c80b9b70c251f2628157ad6554b7c14070497))
+* set `root` for RewriteFrames integration ([#650](https://github.com/nuxt-community/sentry-module/issues/650)) ([d8c4733](https://github.com/nuxt-community/sentry-module/commit/d8c4733788190307d45cab0ba7f7efd13caae071))
+
 ## [8.0.3](https://github.com/nuxt-community/sentry-module/compare/v8.0.2...v8.0.3) (2023-11-16)
 
 
