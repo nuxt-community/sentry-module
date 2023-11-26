@@ -20,7 +20,7 @@ describe('Smoke test (default)', () => {
 
   beforeAll(async () => {
     await localServer.start(TEST_DSN)
-    const dsn = localServer.getDsn()
+    const dsn = localServer.getDsn() ?? undefined
     nuxt = (await setup(loadConfig(__dirname, 'default', { sentry: { dsn } }, { merge: true }))).nuxt
     browser = await createBrowser()
   })

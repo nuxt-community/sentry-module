@@ -24,8 +24,10 @@ if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@se
 export { init }
 export const SentrySdk = { ...CoreSdk, ...BrowserSdk }
 
+/* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
+const DISABLED_INTEGRATION_KEYS = <%= serialize(options.DISABLED_INTEGRATION_KEYS) %>
+
 export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' async' : '' %> function getConfig (ctx) {
-  /* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
   const config = {
     <%= Object
       .entries(options.config)
@@ -39,7 +41,7 @@ export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' asy
   <% if (browserIntegrations.length) {%>
   const { <%= browserIntegrations.join(', ') %> } = Integrations
   <%}%>
-  config.integrations = [
+  const resolvedIntegrations = [
     <%= Object
       .entries(options.integrations)
       .filter(([name]) => name !== 'Vue')
@@ -57,7 +59,7 @@ export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' asy
   ]
   <% if (options.tracing) { %>
   const { browserTracing, vueOptions, vueRouterInstrumentationOptions, ...tracingOptions } = <%= serialize(options.tracing) %>
-  config.integrations.push(new BrowserTracing({
+  resolvedIntegrations.push(new BrowserTracing({
     ...(ctx.app.router ? { routingInstrumentation: vueRouterInstrumentation(ctx.app.router, vueRouterInstrumentationOptions) } : {}),
     ...browserTracing,
   }))
@@ -72,12 +74,17 @@ export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' asy
   <% if (options.customClientIntegrations) { %>
   const customIntegrations = await getCustomIntegrations(ctx)
   if (Array.isArray(customIntegrations)) {
-    config.integrations.push(...customIntegrations)
+    resolvedIntegrations.push(...customIntegrations)
   } else {
     console.error(`[@nuxtjs/sentry] Invalid value returned from customClientIntegrations plugin. Expected an array, got "${typeof customIntegrations}".`)
   }
   <% } %>
-
+  config.integrations = (defaultIntegrations) => {
+    return [
+      ...defaultIntegrations.filter(integration => !DISABLED_INTEGRATION_KEYS.includes(integration.name)),
+      ...resolvedIntegrations,
+    ]
+  }
   const runtimeConfigKey = <%= serialize(options.runtimeConfigKey) %>
   if (ctx.$config && runtimeConfigKey && ctx.$config[runtimeConfigKey]) {
     merge(config, ctx.$config[runtimeConfigKey].config, ctx.$config[runtimeConfigKey].clientConfig)

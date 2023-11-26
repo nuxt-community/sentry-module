@@ -4,8 +4,6 @@ import { dirname } from 'path'
 import { describe, afterAll, beforeAll, beforeEach, test, expect } from 'vitest'
 import type { Browser } from 'playwright-chromium'
 import sentryTestkit from 'sentry-testkit'
-// TODO: Until sentry-kit types are fixed
-import type { Stacktrace } from '@sentry/node'
 import type { NuxtConfig } from '@nuxt/types'
 import { generatePort, setup, url } from '@nuxtjs/module-test-utils'
 import type { Nuxt } from '../src/kit-shim'
@@ -82,7 +80,7 @@ describe('Smoke test (typescript)', () => {
     const reports = testkit.reports()
     expect(reports).toHaveLength(1)
     expect(reports[0].error?.message).toContain('apiCrash is not defined')
-    expect(reports[0].error?.stacktrace as Stacktrace).toMatchObject({
+    expect(reports[0].error?.stacktrace).toMatchObject({
       frames: expect.arrayContaining([
         expect.objectContaining({
           filename: 'app:///api/index.ts',
@@ -100,6 +98,19 @@ describe('Smoke test (typescript)', () => {
     const reports = testkit.reports()
     expect(reports).toHaveLength(1)
     expect(reports[0].error?.message).toContain('crash_me is not a function')
+  })
+
+  test('can disable integrations that SDK enables by default', async () => {
+    const page = await browser.newPage()
+    await page.goto(url('/disabled-integrations'))
+
+    const clientParagraph = await $$('#client', page)
+    expect(clientParagraph).not.toBeNull()
+    expect(clientParagraph!.trim()).toBe('Dedupe: DISABLED')
+
+    const serverParagraph = await $$('#server', page)
+    expect(serverParagraph).not.toBeNull()
+    expect(serverParagraph!.trim()).toBe('Modules: DISABLED')
   })
 
   // TODO: Add tests for custom integration. Blocked by various sentry-kit bugs reported in its repo.

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { describe, test, expect } from 'vitest'
 import { defu } from 'defu'
 import { ResolvedClientOptions, ResolvedServerOptions, resolveClientOptions, resolveServerOptions } from '../src/options'
@@ -115,7 +116,10 @@ describe('Resolve Server Options', () => {
       logMockCalls: true,
       tracing: false,
     })
-    const integrations = Array.isArray(resolvedOptions.config.integrations) ? resolvedOptions.config.integrations : null
+    expect(resolvedOptions.config.integrations).not.toBeUndefined()
+    const integrations = Array.isArray(resolvedOptions.config.integrations)
+      ? resolvedOptions.config.integrations
+      : resolvedOptions.config.integrations!([])
     expect(integrations).toBeTruthy()
     expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']))
   })
@@ -158,7 +162,10 @@ describe('Resolve Server Options', () => {
         },
       },
     })
-    const integrations = Array.isArray(resolvedOptions.config.integrations) ? resolvedOptions.config.integrations : null
+    expect(resolvedOptions.config.integrations).not.toBeUndefined()
+    const integrations = Array.isArray(resolvedOptions.config.integrations)
+      ? resolvedOptions.config.integrations
+      : resolvedOptions.config.integrations!([])
     expect(integrations).toBeTruthy()
     expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Http', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']))
   })

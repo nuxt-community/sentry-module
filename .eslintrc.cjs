@@ -1,3 +1,5 @@
+const tsParser = require('@typescript-eslint/parser')
+
 module.exports = {
   extends: [
     '@nuxtjs/eslint-config',
@@ -15,6 +17,19 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
   },
   overrides: [
+    {
+      files: ['*.vue'],
+      parserOptions: {
+        parser: {
+          // Overrides script parser for `<script lang="ts">`
+          ts: tsParser,
+        },
+      },
+      rules: {
+        'no-undef': 'off',
+        'no-unused-vars': 'off',
+      },
+    },
     {
       files: ['*.ts', '*.tsx'],
       extends: [
