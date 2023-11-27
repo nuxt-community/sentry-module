@@ -1,5 +1,13 @@
 
 
+## [8.0.6](https://github.com/nuxt-community/sentry-module/compare/v8.0.4...v8.0.6) (2023-11-27)
+
+
+### Bug Fixes
+
+* **deps:** update sentry sdk to ^7.81.1 ([#653](https://github.com/nuxt-community/sentry-module/issues/653)) ([2c17b30](https://github.com/nuxt-community/sentry-module/commit/2c17b30f670b608e9064e7b6f576f23b2cfb180a))
+* make it possible to disable internal SDK integrations ([#655](https://github.com/nuxt-community/sentry-module/issues/655)) ([fd32a7e](https://github.com/nuxt-community/sentry-module/commit/fd32a7e47e0556013c4f7b7a2998e796e136ca22))
+
 ## [8.0.4](https://github.com/nuxt-community/sentry-module/compare/v8.0.3...v8.0.4) (2023-11-20)
 
 
