@@ -34,8 +34,12 @@ const SERVER_PLUGGABLE_INTEGRATIONS = ['CaptureConsole', 'Debug', 'Dedupe', 'Ext
 // External and optional Node.js integration - https://docs.sentry.io/platforms/node/profiling/
 export const SERVER_PROFILING_INTEGRATION: keyof ProfilingIntegration = 'ProfilingIntegration'
 
-function filterDisabledIntegrations<T extends AllIntegrations> (integrations: T): (keyof T)[] {
+function getEnabledIntegrations<T extends AllIntegrations> (integrations: T): (keyof T)[] {
   return getIntegrationsKeys(integrations).filter(key => integrations[key])
+}
+
+function getDisabledIntegrationKeys<T extends AllIntegrations> (integrations: T): string[] {
+  return getIntegrationsKeys(integrations).filter(key => integrations[key] === false) as string[]
 }
 
 function getIntegrationsKeys<T extends AllIntegrations> (integrations: T): (keyof T)[] {
@@ -158,6 +162,7 @@ export type ResolvedClientOptions = {
   BROWSER_PLUGGABLE_INTEGRATIONS: string[]
   BROWSER_VUE_INTEGRATIONS: string[]
   dev: boolean
+  DISABLED_INTEGRATION_KEYS: string[]
   runtimeConfigKey: string
   config: Options
   lazy: boolean | LazyConfiguration
@@ -213,13 +218,14 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: Readonly<
       ...options.config,
     },
     clientConfigPath,
+    DISABLED_INTEGRATION_KEYS: getDisabledIntegrationKeys(options.clientIntegrations),
     lazy: options.lazy,
     apiMethods,
     customClientIntegrations,
     logMockCalls: options.logMockCalls, // for mocked only
     tracing: options.tracing,
     initialize: canInitialize(options),
-    integrations: filterDisabledIntegrations(options.clientIntegrations)
+    integrations: getEnabledIntegrations(options.clientIntegrations)
       .reduce((res, key) => {
         res[key] = options.clientIntegrations[key]
         return res
@@ -290,10 +296,10 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
     }
   }
 
-  options.config.integrations = [
+  const resolvedIntegrations = [
     // Automatically instrument Node.js libraries and frameworks
     ...(options.tracing ? autoDiscoverNodePerformanceMonitoringIntegrations() : []),
-    ...filterDisabledIntegrations(options.serverIntegrations)
+    ...getEnabledIntegrations(options.serverIntegrations)
       .map((name) => {
         const opt = options.serverIntegrations[name]
         try {
@@ -313,6 +319,16 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
       }),
     ...customIntegrations,
   ]
+
+  const disabledIntegrationKeys = getDisabledIntegrationKeys(options.serverIntegrations)
+
+  // Use a function to be able to filter out default integrations.
+  options.config.integrations = (defaultIntegrations) => {
+    return [
+      ...defaultIntegrations.filter(integration => !disabledIntegrationKeys.includes(integration.name)),
+      ...resolvedIntegrations,
+    ]
+  }
 
   return {
     config: {

@@ -28,6 +28,10 @@ const config: NuxtConfig = {
       // Integration from @Sentry/browser package.
       TryCatch: { eventTarget: false },
       Replay: {},
+      Dedupe: false,
+    },
+    serverIntegrations: {
+      Modules: false,
     },
     clientConfig: {
       // This sets the sample rate to be 10%. You may want this to be 100% while

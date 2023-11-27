@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url'
 import initJiti from 'jiti'
 import { defu } from 'defu'
 import { join } from 'pathe'
+import { NuxtConfig } from '@nuxt/types'
 import { chromium, Browser, Page } from 'playwright-chromium'
 
 const jitiImport = initJiti(fileURLToPath(import.meta.url))
@@ -22,7 +23,7 @@ export async function $$ (selector: string, page: Page): Promise<string | null> 
   return null
 }
 
-export function loadConfig (dir: string, fixture: string | null = null, override: Record<string, unknown> = {}, { merge = false } = {}): Record<string, unknown> {
+export function loadConfig (dir: string, fixture: string | null = null, override: NuxtConfig = {}, { merge = false } = {}): NuxtConfig {
   const fixtureConfig = jitiImport(join(dir, 'fixture', fixture ?? '', 'nuxt.config'))
   const config = Object.assign({}, fixtureConfig.default || fixtureConfig)
 

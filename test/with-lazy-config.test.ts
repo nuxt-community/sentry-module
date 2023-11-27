@@ -19,7 +19,7 @@ describe('Smoke test (lazy config)', () => {
 
   beforeAll(async () => {
     await localServer.start(TEST_DSN)
-    const dsn = localServer.getDsn()
+    const dsn = localServer.getDsn() ?? undefined
     nuxt = (await setup(loadConfig(__dirname, 'with-lazy-config', { sentry: { dsn } }, { merge: true }))).nuxt
     browser = await createBrowser()
   })
