@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "build": "run-p build:*",
+        "build": "npm-run-all --parallel build:*",
         "build:base": "nuxt build -c ./base/nuxt.config",
         "build:replay": "nuxt build -c ./replay/nuxt.config",
         "build:tracing": "nuxt build -c ./tracing/nuxt.config",
