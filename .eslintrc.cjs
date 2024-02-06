@@ -18,6 +18,17 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['**/.nuxt/*.js'],
+      rules: {
+        'comma-spacing': 'off',
+        'import/order': 'off',
+        'key-spacing': 'off',
+        'object-curly-spacing': 'off',
+        'quote-props': 'off',
+        quotes: 'off',
+      },
+    },
+    {
       files: ['*.vue'],
       parserOptions: {
         parser: {

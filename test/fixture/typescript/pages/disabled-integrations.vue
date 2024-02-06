@@ -19,7 +19,7 @@ export default defineComponent({
   asyncData ({ $sentry }) {
     if (process.server) {
       return {
-        serverModulesDisabled: $sentry.getCurrentHub().getClient<NodeClient>()!.getIntegrationById('Modules') === undefined,
+        serverModulesDisabled: $sentry.getClient<NodeClient>()!.getIntegrationByName('Modules') === undefined,
       }
     }
   },
@@ -31,7 +31,7 @@ export default defineComponent({
   },
   created () {
     if (process.client) {
-      this.clientDedupeDisabled = this.$sentry.getCurrentHub().getClient<BrowserClient>()!.getIntegrationById('Dedupe') === undefined
+      this.clientDedupeDisabled = this.$sentry.getClient<BrowserClient>()!.getIntegrationByName('Dedupe') === undefined
     }
   },
 })

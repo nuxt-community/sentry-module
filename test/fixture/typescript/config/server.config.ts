@@ -1,4 +1,4 @@
-import { ModuleOptions } from 'src/types'
+import { ModuleOptions } from '../../../../src/types'
 
 export default function (): ModuleOptions['serverConfig'] {
   return {

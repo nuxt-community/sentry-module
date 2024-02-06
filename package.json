@@ -44,7 +44,7 @@
     "release": "release-it",
     "test": "yarn prepack && vitest run --single-thread && yarn lint:fixture && yarn typecheck",
     "test:watch": "vitest",
-    "typecheck": "yarn dev:prepare && tsc",
+    "typecheck": "yarn dev:prepare && tsc && tsc -p ./test/tsconfig.json",
     "coverage": "codecov"
   },
   "lint-staged": {

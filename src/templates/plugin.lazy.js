@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 <% if (options.lazy.injectMock) { %>
-/* eslint-disable-next-line quotes, comma-spacing */
 const API_METHODS = <%= JSON.stringify(options.lazy.mockApiMethods)%>
 let delayedCalls = []
 let SentryMock = {}

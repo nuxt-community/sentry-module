@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { describe, test, expect } from 'vitest'
 import { defu } from 'defu'
+import { PartialModuleConfiguration } from '../src/types/configuration'
 import { ResolvedClientOptions, ResolvedServerOptions, resolveClientOptions, resolveServerOptions } from '../src/options'
 import { nuxtCtx, Nuxt, NuxtModule, useLogger } from '../src/kit-shim'
 import { ModuleConfiguration } from '../src/types'
 import SentryModule from '../src/module'
-import { PartialModuleConfiguration } from 'src/types/configuration'
 
 const DUMMY_LOGGER = useLogger('nuxt:sentry:test')
 const DUMMY_NUXT = {
@@ -34,8 +34,8 @@ describe('Resolve Client Options', () => {
         environment: 'production',
       },
       integrations: {
-        ExtraErrorData: {},
-        ReportingObserver: {},
+        extraErrorDataIntegration: {},
+        reportingObserverIntegration: {},
       },
       lazy: false,
       logMockCalls: true,
@@ -70,8 +70,8 @@ describe('Resolve Client Options', () => {
         environment: 'production',
       },
       integrations: {
-        ExtraErrorData: {},
-        ReportingObserver: {},
+        extraErrorDataIntegration: {},
+        reportingObserverIntegration: {},
       },
       lazy: false,
       logMockCalls: true,
@@ -121,7 +121,7 @@ describe('Resolve Server Options', () => {
       ? resolvedOptions.config.integrations
       : resolvedOptions.config.integrations!([])
     expect(integrations).toBeTruthy()
-    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']))
+    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Dedupe', 'ExtraErrorData', 'RewriteFrames']))
   })
 
   test('can override dsn in serverConfig', async () => {
@@ -167,7 +167,7 @@ describe('Resolve Server Options', () => {
       ? resolvedOptions.config.integrations
       : resolvedOptions.config.integrations!([])
     expect(integrations).toBeTruthy()
-    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Http', 'Dedupe', 'ExtraErrorData', 'RewriteFrames', 'Transaction']))
+    expect(integrations?.map(integration => integration.name)).toEqual(expect.arrayContaining(['Http', 'Dedupe', 'ExtraErrorData', 'RewriteFrames']))
   })
 
   test('can override tracesSampleRate', async () => {

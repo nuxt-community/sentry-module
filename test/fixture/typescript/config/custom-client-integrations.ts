@@ -1,5 +1,7 @@
+import type { Integration } from '@sentry/types'
 import type { Context } from '@nuxt/types'
 
-export default function (_context: Context): unknown[] {
+// eslint-disable-next-line require-await
+export default async function (_context: Context): Promise<Integration[]> {
   return []
 }
