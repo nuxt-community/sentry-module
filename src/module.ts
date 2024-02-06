@@ -95,7 +95,6 @@ export default defineNuxtModule<ModuleConfiguration>({
     for (const dep of aliasedDependencies) {
       nuxt.options.alias[`~${dep}`] = (await resolvePath(dep, { url: moduleDir })).replace(/\/cjs\//, '/esm/')
     }
-    nuxt.options.alias['~@sentry/browser-sdk'] = (await resolvePath('@sentry/browser/esm/sdk', { url: moduleDir }))
 
     if (serverSentryEnabled(options)) {
       /**

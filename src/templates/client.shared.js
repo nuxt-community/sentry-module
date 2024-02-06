@@ -1,6 +1,6 @@
 import merge from '~lodash.mergewith'
 import * as CoreSdk from '~@sentry/core'
-import * as BrowserSdk from '~@sentry/browser-sdk'
+import { captureUserFeedback, forceLoad, onLoad, showReportDialog, wrap } from '~@sentry/browser'
 <%
 for (const [package, imports] of Object.entries(options.imports)) {
   if (imports.length) {
@@ -14,7 +14,7 @@ if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= 
 <%}%>
 
 export { init }
-export const SentrySdk = { ...CoreSdk, ...BrowserSdk }
+export const SentrySdk = { ...CoreSdk, ...{ captureUserFeedback, forceLoad, onLoad, showReportDialog, wrap } }
 
 /** @type {string[]} */
 const DISABLED_INTEGRATION_KEYS = <%= serialize(options.DISABLED_INTEGRATION_KEYS) %>
