@@ -42,7 +42,7 @@
     "lint:fix": "eslint --ext .vue,.js,.ts . --fix",
     "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
-    "test": "yarn prepack && vitest run --single-thread && yarn lint:fixture && yarn typecheck",
+    "test": "yarn prepack && vitest run --poolOptions.threads.singleThread && yarn lint:fixture && yarn typecheck",
     "test:watch": "vitest",
     "typecheck": "yarn dev:prepare && tsc && tsc -p ./test/tsconfig.json",
     "coverage": "codecov"
@@ -99,12 +99,11 @@
     "sentry-testkit": "5.0.8",
     "size-limit": "11.0.2",
     "typescript": "5.3.3",
-    "vitest": "0.34.6",
+    "vitest": "1.2.2",
     "vue": "2.7.16",
     "vuex": "3.6.2"
   },
   "resolutions": {
-    "vite": "^4.5.0",
     "watchpack": "^2.0.0"
   }
 }
