@@ -10473,7 +10473,7 @@ postcss@^7.0.36:
     picocolors "^0.2.1"
     source-map "^0.6.1"
 
-postcss@^8.2.1, postcss@^8.2.15, postcss@^8.4.14, postcss@^8.4.26, postcss@^8.4.32, postcss@^8.4.33:
+postcss@^8.2.1, postcss@^8.2.15, postcss@^8.4.14, postcss@^8.4.26, postcss@^8.4.33:
   version "8.4.34"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.34.tgz#563276e86b4ff20dfa5eed0d394d4c53853b2051"
   integrity sha512-4eLTO36woPSocqZ1zIrFD2K1v6wH7pY1uBh0JIM2KKfrVtGvPFiAku6aNOP0W1Wr9qwnaCsF0Z+CrVnryB2A8Q==
@@ -12865,13 +12865,13 @@ vite-node@1.2.2:
     picocolors "^1.0.0"
     vite "^5.0.0"
 
-vite@^5.0.0:
-  version "5.0.12"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.12.tgz#8a2ffd4da36c132aec4adafe05d7adde38333c47"
-  integrity sha512-4hsnEkG3q0N4Tzf1+t6NdN9dg/L3BM+q8SWgbSPnJvrgH2kgdyzfVJwbR1ic69/4uMJJ/3dqDZZE5/WwqW8U1w==
+vite@^5.0.0, vite@^5.1.0-beta.6:
+  version "5.1.0-beta.6"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.0-beta.6.tgz#2fd554818ec3cc888d336d24d5f0994153a06523"
+  integrity sha512-Tnham+O97w9GAQfeYyh1wZF2iePQdr/MgU+8k23O8aa+DtUbAPTmg09CsFgIi4eMta2utRa0pOjSqtYIMcUKbQ==
   dependencies:
     esbuild "^0.19.3"
-    postcss "^8.4.32"
+    postcss "^8.4.33"
     rollup "^4.2.0"
   optionalDependencies:
     fsevents "~2.3.3"
