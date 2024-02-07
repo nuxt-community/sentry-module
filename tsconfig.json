@@ -27,7 +27,7 @@
     },
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "noEmit": true,
     "strict": true,
     "types": [
@@ -39,6 +39,7 @@
   ],
   "include": [
     "./size-check/",
+    "./types/**.ts",
   ],
   "exclude": [
     "**/dist",
