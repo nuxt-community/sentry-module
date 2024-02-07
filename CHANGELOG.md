@@ -1,5 +1,13 @@
 
 
+## [8.0.7](https://github.com/nuxt-community/sentry-module/compare/v8.0.6...v8.0.7) (2024-02-07)
+
+
+### Bug Fixes
+
+* **deps:** update devdependency @sentry/profiling-node to v7 ([#665](https://github.com/nuxt-community/sentry-module/issues/665)) ([df52090](https://github.com/nuxt-community/sentry-module/commit/df5209004dbb9a5016fca32204df7cfdf00af0eb))
+* **deps:** update sentry sdk ([#656](https://github.com/nuxt-community/sentry-module/issues/656)) ([89c6576](https://github.com/nuxt-community/sentry-module/commit/89c6576b173e138d891926ee677d2468f296d578))
+
 ## [8.0.6](https://github.com/nuxt-community/sentry-module/compare/v8.0.4...v8.0.6) (2023-11-27)
 
 
