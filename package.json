@@ -65,17 +65,17 @@
     "@sentry/utils": "^7.100.0",
     "@sentry/vue": "^7.100.0",
     "consola": "^3.2.3",
-    "defu": "^6.1.2",
+    "defu": "^6.1.4",
     "hash-sum": "^2.0.0",
-    "jiti": "^1.20.0",
+    "jiti": "^1.21.0",
     "lodash.mergewith": "^4.6.2",
-    "mlly": "^1.4.2",
-    "pathe": "^1.1.1"
+    "mlly": "^1.5.0",
+    "pathe": "^1.1.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.5.5",
     "@nuxt/types": "2.17.3",
-    "@nuxt/typescript-build": "^3.0.1",
+    "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/module-test-utils": "1.6.3",
     "@release-it/conventional-changelog": "8.0.1",
