@@ -1,33 +1,31 @@
+import merge from '~lodash.mergewith'
+import * as CoreSdk from '~@sentry/core'
+import { captureUserFeedback, forceLoad, onLoad, showReportDialog, wrap } from '~@sentry/browser'
 <%
+for (const [package, imports] of Object.entries(options.imports)) {
+  if (imports.length) {
+    %>import { <%= imports.join(', ') %> } from '<%= package %>'
+<%
+  }
+}
 if (options.clientConfigPath) {%>import getClientConfig from '<%= options.clientConfigPath %>'
 <%}
 if (options.customClientIntegrations) {%>import getCustomIntegrations from '<%= options.customClientIntegrations %>'
 <%}%>
-import merge from '~lodash.mergewith'
-<%
-const browserIntegrations = options.BROWSER_INTEGRATIONS.filter(key => key in options.integrations)
-const browserVueIntegrations = options.BROWSER_VUE_INTEGRATIONS.filter(key => key in options.integrations)
-const vueImports = [
-  'init',
-  ...(browserIntegrations.length ? ['Integrations'] : []),
-  ...browserVueIntegrations,
-  ...(options.tracing ? ['vueRouterInstrumentation', 'BrowserTracing'] : [])
-]
-%>import { <%= vueImports.join(', ') %> } from '~@sentry/vue'
-import * as CoreSdk from '~@sentry/core'
-import * as BrowserSdk from '~@sentry/browser-sdk'
-<%
-let integrations = options.BROWSER_PLUGGABLE_INTEGRATIONS.filter(key => key in options.integrations)
-if (integrations.length) {%>import { <%= integrations.join(', ') %> } from '~@sentry/integrations'
-<%}%>
 
 export { init }
-export const SentrySdk = { ...CoreSdk, ...BrowserSdk }
+export const SentrySdk = { ...CoreSdk, ...{ captureUserFeedback, forceLoad, onLoad, showReportDialog, wrap } }
 
-/* eslint-disable object-curly-spacing, quote-props, quotes, key-spacing, comma-spacing */
+/** @type {string[]} */
 const DISABLED_INTEGRATION_KEYS = <%= serialize(options.DISABLED_INTEGRATION_KEYS) %>
 
+/**
+ * @typedef {Parameters<typeof init>[0]} InitConfig
+ * @param {import('@nuxt/types').Context} ctx
+ * @return {Promise<InitConfig>}
+ */
 export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' async' : '' %> function getConfig (ctx) {
+  /** @type {InitConfig} */
   const config = {
     <%= Object
       .entries(options.config)
@@ -38,9 +36,7 @@ export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' asy
       .join(',\n    ') %>,
   }
 
-  <% if (browserIntegrations.length) {%>
-  const { <%= browserIntegrations.join(', ') %> } = Integrations
-  <%}%>
+  /** @type {NonNullable<InitConfig>['integrations']} */
   const resolvedIntegrations = [
     <%= Object
       .entries(options.integrations)
@@ -53,17 +49,20 @@ export<%= (options.clientConfigPath || options.customClientIntegrations) ? ' asy
             return `${key}:${value}`
           })
 
-        return `new ${name}(${integrationOptions.length ? '{ ' + integrationOptions.join(',') + ' }' : ''})`
+        return `${name}(${integrationOptions.length ? '{ ' + integrationOptions.join(',') + ' }' : ''})`
       })
       .join(',\n    ') %>,
   ]
-  <% if (options.tracing) { %>
-  const { browserTracing, vueOptions, vueRouterInstrumentationOptions, ...tracingOptions } = <%= serialize(options.tracing) %>
-  resolvedIntegrations.push(new BrowserTracing({
-    ...(ctx.app.router ? { routingInstrumentation: vueRouterInstrumentation(ctx.app.router, vueRouterInstrumentationOptions) } : {}),
-    ...browserTracing,
+  <%
+  if (options.tracing) {
+    const { browserTracing, vueOptions, vueRouterInstrumentationOptions, ...tracingOptions } = options.tracing
+  %>
+  resolvedIntegrations.push(browserTracingIntegration({
+    router: ctx.app.router,
+    ...<%= serialize(vueRouterInstrumentationOptions) %>,
+    ...<%= serialize(browserTracing) %>,
   }))
-  merge(config, vueOptions, tracingOptions)
+  merge(config, <%= serialize(vueOptions) %>, <%= serialize(tracingOptions) %>)
   <% } %>
 
   <% if (options.clientConfigPath) { %>

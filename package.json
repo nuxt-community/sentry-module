@@ -44,7 +44,7 @@
     "release": "release-it",
     "test": "yarn prepack && vitest run --single-thread && yarn lint:fixture && yarn typecheck",
     "test:watch": "vitest",
-    "typecheck": "yarn dev:prepare && tsc",
+    "typecheck": "yarn dev:prepare && tsc && tsc -p ./test/tsconfig.json",
     "coverage": "codecov"
   },
   "lint-staged": {
@@ -59,11 +59,11 @@
     }
   },
   "dependencies": {
-    "@sentry/core": "^7.81.1",
-    "@sentry/integrations": "^7.81.1",
-    "@sentry/node": "^7.81.1",
-    "@sentry/utils": "^7.81.1",
-    "@sentry/vue": "^7.81.1",
+    "@sentry/core": "^7.100.0",
+    "@sentry/integrations": "^7.100.0",
+    "@sentry/node": "^7.100.0",
+    "@sentry/utils": "^7.100.0",
+    "@sentry/vue": "^7.100.0",
     "consola": "^3.2.3",
     "defu": "^6.1.2",
     "hash-sum": "^2.0.0",
@@ -79,8 +79,8 @@
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/module-test-utils": "1.6.3",
     "@release-it/conventional-changelog": "8.0.1",
-    "@sentry/profiling-node": "1.2.6",
-    "@sentry/webpack-plugin": "2.10.1",
+    "@sentry/profiling-node": "1.3.5",
+    "@sentry/webpack-plugin": "2.14.0",
     "@size-limit/file": "11.0.0",
     "@types/hash-sum": "1.0.2",
     "@types/lodash.mergewith": "4.6.9",

@@ -1,8 +1,9 @@
 <% if (options.tracing) { %>
+import { getActiveSpan, getDynamicSamplingContextFromSpan, spanToTraceHeader } from '~@sentry/core'
 import { dynamicSamplingContextToSentryBaggageHeader } from '~@sentry/utils'
 <% } %>
 
-/** @type {import('@nuxt/types').Module} */
+/** @type {import('@nuxt/types').Plugin} */
 export default function (ctx, inject) {
   const sentry = process.sentry || null
   if (!sentry) {
@@ -21,23 +22,25 @@ export default function (ctx, inject) {
 }
 
 <% if (options.tracing) { %>
+/** @param {import('@nuxt/types').Context} ctx */
 function connectBackendTraces (ctx) {
   const { head } = ctx.app
   if (!head || head instanceof Function) {
     console.warn('[@nuxtjs/sentry] can not connect backend and frontend traces because app.head is a function or missing!')
     return
   }
-  const scope = ctx.$sentry.getCurrentHub().getScope()
-  const span = scope.getSpan()
-  const transaction = scope.getTransaction()
-  if (!span || !transaction) {
+  const span = getActiveSpan()
+  if (!span) {
     return
   }
   head.meta = head.meta || []
-  head.meta.push({ hid: 'sentry-trace', name: 'sentry-trace', content: span.toTraceparent() })
-  const dsc = transaction.getDynamicSamplingContext()
+  head.meta.push({ hid: 'sentry-trace', name: 'sentry-trace', content: spanToTraceHeader(span) })
+  const dsc = getDynamicSamplingContextFromSpan(span)
   if (dsc) {
-    head.meta.push({ hid: 'sentry-baggage', name: 'baggage', content: dynamicSamplingContextToSentryBaggageHeader(dsc) })
+    const baggage = dynamicSamplingContextToSentryBaggageHeader(dsc)
+    if (baggage) {
+      head.meta.push({ hid: 'sentry-baggage', name: 'baggage', content: baggage })
+    }
   }
 }
 <% } %>

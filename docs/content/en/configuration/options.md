@@ -243,11 +243,10 @@ sentry: {
     Dedupe: {},
     ExtraErrorData: {},
     RewriteFrames: { root: <rootDir> },
-    Transaction: {},
   }
   ```
 - Sentry by default enables the following server integrations: `Console`, `ContextLines`, `Context`, `FunctionToString`, `Http`,  `InboundFilters`, `LinkedErrors`, `Modules`,`OnUncaughtException`, `OnUnhandledRejection`, `RequestData`.
-- The full list of server integrations that are supported includes the ones above plus: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `RewriteFrames`, `Transaction`.
+- The full list of server integrations that are supported includes the ones above plus: `CaptureConsole`, `Debug`, `Dedupe`, `ExtraErrorData`, `Hapi`, `RewriteFrames`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
 - To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only) set the option to:
   ```js

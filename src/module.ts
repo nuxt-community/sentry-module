@@ -43,7 +43,6 @@ export default defineNuxtModule<ModuleConfiguration>({
       Dedupe: {},
       ExtraErrorData: {},
       RewriteFrames: { root: nuxt.options.rootDir },
-      Transaction: {},
     },
     customClientIntegrations: '',
     customServerIntegrations: '',
@@ -87,6 +86,7 @@ export default defineNuxtModule<ModuleConfiguration>({
     // Work-around issues with Nuxt not being able to resolve unhoisted dependencies that are imported in webpack context.
     const aliasedDependencies = [
       'lodash.mergewith',
+      '@sentry/browser',
       '@sentry/core',
       '@sentry/integrations',
       '@sentry/utils',
@@ -95,7 +95,6 @@ export default defineNuxtModule<ModuleConfiguration>({
     for (const dep of aliasedDependencies) {
       nuxt.options.alias[`~${dep}`] = (await resolvePath(dep, { url: moduleDir })).replace(/\/cjs\//, '/esm/')
     }
-    nuxt.options.alias['~@sentry/browser-sdk'] = (await resolvePath('@sentry/browser/esm/sdk', { url: moduleDir }))
 
     if (serverSentryEnabled(options)) {
       /**

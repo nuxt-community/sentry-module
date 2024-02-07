@@ -1,13 +1,30 @@
 {
   "compilerOptions": {
+    "noErrorTruncation": true,
     "allowJs": true,
-    "baseUrl": ".",
     "checkJs": true,
     "esModuleInterop": true,
     "lib": [
       "ESNext",
       "dom",
     ],
+    "paths": {
+      "~@sentry/browser": [
+        "./node_modules/@sentry/browser"
+      ],
+      "~@sentry/core": [
+        "./node_modules/@sentry/core"
+      ],
+      "~@sentry/integrations": [
+        "./node_modules/@sentry/integrations"
+      ],
+      "~@sentry/utils": [
+        "./node_modules/@sentry/utils"
+      ],
+      "~@sentry/vue": [
+        "./node_modules/@sentry/vue"
+      ],
+    },
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -17,10 +34,11 @@
       "node",
     ],
   },
+  "files": [
+    "./src/module.ts",
+  ],
   "include": [
     "./size-check/",
-    "./src/",
-    "./test/",
   ],
   "exclude": [
     "**/dist",
