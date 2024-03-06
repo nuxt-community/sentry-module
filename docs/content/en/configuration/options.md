@@ -224,7 +224,7 @@ sentry: {
   ```
 - Sentry by default also enables the following browser integrations: `Breadcrumbs`, `Dedupe`, `FunctionToString`, `GlobalHandlers`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `TryCatch`.
 - When `tracing` option is enabled then the [Vue Router Instrumentation](https://docs.sentry.io/platforms/javascript/guides/vue/configuration/integrations/vue-router/) is also enabled.
-- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `ContextLines`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `Reply`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
+- The full list of client integrations that are supported: `Breadcrumbs`, `CaptureConsole`, `ContextLines`, `Debug`, `Dedupe`, `ExtraErrorData`, `FunctionToString`, `GlobalHandlers`, `HttpClient`, `HttpContext`, `InboundFilters`, `LinkedErrors`, `Replay`, `ReportingObserver`, `RewriteFrames`, `TryCatch`.
 - Integration options can be specified in the object value corresponding to the individual integration key.
 - To disable integration that is enabled by default, pass `false` as a value. For example to disable `ExtraErrorData` integration (only) set the option to:
   ```js
