@@ -13,9 +13,9 @@ category: ''
 
 <alert type="warning">
 
-  If you want support for Nuxt 3, please, raise your opinion [in this discussion](https://github.com/getsentry/sentry-javascript/discussions/6929) and ensure to make clear that the Nuxt community would love to see a first-class support from Sentry 🔥.
+  If you want support for Nuxt 3, please help by voting on the first post [in this discussion](https://github.com/getsentry/sentry-javascript/discussions/6929).
 
-  If you can't wait, there's a recipe [in this post](https://www.lichter.io/articles/nuxt3-sentry-recipe/) you can try.
+  In the meantime, you can try a [solution that provides limited functionality](https://www.lichter.io/articles/nuxt3-sentry-recipe/).
 
 </alert>
 
