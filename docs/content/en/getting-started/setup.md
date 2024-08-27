@@ -5,6 +5,12 @@ position: 10
 category: Getting Started
 ---
 
+<alert type="info">
+
+  This module is for Nuxt 2. For [Nuxt 3+](https://nuxt.com/) support see the official [`@sentry/nuxt` module](https://docs.sentry.io/platforms/javascript/guides/nuxt/).
+
+</alert>
+
 Check the [Nuxt.js documentation](https://nuxtjs.org/guides/configuration-glossary/configuration-modules) for more information about installing and using modules in Nuxt.js.
 
 > Nuxt.js v2.16.0+ is required, earlier versions are not supported.

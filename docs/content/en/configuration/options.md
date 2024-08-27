@@ -5,6 +5,12 @@ position: 15
 category: Configuration
 ---
 
+<alert type="info">
+
+  This module is for Nuxt 2. For [Nuxt 3+](https://nuxt.com/) support see the official [`@sentry/nuxt` module](https://docs.sentry.io/platforms/javascript/guides/nuxt/).
+
+</alert>
+
 Options can be passed using either:
  - environment variables
  - `sentry` object in `nuxt.config.js`

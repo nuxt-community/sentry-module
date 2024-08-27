@@ -5,19 +5,16 @@ position: 1
 category: ''
 ---
 
+<alert type="info">
+
+  This module is for Nuxt 2. For [Nuxt 3+](https://nuxt.com/) support see the official [`@sentry/nuxt` module](https://docs.sentry.io/platforms/javascript/guides/nuxt/).
+
+</alert>
+
 <img src="/preview.png" class="light-img" width="1280" height="640" alt=""/>
 <img src="/preview-dark.png" class="dark-img" width="1280" height="640" alt=""/>
 
-[Sentry Module](https://github.com/nuxt-community/sentry-module) for [NuxtJS 2](https://v2.nuxt.com/).
-
-
-<alert type="warning">
-
-  If you want support for Nuxt 3, please help by voting on the first post [in this discussion](https://github.com/getsentry/sentry-javascript/discussions/6929).
-
-  In the meantime, you can try a [solution that provides limited functionality](https://www.lichter.io/articles/nuxt3-sentry-recipe/).
-
-</alert>
+[Sentry Module](https://github.com/nuxt-community/sentry-module) for [Nuxt 2](https://v2.nuxt.com/).
 
 ## Features
 

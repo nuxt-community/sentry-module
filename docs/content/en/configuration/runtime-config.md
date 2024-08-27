@@ -5,6 +5,12 @@ position: 16
 category: Configuration
 ---
 
+<alert type="info">
+
+  This module is for Nuxt 2. For [Nuxt 3+](https://nuxt.com/) support see the official [`@sentry/nuxt` module](https://docs.sentry.io/platforms/javascript/guides/nuxt/).
+
+</alert>
+
 Defining options using the [Nuxt Runtime Config](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/) functionality allows them to be runtime-based rather than build-time based, as is the case by default.
 
 Currently, only the `config`, `clientConfig` and `serverConfig` [options](/configuration/options) can be configured using the runtime config.

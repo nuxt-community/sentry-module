@@ -6,7 +6,7 @@
 [![Codecov][codecov-src]][codecov-href]
 [![Standard JS][standard-js-src]][standard-js-href]
 
-> [Sentry](http://sentry.io) module for [Nuxt 2](https://nuxtjs.org)
+> [Sentry](http://sentry.io) module for [Nuxt 2](https://v2.nuxt.com/). For [Nuxt 3+](https://nuxt.com/) support see the official [`@sentry/nuxt` module](https://docs.sentry.io/platforms/javascript/guides/nuxt/).
 
 - [✨ &nbsp;Release Notes](https://sentry.nuxtjs.org/releases)
 - [📖 &nbsp;Documentation](https://sentry.nuxtjs.org)
