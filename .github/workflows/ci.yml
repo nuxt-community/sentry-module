@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18.x]
+        node-version: [18, 20]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Setup node
@@ -31,7 +31,7 @@ jobs:
       - name: Unittesting
         run: yarn test
       - name: Linting
-        if: ${{ matrix.node-version == '18.x' }}
+        if: ${{ matrix.node-version == '18' }}
         run: yarn lint
       - name: Coverage
         run: yarn coverage
