@@ -20,7 +20,8 @@
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "require": "./dist/module.cjs",
+      "types": "./dist/module.d.ts"
     }
   },
   "main": "./dist/module.cjs",
