@@ -1,5 +1,14 @@
 
 
+## [8.0.8](https://github.com/nuxt-community/sentry-module/compare/v8.0.7...v8.0.8) (2024-09-13)
+
+
+### Bug Fixes
+
+* **deps:** update devdependency @sentry/webpack-plugin to v2.22.3 ([#688](https://github.com/nuxt-community/sentry-module/issues/688)) ([e84d715](https://github.com/nuxt-community/sentry-module/commit/e84d71511d899398f186990ce68f41d9469774f6))
+* **deps:** update sentry sdk ([#666](https://github.com/nuxt-community/sentry-module/issues/666)) ([9d5dd24](https://github.com/nuxt-community/sentry-module/commit/9d5dd24d43ef962db5ea2043c359088af283e68b))
+* type declarations don't work with "moduleResolution: node16" ([8fe70f0](https://github.com/nuxt-community/sentry-module/commit/8fe70f09ebf708a0ac40c17d4863c7d2aecc0b9b))
+
 ## [8.0.7](https://github.com/nuxt-community/sentry-module/compare/v8.0.6...v8.0.7) (2024-02-07)
 
 
