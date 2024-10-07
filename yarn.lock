@@ -6020,10 +6020,10 @@ escodegen@^2.1.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-rchl-base@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-rchl-base/-/eslint-config-rchl-base-2.0.2.tgz#648b55c55111421d12fa54e3f9905e125414aa57"
-  integrity sha512-bSUTEYFziPFHDJPey4ExB+Afr67clpZYZ09qkL6yNjpE/zNLiR8Qb3xPXdW4/kxjUAfUigOVdcg9JTH9hKysIQ==
+eslint-config-rchl-base@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/eslint-config-rchl-base/-/eslint-config-rchl-base-2.0.3.tgz#e0d13d9e69162b42f972f694a093c48589b4c409"
+  integrity sha512-7gDrGTMoVf6KlY2erLKWUtiAoiiOzGx0m9GpOUUvQ9Vm7TLe8oIkq8m/pLwiFX3SXeIj0ZcyuGy3R7rBrTIaVw==
   dependencies:
     "@eslint/js" "^9.10.0"
     "@stylistic/eslint-plugin-js" "^2.8.0"
