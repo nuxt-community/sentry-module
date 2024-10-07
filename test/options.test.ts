@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { describe, test, expect } from 'vitest'
 import { defu } from 'defu'
 import { PartialModuleConfiguration } from '../src/types/configuration'
@@ -18,7 +17,7 @@ const DUMMY_NUXT = {
 nuxtCtx.value = DUMMY_NUXT
 
 async function createOptions (options: PartialModuleConfiguration): Promise<ModuleConfiguration> {
-  const { getOptions } = (SentryModule as NuxtModule<ModuleConfiguration>)
+  const { getOptions } = SentryModule as NuxtModule<ModuleConfiguration>
   return defu(options, getOptions ? await getOptions() : {}) as ModuleConfiguration
 }
 

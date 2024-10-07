@@ -17,9 +17,9 @@ import { canInitialize } from './utils'
 const jiti = initJiti(fileURLToPath(import.meta.url))
 
 export interface SentryHandlerProxy {
-    errorHandler: ReturnType<typeof Sentry.Handlers.errorHandler>
-    requestHandler: ReturnType<typeof Sentry.Handlers.requestHandler>
-    tracingHandler: ReturnType<typeof Sentry.Handlers.tracingHandler>
+  errorHandler: ReturnType<typeof Sentry.Handlers.errorHandler>
+  requestHandler: ReturnType<typeof Sentry.Handlers.requestHandler>
+  tracingHandler: ReturnType<typeof Sentry.Handlers.tracingHandler>
 }
 
 type BooleanMap<T extends Record<string, unknown>> = Record<keyof T, true>
@@ -211,7 +211,7 @@ export async function resolveRelease (moduleOptions: Readonly<ModuleConfiguratio
   if (!('release' in moduleOptions.config)) {
     // Determine "config.release" automatically from local repo if not provided.
     try {
-      const SentryCli = await (import('@sentry/cli').then(m => m.default || m))
+      const SentryCli = await import('@sentry/cli').then(m => m.default || m)
       const cli = new SentryCli()
       return (await cli.releases.proposeVersion()).trim()
     } catch {
@@ -297,7 +297,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: Readonly<
   const options: ModuleConfiguration = defu(moduleOptions)
 
   let clientConfigPath: string | undefined
-  if (typeof (options.clientConfig) === 'string') {
+  if (typeof options.clientConfig === 'string') {
     clientConfigPath = resolveAlias(options.clientConfig)
     clientConfigPath = relative(nuxt.options.buildDir, clientConfigPath)
   } else {
@@ -317,11 +317,11 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: Readonly<
 
   let customClientIntegrations: string | undefined
   if (options.customClientIntegrations) {
-    if (typeof (options.customClientIntegrations) === 'string') {
+    if (typeof options.customClientIntegrations === 'string') {
       customClientIntegrations = resolveAlias(options.customClientIntegrations)
       customClientIntegrations = relative(nuxt.options.buildDir, customClientIntegrations)
     } else {
-      logger.warn(`Invalid customClientIntegrations option. Expected a file path, got "${typeof (options.customClientIntegrations)}".`)
+      logger.warn(`Invalid customClientIntegrations option. Expected a file path, got "${typeof options.customClientIntegrations}".`)
     }
   }
 
@@ -349,7 +349,7 @@ export async function resolveClientOptions (nuxt: Nuxt, moduleOptions: Readonly<
     '~@sentry/browser': importsBrowser,
     '~@sentry/core': importsCore,
     '~@sentry/integrations': importsPluggable,
-    '~@sentry/vue': ['init', ...(options.tracing ? ['browserTracingIntegration'] : [])],
+    '~@sentry/vue': ['init', ...options.tracing ? ['browserTracingIntegration'] : []],
   }
 
   return {
@@ -388,7 +388,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
     options.serverIntegrations = defu(options.serverIntegrations, { Http: { tracing: true } })
   }
 
-  if (typeof (options.serverConfig) === 'string') {
+  if (typeof options.serverConfig === 'string') {
     const resolvedPath = resolveAlias(options.serverConfig)
     try {
       const mod = jiti(resolvedPath)
@@ -414,7 +414,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
       const mod = jiti(resolvedPath)
       customIntegrations = (mod.default || mod)()
       if (!Array.isArray(customIntegrations)) {
-        logger.error(`Invalid value returned from customServerIntegrations plugin. Expected an array, got "${typeof (customIntegrations)}".`)
+        logger.error(`Invalid value returned from customServerIntegrations plugin. Expected an array, got "${typeof customIntegrations}".`)
       }
     } catch (error) {
       logger.error(`Error handling the customServerIntegrations plugin:\n${error}`)
@@ -426,7 +426,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
     delete options.serverIntegrations[SERVER_PROFILING_INTEGRATION]
     if (enabled) {
       try {
-        const { ProfilingIntegration } = await (import('@sentry/profiling-node').then(m => m.default || m))
+        const { ProfilingIntegration } = await import('@sentry/profiling-node').then(m => m.default || m)
         customIntegrations.push(new ProfilingIntegration())
       } catch (error) {
         logger.error(`To use the ${SERVER_PROFILING_INTEGRATION} integration you need to install the "@sentry/profiling-node" dependency.`)
@@ -437,7 +437,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
 
   const resolvedIntegrations = [
     // Automatically instrument Node.js libraries and frameworks
-    ...(options.tracing ? autoDiscoverNodePerformanceMonitoringIntegrations() : []),
+    ...options.tracing ? autoDiscoverNodePerformanceMonitoringIntegrations() : [],
     ...getEnabledIntegrations(options.serverIntegrations)
       .map((name) => {
         const importName = mapServerIntegrationToImportName(name)
@@ -445,14 +445,12 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
         try {
           if (isServerCoreIntegration(name)) {
             // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
-            // eslint-disable-next-line import/namespace
             return Object.keys(opt as Record<string, unknown>).length ? SentryCore[importName](opt) : SentryCore[importName]()
           } else if (isServerNodeIntegration(name)) {
             // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
             return Object.keys(opt as Record<string, unknown>).length ? new SentryNodeIntegrations[name](opt) : new SentryNodeIntegrations[name]()
           } else if (isServerPlugabbleIntegration(name)) {
             // @ts-expect-error Some integrations don't take arguments but it doesn't hurt to pass one.
-            // eslint-disable-next-line import/namespace
             return Object.keys(opt as Record<string, unknown>).length ? PluggableIntegrations[importName](opt) : PluggableIntegrations[importName]()
           } else {
             throw new Error(`Unsupported server integration "${name}"`)
@@ -489,7 +487,7 @@ export async function resolveServerOptions (nuxt: Nuxt, moduleOptions: Readonly<
 function getServerRuntimeConfig (nuxt: Nuxt, options: Readonly<ModuleConfiguration>): Partial<ModuleConfiguration['config']> | undefined {
   const { publicRuntimeConfig } = nuxt.options
   const { runtimeConfigKey } = options
-  if (publicRuntimeConfig && typeof (publicRuntimeConfig) !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
+  if (publicRuntimeConfig && typeof publicRuntimeConfig !== 'function' && runtimeConfigKey in publicRuntimeConfig) {
     return defu(
       publicRuntimeConfig[runtimeConfigKey].serverConfig as Partial<ModuleConfiguration['serverConfig']>,
       publicRuntimeConfig[runtimeConfigKey].config as Partial<ModuleConfiguration['config']>,

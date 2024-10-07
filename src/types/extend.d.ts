@@ -46,6 +46,7 @@ declare module '@nuxt/types/config/runtime' {
 
 // add types for Vuex Store
 declare module 'vuex/types' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Store<S> {
     readonly $sentry: Sentry
     $sentryLoad(): Promise<void>

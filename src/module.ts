@@ -103,18 +103,30 @@ export default defineNuxtModule<ModuleConfiguration>({
        * initialized already during handler creation.
        */
       const sentryHandlerProxy: SentryHandlerProxy = {
-        errorHandler: (error, _, __, next) => { next(error) },
-        requestHandler: (_, __, next) => { next() },
-        tracingHandler: (_, __, next) => { next() },
+        errorHandler: (error, _, __, next) => {
+          next(error)
+        },
+        requestHandler: (_, __, next) => {
+          next()
+        },
+        tracingHandler: (_, __, next) => {
+          next()
+        },
       }
       // @ts-expect-error Nuxt 2 only hook
-      nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.requestHandler(req, res, next) }))
+      nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => {
+        sentryHandlerProxy.requestHandler(req, res, next)
+      }))
       if (options.tracing) {
         // @ts-expect-error Nuxt 2 only hook
-        nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => { sentryHandlerProxy.tracingHandler(req, res, next) }))
+        nuxt.hook('render:setupMiddleware', app => app.use((req, res, next) => {
+          sentryHandlerProxy.tracingHandler(req, res, next)
+        }))
       }
       // @ts-expect-error Nuxt 2 only hook
-      nuxt.hook('render:errorMiddleware', app => app.use((error, req, res, next) => { sentryHandlerProxy.errorHandler(error, req, res, next) }))
+      nuxt.hook('render:errorMiddleware', app => app.use((error, req, res, next) => {
+        sentryHandlerProxy.errorHandler(error, req, res, next)
+      }))
       // @ts-expect-error Nuxt 2 only hook
       nuxt.hook('generate:routeFailed', ({ route, errors }) => {
         type routeGeneretorError = {

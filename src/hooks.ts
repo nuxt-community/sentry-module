@@ -20,7 +20,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
 
   const templateDir = fileURLToPath(new URL('./templates', import.meta.url))
 
-  const pluginOptionClient = clientSentryEnabled(moduleOptions) && canInitialize(moduleOptions) ? (moduleOptions.lazy ? 'lazy' : 'client') : 'mocked'
+  const pluginOptionClient = clientSentryEnabled(moduleOptions) && canInitialize(moduleOptions) ? moduleOptions.lazy ? 'lazy' : 'client' : 'mocked'
   const clientOptions: ResolvedClientOptions = defu({ config: { release } }, await resolveClientOptions(nuxt, moduleOptions, logger))
   addPluginTemplate({
     src: resolve(templateDir, `plugin.${pluginOptionClient}.js`),
@@ -65,7 +65,7 @@ export async function buildHook (nuxt: Nuxt, moduleOptions: ModuleConfiguration,
 export async function webpackConfigHook (nuxt: Nuxt, webpackConfigs: WebpackConfig[], options: ModuleConfiguration, logger: ConsolaInstance): Promise<void> {
   let WebpackPlugin: typeof import('@sentry/webpack-plugin')
   try {
-    WebpackPlugin = await (import('@sentry/webpack-plugin').then(m => m.default || m))
+    WebpackPlugin = await import('@sentry/webpack-plugin').then(m => m.default || m)
   } catch {
     throw new Error('The "@sentry/webpack-plugin" package must be installed as a dev dependency to use the "publishRelease" option.')
   }

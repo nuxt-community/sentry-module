@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 import { describe, afterAll, beforeAll, beforeEach, test, expect } from 'vitest'

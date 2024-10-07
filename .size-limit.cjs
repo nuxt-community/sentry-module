@@ -35,4 +35,4 @@ module.exports = [
     gzip: false,
     brotli: false,
   },
-];
+]

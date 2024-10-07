@@ -35,7 +35,9 @@
     ],
   },
   "files": [
+    "./build.config.ts",
     "./src/module.ts",
+    "./vitest.config.ts",
   ],
   "include": [
     "./size-check/",
