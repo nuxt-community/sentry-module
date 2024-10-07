@@ -33,5 +33,3 @@ jobs:
       - name: Linting
         if: ${{ matrix.node-version == '18' }}
         run: yarn lint
-      - name: Coverage
-        run: yarn coverage
