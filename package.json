@@ -41,7 +41,7 @@
     "size": "yarn build && cd size-check && yarn build && cd .. && yarn size-limit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:fixture": "eslint --ext .vue,.js --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
+    "lint:fixture": "eslint --no-ignore 'test/fixture/*/.nuxt/sentry.*'",
     "release": "release-it",
     "test": "yarn prepack && vitest run --poolOptions.threads.singleThread && yarn lint:fixture && yarn typecheck",
     "test:watch": "vitest",
