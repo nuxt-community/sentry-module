@@ -7,18 +7,18 @@ import { Configuration as WebpackOptions } from 'webpack'
 import { ClientIntegrations, ServerIntegrations } from './sentry'
 
 export interface LazyConfiguration {
-    chunkName?: string
-    injectLoadHook?: boolean
-    injectMock?: boolean
-    mockApiMethods?: boolean | string[]
-    webpackPrefetch?: boolean
-    webpackPreload?: boolean
+  chunkName?: string
+  injectLoadHook?: boolean
+  injectMock?: boolean
+  mockApiMethods?: boolean | string[]
+  webpackPrefetch?: boolean
+  webpackPreload?: boolean
 }
 
 export interface TracingConfiguration extends Pick<SentryOptions, 'tracesSampleRate'> {
-    browserTracing?: Parameters<typeof browserTracingIntegration>[0]
-    vueOptions?: Partial<SentryVueTracingOptions>
-    vueRouterInstrumentationOptions?: Parameters<typeof vueRouterInstrumentation>[1]
+  browserTracing?: Parameters<typeof browserTracingIntegration>[0]
+  vueOptions?: Partial<SentryVueTracingOptions>
+  vueRouterInstrumentationOptions?: Parameters<typeof vueRouterInstrumentation>[1]
 }
 
 export interface ModuleConfiguration {

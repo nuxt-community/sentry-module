@@ -5,7 +5,7 @@
     <h3>Client-side</h3>
     <span id="client-side">{{ clientSentryPresent ? 'Works!' : '$sentry object is missing!' }}</span>
     <p>
-      <button id="crash-button" @click="crash_me()">
+      <button id="crash-button" type="button" @click="crash_me()">
         crash me
       </button>
     </p>
@@ -17,7 +17,6 @@ export default {
   asyncData ({ $sentry, query }) {
     if (query.crashOnLoad) {
       // @ts-ignore forces a crash
-      // eslint-disable-next-line no-undef
       crashOnLoad()
     }
 

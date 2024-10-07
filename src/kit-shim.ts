@@ -10,50 +10,47 @@ import type { Hookable } from 'hookable'
 import type { WebpackPluginInstance, Configuration as WebpackConfig } from 'webpack'
 import type { NuxtOptions } from '@nuxt/types'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 type NuxtHooks = Record<string, any>
 export interface Nuxt {
-    /** The resolved Nuxt configuration. */
-    options: NuxtOptions
-    hooks: Hookable<NuxtHooks>
-    hook: Nuxt['hooks']['hook']
-    callHook: Nuxt['hooks']['callHook']
-    addHooks: Nuxt['hooks']['addHooks']
-    ready: () => Promise<void>
-    close: () => Promise<void>
-    /** The production or development server. */
-    server?: any
-    vfs: Record<string, string>
+  /** The resolved Nuxt configuration. */
+  options: NuxtOptions
+  hooks: Hookable<NuxtHooks>
+  hook: Nuxt['hooks']['hook']
+  callHook: Nuxt['hooks']['callHook']
+  addHooks: Nuxt['hooks']['addHooks']
+  ready: () => Promise<void>
+  close: () => Promise<void>
+  /** The production or development server. */
+  server?: any
+  vfs: Record<string, string>
 }
 
 interface ModuleMeta {
-    /** Module name. */
-    name?: string
-    /** Module version. */
-    version?: string
-    /**
+  /** Module name. */
+  name?: string
+  /** Module version. */
+  version?: string
+  /**
      * The configuration key used within `nuxt.config` for this module's options.
      * For example, `@nuxtjs/axios` uses `axios`.
      */
-    configKey?: string
+  configKey?: string
 }
 /** The options received.  */
 type ModuleOptions = Record<string, any>
 type Awaitable<T> = T | Promise<T>
 /** Input module passed to defineNuxtModule. */
 interface ModuleDefinition<T extends ModuleOptions = ModuleOptions> {
-    meta?: ModuleMeta
-    defaults?: T | ((nuxt: Nuxt) => T)
-    schema?: T
-    hooks?: Partial<NuxtHooks>
-    setup?: (this: void, resolvedOptions: T, nuxt: Nuxt) => Awaitable<void>
+  meta?: ModuleMeta
+  defaults?: T | ((nuxt: Nuxt) => T)
+  schema?: T
+  hooks?: Partial<NuxtHooks>
+  setup?: (this: void, resolvedOptions: T, nuxt: Nuxt) => Awaitable<void>
 }
 export interface NuxtModule<T extends ModuleOptions = ModuleOptions> {
-    (this: void, inlineOptions: T, nuxt: Nuxt): void
-    getOptions?: (inlineOptions?: T, nuxt?: Nuxt) => Promise<T>
-    getMeta?: () => Promise<ModuleMeta>
+  (this: void, inlineOptions: T, nuxt: Nuxt): void
+  getOptions?: (inlineOptions?: T, nuxt?: Nuxt) => Promise<T>
+  getMeta?: () => Promise<ModuleMeta>
 }
 
 /** Direct access to the Nuxt context - see https://github.com/unjs/unctx. */
@@ -100,10 +97,12 @@ export function tryUseNuxt (): Nuxt | null {
 
 // -- Nuxt 2 compatibility shims --
 const NUXT2_SHIMS_KEY = '__nuxt2_shims_sentry_key__'
-function nuxt2Shims (nuxt: Nuxt) {
+function nuxt2Shims (nuxt: Nuxt): void {
   // Avoid duplicate install and only apply to Nuxt2
   // @ts-expect-error nuxt2
-  if (!isNuxt2(nuxt) || nuxt[NUXT2_SHIMS_KEY]) { return }
+  if (!isNuxt2(nuxt) || nuxt[NUXT2_SHIMS_KEY]) {
+    return
+  }
   // @ts-expect-error nuxt2
   nuxt[NUXT2_SHIMS_KEY] = true
 
@@ -114,19 +113,23 @@ function nuxt2Shims (nuxt: Nuxt) {
   // Allow using useNuxt()
   if (!nuxtCtx.value) {
     nuxtCtx.value = nuxt
-    nuxt.hook('close', () => { nuxtCtx.value = null })
+    nuxt.hook('close', () => {
+      nuxtCtx.value = null
+    })
   }
 }
 
 export function defineNuxtModule<OptionsT extends ModuleOptions> (definition: ModuleDefinition<OptionsT>): NuxtModule<OptionsT> {
   // Normalize definition and meta
-  if (!definition.meta) { definition.meta = {} }
+  if (!definition.meta) {
+    definition.meta = {}
+  }
   if (definition.meta.configKey === undefined) {
     definition.meta.configKey = definition.meta.name
   }
 
   // Resolves module options from inline options, [configKey] in nuxt.config, defaults and schema
-  function getOptions (inlineOptions?: OptionsT) {
+  function getOptions (inlineOptions?: OptionsT): Promise<OptionsT> {
     const nuxt = useNuxt()
     const configKey = definition.meta!.configKey || definition.meta!.name!
     const _defaults = definition.defaults instanceof Function ? definition.defaults(nuxt) : definition.defaults
@@ -135,7 +138,7 @@ export function defineNuxtModule<OptionsT extends ModuleOptions> (definition: Mo
   }
 
   // Module format is always a simple function
-  async function normalizedModule (this: any, inlineOptions: OptionsT) {
+  async function normalizedModule (this: any, inlineOptions: OptionsT): Promise<any> {
     const nuxt = this.nuxt
 
     // Avoid duplicate installs
@@ -177,31 +180,31 @@ export function isNuxt2 (): boolean {
 }
 
 interface NuxtTemplate<Options = Record<string, any>> {
-    /** resolved output file path (generated) */
-    dst?: string
-    /** The target filename once the template is copied into the Nuxt buildDir */
-    filename?: string
-    /** An options object that will be accessible within the template via `<% options %>` */
-    options?: Options
-    /** The resolved path to the source file to be template */
-    src?: string
-    /** Provided compile option instead of src */
-    getContents?: (data: Options) => string | Promise<string>
-    /** Write to filesystem */
-    write?: boolean
+  /** resolved output file path (generated) */
+  dst?: string
+  /** The target filename once the template is copied into the Nuxt buildDir */
+  filename?: string
+  /** An options object that will be accessible within the template via `<% options %>` */
+  options?: Options
+  /** The resolved path to the source file to be template */
+  src?: string
+  /** Provided compile option instead of src */
+  getContents?: (data: Options) => string | Promise<string>
+  /** Write to filesystem */
+  write?: boolean
 }
 interface ResolvedNuxtTemplate<Options = Record<string, any>> extends NuxtTemplate<Options> {
-    filename: string
-    dst: string
+  filename: string
+  dst: string
 }
 interface NuxtPlugin {
-    /** @deprecated use mode */
-    ssr?: boolean
-    src: string
-    mode?: 'all' | 'server' | 'client'
+  /** @deprecated use mode */
+  ssr?: boolean
+  src: string
+  mode?: 'all' | 'server' | 'client'
 }
 type _TemplatePlugin<Options> = Omit<NuxtPlugin, 'src'> & NuxtTemplate<Options>
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 interface NuxtPluginTemplate<Options = Record<string, any>> extends _TemplatePlugin<Options> {}
 
 /**
@@ -368,13 +371,13 @@ interface ExtendConfigOptions {
    *
    * @default true
    */
-   dev?: boolean
-   /**
+  dev?: boolean
+  /**
     * Install plugin on build
     *
     * @default true
     */
-   build?: boolean
+  build?: boolean
   /**
    * Install plugin on server side
    *
@@ -389,7 +392,6 @@ interface ExtendConfigOptions {
   client?: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface ExtendWebpackConfigOptions extends ExtendConfigOptions {}
 
 /**
@@ -413,7 +415,7 @@ export function addWebpackPlugin (plugin: WebpackPluginInstance | WebpackPluginI
  * when applying to both client and server builds.
  */
 export function extendWebpackConfig (
-  fn: ((config: WebpackConfig)=> void),
+  fn: ((config: WebpackConfig) => void),
   options: ExtendWebpackConfigOptions = {},
 ): void {
   const nuxt = useNuxt()

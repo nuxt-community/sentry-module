@@ -29,7 +29,6 @@ dist
 
 # Testing
 reports
-coverage
 *.lcov
 .nyc_output
 
