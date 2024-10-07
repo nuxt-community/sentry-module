@@ -6020,20 +6020,20 @@ escodegen@^2.1.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-rchl-base@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-rchl-base/-/eslint-config-rchl-base-2.0.0.tgz#f95e5cd9be812c310aaf5ee585500f30df6394e9"
-  integrity sha512-6ANaKypgEf6ufDY9kPvD0dTLJmpDU+VMGdhNCkzZbk/BpRiqEQf5u/Fb+ADvKJ4qxCazeOGEpXcBe9DYB7ijhg==
+eslint-config-rchl-base@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-rchl-base/-/eslint-config-rchl-base-2.0.2.tgz#648b55c55111421d12fa54e3f9905e125414aa57"
+  integrity sha512-bSUTEYFziPFHDJPey4ExB+Afr67clpZYZ09qkL6yNjpE/zNLiR8Qb3xPXdW4/kxjUAfUigOVdcg9JTH9hKysIQ==
   dependencies:
     "@eslint/js" "^9.10.0"
     "@stylistic/eslint-plugin-js" "^2.8.0"
     eslint-plugin-import-x "^4.2.1"
     globals "^15.9.0"
 
-eslint-config-rchl-typescript@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-rchl-typescript/-/eslint-config-rchl-typescript-3.0.0.tgz#ed8c3ae9e564ae76a9fa148152d32a89a06e0edc"
-  integrity sha512-DxdLOF29jotV1rQy4+WVVRAUqaW9pjFl/FQhH3Dw/D/nsK2lkOQK+AIUejgR+ETdrk/8Cm7dcKYvSLrUC3NrTQ==
+eslint-config-rchl-typescript@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-rchl-typescript/-/eslint-config-rchl-typescript-3.0.2.tgz#c8b7baaab2f3da62896c69418cfbecac92eedb12"
+  integrity sha512-PH/ainPVOWkk+5qak8xhC47d17PeWaoP2/bVBrb8D3aw8G0FbuwbILYDqfpDoAp9Z4mTzUJls8sorbes7Y237g==
   dependencies:
     "@stylistic/eslint-plugin-ts" "^2.8.0"
     typescript-eslint "^8.6.0"
