@@ -77,7 +77,7 @@
     "@nuxt/types": "2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/module-test-utils": "1.6.3",
-    "@release-it/conventional-changelog": "8.0.1",
+    "@release-it/conventional-changelog": "9.0.1",
     "@sentry/profiling-node": "7.119.0",
     "@sentry/webpack-plugin": "2.22.3",
     "@size-limit/file": "11.1.4",
