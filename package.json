@@ -70,7 +70,7 @@
     "jiti": "^1.21.0",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.5.0",
-    "pathe": "^1.1.2"
+    "pathe": "^2.0.0"
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.8.3",
