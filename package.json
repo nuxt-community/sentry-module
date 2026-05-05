@@ -67,7 +67,7 @@
     "consola": "^3.2.3",
     "defu": "^6.1.4",
     "hash-sum": "^2.0.0",
-    "jiti": "^1.21.0",
+    "jiti": "^2.0.0",
     "lodash.mergewith": "^4.6.2",
     "mlly": "^1.5.0",
     "pathe": "^1.1.2"
