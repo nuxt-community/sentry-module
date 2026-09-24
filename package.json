@@ -73,7 +73,7 @@
     "pathe": "^1.1.2"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "0.8.3",
+    "@nuxt/module-builder": "1.0.3",
     "@nuxt/types": "2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/module-test-utils": "1.6.3",
