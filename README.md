@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repository is archived. `@nuxtjs/sentry` was built for Nuxt 2, which reached end of life on June 30, 2024. For Nuxt 3+, see [`@sentry/nuxt`](https://docs.sentry.io/platforms/javascript/guides/nuxt/).
+
 [![@nuxtjs/sentry](docs/static/preview.png)](https://sentry.nuxtjs.org)
 # @nuxtjs/sentry
 
